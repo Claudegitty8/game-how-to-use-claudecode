@@ -11,7 +11,7 @@ Alle spürbaren Änderungen, neueste zuerst.
 - Konzept 6 «Halluzination und Prüfen» mit der neuen Bausteingruppe **Absicherung**: nur die Chronik benutzen, «Das weiss ich nicht» erlauben, Beleg verlangen.
 - Neue Fehlbilder: zum Raten gezwungen, dazugedichtet, dem Witzbuch geglaubt, nach dem Mund geredet, richtig aber ohne Beleg.
 - Das Studio heisst ab Kapitel 2 «Die Garage mit Labor». Drei neue Lexikon-Einträge.
-- 15 neue Aufgaben. Insgesamt 43 Aufgaben, 9 Lexikon-Einträge, 31 Tests.
+- 15 neue Aufgaben. Insgesamt 43 Aufgaben, 9 Lexikon-Einträge, 29 Tests.
 
 **Bekannte Grenzen**
 - Kapitel 2 ist erst zur Hälfte da: Token, Kontextfenster und Wissensstand fehlen noch, ebenso das Token-Budget.
