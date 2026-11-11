@@ -1,0 +1,1356 @@
+{
+  "id": "dorfzeitung",
+  "kapitel": 2,
+  "tokenBudget": 6000,
+  "kunde": "Frau Rossi, Dorfzeitung «Hinterwiler Bote»",
+  "wunsch": "Wir wollen Leserfragen aus unserem Archiv beantworten. Aber wir sind eine kleine Zeitung: Jedes Token kostet.",
+  "kundenstimme": "Unser Leser-Chat antwortet kurz, richtig und günstig. Der Kassier ist begeistert!",
+  "ueberraschung": "Kapitel 2 ist geschafft! Frau Rossi fragt: «Kann Kiwi die Artikel auch gleich selber ins Archiv ablegen?» Noch nicht. Aber bald bekommt Kiwi Hände.",
+  "lexikon": [
+    "kosten"
+  ],
+  "runden": [
+    {
+      "id": "r1",
+      "art": "konzept",
+      "konzept": "token",
+      "probieren": {
+        "aufgabe": "z-a",
+        "nurTeile": [
+          "lang"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "z-b"
+      },
+      "luecke": {
+        "aufgabe": "z-c"
+      },
+      "frei": [
+        "z-d",
+        "z-e",
+        "z-f",
+        "z-g"
+      ]
+    },
+    {
+      "id": "r2",
+      "art": "konzept",
+      "konzept": "kontextfenster",
+      "probieren": {
+        "aufgabe": "f-a",
+        "nurTeile": [
+          "alles",
+          "viele"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "f-a"
+      },
+      "luecke": {
+        "aufgabe": "f-b",
+        "vorgabe": [
+          "s260"
+        ]
+      },
+      "frei": [
+        "f-c",
+        "f-d",
+        "f-e",
+        "f-f"
+      ]
+    },
+    {
+      "id": "r3",
+      "art": "konzept",
+      "konzept": "wissensstand",
+      "probieren": {
+        "aufgabe": "s-a",
+        "nurTeile": [
+          "aktuell"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "s-a"
+      },
+      "luecke": {
+        "aufgabe": "s-b"
+      },
+      "frei": [
+        "s-c",
+        "s-d",
+        "s-e",
+        "s-f"
+      ]
+    },
+    {
+      "id": "r4",
+      "art": "misch",
+      "titel": "Alles zusammen",
+      "frei": [
+        "y-a",
+        "y-b"
+      ]
+    }
+  ],
+  "aufgaben": {
+    "z-a": {
+      "wunsch": "Kiwi soll unseren Lesern sagen, wann das Dorffest ist. Wir zahlen pro Token, also bitte sparsam.",
+      "grundprompt": "Wann ist das Dorffest?",
+      "teile": [
+        {
+          "id": "kurz",
+          "art": "prompt",
+          "text": "Antworte in einem Satz."
+        },
+        {
+          "id": "lang",
+          "art": "prompt",
+          "text": "Schreib alles, was dir dazu einfällt."
+        },
+        {
+          "id": "datum",
+          "art": "kontext",
+          "text": "Das Dorffest ist am 14. Juni."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "lang"
+            ]
+          },
+          "fehlbild": "teuer"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "kurz"
+            ]
+          },
+          "fehlbild": "langeAntwort"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "datum"
+            ]
+          },
+          "fehlbild": "erfunden"
+        }
+      ],
+      "fehlbilder": {
+        "teuer": {
+          "texte": [
+            "«Zum Dorffest fällt mir viel ein. Zuerst zur Geschichte des Festes, dann zum Wetter, dann zu den Würsten …» Die Antwort ist neun Seiten lang.",
+            "«Gern! Kapitel 1: Was ist ein Fest? Kapitel 2: Was ist ein Dorf?» Frau Rossi schaut auf die Rechnung und wird bleich."
+          ],
+          "hinweis": "Auch die Antwort kostet Tokens. Du hast eine sehr lange bestellt, also wurde es teuer.",
+          "ausgabeTokens": 900
+        },
+        "langeAntwort": {
+          "texte": [
+            "«Das Dorffest! Ein schönes Thema. Es findet statt, also, lass mich etwas ausholen …» Eine halbe Seite später fehlt das Datum immer noch.",
+            "«Feste haben in Hinterwil eine lange Tradition. Schon früher …» Kiwi schreibt und schreibt."
+          ],
+          "hinweis": "Du hast nicht gesagt, wie kurz die Antwort sein soll. Jedes Wort der Antwort kostet Tokens.",
+          "ausgabeTokens": 300
+        },
+        "erfunden": {
+          "texte": [
+            "«Das Dorffest ist am 31. Februar.» Kurz und günstig. Aber falsch.",
+            "«Das Dorffest ist morgen.» Kurz ist es. Stimmen tut es nicht."
+          ],
+          "hinweis": "Kurz war die Antwort. Aber Kiwi kannte das Datum nicht und hat geraten."
+        }
+      },
+      "erfolg": [
+        "«Das Dorffest ist am 14. Juni.»"
+      ],
+      "loesung": [
+        "kurz",
+        "datum"
+      ]
+    },
+    "z-b": {
+      "typ": "wahl",
+      "wunsch": "Was ist eigentlich so ein Token?",
+      "frage": "Kiwi zerlegt jeden Text in kleine Stücke, die Tokens. In wie viele Stücke zerfällt etwa «Das Dorffest ist am 14. Juni.»?",
+      "kiwi": "So sieht Kiwi den Satz: in neun Stücken.",
+      "steine": [
+        "Das",
+        " Dorf",
+        "fest",
+        " ist",
+        " am",
+        " 14",
+        ".",
+        " Juni",
+        "."
+      ],
+      "optionen": [
+        {
+          "id": "eins",
+          "text": "In ein Stück: der ganze Satz",
+          "hinweis": "Ein ganzer Satz ist für Kiwi zu gross. Es zerlegt ihn in Wörter und Wortteile."
+        },
+        {
+          "id": "neun",
+          "text": "In etwa neun Stücke: Wörter und Wortteile",
+          "richtig": true,
+          "hinweis": "Genau. Ein Token ist ein Wort, ein Wortteil oder ein Satzzeichen. Lange Wörter zerfallen in mehrere Stücke."
+        },
+        {
+          "id": "viele",
+          "text": "In 28 Stücke: jeder Buchstabe einzeln",
+          "hinweis": "So klein sind die Stücke meist nicht. Ein Token ist eher ein Wort oder ein Wortteil."
+        }
+      ],
+      "loesung": [
+        "neun"
+      ]
+    },
+    "z-c": {
+      "typ": "wahl",
+      "wunsch": "Und wofür genau bezahlen wir?",
+      "frage": "Du schickst Kiwi eine kurze Frage. Kiwi antwortet mit einem langen Text. Wofür zahlst du Tokens?",
+      "kiwi": "Auf der Rechnung stehen zwei Zeilen: Eingabe und Ausgabe.",
+      "optionen": [
+        {
+          "id": "frage",
+          "text": "Nur für meine Frage",
+          "hinweis": "Auch was Kiwi schreibt, kostet Tokens. Die Antwort ist oft sogar der teurere Teil."
+        },
+        {
+          "id": "antwort",
+          "text": "Nur für Kiwis Antwort",
+          "hinweis": "Auch was du schickst, kostet Tokens: deine Frage und alle Texte, die du mitgibst."
+        },
+        {
+          "id": "beides",
+          "text": "Für beides: was ich schicke und was Kiwi schreibt",
+          "richtig": true,
+          "hinweis": "Genau. Tokens werden für die Eingabe und für die Ausgabe gezählt."
+        }
+      ],
+      "loesung": [
+        "beides"
+      ]
+    },
+    "z-d": {
+      "wunsch": "Kiwi soll einen Titel für den Artikel über den neuen Spielplatz schreiben. Mehr als 40 Tokens darfst du nicht schicken.",
+      "grundprompt": "Schreib einen Titel für einen Zeitungsartikel.",
+      "budget": 40,
+      "teile": [
+        {
+          "id": "form",
+          "art": "prompt",
+          "text": "Höchstens sechs Wörter."
+        },
+        {
+          "id": "hoeflich",
+          "art": "prompt",
+          "text": "Liebe Kiwi, ich hoffe sehr, es geht dir gut, und wenn es dir nichts ausmacht, wäre ich dir wirklich ausserordentlich dankbar."
+        },
+        {
+          "id": "thema",
+          "art": "kontext",
+          "text": "Thema: Der neue Spielplatz beim Schulhaus ist eröffnet."
+        },
+        {
+          "id": "artikel",
+          "art": "kontext",
+          "text": "Hier ist der ganze Artikel mit allen drei Seiten.",
+          "tokens": 600
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "tokensUeber": 40
+          },
+          "fehlbild": "zuTeuer"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "thema"
+            ]
+          },
+          "fehlbild": "keinThema"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "form"
+            ]
+          },
+          "fehlbild": "langerTitel"
+        }
+      ],
+      "fehlbilder": {
+        "zuTeuer": {
+          "texte": [
+            "Frau Rossi winkt ab: «Das sprengt unser Budget. So viel müssen wir Kiwi für einen Titel nicht schicken.»",
+            "Der Kassier der Zeitung ruft an: «Wer hat da so viele Tokens verschickt? Für einen Titel!»"
+          ],
+          "hinweis": "Jedes Wort, das du schickst, kostet Tokens. Floskeln und ganze Artikel braucht Kiwi für einen Titel nicht."
+        },
+        "keinThema": {
+          "texte": [
+            "«Neues aus aller Welt».",
+            "«Dies und das von hier und dort»."
+          ],
+          "hinweis": "Günstig war es. Aber Kiwi wusste nicht, worum es im Artikel geht."
+        },
+        "langerTitel": {
+          "texte": [
+            "«Der neue Spielplatz beim Schulhaus ist nun endlich, nach langer Bauzeit und vielen Sitzungen, feierlich eröffnet worden».",
+            "«Alles, was Sie über den neuen Spielplatz beim Schulhaus schon immer wissen wollten, aber nie zu fragen wagten»."
+          ],
+          "hinweis": "Kiwi wusste nicht, wie kurz der Titel sein soll. Lange Antworten kosten mehr Tokens."
+        }
+      },
+      "erfolg": [
+        "«Neuer Spielplatz beim Schulhaus eröffnet»."
+      ],
+      "loesung": [
+        "form",
+        "thema"
+      ]
+    },
+    "z-e": {
+      "typ": "wahl",
+      "wunsch": "Ich habe drei Ideen für Kiwi. Welche wird am teuersten?",
+      "frage": "Welche Bestellung kostet am meisten Tokens?",
+      "kiwi": "Die drei Bestellungen sind fast gleich kurz. Den Unterschied macht die Länge der Antwort.",
+      "optionen": [
+        {
+          "id": "satz",
+          "text": "«Fasse den Artikel in einem Satz zusammen.»",
+          "hinweis": "Ein Satz als Antwort ist kurz und günstig. Teuer wird es, wenn Kiwi viel schreiben muss."
+        },
+        {
+          "id": "lang",
+          "text": "«Schreib den Artikel dreimal so lang um.»",
+          "richtig": true,
+          "hinweis": "Genau. Hier muss Kiwi am meisten schreiben, und jedes geschriebene Token kostet."
+        },
+        {
+          "id": "janein",
+          "text": "«Sag nur Ja oder Nein: Ist der Artikel fertig?»",
+          "hinweis": "Ein einziges Wort als Antwort ist das Günstigste von allen."
+        }
+      ],
+      "loesung": [
+        "lang"
+      ]
+    },
+    "z-f": {
+      "wunsch": "Leser fragen im Chat nach der Badi. Der Chat läuft den ganzen Sommer. Schick höchstens 60 Tokens pro Frage.",
+      "nachrichtVon": "Frage eines Lesers",
+      "grundprompt": "Wann hat die Badi offen?",
+      "budget": 60,
+      "teile": [
+        {
+          "id": "kurz",
+          "art": "prompt",
+          "text": "Antworte in einem kurzen Satz."
+        },
+        {
+          "id": "gedicht",
+          "art": "prompt",
+          "text": "Beginne jede Antwort mit einem langen Gedicht über den Sommer."
+        },
+        {
+          "id": "zeiten",
+          "art": "kontext",
+          "text": "Die Badi ist täglich von 9 bis 19 Uhr offen."
+        },
+        {
+          "id": "blatt",
+          "art": "kontext",
+          "text": "Hier ist das ganze Gemeindeblatt mit den Öffnungszeiten von 40 Betrieben.",
+          "tokens": 2000
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "gedicht"
+            ]
+          },
+          "fehlbild": "gedicht"
+        },
+        {
+          "wenn": {
+            "tokensUeber": 60
+          },
+          "fehlbild": "zuTeuer"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "zeiten"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "kurz"
+            ]
+          },
+          "fehlbild": "langeAntwort"
+        }
+      ],
+      "fehlbilder": {
+        "gedicht": {
+          "texte": [
+            "«O Sommer, du goldene Zeit, die Sonne lacht, das Wasser ist bereit …» 20 Strophen später: «Von 9 bis 19 Uhr.»",
+            "«Sommer, Sonne, Sonnenschein …» Jede Frage kostet jetzt ein ganzes Gedicht. Im August ist das Budget weg."
+          ],
+          "hinweis": "Das Gedicht kommt bei jeder einzelnen Frage wieder. Lange Antworten kosten jedes Mal Tokens.",
+          "ausgabeTokens": 400
+        },
+        "zuTeuer": {
+          "texte": [
+            "Frau Rossi rechnet: «Das ganze Gemeindeblatt bei jeder Frage? Dann sind wir im Juli pleite.»",
+            "Der Kassier stöhnt: «40 Betriebe mitschicken, um nach einem zu fragen?»"
+          ],
+          "hinweis": "Alles, was du mitschickst, kostet Tokens, und zwar bei jeder Frage neu. Schick nur, was Kiwi für diese Frage braucht."
+        },
+        "erfunden": {
+          "texte": [
+            "«Die Badi ist von Mitternacht bis 3 Uhr früh offen.»",
+            "«Die Badi hat nur im Winter offen.»"
+          ],
+          "hinweis": "Günstig, aber falsch. Kiwi kannte die Öffnungszeiten nicht."
+        },
+        "langeAntwort": {
+          "texte": [
+            "«Die Badi, auch Freibad genannt, ist eine Einrichtung, die …» Die Öffnungszeiten kommen im vierten Absatz.",
+            "«Gute Frage! Bevor ich antworte, ein paar Gedanken zum Schwimmen …»"
+          ],
+          "hinweis": "Du hast nicht gesagt, wie kurz die Antwort sein soll. Bei vielen Fragen wird das teuer.",
+          "ausgabeTokens": 250
+        }
+      },
+      "erfolg": [
+        "«Die Badi ist täglich von 9 bis 19 Uhr offen.»"
+      ],
+      "loesung": [
+        "kurz",
+        "zeiten"
+      ]
+    },
+    "z-g": {
+      "typ": "wahl",
+      "wunsch": "Unser Kassier will es genau wissen.",
+      "frage": "Der Kassier fragt: «Wie spart man bei Kiwi am meisten Tokens?»",
+      "kiwi": "Kurz fragen, nur Nötiges mitschicken, kurze Antworten bestellen: Das spart am meisten.",
+      "optionen": [
+        {
+          "id": "klein",
+          "text": "Alles in Kleinbuchstaben schreiben",
+          "hinweis": "Das ändert fast nichts. Gezählt werden Wörter und Wortteile, nicht die Grösse der Buchstaben."
+        },
+        {
+          "id": "noetig",
+          "text": "Nur Nötiges schicken und kurze Antworten bestellen",
+          "richtig": true,
+          "hinweis": "Genau. Tokens zählen bei der Eingabe und bei der Ausgabe. Beides kurz zu halten, spart am meisten."
+        },
+        {
+          "id": "schnell",
+          "text": "Die Frage ganz schnell tippen",
+          "hinweis": "Wie schnell du tippst, ist egal. Es zählt, wie viel Text hin- und hergeht."
+        }
+      ],
+      "loesung": [
+        "noetig"
+      ]
+    },
+    "f-a": {
+      "wunsch": "Herr Tanner hat uns 400 Seiten Chronik gebracht. Kiwi soll daraus die Frage einer Leserin beantworten.",
+      "nachrichtVon": "Frage einer Leserin",
+      "grundprompt": "In welchem Jahr brannte die alte Sägerei?",
+      "fenster": 1000,
+      "eng": 600,
+      "teile": [
+        {
+          "id": "seite",
+          "art": "kontext",
+          "text": "Chronik, Seite 212: Die alte Sägerei brannte 1934 ab."
+        },
+        {
+          "id": "viele",
+          "art": "kontext",
+          "text": "Chronik, Seiten 1 bis 150: Vereinsberichte, Wetter und Ernten.",
+          "tokens": 800
+        },
+        {
+          "id": "alles",
+          "art": "kontext",
+          "text": "Die ganze Chronik: alle 400 Seiten.",
+          "tokens": 5000
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "tokensUeber": 1000
+          },
+          "fehlbild": "faelltRunter"
+        },
+        {
+          "wenn": {
+            "tokensUeber": 600
+          },
+          "fehlbild": "ueberladen"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "seite"
+            ]
+          },
+          "fehlbild": "erfunden"
+        }
+      ],
+      "fehlbilder": {
+        "faelltRunter": {
+          "texte": [
+            "«Hier eine Zusammenfassung der Kartoffelernte von 1803.» Die Frage zur Sägerei ist vom Tisch gefallen.",
+            "«Worum ging es nochmals?» 400 Seiten passen nicht auf Kiwis Tisch. Der Anfang ist heruntergefallen."
+          ],
+          "hinweis": "Kiwis Tisch ist begrenzt. Was nicht draufpasst, sieht Kiwi nicht. Hier fiel sogar die Frage herunter."
+        },
+        "ueberladen": {
+          "texte": [
+            "«Die Sägerei brannte 1911.» Falsch: Das ist das Jahr des Brunnens. Kiwi hat sich im Papierberg verirrt.",
+            "«Im Jahr 1790.» Das ist die Mühle. Auf dem vollen Tisch hat Kiwi die falsche Stelle erwischt."
+          ],
+          "hinweis": "Alles passte knapp auf den Tisch. Aber je voller der Tisch, desto ungenauer wird Kiwi."
+        },
+        "erfunden": {
+          "texte": [
+            "«Die Sägerei brannte 1850.» Das hat Kiwi erfunden. Die richtige Seite lag nicht auf dem Tisch.",
+            "«Die Sägerei hat nie gebrannt.» Doch. Aber die Seite dazu fehlte."
+          ],
+          "hinweis": "Kiwi sieht nur, was auf dem Tisch liegt. Die Seite mit der Antwort war nicht dabei."
+        }
+      },
+      "erfolg": [
+        "«Die alte Sägerei brannte im Jahr 1934 ab.»"
+      ],
+      "loesung": [
+        "seite"
+      ]
+    },
+    "f-b": {
+      "wunsch": "Ein Leser will wissen, wer 1950 Gemeindepräsident wurde und wie lange er blieb. Das steht auf zwei Seiten.",
+      "nachrichtVon": "Frage eines Lesers",
+      "grundprompt": "Wer wurde 1950 Gemeindepräsident, und wie lange blieb er im Amt?",
+      "fenster": 1000,
+      "teile": [
+        {
+          "id": "s260",
+          "art": "kontext",
+          "text": "Chronik, Seite 260: 1950 wurde Emil Graf Gemeindepräsident."
+        },
+        {
+          "id": "s275",
+          "art": "kontext",
+          "text": "Chronik, Seite 275: Emil Graf blieb bis 1962 im Amt."
+        },
+        {
+          "id": "kuchen",
+          "art": "kontext",
+          "text": "Chronik, Seite 12: Rezept für Apfelkuchen."
+        },
+        {
+          "id": "rest",
+          "art": "kontext",
+          "text": "Chronik, Seiten 1 bis 250.",
+          "tokens": 3000
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "tokensUeber": 1000
+          },
+          "fehlbild": "faelltRunter"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "kuchen"
+            ]
+          },
+          "fehlbild": "kuchen"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "s260"
+            ]
+          },
+          "fehlbild": "halb"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "s275"
+            ]
+          },
+          "fehlbild": "halb"
+        }
+      ],
+      "fehlbilder": {
+        "faelltRunter": {
+          "texte": [
+            "«Im Jahr 1803 war die Ernte gut.» Der Tisch quillt über, die Frage liegt am Boden.",
+            "«Entschuldigung, was war die Frage?» 250 Seiten haben sie vom Tisch geschoben."
+          ],
+          "hinweis": "So viele Seiten passen nicht auf Kiwis Tisch. Was herunterfällt, ist für Kiwi weg."
+        },
+        "kuchen": {
+          "texte": [
+            "«Emil Graf, bekannt für seinen Apfelkuchen, blieb bis 1962.» Der Kuchen stammt von Seite 12, nicht von Herrn Graf.",
+            "«1950 wurde ein Apfelkuchen Gemeindepräsident.» Kiwi hat die Seiten vermischt."
+          ],
+          "hinweis": "Kiwi benutzt alles, was auf dem Tisch liegt. Das Kuchenrezept gehörte nicht dorthin."
+        },
+        "halb": {
+          "texte": [
+            "«Emil Graf wurde 1950 Präsident und blieb 40 Jahre.» Die 40 Jahre hat Kiwi erfunden.",
+            "«Es war Emil Graf. Er blieb bis 1999.» Die Seite mit dem richtigen Jahr fehlte."
+          ],
+          "hinweis": "Für diese Frage braucht Kiwi beide Seiten. Was fehlt, erfindet es."
+        }
+      },
+      "erfolg": [
+        "«Emil Graf wurde 1950 Gemeindepräsident und blieb bis 1962 im Amt.»"
+      ],
+      "loesung": [
+        "s260",
+        "s275"
+      ]
+    },
+    "f-c": {
+      "typ": "wahl",
+      "wunsch": "Unsere Praktikantin hat stundenlang mit Kiwi geschrieben. Dann passierte etwas Seltsames.",
+      "frage": "Ganz am Anfang schrieb sie: «Antworte immer auf Deutsch.» Nach sehr vielen Nachrichten antwortet Kiwi plötzlich auf Englisch. Warum?",
+      "kiwi": "«Sure, here is your text!» Die Regel vom Anfang liegt nicht mehr auf dem Tisch.",
+      "optionen": [
+        {
+          "id": "tisch",
+          "text": "Der Anfang des Gesprächs ist vom vollen Tisch gefallen",
+          "richtig": true,
+          "hinweis": "Genau. Auch das ganze Gespräch liegt auf Kiwis Tisch. Wird es zu lang, geht Altes verloren, auch frühe Regeln."
+        },
+        {
+          "id": "beleidigt",
+          "text": "Kiwi ist beleidigt",
+          "hinweis": "Kiwi kann nicht beleidigt sein. Es sieht die Regel vom Anfang einfach nicht mehr."
+        },
+        {
+          "id": "gelernt",
+          "text": "Kiwi hat inzwischen Englisch gelernt",
+          "hinweis": "Kiwi lernt im Gespräch nichts dazu. Die Regel vom Anfang ist vom Tisch gefallen."
+        }
+      ],
+      "loesung": [
+        "tisch"
+      ]
+    },
+    "f-d": {
+      "wunsch": "Für den Rückblick brauche ich das Wetter am Dorffest 1988. Es steht irgendwo in der Chronik.",
+      "grundprompt": "Wie war das Wetter am Dorffest 1988?",
+      "fenster": 1000,
+      "eng": 600,
+      "teile": [
+        {
+          "id": "seite",
+          "art": "kontext",
+          "text": "Chronik, Seite 301: Dorffest 1988 bei strahlendem Sonnenschein."
+        },
+        {
+          "id": "morgen",
+          "art": "kontext",
+          "text": "Wetterbericht für morgen: Regen."
+        },
+        {
+          "id": "block",
+          "art": "kontext",
+          "text": "Chronik, Seiten 250 bis 350: alle Feste.",
+          "tokens": 700
+        },
+        {
+          "id": "alles",
+          "art": "kontext",
+          "text": "Die ganze Chronik: alle 400 Seiten.",
+          "tokens": 5000
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "tokensUeber": 1000
+          },
+          "fehlbild": "faelltRunter"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "morgen"
+            ]
+          },
+          "fehlbild": "verwechselt"
+        },
+        {
+          "wenn": {
+            "tokensUeber": 600
+          },
+          "fehlbild": "ueberladen"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "seite"
+            ]
+          },
+          "fehlbild": "erfunden"
+        }
+      ],
+      "fehlbilder": {
+        "faelltRunter": {
+          "texte": [
+            "«Die Chronik beginnt mit dem Jahr 1790.» Mehr sieht Kiwi nicht. Der Rest liegt am Boden, samt deiner Frage.",
+            "«Welches Fest meinst du?» Die Frage ist unter 400 Seiten begraben und heruntergerutscht."
+          ],
+          "hinweis": "Die ganze Chronik passt nicht auf Kiwis Tisch."
+        },
+        "verwechselt": {
+          "texte": [
+            "«Am Dorffest 1988 regnete es.» Nein. Das ist der Wetterbericht für morgen.",
+            "«Es regnete in Strömen.» Kiwi hat den Wetterbericht von morgen mit 1988 verwechselt."
+          ],
+          "hinweis": "Kiwi benutzt alles, was auf dem Tisch liegt. Der Wetterbericht für morgen gehörte nicht dorthin."
+        },
+        "ueberladen": {
+          "texte": [
+            "«1988 schneite es.» Falsch: Das war das Fest von 1991. Bei 100 Seiten Festen hat Kiwi danebengegriffen.",
+            "«Es war neblig.» Das steht bei 1979. Der Tisch war zu voll."
+          ],
+          "hinweis": "100 Seiten passen knapp auf den Tisch. Aber je voller er ist, desto eher greift Kiwi daneben."
+        },
+        "erfunden": {
+          "texte": [
+            "«Am Dorffest 1988 gab es einen Wirbelsturm.»",
+            "«1988 fiel das Fest wegen Hitze aus.» Erfunden. Die Seite fehlte."
+          ],
+          "hinweis": "Die Seite mit der Antwort lag nicht auf dem Tisch."
+        }
+      },
+      "erfolg": [
+        "«Am Dorffest 1988 schien die Sonne.»"
+      ],
+      "loesung": [
+        "seite"
+      ]
+    },
+    "f-e": {
+      "typ": "wahl",
+      "wunsch": "Was liegt eigentlich alles auf diesem Tisch?",
+      "frage": "Was braucht alles Platz auf Kiwis Tisch?",
+      "kiwi": "Auf dem Tisch liegen: der System-Prompt, alle bisherigen Nachrichten, mitgegebene Texte und Kiwis eigene Antworten.",
+      "optionen": [
+        {
+          "id": "frage",
+          "text": "Nur meine letzte Frage",
+          "hinweis": "Es ist viel mehr: auch das ganze bisherige Gespräch und alle mitgegebenen Texte."
+        },
+        {
+          "id": "alles",
+          "text": "Anweisungen, das ganze Gespräch, mitgegebene Texte und Kiwis Antworten",
+          "richtig": true,
+          "hinweis": "Genau. Alles, was Kiwi für die Antwort sehen kann, liegt auf dem Tisch und braucht Platz."
+        },
+        {
+          "id": "training",
+          "text": "Alles, was Kiwi je gelernt hat",
+          "hinweis": "Das Gelernte steckt in Kiwi selbst, nicht auf dem Tisch. Auf dem Tisch liegt nur, was zu diesem Gespräch gehört."
+        }
+      ],
+      "loesung": [
+        "alles"
+      ]
+    },
+    "f-f": {
+      "wunsch": "Kiwi soll aus den drei Leserbriefen dieser Woche den freundlichsten heraussuchen.",
+      "grundprompt": "Welcher dieser Leserbriefe ist am freundlichsten?",
+      "fenster": 1000,
+      "eng": 600,
+      "teile": [
+        {
+          "id": "briefe",
+          "art": "kontext",
+          "text": "Die drei Leserbriefe dieser Woche.",
+          "tokens": 300
+        },
+        {
+          "id": "jahre",
+          "art": "kontext",
+          "text": "Alle Leserbriefe der letzten zwei Jahre.",
+          "tokens": 800
+        },
+        {
+          "id": "archiv",
+          "art": "kontext",
+          "text": "Alle Leserbriefe seit 1950.",
+          "tokens": 9000
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "tokensUeber": 1000
+          },
+          "fehlbild": "faelltRunter"
+        },
+        {
+          "wenn": {
+            "tokensUeber": 600
+          },
+          "fehlbild": "ueberladen"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "briefe"
+            ]
+          },
+          "fehlbild": "erfunden"
+        }
+      ],
+      "fehlbilder": {
+        "faelltRunter": {
+          "texte": [
+            "«Am freundlichsten ist ein Brief von 1953 über Kühe.» Die Briefe dieser Woche sind längst vom Tisch gefallen.",
+            "«Was soll ich mit all den Briefen tun?» Auch deine Frage liegt am Boden."
+          ],
+          "hinweis": "Tausende Briefe passen nicht auf Kiwis Tisch."
+        },
+        "ueberladen": {
+          "texte": [
+            "«Am freundlichsten ist der Brief von Herrn Kunz.» Der ist vom letzten Jahr. Gefragt war diese Woche.",
+            "«Der Brief über den Schneepflug.» Der stammt vom Winter vor zwei Jahren."
+          ],
+          "hinweis": "Der Tisch war voll mit alten Briefen. Kiwi hat einen davon erwischt."
+        },
+        "erfunden": {
+          "texte": [
+            "«Am freundlichsten ist der Brief von Frau Sonnenschein.» Die gibt es nicht. Kiwi hat keine Briefe gesehen.",
+            "«Der zweite Brief.» Welcher zweite? Auf dem Tisch lag keiner."
+          ],
+          "hinweis": "Kiwi sieht nur, was auf dem Tisch liegt. Die Briefe waren nicht dabei."
+        }
+      },
+      "erfolg": [
+        "«Am freundlichsten ist der Brief von Frau Keller: Sie bedankt sich bei der Feuerwehr.»"
+      ],
+      "loesung": [
+        "briefe"
+      ]
+    },
+    "s-a": {
+      "wunsch": "Kiwi soll schreiben, wer gestern das Seifenkistenrennen gewonnen hat.",
+      "grundprompt": "Wer hat gestern das Seifenkistenrennen in Hinterwil gewonnen? Antworte in einem Satz.",
+      "teile": [
+        {
+          "id": "aktuell",
+          "art": "prompt",
+          "text": "Du bist doch immer auf dem neusten Stand."
+        },
+        {
+          "id": "rangliste",
+          "art": "kontext",
+          "text": "Rangliste von gestern: 1. Platz Lena Graf."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "fehlt": [
+              "rangliste"
+            ]
+          },
+          "fehlbild": "veraltet"
+        }
+      ],
+      "fehlbilder": {
+        "veraltet": {
+          "texte": [
+            "«Gewonnen hat Max Muster.» Den gibt es gar nicht. Von gestern kann Kiwi nichts wissen.",
+            "«Sieger ist wie jedes Jahr Peter Schnell.» Geraten. Kiwis Wissen endet lange vor gestern."
+          ],
+          "hinweis": "Kiwis Wissen stammt aus dem Training und endet an einem Stichtag. Was danach geschah, kennt Kiwi nur, wenn du es mitgibst."
+        }
+      },
+      "erfolg": [
+        "«Das Seifenkistenrennen hat gestern Lena Graf gewonnen.»"
+      ],
+      "loesung": [
+        "rangliste"
+      ]
+    },
+    "s-b": {
+      "typ": "wahl",
+      "wunsch": "Was weiss Kiwi denn überhaupt von selbst?",
+      "frage": "Kiwis Wissen ist wie ein Lexikon, das an einem bestimmten Tag gedruckt wurde. Was steht sicher nicht drin?",
+      "kiwi": "Im «Lexikon» steht nur, was vor dem Stichtag in vielen Texten stand.",
+      "optionen": [
+        {
+          "id": "spinne",
+          "text": "Wie viele Beine eine Spinne hat",
+          "hinweis": "Das stand schon lange vor dem Stichtag in vielen Texten. Es steht also drin."
+        },
+        {
+          "id": "woche",
+          "text": "Was letzte Woche im Dorf passiert ist",
+          "richtig": true,
+          "hinweis": "Genau. Das geschah nach dem Stichtag. Kiwi kann es nur wissen, wenn du es mitgibst."
+        },
+        {
+          "id": "brief",
+          "text": "Wie man einen Brief schreibt",
+          "hinweis": "Das stand schon lange vor dem Stichtag in vielen Texten. Es steht also drin."
+        }
+      ],
+      "loesung": [
+        "woche"
+      ]
+    },
+    "s-c": {
+      "typ": "wahl",
+      "wunsch": "Unser Redaktor wollte von Kiwi einen Kauftipp.",
+      "frage": "Er fragt: «Welches ist das neuste Handy?» Was passiert?",
+      "kiwi": "«Das neuste Modell ist das Fon 12.» Im Laden steht längst das Fon 15.",
+      "optionen": [
+        {
+          "id": "alt",
+          "text": "Kiwi nennt das neuste, das es aus dem Training kennt",
+          "richtig": true,
+          "hinweis": "Genau. Für Kiwi ist «neu», was beim Stichtag neu war. Das kann längst veraltet sein."
+        },
+        {
+          "id": "laden",
+          "text": "Kiwi schaut im Laden nach",
+          "hinweis": "Von sich aus schaut Kiwi nirgends nach. Es nennt, was es aus dem Training kennt."
+        },
+        {
+          "id": "immer",
+          "text": "Kiwi weiss so etwas immer aktuell",
+          "hinweis": "Nein. Kiwis Wissen endet am Stichtag. Alles Neuere fehlt."
+        }
+      ],
+      "loesung": [
+        "alt"
+      ]
+    },
+    "s-d": {
+      "wunsch": "Für die Zeitung: Kiwi soll schreiben, wie alt unsere Jubilarin heute wird.",
+      "grundprompt": "Frau Huber ist am 3. Mai 1930 geboren. Wie alt wird sie heute?",
+      "teile": [
+        {
+          "id": "selbst",
+          "art": "prompt",
+          "text": "Das heutige Datum kennst du ja selbst."
+        },
+        {
+          "id": "heute",
+          "art": "kontext",
+          "text": "Heute ist der 3. Mai 2027."
+        },
+        {
+          "id": "tulpen",
+          "art": "kontext",
+          "text": "Frau Huber mag Tulpen."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "tulpen"
+            ]
+          },
+          "fehlbild": "tulpen"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "heute"
+            ]
+          },
+          "fehlbild": "falschesJahr"
+        }
+      ],
+      "fehlbilder": {
+        "tulpen": {
+          "texte": [
+            "«Frau Huber wird heute 97 Tulpen alt.»",
+            "«Herzlichen Glückwunsch zur 97. Tulpe!»"
+          ],
+          "hinweis": "Die Tulpen haben mit dem Alter nichts zu tun. Kiwi hat sie trotzdem eingebaut."
+        },
+        "falschesJahr": {
+          "texte": [
+            "«Frau Huber wird heute 94.» Falsch. Kiwi hat mit einem Jahr aus der Zeit seines Trainings gerechnet.",
+            "«Sie wird 95.» Kiwi kennt das heutige Datum nicht und hat ein altes Jahr angenommen."
+          ],
+          "hinweis": "Kiwi hat keine Uhr und keinen Kalender. Ohne Angabe nimmt es ein Datum aus der Zeit seines Trainings an."
+        }
+      },
+      "erfolg": [
+        "«Frau Huber wird heute 97 Jahre alt.»"
+      ],
+      "loesung": [
+        "heute"
+      ]
+    },
+    "s-e": {
+      "typ": "wahl",
+      "wunsch": "Aber manche Chat-Programme wissen doch, welcher Tag ist?",
+      "frage": "Woher weiss eine KI in einem Chat-Programm, welches Datum heute ist?",
+      "kiwi": "Im System-Prompt steht zum Beispiel: «Heute ist Montag, der 3. Mai.» Ohne solche Angabe rät Kiwi.",
+      "optionen": [
+        {
+          "id": "prompt",
+          "text": "Jemand schreibt es hinein, zum Beispiel in den System-Prompt",
+          "richtig": true,
+          "hinweis": "Genau. Das Programm um die KI herum gibt ihr das Datum mit. Von selbst kennt sie es nicht."
+        },
+        {
+          "id": "uhr",
+          "text": "Die KI hat eine eingebaute Uhr",
+          "hinweis": "Ein Sprachmodell hat keine Uhr. Das Datum muss ihm jemand mitgeben."
+        },
+        {
+          "id": "training",
+          "text": "Sie weiss es aus dem Training",
+          "hinweis": "Das Training endete an einem Stichtag. Das heutige Datum kann dort nicht stehen."
+        }
+      ],
+      "loesung": [
+        "prompt"
+      ]
+    },
+    "s-f": {
+      "wunsch": "Ein Leser fragt, ob die neue Buslinie schon fährt. Sie fährt seit letztem Montag.",
+      "nachrichtVon": "Frage eines Lesers",
+      "grundprompt": "Fährt die neue Buslinie 7 schon?",
+      "teile": [
+        {
+          "id": "selbst",
+          "art": "prompt",
+          "text": "Das weisst du sicher von selbst."
+        },
+        {
+          "id": "neu",
+          "art": "kontext",
+          "text": "Meldung der Gemeinde von dieser Woche: Die Linie 7 fährt seit Montag."
+        },
+        {
+          "id": "alt",
+          "art": "kontext",
+          "text": "Fahrplan von vor drei Jahren: Es gibt die Linien 1 bis 5."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "alt"
+            ]
+          },
+          "fehlbild": "alt"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "neu"
+            ]
+          },
+          "fehlbild": "unbekannt"
+        }
+      ],
+      "fehlbilder": {
+        "alt": {
+          "texte": [
+            "«Eine Linie 7 gibt es nicht. Es fahren die Linien 1 bis 5.» Das stand im alten Fahrplan.",
+            "«Laut Fahrplan gibt es nur fünf Linien.» Der Fahrplan ist drei Jahre alt."
+          ],
+          "hinweis": "Kiwi kann nicht erkennen, dass der Fahrplan veraltet ist. Gib nur Aktuelles mit."
+        },
+        "unbekannt": {
+          "texte": [
+            "«Eine Buslinie 7 ist mir nicht bekannt.» Kein Wunder: Sie ist neuer als Kiwis Wissen.",
+            "«Die Linie 7 fährt seit vielen Jahren.» Geraten und falsch."
+          ],
+          "hinweis": "Die Buslinie ist neuer als Kiwis Wissen. Ohne die Meldung von dieser Woche kann Kiwi nur raten."
+        }
+      },
+      "erfolg": [
+        "«Ja, die Linie 7 fährt seit Montag.»"
+      ],
+      "loesung": [
+        "neu"
+      ]
+    },
+    "y-a": {
+      "wunsch": "Unser Leser-Chat heisst Boti. Er soll kurz antworten und nichts erfinden. Und der Tisch darf nicht überquellen.",
+      "nachrichtVon": "Frage einer Leserin",
+      "grundprompt": "Seit wann gibt es die Dorfzeitung?",
+      "fenster": 1000,
+      "teile": [
+        {
+          "id": "rolle",
+          "art": "rolle",
+          "text": "Du bist Boti, der Helfer der Dorfzeitung. Antworte immer in einem Satz."
+        },
+        {
+          "id": "lang",
+          "art": "prompt",
+          "text": "Erzähl dazu alles, was dir einfällt."
+        },
+        {
+          "id": "seite",
+          "art": "kontext",
+          "text": "Archiv, Seite 3: Der Hinterwiler Bote erscheint seit 1921."
+        },
+        {
+          "id": "archiv",
+          "art": "kontext",
+          "text": "Das ganze Archiv seit 1921.",
+          "tokens": 8000
+        },
+        {
+          "id": "weissnicht",
+          "art": "absicherung",
+          "text": "Wenn es nicht in den Angaben steht, sag: Das weiss ich nicht."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "tokensUeber": 1000
+          },
+          "fehlbild": "faelltRunter"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "lang"
+            ]
+          },
+          "fehlbild": "teuer"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "rolle"
+            ]
+          },
+          "fehlbild": "keineRolle"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "seite"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "weissnicht"
+            ]
+          },
+          "fehlbild": "ohneNetz"
+        }
+      ],
+      "fehlbilder": {
+        "faelltRunter": {
+          "texte": [
+            "«Im Jahr 1974 gewann der Kegelclub.» Das ganze Archiv hat die Frage vom Tisch geschoben.",
+            "«Wie bitte?» Über 100 Jahre Zeitung passen nicht auf Kiwis Tisch."
+          ],
+          "hinweis": "Das ganze Archiv passt nicht auf den Tisch. Eine Seite genügt."
+        },
+        "teuer": {
+          "texte": [
+            "«Seit 1921. Dazu fällt mir ein: die Geschichte des Buchdrucks, beginnend im Mittelalter …» Vier Seiten später ist das Budget dünn.",
+            "«Seit 1921! Und wusstest du, dass Papier aus Holz gemacht wird? Also, Holz …»"
+          ],
+          "hinweis": "Du hast eine lange Antwort bestellt. Jedes Token davon kostet.",
+          "ausgabeTokens": 700
+        },
+        "keineRolle": {
+          "texte": [
+            "«Periodika wie der genannte Titel erscheinen gemäss Quelle seit 1921. Weitere Angaben folgen in zwölf Absätzen.»",
+            "«Die Publikation existiert seit 1921. Zur Einordnung zunächst ein Überblick über das Pressewesen.»"
+          ],
+          "hinweis": "Ohne Rolle weiss Kiwi nicht, dass es als Boti kurz und freundlich antworten soll."
+        },
+        "erfunden": {
+          "texte": [
+            "«Die Dorfzeitung gibt es seit 1805.» Erfunden. Die Seite mit der Antwort fehlte.",
+            "«Das weiss ich nicht.» Ehrlich, aber schade: Die Antwort steht auf Seite 3, nur lag sie nicht auf dem Tisch."
+          ],
+          "hinweis": "Die Seite mit der Antwort lag nicht auf dem Tisch."
+        },
+        "ohneNetz": {
+          "texte": [
+            "«Seit 1921.» Richtig! Die nächste Leserin fragt nach dem Gründer, und Boti erfindet einen: «Fritz Federkiel.»",
+            "«Seit 1921.» Stimmt. Aber auf die nächste Frage antwortet Boti mit einer erfundenen Auflage von einer Million."
+          ],
+          "hinweis": "Diese Antwort stimmt. Aber ohne Absicherung erfindet Boti bei der nächsten Frage wieder etwas."
+        }
+      },
+      "erfolg": [
+        "«Den Hinterwiler Boten gibt es seit 1921.»"
+      ],
+      "loesung": [
+        "rolle",
+        "seite",
+        "weissnicht"
+      ]
+    },
+    "y-b": {
+      "wunsch": "Und der Rückblick: drei Sätze über das Dorffest von gestern. Günstig, richtig und nichts dazugedichtet.",
+      "grundprompt": "Schreib drei Sätze über das Dorffest von gestern.",
+      "fenster": 1000,
+      "teile": [
+        {
+          "id": "lang",
+          "art": "prompt",
+          "text": "Schreib so ausführlich wie möglich."
+        },
+        {
+          "id": "notizen",
+          "art": "kontext",
+          "text": "Notizen von gestern: 600 Gäste, Quiz vom Museum, Sonnenschein."
+        },
+        {
+          "id": "alt",
+          "art": "kontext",
+          "text": "Bericht vom Dorffest vor fünf Jahren: Regen, 200 Gäste."
+        },
+        {
+          "id": "alle",
+          "art": "kontext",
+          "text": "Alle Festberichte seit 1950.",
+          "tokens": 4000
+        },
+        {
+          "id": "nur",
+          "art": "absicherung",
+          "text": "Benutze nur die Notizen von gestern."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "tokensUeber": 1000
+          },
+          "fehlbild": "faelltRunter"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "lang"
+            ]
+          },
+          "fehlbild": "teuer"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "alt"
+            ]
+          },
+          "fehlbild": "alt"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "notizen"
+            ]
+          },
+          "fehlbild": "veraltet"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "nur"
+            ]
+          },
+          "fehlbild": "dazu"
+        }
+      ],
+      "fehlbilder": {
+        "faelltRunter": {
+          "texte": [
+            "«1950 gab es am Fest Kartoffelsalat.» Die Notizen von gestern sind vom Tisch gefallen.",
+            "«Welches Fest?» Siebzig Jahre Berichte haben alles andere verdrängt."
+          ],
+          "hinweis": "Alle Festberichte passen nicht auf Kiwis Tisch. Die Notizen von gestern genügen."
+        },
+        "teuer": {
+          "texte": [
+            "Aus drei Sätzen wurden drei Seiten. Darin steht auch, wie Wurst hergestellt wird.",
+            "«Das Dorffest, ein Ereignis von historischer Tragweite …» Seite 2 von 5."
+          ],
+          "hinweis": "«So ausführlich wie möglich» nimmt Kiwi wörtlich. Das kostet viele Tokens.",
+          "ausgabeTokens": 800
+        },
+        "alt": {
+          "texte": [
+            "«Gestern regnete es am Dorffest, es kamen 200 Gäste.» Das war vor fünf Jahren.",
+            "«600 Gäste standen im Regen.» Kiwi hat die zwei Berichte vermischt."
+          ],
+          "hinweis": "Kiwi kann nicht erkennen, welcher Bericht veraltet ist. Gib nur den aktuellen mit."
+        },
+        "veraltet": {
+          "texte": [
+            "«Gestern war das Dorffest. Es gab sicher Musik. Vermutlich war es schön.» Kiwi war nicht dabei und weiss nichts.",
+            "«Am Dorffest trat ein Zauberer auf, und es gab ein Feuerwerk.» Beides erfunden."
+          ],
+          "hinweis": "Was gestern geschah, liegt nach Kiwis Stichtag. Ohne deine Notizen kann Kiwi nur raten."
+        },
+        "dazu": {
+          "texte": [
+            "«600 Gäste kamen bei Sonnenschein. Das Quiz gewann der Bürgermeister, der danach auf dem Tisch tanzte.»",
+            "«600 Gäste, Sonne, Quiz. Höhepunkt war die Landung eines Heissluftballons.» Der Ballon steht nicht in den Notizen."
+          ],
+          "hinweis": "Die Notizen waren da. Aber Kiwi durfte dazudichten, weil du es nicht verboten hast."
+        }
+      },
+      "erfolg": [
+        "«Gestern feierten 600 Gäste das Dorffest. Die Sonne schien den ganzen Tag. Besonders beliebt war das Quiz des Museums.»"
+      ],
+      "loesung": [
+        "notizen",
+        "nur"
+      ]
+    }
+  }
+}

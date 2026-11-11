@@ -62,5 +62,35 @@
     "erklaerung": "Eine Halluzination ist eine Angabe, die die KI erfunden hat und die trotzdem überzeugend klingt.",
     "quatsch": "Kiwi erfand für Hinterwil ein Schloss samt Ritter Kunibald.",
     "genauer": "Neuere Modelle halluzinieren seltener, aber ganz verschwunden ist es nicht. Prüfen bleibt nötig."
+  },
+  "kosten": {
+    "begriff": "Kosten pro Token",
+    "englisch": "Token pricing",
+    "kern": null,
+    "erklaerung": "Wer eine KI über eine Schnittstelle nutzt, bezahlt meist pro Token: für alles, was hineingeht, und für alles, was herauskommt."
+  },
+  "token": {
+    "begriff": "Token",
+    "englisch": "Token",
+    "kern": "token",
+    "erklaerung": "Ein Token ist ein kleines Stück Text: ein Wort, ein Wortteil oder ein Satzzeichen. Sprachmodelle lesen, schreiben und rechnen in Tokens.",
+    "quatsch": "Auf «Schreib alles, was dir einfällt» lieferte Kiwi neun Seiten über Würste. Die Rechnung war entsprechend.",
+    "genauer": "Wie ein Text zerlegt wird, hängt vom Modell und von der Sprache ab. Die Zahlen im Spiel sind Spiel-Tokens, keine echten."
+  },
+  "kontextfenster": {
+    "begriff": "Kontextfenster",
+    "englisch": "Context window",
+    "kern": "kontextfenster",
+    "erklaerung": "Das Kontextfenster ist alles, was die KI für eine Antwort vor sich hat: Anweisungen, das Gespräch, mitgegebene Texte und ihre eigenen Antworten. Es ist begrenzt.",
+    "quatsch": "Mit 400 Seiten Chronik auf dem Tisch vergass Kiwi die Frage und fasste die Kartoffelernte von 1803 zusammen.",
+    "genauer": "Dass ein sehr voller Tisch ungenauer macht, heisst auf Englisch «context rot». Manche Programme fassen ein langes Gespräch automatisch zusammen, um Platz zu schaffen."
+  },
+  "wissensstand": {
+    "begriff": "Wissensstand",
+    "englisch": "Knowledge cutoff",
+    "kern": "wissensstand",
+    "erklaerung": "Das Wissen eines Sprachmodells endet an einem Stichtag, dem Ende seines Trainings. Was danach geschah, kennt es nur, wenn man es ihm mitgibt.",
+    "quatsch": "Kiwi empfahl stolz das «neuste» Handy. Im Laden stand längst das dritte Nachfolgemodell.",
+    "genauer": "Auch das heutige Datum kennt ein Modell nicht von selbst. Chat-Programme schreiben es ihm in den System-Prompt."
   }
 }

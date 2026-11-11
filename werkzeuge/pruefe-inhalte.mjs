@@ -197,6 +197,7 @@ export function pruefeAufgabe(aufgabe, name, fehler) {
     erreichbar.add(pruefung.fehlbild);
     if (!fehlbilder[pruefung.fehlbild]) fehler.push(`${name}: Fehlbild «${pruefung.fehlbild}» fehlt`);
     const genannt = [...(pruefung.wenn.gewaehlt ?? []), ...(pruefung.wenn.fehlt ?? []), ...(pruefung.wenn.aus ?? [])];
+    if ('tokensUeber' in pruefung.wenn && !Number.isInteger(pruefung.wenn.tokensUeber)) fehler.push(`${name}: tokensUeber muss eine ganze Zahl sein`);
     for (const id of genannt) {
       if (!ids.has(id)) fehler.push(`${name}: Prüfung nennt unbekanntes Teil «${id}»`);
     }
@@ -205,6 +206,16 @@ export function pruefeAufgabe(aufgabe, name, fehler) {
     if (!erreichbar.has(id)) fehler.push(`${name}: Fehlbild «${id}» wird von keiner Prüfung benutzt`);
     if ((fehlbild.texte ?? []).length < 2) fehler.push(`${name}: Fehlbild «${id}» braucht mindestens zwei Varianten`);
     if (!istText(fehlbild.hinweis)) fehler.push(`${name}: Fehlbild «${id}» braucht einen Hinweis`);
+    if ('ausgabeTokens' in fehlbild && !(Number.isInteger(fehlbild.ausgabeTokens) && fehlbild.ausgabeTokens > 0)) fehler.push(`${name}: Fehlbild «${id}» hat ungültige ausgabeTokens`);
+  }
+
+  // Budget und Kontextfenster müssen zu den Prüfungen passen, sonst zeigt die Anzeige etwas anderes als die Bewertung.
+  const grenzen = (aufgabe.pruefungen ?? []).map((pruefung) => pruefung.wenn.tokensUeber).filter(Number.isInteger);
+  for (const feld of ['budget', 'fenster', 'eng']) {
+    if (feld in aufgabe && !grenzen.includes(aufgabe[feld])) fehler.push(`${name}: ${feld} hat keine passende Prüfung tokensUeber`);
+  }
+  for (const teil of aufgabe.teile ?? []) {
+    if ('tokens' in teil && !(Number.isInteger(teil.tokens) && teil.tokens > 0)) fehler.push(`${name}: Teil «${teil.id}» hat ungültige tokens`);
   }
 
   const loesung = aufgabe.loesung ?? [];

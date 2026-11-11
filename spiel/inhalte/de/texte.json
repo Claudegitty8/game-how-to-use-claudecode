@@ -102,7 +102,7 @@
     "loeschenNein": "Abbrechen",
     "kiEtikett": "KI im Spiel",
     "kiInfo": "Kiwi ist eine simulierte KI. Sie braucht kein Konto, kostet nichts und antwortet nach festen Regeln.",
-    "fuss": "KI-Studio, Version 0.4",
+    "fuss": "KI-Studio, Version 0.5",
     "kiwiNaechster": "Es klopft an der Garage. Ein neuer Kunde!",
     "systemEtikett": "System-Prompt (gilt für jede Nachricht)",
     "systemLeer": "(noch leer)",
@@ -122,7 +122,20 @@
       "luecke": "Überleg zuerst selbst. Die Hilfe ist da, wenn du sie brauchst.",
       "frei": "Jetzt ohne Hilfe. Lies genau.",
       "wiederholung": "Eine Frage zu früher. Du hast einen Versuch."
-    }
+    },
+    "tokenZeile": "Dein Prompt: {anzahl} Spiel-Tokens",
+    "tokenZeileBudget": "Dein Prompt: {anzahl} von höchstens {budget} Spiel-Tokens",
+    "tischEtikett": "Kiwis Tisch (Kontextfenster)",
+    "tisch": {
+      "frei": "{anzahl} von {platz} Tokens belegt. Viel Platz.",
+      "eng": "{anzahl} von {platz} Tokens belegt. Es wird eng.",
+      "voll": "{anzahl} Tokens, aber nur {platz} haben Platz. Etwas fällt herunter."
+    },
+    "budgetStand": "Budget {anzahl}",
+    "testKosten": "Dieser Test hat {anzahl} Spiel-Tokens gekostet. Im Budget bleiben {rest}.",
+    "budgetLeer": "Das Budget war leer. Die Kundschaft hat nachgefüllt, du kannst normal weiterspielen. Für diesen Auftrag gibt es nur keinen Sparbonus.",
+    "gespart": "Gespart: {anzahl} Spiel-Tokens",
+    "nichtGespart": "Diesmal nichts gespart. Das Budget musste nachgefüllt werden."
   },
   "kapitel": {
     "1": {
@@ -215,15 +228,33 @@
     },
     "token": {
       "name": "Token",
-      "analogie": "Lego-Steine. Text wird aus kleinen Steinen gebaut, und man zahlt pro Stein."
+      "analogie": "Lego-Steine. Text wird aus kleinen Steinen gebaut, und man zahlt pro Stein.",
+      "aha": [
+        "Kiwi liest und schreibt in kleinen Stücken, den Tokens. Ein Token ist ein Wort, ein Wortteil oder ein Satzzeichen.",
+        "Jedes Token kostet: die, die du schickst, und die, die Kiwi schreibt.",
+        "Lange Bestellungen und lange Antworten sind also teurer."
+      ],
+      "tipp": "Was muss Kiwi wirklich lesen, und wie lang soll die Antwort sein? Alles Weitere kostet nur."
     },
     "kontextfenster": {
       "name": "Kontextfenster",
-      "analogie": "Ein Schreibtisch. Was nicht drauf passt, fällt herunter."
+      "analogie": "Ein Schreibtisch. Was nicht drauf passt, fällt herunter.",
+      "aha": [
+        "Kiwi sieht nur, was auf seinem Tisch liegt. Dieser Tisch heisst Kontextfenster.",
+        "Der Tisch ist begrenzt. Was nicht draufpasst, fällt herunter, manchmal sogar deine Frage.",
+        "Und je voller der Tisch, desto ungenauer wird Kiwi. Leg nur hin, was die Aufgabe braucht."
+      ],
+      "tipp": "Welche Seite braucht Kiwi wirklich? Ein halb leerer Tisch ist besser als ein voller."
     },
     "wissensstand": {
       "name": "Wissensstand",
-      "analogie": "Ein Lexikon, das an einem bestimmten Tag gedruckt wurde."
+      "analogie": "Ein Lexikon, das an einem bestimmten Tag gedruckt wurde.",
+      "aha": [
+        "Kiwis Wissen stammt aus dem Training. Das endete an einem Stichtag.",
+        "Was danach geschah, kennt Kiwi nicht: Neuigkeiten von gestern, das heutige Datum, deine privaten Dinge.",
+        "Gib Kiwi Aktuelles mit. Sonst antwortet es mit altem Wissen oder rät."
+      ],
+      "tipp": "Konnte das vor dem Stichtag schon in vielen Texten stehen? Wenn nicht, musst du es mitgeben."
     },
     "tool": {
       "name": "Tool",

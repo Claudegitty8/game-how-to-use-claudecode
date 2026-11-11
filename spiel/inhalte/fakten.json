@@ -72,6 +72,48 @@
       "aussage": "Anthropic beschreibt «Sycophancy» als Neigung mancher KI-Modelle, Nutzern zu sagen, was sie hören wollen, statt was wahr und hilfreich ist.",
       "quelle": "https://www.anthropic.com/news/protecting-well-being-of-users",
       "geprueft": "2026-11-11"
+    },
+    {
+      "id": "token-was",
+      "aussage": "Tokens sind die kleinsten Einheiten eines Sprachmodells und können Wörtern, Wortteilen, Zeichen oder Bytes entsprechen. Wie viele Zeichen ein Token umfasst, hängt von Modell und Sprache ab.",
+      "quelle": "https://platform.claude.com/docs/en/about-claude/glossary",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "kontextfenster-inhalt",
+      "aussage": "Zum Kontextfenster zählt alles in der Anfrage: System-Prompt, jede Nachricht samt Dokumenten und Tool-Ergebnissen sowie die Antwort, die das Modell erzeugt.",
+      "quelle": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "context-rot",
+      "aussage": "Mit wachsender Token-Zahl nehmen Genauigkeit und Erinnerungsvermögen ab. Das heisst «context rot». Mehr Kontext ist nicht automatisch besser.",
+      "quelle": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "kontext-rollend",
+      "aussage": "Chat-Oberflächen können das Kontextfenster rollend verwalten: Was zuerst kam, fällt zuerst heraus. Die API lehnt zu lange Eingaben dagegen mit einem Fehler ab.",
+      "quelle": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "wissensstand-stichtag",
+      "aussage": "Jedes Claude-Modell hat einen angegebenen Wissensstichtag (knowledge cutoff).",
+      "quelle": "https://support.claude.com/en/articles/8606395-how-large-is-the-claude-api-s-context-window",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "datum-im-system-prompt",
+      "aussage": "Die Claude-Apps geben dem Modell über einen System-Prompt aktuelle Angaben mit, zum Beispiel das heutige Datum.",
+      "quelle": "https://platform.claude.com/docs/en/release-notes/system-prompts.md",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "tokens-eingabe-ausgabe",
+      "aussage": "Abgerechnet und gezählt werden Eingabe-Tokens und Ausgabe-Tokens.",
+      "quelle": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "geprueft": "2026-11-11"
     }
   ]
 }
