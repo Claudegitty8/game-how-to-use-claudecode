@@ -1,9 +1,7 @@
 // Die Werkbank: Hier steckt der Spieler seinen Prompt aus Textteilen zusammen.
 // Sie kennt keine Spielregeln. Sie zeigt nur an und meldet die Auswahl.
 import { el, fuelle } from './bausteine.js';
-import { bauePrompt, baueSystemPrompt, hatSystemPrompt, zaehleTokens } from '../logik/prompt.js';
-
-const ARTEN = ['rolle', 'prompt', 'kontext', 'absicherung', 'beispiel'];
+import { ARTEN, bauePrompt, baueSystemPrompt, hatSystemPrompt, hatZettel, zaehleTokens } from '../logik/prompt.js';
 
 export function baueWerkbank({ aufgabe, t, sichtbar = null, vorgabe = [], auswahl = [], gesperrt = false, zeigeTokens = false }) {
   const gewaehlt = new Set([...vorgabe, ...auswahl]);
@@ -12,6 +10,7 @@ export function baueWerkbank({ aufgabe, t, sichtbar = null, vorgabe = [], auswah
   let allesGesperrt = gesperrt;
 
   const mitSystem = hatSystemPrompt(aufgabe);
+  const mitZettel = hatZettel(aufgabe);
   const systemVorschau = el('p', { klasse: 'prompt system' });
   const vorschau = el('p', { klasse: 'prompt' });
   const hinweisZumTeil = el('p', { klasse: 'teil-hinweis', role: 'status' });
@@ -40,7 +39,7 @@ export function baueWerkbank({ aufgabe, t, sichtbar = null, vorgabe = [], auswah
   function zeichne() {
     zeichneTokens();
     vorschau.textContent = bauePrompt(aufgabe, [...gewaehlt], t.beispielVorsatz);
-    systemVorschau.textContent = baueSystemPrompt(aufgabe, [...gewaehlt]) || t.systemLeer;
+    systemVorschau.textContent = baueSystemPrompt(aufgabe, [...gewaehlt]) || (mitZettel ? t.zettelLeer : t.systemLeer);
     for (const [id, knoten] of knoepfe) {
       knoten.setAttribute('aria-pressed', String(gewaehlt.has(id)));
       knoten.disabled = allesGesperrt || fest.has(id);
@@ -71,7 +70,7 @@ export function baueWerkbank({ aufgabe, t, sichtbar = null, vorgabe = [], auswah
   });
 
   const knoten = el('section', { klasse: 'karte werkbank' },
-    mitSystem ? el('p', { klasse: 'etikett', text: t.systemEtikett }) : null,
+    mitSystem ? el('p', { klasse: 'etikett', text: mitZettel ? t.zettelEtikett : t.systemEtikett }) : null,
     mitSystem ? systemVorschau : null,
     el('p', { klasse: 'etikett', text: aufgabe.nachrichtVon ?? t.promptEtikett }),
     vorschau,

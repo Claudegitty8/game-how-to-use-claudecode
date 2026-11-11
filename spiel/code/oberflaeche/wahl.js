@@ -2,6 +2,12 @@
 // Bietet dieselben Funktionen wie die Werkbank, damit der Rundenablauf beide gleich behandelt.
 import { el } from './bausteine.js';
 
+// Mischt die Antworten, damit die richtige nicht immer am selben Platz steht.
+// Die Reihenfolge hängt nur vom Text ab: Dieselbe Frage sieht jedes Mal gleich aus.
+function gemischt(optionen, schluessel) {
+  const zahl = (text) => [...text].reduce((summe, zeichen) => (summe * 31 + zeichen.codePointAt(0)) % 100003, 7);
+  return [...optionen].sort((a, b) => zahl(schluessel + a.id) - zahl(schluessel + b.id));
+}
 
 export function baueWahl({ aufgabe, t, auswahl = [], gesperrt = false }) {
   let gewaehlt = auswahl[0] ?? null;
@@ -16,7 +22,7 @@ export function baueWahl({ aufgabe, t, auswahl = [], gesperrt = false }) {
     }
   }
 
-  const optionen = aufgabe.optionen.map((option) => {
+  const optionen = gemischt(aufgabe.optionen, aufgabe.frage).map((option) => {
     const knoten = el('button', {
       type: 'button',
       klasse: 'baustein wahl',

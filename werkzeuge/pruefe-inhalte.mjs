@@ -4,9 +4,9 @@ import { readFile, readdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { bewerte } from '../spiel/code/logik/bewertung.js';
+import { ARTEN } from '../spiel/code/logik/prompt.js';
 
 const STANDARD_ORDNER = fileURLToPath(new URL('../spiel/inhalte/', import.meta.url));
-const ARTEN = ['rolle', 'prompt', 'kontext', 'absicherung', 'beispiel'];
 const MAX_WOERTER = 40; // Leitlinie B7: kein Textblock über 40 Wörter
 
 async function lies(ordner, datei, fehler) {

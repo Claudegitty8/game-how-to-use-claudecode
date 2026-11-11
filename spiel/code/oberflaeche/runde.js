@@ -116,7 +116,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
     const { stand, ereignis } = verbucheFrei(app.stand, auftrag, regeln, resultat, app.inhalte.auftraege);
     app.setze(stand);
     if (ereignis === 'weiter') nav.zu('runde');
-    else nav.zu('zwischen', { ereignis, konzept: a.konzept, auftrag });
+    else nav.zu('zwischen', { ereignis, konzept: a.konzept, titel: a.runde?.titel, auftrag });
   }
 
   function fertig(...knoepfe) {
@@ -227,7 +227,7 @@ export function gespartText(t, anzahl) {
 }
 
 // Zwischenbild nach einer Runde oder nach dem ganzen Auftrag.
-export function zeigeZwischen(wurzel, app, nav, { ereignis, konzept, auftrag }) {
+export function zeigeZwischen(wurzel, app, nav, { ereignis, konzept, titel, auftrag }) {
   const { texte, regeln } = app.inhalte;
   const t = texte.app;
   const zumStudio = knopf(t.zumStudio, () => nav.zu('studio'), 'los');
@@ -243,6 +243,19 @@ export function zeigeZwischen(wurzel, app, nav, { ereignis, konzept, auftrag }) 
       el('section', { klasse: 'karte' },
         el('p', { klasse: 'etikett', text: t.ueberraschungEtikett }),
         el('p', { text: auftrag.ueberraschung })),
+      zumStudio,
+    );
+    return;
+  }
+
+  // Eine Mischrunde mitten im Auftrag hat kein eigenes Konzept: Sie ist eine Etappe.
+  if (!konzept) {
+    wurzel.append(
+      el('section', { klasse: 'karte feier' },
+        kiwiFigur(t.kiwiName, true),
+        el('h2', { text: fuelle(t.etappeFertigTitel, { titel: titel ?? '' }) }),
+        el('p', { text: t.etappeFertigText }),
+        el('p', { klasse: 'klein', text: t.pause })),
       zumStudio,
     );
     return;
