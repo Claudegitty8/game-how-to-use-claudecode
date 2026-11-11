@@ -24,7 +24,7 @@ Am besten bevor Kapitel 2 entsteht, spielen mindestens zwei Jugendliche (12 bis 
 |---|---|
 | 6.1 | Testrunde mit zwei Jugendlichen und zwei Erwachsenen. Ergebnisse einarbeiten. |
 | 6.2 | Rest: Ergebnisse der Testrunde einarbeiten, verschobene Punkte aus E-020. |
-| 6.3 | **Als Nächstes:** Kapitel 2 «Wie die KI tickt». Neue Werkstatt-Teile (Sichtfenster in Kiwi, Token-Zähler, Kontextfenster als Tischfläche), Tokens als Ressource, fünf Konzepte in zwei Aufträgen. Braucht neue Übungsformen (Vorhersagen, Sortieren) und ist deutlich grösser als Schritt 6.2. |
+| 6.3 | Kapitel 2 «Wie die KI tickt». **Etappe 1 erledigt:** Auftrag «Dorfmuseum» mit Wahrscheinlichkeit und Halluzination, Übungsform Vorhersagen, Bausteine Absicherung. **Als Nächstes Etappe 2:** vierter Auftrag mit Token, Kontextfenster und Wissensstand. Dazu Token-Zähler, Kontextfenster als Tischfläche und Tokens als Budget (E-007). |
 | 6.4 | Schnelltest für Leute mit Vorwissen, Vorher-Nachher-Fragen. |
 | 6.5 | Kapitel 3 und 4. |
 | 6.6 | Kapitel 5 und 6, Abschlussauftrag. |

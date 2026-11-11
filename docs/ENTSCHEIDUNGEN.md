@@ -105,9 +105,18 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** Aufträge werden nacheinander gespielt, in der Reihenfolge aus `lader.js`. Die Wahl zwischen zwei Aufträgen (GAME_DESIGN, Abschnitt 9) kommt frühestens in Kapitel 2.
 **Grund:** Jeder Auftrag führt neue Konzepte ein, die auf den vorherigen aufbauen. Eine Wahl braucht doppelte Inhalte.
 
+### E-024: Übungsform «Vorhersagen» und Balken ohne Zahlen
+**Entscheid:** Für «Wahrscheinlichkeit statt Wissen» gibt es eine zweite Aufgabenart (`typ: "wahl"`): Der Spieler sagt vorher, was Kiwi tut. Der «Blick in Kiwis Kopf» zeigt Balken mit den Stufen «sehr oft», «manchmal», «fast nie», ohne Prozentzahlen.
+**Grund:** Das Konzept lässt sich nicht durch Zusammenstecken eines Prompts lernen. Echte Wahrscheinlichkeiten kennen wir nicht, erfundene Zahlen würden Leitlinie D2 verletzen. Das Lexikon sagt offen, dass die Balken Schätzungen sind.
+
+### E-025: Absicherung als eigene Bausteingruppe
+**Entscheid:** Sätze, die Halluzinationen verhindern (nur gegebene Quellen benutzen, Nichtwissen erlauben, Beleg verlangen), bilden die Gruppe «Absicherung».
+**Grund:** Es sind die drei offiziell empfohlenen Gegenmittel. Als eigene Gruppe werden sie zu einem Werkzeug, das der Spieler später in jedem Auftrag wiedererkennt.
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.
 - Für den API-Schlüssel im Echt-Modus gilt vorläufig der Vorschlag «Weg A» aus `ARCHITEKTUR.md`, Abschnitt 8. Entscheid in Phase 6.
 - Die Hüllen für Desktop und iOS sind noch nicht geprüft.
+- Vereinfachung in Konzept 5: «Was in vielen Texten steht, trifft Kiwi meist» ist eine Faustregel, kein belegter Satz aus der offiziellen Dokumentation. Belegt ist nur, dass Sprachmodelle das nächste Wort vorhersagen.
 - Das Fehlbild «Mit nur einem Beispiel kopiert die KI es» ist in der offiziellen Dokumentation nur sinngemäss belegt (Beispiele sollen sich genug unterscheiden, damit keine ungewollten Muster übernommen werden).

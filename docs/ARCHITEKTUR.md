@@ -86,6 +86,7 @@ Weil die Logik weder Browser noch Oberfläche kennt, lässt sie sich automatisch
 
 | Feld | Bedeutung |
 |---|---|
+| `kapitel` | Nummer des Kapitels. Bestimmt, wie das Studio heisst. |
 | `kunde`, `wunsch`, `kundenstimme`, `ueberraschung` | Rahmen des Auftrags |
 | `lexikon` | wahlweise: Lexikon-Begriffe, die beim Annehmen des Auftrags freigeschaltet und nicht abgeprüft werden |
 | `runden` | Liste der Runden in Spielreihenfolge |
@@ -99,7 +100,7 @@ Eine **Aufgabe**:
 |---|---|
 | `wunsch` | was die Kundin in dieser Situation will |
 | `grundprompt` | womit der Spieler startet |
-| `teile` | wählbare Textteile mit `id`, `art` (`rolle`, `prompt`, `kontext` oder `beispiel`) und `text`. Teile der Art `rolle` bilden den System-Prompt, alle anderen den Prompt. |
+| `teile` | wählbare Textteile mit `id`, `art` (`rolle`, `prompt`, `kontext`, `absicherung` oder `beispiel`) und `text`. Teile der Art `rolle` bilden den System-Prompt, alle anderen den Prompt. |
 | `nachrichtVon` | wahlweise: Beschriftung des Prompt-Felds, wenn die Nachricht von jemand anderem stammt (z. B. «Nachricht eines Kindes») |
 | `pruefungen` | geordnete Liste. Die erste zutreffende bestimmt das Fehlbild. |
 | `fehlbilder` | pro Fehlbild mindestens zwei `texte` (Varianten von KI-Quatsch) und ein `hinweis` |
@@ -107,6 +108,8 @@ Eine **Aufgabe**:
 | `loesung` | eine richtige Auswahl, für «Beispiel» und «Lösung zeigen» |
 
 Eine **Prüfung** trifft zu, wenn eines davon gilt: `gewaehlt` (eines dieser Teile ist angesteckt, z. B. ein vages), `fehlt` (eines dieser Teile fehlt), `aus` mit `hoechstens` (höchstens so viele Teile aus der Liste sind angesteckt, z. B. nur ein Beispiel). Der Platzhalter `{teil}` in einem Fehlbild wird durch das eine gewählte Beispiel ersetzt.
+
+Eine **Vorhersage-Aufgabe** (`typ: "wahl"`) hat statt Teilen und Prüfungen: `frage`, `optionen` (jede mit `id`, `text`, `hinweis`, genau eine mit `richtig`), `kiwi` (was Kiwi tatsächlich tut, unabhängig von der Wahl), `loesung` und wahlweise `anteile` (Wörter mit `stufe` 1 bis 3 für den «Blick in Kiwis Kopf»). Die Oberfläche dafür ist `oberflaeche/wahl.js`.
 
 **`fakten.json`:** Jeder Eintrag hat `id`, `aussage`, `quelle` (offizielle Seite) und `geprueft` (Datum).
 

@@ -2,6 +2,21 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.4.0, 11. November 2026: Kapitel 2, Etappe 1
+
+**Neu**
+- Dritter Auftrag «Dorfmuseum Hinterwil»: ein Quiz fürs Dorffest, bei dem alles stimmen muss. Zwei Konzept-Runden und eine Mischrunde.
+- Konzept 5 «Wahrscheinlichkeit statt Wissen» mit der neuen Übungsform **Vorhersagen**: Der Spieler tippt, welches Wort Kiwi wählt oder ob Kiwi etwas trifft oder rät.
+- «Blick in Kiwis Kopf»: Balken zeigen nach der Antwort, wie oft ein Wort passt (sehr oft, manchmal, fast nie). Bewusst ohne Zahlen.
+- Konzept 6 «Halluzination und Prüfen» mit der neuen Bausteingruppe **Absicherung**: nur die Chronik benutzen, «Das weiss ich nicht» erlauben, Beleg verlangen.
+- Neue Fehlbilder: zum Raten gezwungen, dazugedichtet, dem Witzbuch geglaubt, nach dem Mund geredet, richtig aber ohne Beleg.
+- Das Studio heisst ab Kapitel 2 «Die Garage mit Labor». Drei neue Lexikon-Einträge.
+- 15 neue Aufgaben. Insgesamt 43 Aufgaben, 9 Lexikon-Einträge, 31 Tests.
+
+**Bekannte Grenzen**
+- Kapitel 2 ist erst zur Hälfte da: Token, Kontextfenster und Wissensstand fehlen noch, ebenso das Token-Budget.
+- Weiterhin nicht mit echten Spielern getestet (E-022).
+
 ## 0.3.0, 11. November 2026: Kapitel 1 komplett
 
 **Neu**

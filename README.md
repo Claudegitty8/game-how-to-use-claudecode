@@ -2,7 +2,7 @@
 
 Ein Lernspiel, in dem man spielerisch lernt, mit KI Spiele und Apps zu bauen. Du gründest ein kleines Studio, nimmst Aufträge an und baust mit der KI «Kiwi». Machst du etwas ungenau, macht Kiwi lustigen Quatsch, und genau daran lernst du.
 
-**Stand:** Version 0.3. Kapitel 1 ist spielbar: die Aufträge «Bäckerei Brunner» (Prompt, Kontext, Beispiele) und «Turnverein» (Rolle und System-Prompt), je mit Mischrunde. Wie es weitergeht, steht in `docs/ROADMAP.md`.
+**Stand:** Version 0.4. Spielbar sind Kapitel 1 (Aufträge «Bäckerei Brunner» und «Turnverein») und die erste Hälfte von Kapitel 2 (Auftrag «Dorfmuseum» mit Wahrscheinlichkeit und Halluzination). Wie es weitergeht, steht in `docs/ROADMAP.md`.
 
 ## Ausprobieren
 
