@@ -1,0 +1,13 @@
+{
+  "name": "ki-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Lernspiel «KI-Studio»: spielerisch lernen, mit KI Spiele und Apps zu bauen",
+  "scripts": {
+    "start": "node werkzeuge/server.mjs",
+    "test": "node --test",
+    "inhalte": "node werkzeuge/pruefe-inhalte.mjs",
+    "pruefen": "npm test && npm run inhalte"
+  }
+}

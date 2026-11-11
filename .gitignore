@@ -1,0 +1,10 @@
+# Geheimnisse: gehören nie ins Repository
+.env
+.env.*
+*.key
+geheim/
+
+# Werkzeuge und Betriebssystem
+node_modules/
+.DS_Store
+vorschau/

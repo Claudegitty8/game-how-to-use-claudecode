@@ -1,0 +1,189 @@
+/* KI-Studio: schlichte, schematische Gestaltung, zuerst fürs Handy. */
+:root {
+  --grund: #f6f4ee;
+  --flaeche: #ffffff;
+  --text: #1d2420;
+  --leise: #5b6660;
+  --linie: #d9d6cc;
+  --kiwi: #6aa52a;
+  --kiwi-dunkel: #3f6a12;
+  --akzent: #1f5fbf;
+  --warn: #8a4b00;
+  --warn-flaeche: #fff3dc;
+  --gut-flaeche: #e7f4d8;
+  --radius: 14px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --grund: #141815;
+    --flaeche: #1e2420;
+    --text: #eef1ec;
+    --leise: #a6b0a9;
+    --linie: #343c36;
+    --kiwi: #8cc63f;
+    --kiwi-dunkel: #b9e37a;
+    --akzent: #8ab4ff;
+    --warn: #ffcf87;
+    --warn-flaeche: #3a2c12;
+    --gut-flaeche: #23331a;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--grund);
+  color: var(--text);
+}
+
+main {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
+  display: grid;
+  gap: 1rem;
+}
+
+h1, h2, p, ul, ol { margin: 0; }
+h1 { font-size: 1.7rem; }
+h2 { font-size: 1.15rem; }
+
+.kopf p, .klein, .fuss { color: var(--leise); font-size: 0.9rem; }
+
+.karte {
+  background: var(--flaeche);
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  padding: 1rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.etikett {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--leise);
+}
+
+.wunsch { font-size: 1.05rem; }
+
+.prompt {
+  border: 2px dashed var(--linie);
+  border-radius: 10px;
+  padding: 0.7rem;
+  min-height: 3.2rem;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+}
+
+.bausteine { display: grid; gap: 0.5rem; }
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  min-height: 48px;
+  border-radius: 10px;
+}
+
+button:focus-visible { outline: 3px solid var(--akzent); outline-offset: 2px; }
+
+.baustein {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: left;
+  padding: 0.5rem 0.8rem;
+  background: transparent;
+  border: 2px solid var(--linie);
+}
+
+.baustein-zeichen {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  font-weight: 700;
+  flex: none;
+}
+
+.baustein[aria-pressed="true"] {
+  border-color: var(--kiwi-dunkel);
+  background: var(--gut-flaeche);
+}
+
+.baustein[aria-pressed="true"] .baustein-zeichen { transform: rotate(45deg); }
+
+.los {
+  border: none;
+  background: var(--kiwi-dunkel);
+  color: var(--grund);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.7rem 1rem;
+}
+
+.los:disabled { opacity: 0.6; }
+
+.kiwi-zeile {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  align-items: start;
+}
+
+.kiwi {
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 46% 54% 50% 50%;
+  background: var(--kiwi);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auge {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #1d2420;
+}
+
+.kiwi.froh .auge { height: 0.3rem; border-radius: 0.3rem 0.3rem 0 0; }
+
+.sprechblase {
+  background: var(--grund);
+  border: 1px solid var(--linie);
+  border-radius: 4px var(--radius) var(--radius) var(--radius);
+  padding: 0.7rem 0.8rem;
+}
+
+.hinweis:empty { display: none; }
+
+.hinweis {
+  background: var(--warn-flaeche);
+  color: var(--warn);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+.hinweis.gut { background: var(--gut-flaeche); color: var(--kiwi-dunkel); }
+
+.check, .kapitel { padding-left: 1.3rem; display: grid; gap: 0.3rem; }
+.kapitel span { color: var(--leise); }
+
+.fehler { color: var(--warn); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .baustein-zeichen, .auge { transition: transform 0.15s, height 0.15s; }
+}
