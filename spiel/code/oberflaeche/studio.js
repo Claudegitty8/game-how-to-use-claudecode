@@ -1,6 +1,7 @@
 // Das Studio: Startbildschirm mit Auftrag, Meisterschaft und Auftragswand.
 import { el, fuelle, knopf, kiwiFigur, punkte } from './bausteine.js';
 import { starteAuftrag } from '../logik/ablauf.js';
+import { gespartText } from './runde.js';
 import { erfolge, neuerFortschritt } from '../logik/meisterschaft.js';
 
 function rundenName(runde, texte) {
@@ -61,7 +62,8 @@ export function zeigeStudio(wurzel, app, nav) {
       ? el('p', { klasse: 'klein', text: t.wandLeer })
       : fertige.map((a) => el('div', { klasse: 'wand-eintrag' },
         el('strong', { text: a.kunde }),
-        el('p', { text: `«${a.kundenstimme}»` }))));
+        el('p', { text: `«${a.kundenstimme}»` }),
+        a.tokenBudget ? el('p', { klasse: 'klein', text: gespartText(t, stand.gespart?.[a.id]) }) : null)));
 
   wurzel.append(
     el('header', { klasse: 'kopf' },

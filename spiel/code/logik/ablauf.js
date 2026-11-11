@@ -15,6 +15,7 @@ export function neuerStand() {
     fortschritt: {},       // pro Konzept: gelöste Situationen, Wiederholungsstufe, Fälligkeit
     lexikon: ['ki'],       // freigeschaltete Lexikon-Einträge
     rundenZaehler: 0,      // Anzahl abgeschlossener Runden
+    gespart: {},           // pro erledigtem Auftrag: gesparte Spiel-Tokens
     einstellungen: { schrift: 'normal' },
   };
 }
@@ -35,9 +36,14 @@ function faelligeWiederholung(stand, alle, regeln) {
 
 function betrittRunde(stand, auftrag, regeln, index, alle) {
   const runde = auftrag.runden[index];
+  // Das Token-Budget gilt für den ganzen Auftrag und wandert von Runde zu Runde mit.
+  const budget = stand.lauf?.auftrag === auftrag.id
+    ? { tokens: stand.lauf.tokens ?? null, nachgeschoben: Boolean(stand.lauf.nachgeschoben) }
+    : { tokens: auftrag.tokenBudget ?? null, nachgeschoben: false };
   return {
     ...stand,
     lauf: {
+      ...budget,
       auftrag: auftrag.id,
       runde: index,
       schritt: runde.art === 'misch' ? 'frei' : 'probieren',
@@ -111,7 +117,15 @@ function beendeRunde(stand, auftrag, regeln, alle) {
   const naechste = stand.lauf.runde + 1;
   if (naechste >= auftrag.runden.length) {
     return {
-      stand: { ...basis, lauf: null, erledigt: [...stand.erledigt, auftrag.id] },
+      stand: {
+        ...basis,
+        lauf: null,
+        erledigt: [...stand.erledigt, auftrag.id],
+        // Wer nachfüllen musste, hat nichts gespart. Das ist die einzige Folge.
+        gespart: stand.lauf.tokens == null
+          ? stand.gespart ?? {}
+          : { ...stand.gespart, [auftrag.id]: stand.lauf.nachgeschoben ? 0 : stand.lauf.tokens },
+      },
       ereignis: 'auftragFertig',
     };
   }
@@ -158,4 +172,15 @@ export function verbucheWiederholungsErgebnis(stand, regeln, richtig) {
     },
     lauf: { ...stand.lauf, wiederholung: null },
   };
+}
+
+// Zieht die Kosten eines Tests vom Token-Budget des Auftrags ab.
+// Das Budget kann nie zur Sackgasse werden: Ist es leer, füllt die Kundschaft zur Hälfte nach.
+export function verbraucheTokens(stand, auftrag, anzahl) {
+  const lauf = stand.lauf;
+  if (!lauf || lauf.tokens == null) return { stand, nachgeschoben: false };
+  const rest = lauf.tokens - anzahl;
+  if (rest > 0) return { stand: { ...stand, lauf: { ...lauf, tokens: rest } }, nachgeschoben: false };
+  const nachfuellung = Math.ceil((auftrag.tokenBudget ?? 0) / 2);
+  return { stand: { ...stand, lauf: { ...lauf, tokens: nachfuellung, nachgeschoben: true } }, nachgeschoben: true };
 }

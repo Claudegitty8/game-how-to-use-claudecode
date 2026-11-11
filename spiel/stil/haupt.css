@@ -287,3 +287,19 @@ main:focus { outline: none; }
 .stufe-3 { width: 90%; }
 .stufe-2 { width: 40%; }
 .stufe-1 { width: 8%; }
+
+/* ---------- Ab Version 0.5: Tokens und Kontextfenster ---------- */
+.token-zeile { font-size: 0.9rem; color: var(--leise); }
+.token-zeile.zuviel { color: var(--warn); font-weight: 700; }
+.tisch { display: grid; gap: 0.3rem; border-top: 1px solid var(--linie); padding-top: 0.6rem; }
+.tisch-bahn { display: block; height: 1rem; border-radius: 6px; background: var(--grund); border: 1px solid var(--linie); overflow: hidden; }
+.tisch-fuellung { display: block; height: 100%; background: var(--kiwi); }
+.tisch[data-zustand="eng"] .tisch-fuellung { background: #c98a00; }
+.tisch[data-zustand="voll"] .tisch-fuellung { background: #b3261e; }
+.tisch[data-zustand="voll"] .klein, .tisch[data-zustand="eng"] .klein { color: var(--warn); font-weight: 600; }
+.fuell-0 { width: 2%; } .fuell-1 { width: 10%; } .fuell-2 { width: 20%; } .fuell-3 { width: 30%; } .fuell-4 { width: 40%; }
+.fuell-5 { width: 50%; } .fuell-6 { width: 60%; } .fuell-7 { width: 70%; } .fuell-8 { width: 80%; } .fuell-9 { width: 90%; } .fuell-10 { width: 100%; }
+.steine { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+.stein { padding: 0.2rem 0.45rem; border-radius: 6px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.95rem; border: 1px solid var(--linie); }
+.farbe-0 { background: var(--gut-flaeche); } .farbe-1 { background: var(--warn-flaeche); } .farbe-2 { background: var(--grund); } .farbe-3 { background: transparent; }
+.kosten:empty, .budget-hinweis:empty { display: none; }

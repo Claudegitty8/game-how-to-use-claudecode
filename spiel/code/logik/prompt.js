@@ -22,3 +22,18 @@ export function bauePrompt(aufgabe, auswahl = [], beispielVorsatz = '') {
 export function hatSystemPrompt(aufgabe) {
   return (aufgabe.teile ?? []).some((teil) => teil.art === 'rolle');
 }
+
+// Spiel-Tokens: ein Spielwert, damit Länge spürbar kostet. Das ist keine echte Token-Zählung.
+export function schaetzeSpielTokens(text) {
+  const woerter = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(woerter * 1.3));
+}
+
+// So viele Spiel-Tokens schickt der Spieler: Grundprompt plus alle angesteckten Teile.
+// Grosse Dokumente tragen ihre Grösse als festen Wert (teil.tokens).
+export function zaehleTokens(aufgabe, auswahl = []) {
+  if (aufgabe.typ === 'wahl') return schaetzeSpielTokens(aufgabe.frage);
+  return aufgabe.teile
+    .filter((teil) => auswahl.includes(teil.id))
+    .reduce((summe, teil) => summe + (teil.tokens ?? schaetzeSpielTokens(teil.text)), schaetzeSpielTokens(aufgabe.grundprompt));
+}

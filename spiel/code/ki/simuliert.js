@@ -1,13 +1,7 @@
 // Simulierte KI «Kiwi»: antwortet nach festen Regeln aus den Lerninhalten.
 // Braucht kein Konto, kostet nichts und läuft ohne Internet.
 import { bewerte } from '../logik/bewertung.js';
-import { bauePrompt, baueSystemPrompt } from '../logik/prompt.js';
-
-// Spielwert für das Token-Budget. Das ist keine echte Token-Zählung.
-export function schaetzeSpielTokens(text) {
-  const woerter = text.trim().split(/\s+/).filter(Boolean).length;
-  return Math.max(1, Math.ceil(woerter * 1.3));
-}
+import { schaetzeSpielTokens, zaehleTokens } from '../logik/prompt.js';
 
 // Manche Fehlbilder zitieren das eine gewählte Beispiel: Platzhalter {teil}.
 function setzeTeilEin(text, aufgabe, auswahl, pruefung) {
@@ -43,8 +37,9 @@ export function erstelleSimulierteKi() {
         fehlbild: urteil.fehlbild,
         hinweis: fehlbild?.hinweis ?? null,
         tokens: {
-          eingabe: schaetzeSpielTokens(`${baueSystemPrompt(aufgabe, auswahl)} ${bauePrompt(aufgabe, auswahl)}`),
-          ausgabe: schaetzeSpielTokens(text),
+          eingabe: zaehleTokens(aufgabe, auswahl),
+          // Lange Antworten werden im Text nur angedeutet. Ihr Preis steht beim Fehlbild.
+          ausgabe: fehlbild?.ausgabeTokens ?? schaetzeSpielTokens(text),
         },
         modus: 'simuliert',
       };

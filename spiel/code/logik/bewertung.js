@@ -1,13 +1,18 @@
+import { zaehleTokens } from './prompt.js';
+
 // Bewertet eine gebaute Lösung anhand der Prüfungen einer Aufgabe.
 // Reine Logik ohne Oberfläche, damit sie automatisch testbar ist.
 //
 // Eine Prüfung trifft zu, wenn
 //   gewaehlt:   mindestens eines dieser Teile angesteckt ist (z. B. ein vages Teil),
 //   fehlt:      mindestens eines dieser Teile nicht angesteckt ist,
-//   aus + hoechstens: höchstens so viele Teile aus der Liste angesteckt sind.
+//   aus + hoechstens: höchstens so viele Teile aus der Liste angesteckt sind,
+//   tokensUeber: der Prompt mehr Spiel-Tokens hat als die Zahl.
 // Die erste zutreffende Prüfung bestimmt das Fehlbild. Trifft keine zu, ist die Lösung gut.
 
-function trifftZu(wenn, gewaehlt) {
+function trifftZu(wenn, gewaehlt, aufgabe) {
+  // tokensUeber: Der gebaute Prompt ist grösser als erlaubt (Budget oder Kontextfenster).
+  if (Number.isInteger(wenn.tokensUeber)) return zaehleTokens(aufgabe, [...gewaehlt]) > wenn.tokensUeber;
   if (wenn.gewaehlt?.some((id) => gewaehlt.has(id))) return true;
   if (wenn.fehlt?.some((id) => !gewaehlt.has(id))) return true;
   if (wenn.aus && Number.isInteger(wenn.hoechstens)) {
@@ -25,7 +30,7 @@ function bewerteWahl(aufgabe, auswahl) {
 export function bewerte(aufgabe, auswahl = []) {
   if (aufgabe.typ === 'wahl') return bewerteWahl(aufgabe, auswahl);
   const gewaehlt = new Set(auswahl);
-  const treffer = aufgabe.pruefungen.find((pruefung) => trifftZu(pruefung.wenn, gewaehlt)) ?? null;
+  const treffer = aufgabe.pruefungen.find((pruefung) => trifftZu(pruefung.wenn, gewaehlt, aufgabe)) ?? null;
   return { ok: !treffer, fehlbild: treffer?.fehlbild ?? null, pruefung: treffer };
 }
 

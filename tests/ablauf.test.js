@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import {
-  neuerStand, starteAuftrag, ansicht, weiter, verbucheFrei, verbucheWiederholungsErgebnis,
+  neuerStand, starteAuftrag, ansicht, weiter, verbucheFrei, verbucheWiederholungsErgebnis, verbraucheTokens,
 } from '../spiel/code/logik/ablauf.js';
 import { erfolge } from '../spiel/code/logik/meisterschaft.js';
 
@@ -169,3 +169,64 @@ test('Drei Aufträge: Kapitel 2 baut auf Kapitel 1 auf und wiederholt es', () =>
   assert.deepEqual(dritter.stand.erledigt, ['baeckerei', 'turnverein', 'dorfmuseum']);
   assert.ok(dritter.stand.lexikon.includes('halluzination') && dritter.stand.lexikon.includes('training'));
 });
+
+const dorfzeitung = await lies('de/auftraege/dorfzeitung.json');
+alle.push(dorfzeitung);
+
+test('Token-Budget: gilt für den ganzen Auftrag, Rest wird gespart', () => {
+  let stand = starteAuftrag(neuerStand(), dorfzeitung, regeln, alle);
+  assert.equal(stand.lauf.tokens, 6000);
+  ({ stand } = verbraucheTokens(stand, dorfzeitung, 250));
+  assert.equal(stand.lauf.tokens, 5750);
+
+  // Das Budget wandert in die nächste Runde mit.
+  stand = bisFreiIn(stand, dorfzeitung);
+  for (let i = 0; i < 3; i += 1) ({ stand } = verbucheFrei(stand, dorfzeitung, regeln, { ok: true, zaehlt: true }, alle));
+  assert.equal(stand.lauf.runde, 1);
+  assert.equal(stand.lauf.tokens, 5750);
+});
+
+test('Token-Budget: Ist es leer, wird nachgefüllt, aber nichts gespart', () => {
+  let stand = starteAuftrag(neuerStand(), dorfzeitung, regeln, alle);
+  let nachgeschoben;
+  ({ stand, nachgeschoben } = verbraucheTokens(stand, dorfzeitung, 7000));
+  assert.equal(nachgeschoben, true);
+  assert.equal(stand.lauf.tokens, 3000);
+  const fertig = spieleDurchAb(stand, dorfzeitung);
+  assert.equal(fertig.gespart.dorfzeitung, 0);
+});
+
+test('Aufträge ohne Budget kennen keine Tokens', () => {
+  const stand = starteAuftrag(neuerStand(), auftrag, regeln, alle);
+  assert.equal(stand.lauf.tokens, null);
+  assert.equal(verbraucheTokens(stand, auftrag, 500).stand, stand);
+  assert.deepEqual(spieleDurch(neuerStand(), auftrag).stand.gespart, {});
+});
+
+test('Vier Aufträge hintereinander: Sparen wird festgehalten', () => {
+  let stand = neuerStand();
+  for (const a of alle) ({ stand } = spieleDurch(stand, a));
+  assert.deepEqual(stand.erledigt, ['baeckerei', 'turnverein', 'dorfmuseum', 'dorfzeitung']);
+  assert.deepEqual(stand.gespart, { dorfzeitung: 6000 });
+  assert.equal(stand.lexikon.length, 13);
+});
+
+function bisFreiIn(stand, a) {
+  let s = stand;
+  while (ansicht(s, a).art !== 'frei') {
+    s = ansicht(s, a).art === 'wiederholung' ? verbucheWiederholungsErgebnis(s, regeln, true) : weiter(s, a);
+  }
+  return s;
+}
+
+function spieleDurchAb(start, a) {
+  let stand = start;
+  let ereignis = 'weiter';
+  while (ereignis !== 'auftragFertig') {
+    const sicht = ansicht(stand, a);
+    if (sicht.art === 'wiederholung') stand = verbucheWiederholungsErgebnis(stand, regeln, true);
+    else if (sicht.art === 'frei' || sicht.art === 'misch') ({ stand, ereignis } = verbucheFrei(stand, a, regeln, { ok: true, zaehlt: true }, alle));
+    else stand = weiter(stand, a);
+  }
+  return stand;
+}

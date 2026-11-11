@@ -109,3 +109,27 @@ test('Vorhersagen: Hilfe schliesst eine falsche Antwort aus, am liebsten die gew
   assert.deepEqual(hilfeTeil(wahl, ['c']), { id: 'c', grund: 'falsch' });
   assert.deepEqual(hilfeTeil(wahl, []), { id: 'b', grund: 'falsch' });
 });
+
+test('Tokens: grosse Dokumente sprengen Budget und Kontextfenster', async () => {
+  const { zaehleTokens } = await import('../spiel/code/logik/prompt.js');
+  const tisch = {
+    grundprompt: 'Wann brannte die Sägerei?',
+    teile: [
+      { id: 'seite', art: 'kontext', text: 'Seite 212: Die Sägerei brannte 1934.' },
+      { id: 'viele', art: 'kontext', text: 'Seiten 1 bis 150.', tokens: 800 },
+      { id: 'alles', art: 'kontext', text: 'Alle 400 Seiten.', tokens: 5000 },
+    ],
+    pruefungen: [
+      { wenn: { tokensUeber: 1000 }, fehlbild: 'faelltRunter' },
+      { wenn: { tokensUeber: 600 }, fehlbild: 'ueberladen' },
+      { wenn: { fehlt: ['seite'] }, fehlbild: 'erfunden' },
+    ],
+    loesung: ['seite'],
+  };
+  assert.ok(zaehleTokens(tisch, ['seite']) < 30);
+  assert.equal(zaehleTokens(tisch, ['alles']) > 5000, true);
+  assert.equal(bewerte(tisch, ['seite', 'alles']).fehlbild, 'faelltRunter');
+  assert.equal(bewerte(tisch, ['seite', 'viele']).fehlbild, 'ueberladen');
+  assert.equal(bewerte(tisch, []).fehlbild, 'erfunden');
+  assert.equal(bewerte(tisch, ['seite']).ok, true);
+});

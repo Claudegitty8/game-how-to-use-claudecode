@@ -10,7 +10,8 @@ const auftrag = JSON.parse(await readFile(new URL('../spiel/inhalte/de/auftraege
 const { aufgaben } = auftrag;
 const turnverein = JSON.parse(await readFile(new URL('../spiel/inhalte/de/auftraege/turnverein.json', import.meta.url), 'utf8'));
 const dorfmuseum = JSON.parse(await readFile(new URL('../spiel/inhalte/de/auftraege/dorfmuseum.json', import.meta.url), 'utf8'));
-const alleAufgaben = { ...aufgaben, ...turnverein.aufgaben, ...dorfmuseum.aufgaben };
+const dorfzeitung = JSON.parse(await readFile(new URL('../spiel/inhalte/de/auftraege/dorfzeitung.json', import.meta.url), 'utf8'));
+const alleAufgaben = { ...aufgaben, ...turnverein.aufgaben, ...dorfmuseum.aufgaben, ...dorfzeitung.aufgaben };
 
 test('Simulierte KI macht Quatsch passend zur Lücke und erklärt ihn', async () => {
   const ki = erstelleKi('simuliert');
@@ -98,4 +99,14 @@ test('Vorhersagen: Kiwi tut immer dasselbe, der Hinweis erklärt die gewählte A
   assert.equal(leer.ok, false);
   assert.equal(richtig.text, falsch.text);
   assert.notEqual(richtig.hinweis, falsch.hinweis);
+});
+
+test('Lange Antworten kosten mehr Tokens als kurze', async () => {
+  const ki = erstelleKi('simuliert');
+  const aufgabe = dorfzeitung.aufgaben['z-a'];
+  const teuer = await ki.antworte({ aufgabe, auswahl: ['lang'] });
+  const gut = await ki.antworte({ aufgabe, auswahl: ['kurz', 'datum'] });
+  assert.equal(teuer.fehlbild, 'teuer');
+  assert.equal(teuer.tokens.ausgabe, 900);
+  assert.ok(gut.tokens.ausgabe < 20);
 });

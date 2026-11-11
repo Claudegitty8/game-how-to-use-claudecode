@@ -39,11 +39,16 @@ export function baueWahl({ aufgabe, t, auswahl = [], gesperrt = false }) {
       el('span', { klasse: 'anteil-bahn' }, el('span', { klasse: `anteil-balken stufe-${anteil.stufe}` })),
       el('span', { klasse: 'anteil-stufe', text: t.stufe[anteil.stufe] }))));
 
+  // Token-Steine: zeigt nach der Antwort, wie ein Satz in Stücke zerfällt.
+  const steine = el('div', { klasse: 'steine', hidden: true, role: 'img', 'aria-label': (aufgabe.steine ?? []).join('|') },
+    (aufgabe.steine ?? []).map((stueck, index) => el('span', { klasse: `stein farbe-${index % 4}`, text: stueck.trim() })));
+
   const knoten = el('section', { klasse: 'karte werkbank' },
     el('p', { klasse: 'etikett', text: t.frageEtikett }),
     el('p', { klasse: 'frage', text: aufgabe.frage }),
     el('div', { klasse: 'bausteine' }, optionen),
     hinweisZumTeil,
+    steine,
     sichtfenster);
 
   zeichne();
@@ -66,6 +71,7 @@ export function baueWahl({ aufgabe, t, auswahl = [], gesperrt = false }) {
     },
     nachTest() {
       if ((aufgabe.anteile ?? []).length > 0) sichtfenster.hidden = false;
+      if ((aufgabe.steine ?? []).length > 0) steine.hidden = false;
     },
   };
 }

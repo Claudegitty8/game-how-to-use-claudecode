@@ -3,7 +3,7 @@
 import { el, fuelle, knopf, kiwiFigur, punkte, leiste } from './bausteine.js';
 import { baueWerkbank } from './werkbank.js';
 import { baueWahl } from './wahl.js';
-import { ansicht, weiter, verbucheFrei, verbucheWiederholungsErgebnis, SCHRITTE } from '../logik/ablauf.js';
+import { ansicht, weiter, verbucheFrei, verbucheWiederholungsErgebnis, verbraucheTokens, SCHRITTE } from '../logik/ablauf.js';
 import { hilfeTeil } from '../logik/bewertung.js';
 import { erfolge, neuerFortschritt } from '../logik/meisterschaft.js';
 
@@ -23,7 +23,9 @@ export function zeigeRunde(wurzel, app, nav) {
     return;
   }
   const t = app.inhalte.texte.app;
-  const titel = fuelle(t.rundeEtikett, { nr: a.rundenNr, anzahl: auftrag.runden.length });
+  const rundenText = fuelle(t.rundeEtikett, { nr: a.rundenNr, anzahl: auftrag.runden.length });
+  const tokens = app.stand.lauf?.tokens;
+  const titel = tokens == null ? rundenText : `${rundenText} · ${fuelle(t.budgetStand, { anzahl: tokens })}`;
   wurzel.append(leiste(t, nav, titel));
   if (a.art === 'aha') zeigeAha(wurzel, app, nav, a, auftrag);
   else zeigeAufgabe(wurzel, app, nav, a, auftrag);
@@ -69,6 +71,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
     aufgabe,
     t,
     sichtbar: a.nurTeile ?? null,
+    zeigeTokens: app.stand.lauf?.tokens != null,
     vorgabe: a.vorgabe ?? [],
     auswahl: art === 'beispiel' ? aufgabe.loesung : [],
     gesperrt: art === 'beispiel',
@@ -98,9 +101,11 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   const hinweis = el('p', { klasse: 'hinweis' });
   const status = el('p', { klasse: 'status' });
   const hilfeText = el('p', { klasse: 'hilfe-text' });
+  const kosten = el('p', { klasse: 'klein kosten' });
+  const budgetHinweis = el('p', { klasse: 'hinweis budget-hinweis' });
   const aktionen = el('div', { klasse: 'aktionen' });
   const ergebnis = el('section', { klasse: 'karte ergebnis', role: 'status' },
-    el('div', { klasse: 'kiwi-zeile' }, kiwi, sprechblase), hinweis, status);
+    el('div', { klasse: 'kiwi-zeile' }, kiwi, sprechblase), hinweis, status, kosten, budgetHinweis);
 
   function weiterSchritt() {
     app.setze(weiter(app.stand, auftrag));
@@ -137,6 +142,19 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
     kiwi.classList.toggle('froh', antwort.ok);
     status.textContent = '';
     los.disabled = false;
+
+    // Ab Kapitel 2 kostet jeder Test Tokens. Probieren und Beispiel sind immer gratis.
+    let budgetLeer = false;
+    if (art !== 'probieren' && art !== 'beispiel') {
+      const eingabe = Math.min(antwort.tokens.eingabe, aufgabe.fenster ?? Infinity);
+      const ergebnisBudget = verbraucheTokens(app.stand, auftrag, eingabe + antwort.tokens.ausgabe);
+      app.setze(ergebnisBudget.stand);
+      budgetLeer = ergebnisBudget.nachgeschoben;
+      if (app.stand.lauf?.tokens != null) {
+        kosten.textContent = fuelle(t.testKosten, { anzahl: eingabe + antwort.tokens.ausgabe, rest: app.stand.lauf.tokens });
+      }
+    }
+    budgetHinweis.textContent = budgetLeer ? t.budgetLeer : '';
 
     if (art === 'probieren') {
       aktionen.replaceChildren(knopf(t.wasPassiert, weiterSchritt, 'los'));
@@ -204,6 +222,10 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   );
 }
 
+export function gespartText(t, anzahl) {
+  return anzahl > 0 ? fuelle(t.gespart, { anzahl }) : t.nichtGespart;
+}
+
 // Zwischenbild nach einer Runde oder nach dem ganzen Auftrag.
 export function zeigeZwischen(wurzel, app, nav, { ereignis, konzept, auftrag }) {
   const { texte, regeln } = app.inhalte;
@@ -216,7 +238,8 @@ export function zeigeZwischen(wurzel, app, nav, { ereignis, konzept, auftrag }) 
         kiwiFigur(t.kiwiName, true),
         el('h2', { text: t.auftragFertigTitel }),
         el('p', { klasse: 'etikett', text: t.kundenstimmeEtikett }),
-        el('p', { klasse: 'wunsch', text: `«${auftrag.kundenstimme}»` })),
+        el('p', { klasse: 'wunsch', text: `«${auftrag.kundenstimme}»` }),
+        auftrag.tokenBudget ? el('p', { klasse: 'status', text: gespartText(t, app.stand.gespart?.[auftrag.id]) }) : null),
       el('section', { klasse: 'karte' },
         el('p', { klasse: 'etikett', text: t.ueberraschungEtikett }),
         el('p', { text: auftrag.ueberraschung })),
