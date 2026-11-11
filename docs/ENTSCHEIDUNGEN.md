@@ -125,6 +125,26 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** «Kiwis Tisch» hat drei Zustände: viel Platz, eng (Kiwi wird ungenau), voll (etwas fällt herunter, auch die Frage).
 **Grund:** Entspricht zwei belegten Effekten: Genauigkeit sinkt mit wachsender Token-Zahl, und Chat-Oberflächen lassen Älteres zuerst herausfallen. Vereinfachung: Die Schnittstelle für Programmierer lehnt zu lange Eingaben stattdessen mit einem Fehler ab. Das steht bei den Fakten.
 
+### E-029: Kapitel 3 bis 6 mit der bestehenden Werkbank
+**Entscheid:** Die Konzepte ab Kapitel 3 werden mit den zwei vorhandenen Übungsformen gebaut (Zusammenstecken und Vorhersagen). Werkzeuge, Rechte, Connectors, Skills und der Zettel sind neue Bausteingruppen. Eigene Bilder (Kreis mit Stationen, Ampel, Steckerleiste, Karteikasten) und die Übungsform «Sortieren» aus dem Lehrplan kommen später.
+**Grund:** Der Besitzer wollte das Spiel in einem Zug fertig haben. Die Mechanik bleibt trotzdem das Konzept (fehlendes Werkzeug ergibt «nur geredet», fehlende Rückfrage ergibt «gelöscht»). Neue Übungsformen sollen erst nach der Testrunde entstehen.
+
+### E-030: Zwölf statt dreizehn Aufträge
+**Entscheid:** Kapitel 3 hat zwei Aufträge mit je drei Konzepten statt drei Aufträge mit je zwei. Das Spiel hat damit 12 Aufträge.
+**Grund:** Tool, Agentenschleife und Prüfschleife gehören eng zusammen, ebenso Berechtigungen, Planen und Subagent. Die Reihenfolge der 24 Konzepte bleibt wie im Lehrplan.
+
+### E-031: Einstellungen stehen nicht im Prompt
+**Entscheid:** Teile der Arten `tool`, `stecker`, `karte` und `recht` erscheinen nicht im Text des Prompts, zählen aber als Spiel-Tokens. Teile der Art `zettel` (CLAUDE.md) stehen wie der System-Prompt in einem eigenen Feld. Die Liste aller Arten steht nur noch in `spiel/code/logik/prompt.js`.
+**Grund:** In echten Programmen schreibt man Werkzeuge und Rechte nicht in die Nachricht, man stellt sie ein. Auf dem Tisch brauchen sie trotzdem Platz.
+
+### E-032: Antworten in fester, gemischter Reihenfolge
+**Entscheid:** Bei Vorhersage-Aufgaben mischt die Oberfläche die Antworten. Die Reihenfolge hängt nur vom Text der Frage ab und ist darum jedes Mal gleich.
+**Grund:** In den Daten stand die richtige Antwort oft zuoberst. Das hätte man schnell durchschaut.
+
+### E-033: Abschlussauftrag in drei Etappen, Version 0.9
+**Entscheid:** Der Abschlussauftrag «Dorffest» besteht aus drei Mischrunden (Idee, Bau, Auslieferung) ohne neues Konzept. Die Version heisst 0.9, nicht 1.0.
+**Grund:** Der Lehrplan verlangt einen Abschluss, der alles mischt. 1.0 gibt es erst, wenn echte Spieler das Spiel getestet haben (E-022).
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.
@@ -132,3 +152,5 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 - Die Hüllen für Desktop und iOS sind noch nicht geprüft.
 - Vereinfachung in Konzept 5: «Was in vielen Texten steht, trifft Kiwi meist» ist eine Faustregel, kein belegter Satz aus der offiziellen Dokumentation. Belegt ist nur, dass Sprachmodelle das nächste Wort vorhersagen.
 - Das Fehlbild «Mit nur einem Beispiel kopiert die KI es» ist in der offiziellen Dokumentation nur sinngemäss belegt (Beispiele sollen sich genug unterscheiden, damit keine ungewollten Muster übernommen werden).
+- Vereinfachungen ab Kapitel 3: Die Felder der Wetter- und Kalender-API sind erfunden. «Tresor» steht für jede sichere Ablage von Geheimnissen. Skills steckt im Spiel der Spieler an, in echt wählt die KI sie anhand der Beschreibung selbst. Die Namen der Berechtigungs-Modi von Claude Code kommen im Spiel nicht vor, sie stehen nur bei den Fakten.
+- «Ein Commit hält den Stand aller Projekt-Dateien fest» und die Aussagen zu Frontend, Backend, Bug und Test sind allgemeines Grundwissen ohne Eintrag in `fakten.json`.

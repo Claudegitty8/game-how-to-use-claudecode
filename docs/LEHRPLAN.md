@@ -275,11 +275,11 @@ Das Studio ist bekannt. Jetzt kommen auch Leute, die es austricksen wollen.
 |---|---|---|---|
 | 1 Die Garage | 1–4 | 2 | 40 Min. |
 | 2 Wie die KI tickt | 5–9 | 2 | 50 Min. |
-| 3 Kiwi bekommt Hände | 10–15 | 3 | 60 Min. |
+| 3 Kiwi bekommt Hände | 10–15 | 2 | 60 Min. |
 | 4 Das Studio vernetzt sich | 16–19 | 2 | 40 Min. |
 | 5 Echte Software | 20–23 | 2 | 40 Min. |
 | 6 Sicher unterwegs | 24 + Abschluss | 2 | 40 Min. |
-| **Total** | **24** | **13** | **rund 4,5 Stunden** |
+| **Total** | **24** | **12** | **rund 4,5 Stunden** |
 
 **Wiederholungsplan:** Nach der Meisterschaft taucht ein Konzept nach 1, 3 und 7 Runden erneut auf, jeweils als kleine Nebenaufgabe im laufenden Auftrag. Wer dabei scheitert, bekommt das Konzept früher wieder. Jeder Auftrag endet mit einer Mischrunde.
 

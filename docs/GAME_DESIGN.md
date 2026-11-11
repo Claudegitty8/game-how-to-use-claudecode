@@ -20,7 +20,7 @@ Eine Schleife dauert 1 bis 2 Minuten. Eine Runde besteht aus mehreren Schleifen 
 ## 3. Aufbau: Kapitel, Auftrag, Runde
 
 - **Kapitel (6):** eine Ausbaustufe des Studios mit einem Thema.
-- **Auftrag (13):** ein Kunde mit einem Wunsch. Besteht aus 2 bis 4 Runden plus einer Mischrunde.
+- **Auftrag (12, siehe E-030):** ein Kunde mit einem Wunsch. Besteht aus 2 bis 4 Runden plus einer Mischrunde.
 - **Runde:** führt genau ein neues Kernkonzept ein, in fünf Schritten.
 
 | Schritt | Was passiert | Dauer |

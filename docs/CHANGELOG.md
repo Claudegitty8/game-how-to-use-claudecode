@@ -2,6 +2,28 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.9.0, 11. November 2026: Das ganze Spiel, Kapitel 3 bis 6
+
+Das Spiel ist inhaltlich vollständig: 12 Aufträge, alle 24 Kernkonzepte, Abschlussauftrag.
+
+**Neu**
+- **Kapitel 3 «Kiwi bekommt Hände»:** Aufträge «Jassclub» (Tool, Agentenschleife, Prüfschleife) und «Schülerband» (Berechtigungen, Planen vor Bauen, Subagent).
+- **Kapitel 4 «Das Studio vernetzt sich»:** Aufträge «Velo-Laden» (API, API-Schlüssel) und «Blumenladen» (Connector und MCP, Skill).
+- **Kapitel 5 «Echte Software»:** Aufträge «Kinderzirkus» (Dateien und Projekt, Commit) und «Bibliothek» (Debugging und Test, CLAUDE.md).
+- **Kapitel 6 «Sicher unterwegs»:** Auftrag «Gemeinde» (Prompt Injection) und der Abschlussauftrag «Dorffest» in drei Etappen: Idee, Bau, Auslieferung. Er mischt alles Gelernte.
+- Sechs neue Bausteingruppen in der Werkbank: Werkzeuge, Connectors, Skills, «Was Kiwi darf», Felder der Anfrage und der Zettel CLAUDE.md. Werkzeuge, Connectors, Skills und Rechte sind Einstellungen und stehen nicht im Prompt-Text (E-031).
+- Bei Vorhersage-Aufgaben stehen die Antworten in gemischter Reihenfolge. Vorher stand die richtige immer zuoberst (E-032).
+- Neues Zwischenbild «Etappe geschafft» für Mischrunden mitten im Auftrag.
+- Das Studio wächst mit: Büro, Büro mit Serverraum, Studio-Etage, bekanntes Studio. Schlussbild, wenn alles erledigt ist.
+- 113 neue Aufgaben. Insgesamt 177 Aufgaben (89 zum Bauen, 88 zum Vorhersagen), 282 Fehlbilder, 40 Lexikon-Einträge, 44 geprüfte Fakten, 41 Tests.
+- Neuer Test: Das ganze Spiel wird automatisch von Anfang bis Ende durchgespielt. Am Schluss müssen alle 24 Konzepte gemeistert und das ganze Lexikon offen sein.
+
+**Bekannte Grenzen**
+- Weiterhin nicht mit echten Spielern getestet (E-022). Darum Version 0.9 und nicht 1.0.
+- Kapitel 3 bis 6 benutzen die bestehende Werkbank. Eigene Bilder (Schleife mit Stationen, Ampel, Steckerleiste) und die Übungsform «Sortieren» fehlen noch (E-029).
+- Gesparte Tokens lassen sich für nichts ausgeben. Kein Schnelltest, keine Vorher-Nachher-Fragen.
+- Kein Echt-Modus, läuft nicht ohne Internet, Hosting und Rechtliches offen.
+
 ## 0.5.0, 11. November 2026: Kapitel 2 komplett
 
 **Neu**

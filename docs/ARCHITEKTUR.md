@@ -1,6 +1,6 @@
 # Architektur: Lernspiel «KI-Studio»
 
-Stand: 11. November 2026 (Phase 5). Dieses Dokument erklärt, womit und wie das Spiel gebaut ist.
+Stand: 11. November 2026 (Version 0.9). Dieses Dokument erklärt, womit und wie das Spiel gebaut ist.
 
 ## 1. Technikwahl
 
@@ -101,7 +101,7 @@ Eine **Aufgabe**:
 |---|---|
 | `wunsch` | was die Kundin in dieser Situation will |
 | `grundprompt` | womit der Spieler startet |
-| `teile` | wählbare Textteile mit `id`, `art` (`rolle`, `prompt`, `kontext`, `absicherung` oder `beispiel`) und `text`. Teile der Art `rolle` bilden den System-Prompt, alle anderen den Prompt. |
+| `teile` | wählbare Teile mit `id`, `art` und `text`. Arten: `rolle` (System-Prompt), `zettel` (CLAUDE.md, eigenes Feld wie der System-Prompt), `tool`, `stecker` (Connector), `karte` (Skill), `recht` (diese vier sind Einstellungen und stehen nicht im Prompt-Text), `prompt`, `feld` (Feld einer API-Anfrage), `kontext`, `absicherung`, `beispiel`. Die Liste steht in `spiel/code/logik/prompt.js` (`ARTEN`). |
 | `nachrichtVon` | wahlweise: Beschriftung des Prompt-Felds, wenn die Nachricht von jemand anderem stammt (z. B. «Nachricht eines Kindes») |
 | `pruefungen` | geordnete Liste. Die erste zutreffende bestimmt das Fehlbild. |
 | `fehlbilder` | pro Fehlbild mindestens zwei `texte` (Varianten von KI-Quatsch) und ein `hinweis` |
@@ -138,7 +138,7 @@ Der Spielstand liegt im Speicher des Browsers auf dem Gerät (`localStorage`). E
 
 | Prüfung | Befehl | Was sie sichert |
 |---|---|---|
-| Tests | `npm test` | Meisterschaftsregel, Wiederholung, Bewertung, Spielablauf (ganzer Auftrag wird durchgespielt), simulierte KI, Speicher |
+| Tests | `npm test` | Meisterschaftsregel, Wiederholung, Bewertung, Spielablauf, simulierte KI, Speicher. `tests/ganzes-spiel.test.js` spielt alle Aufträge von Anfang bis Ende durch und prüft, dass am Schluss alle 24 Konzepte gemeistert sind. |
 | Inhaltsprüfung | `npm run inhalte` | Jede Runde hat alle fünf Schritte. Probieren ergibt immer Quatsch. Jede Lösung besteht, ein leerer Prompt nie. Jedes Fehlbild hat zwei Varianten und einen Hinweis. Kein Text über 40 Wörter. Jeder Fakt hat Quelle und Datum. |
 | Beides | `npm run pruefen` | vor jedem Commit |
 
