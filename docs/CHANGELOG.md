@@ -11,7 +11,7 @@ Alle spürbaren Änderungen, neueste zuerst.
 - Mehrere Aufträge hintereinander. Nach einem erledigten Auftrag klopft der nächste Kunde an.
 - Wiederholungen wandern von Auftrag zu Auftrag mit.
 - Aufträge können Lexikon-Begriffe mitbringen, die nicht abgeprüft werden (hier: Chatbot).
-- 8 neue Aufgaben mit 34 Fehlbildern. Insgesamt 28 Aufgaben, 114 Fehlbilder, 6 Lexikon-Einträge, 26 Tests.
+- 8 neue Aufgaben mit 40 Fehlbildern. Insgesamt 28 Aufgaben, 120 Fehlbilder, 6 Lexikon-Einträge, 26 Tests.
 
 **Bekannte Grenzen**
 - Weiterhin nicht mit echten Spielern getestet (E-022).
