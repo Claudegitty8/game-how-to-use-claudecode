@@ -165,6 +165,14 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** Der Besitzer hat GitHub Pages gewählt. Eingerichtet ist es noch nicht.
 **Grund:** Kein neues Konto nötig. Offen: Das Repository ist privat. Pages braucht ein öffentliches Repository oder ein bezahltes GitHub-Abo. Veröffentlichen geschieht nur nach ausdrücklicher Zustimmung.
 
+### E-039: Veröffentlichung nur von Hand
+**Entscheid:** Die Veröffentlichung auf GitHub Pages startet nie von selbst, sondern nur über den Knopf «Run workflow». Vorher laufen alle Prüfungen.
+**Grund:** Veröffentlichen braucht die ausdrückliche Zustimmung des Besitzers. Testrunde und Rechtliches sind noch offen.
+
+### E-040: Studio-Bild aus Zeichen
+**Entscheid:** Die Studio-Ansicht besteht aus einer Reihe von Bildzeichen (Emojis) auf einem Boden. Welche Zeichen zu einem Kapitel gehören, steht in `de/texte.json`.
+**Grund:** Braucht keine Bilddateien und keinen Zeichner, wächst sichtbar mit dem Kapitel und zeigt die gekaufte Zierde. Eine gezeichnete Fassung bleibt möglich.
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.

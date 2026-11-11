@@ -337,3 +337,6 @@ main:focus { outline: none; }
 .stationen li + li::before { content: "→"; margin-right: 0.6rem; margin-left: -0.2rem; color: var(--leise); font-weight: 400; }
 
 summary:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid var(--akzent); outline-offset: 2px; }
+
+/* Das Studio als kleines Bild: Einrichtung des Kapitels und gekaufte Zierde auf einem Boden */
+.studio-bild { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.5rem; padding: 0.4rem 0.8rem 0.2rem; border-bottom: 4px solid var(--linie); font-size: 1.8rem; line-height: 1.2; }

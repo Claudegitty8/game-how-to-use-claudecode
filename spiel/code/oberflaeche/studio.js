@@ -70,11 +70,22 @@ export function zeigeStudio(wurzel, app, nav) {
         el('p', { text: `«${a.kundenstimme}»` }),
         a.tokenBudget ? el('p', { klasse: 'klein', text: gespartText(t, stand.gespart?.[a.id]) }) : null)));
 
+  // Das Studio als kleines Bild: Der Raum wächst mit dem Kapitel, gekaufte Zierde steht mit drin.
+  const kapitelText = texte.kapitel[(auftrag ?? auftraege.at(-1)).kapitel ?? 1];
+  const zierde = (stand.einrichtung ?? []).map((id) => t.einrichtung[id]);
+  const zeichen = [...(kapitelText.deko ?? '').split(' '), ...zierde.map((name) => name.split(' ')[0])].filter(Boolean);
+  const studioBild = el('div', {
+    klasse: 'studio-bild',
+    role: 'img',
+    'aria-label': fuelle(t.studioBild, { dinge: [kapitelText.ort ?? t.studioName, ...zierde.map((name) => name.split(' ').slice(1).join(' '))].join(', ') }),
+  }, zeichen.map((einzel) => el('span', { 'aria-hidden': 'true', text: einzel })));
+
   // Karten, die es gerade nicht gibt (null), werden ausgelassen.
   wurzel.append(...[
     el('header', { klasse: 'kopf' },
       el('h1', { text: t.titel }),
       el('p', { text: texte.kapitel[(auftrag ?? auftraege.at(-1)).kapitel ?? 1].ort ?? t.studioName })),
+    studioBild,
     el('div', { klasse: 'kiwi-zeile' }, kiwiFigur(t.kiwiName, !auftrag), el('p', { klasse: 'sprechblase', text: gruss })),
     auftragKarte,
     umfrageKarte(app, nav),

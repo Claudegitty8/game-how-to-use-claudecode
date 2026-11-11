@@ -2,6 +2,12 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.12.0, 11. November 2026: Studio-Bild und Vorbereitung fürs Hosting
+
+**Neu**
+- **Das Studio als kleines Bild:** Oben im Studio steht die Einrichtung des Kapitels, von der Werkzeugkiste in der Garage bis zum Pokal im bekannten Studio. Gekaufte Zierde steht mit drin.
+- **GitHub Pages ist vorbereitet, aber nicht eingeschaltet:** `.github/workflows/veroeffentlichen.yml` veröffentlicht den Ordner `spiel/` nur, wenn der Besitzer es von Hand startet. Vorher laufen alle Prüfungen. Die Anleitung steht in `docs/VEROEFFENTLICHEN.md`.
+
 ## 0.11.0, 11. November 2026: Feinschliff
 
 **Neu**

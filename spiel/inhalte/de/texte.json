@@ -108,7 +108,7 @@
     "loeschenNein": "Abbrechen",
     "kiEtikett": "KI im Spiel",
     "kiInfo": "Kiwi ist eine simulierte KI. Sie braucht kein Konto, kostet nichts und antwortet nach festen Regeln.",
-    "fuss": "KI-Studio, Version 0.11",
+    "fuss": "KI-Studio, Version 0.12",
     "kiwiNaechster": "Es klopft an der Tür. Ein neuer Kunde!",
     "systemEtikett": "System-Prompt (gilt für jede Nachricht)",
     "systemLeer": "(noch leer)",
@@ -196,38 +196,45 @@
     "reiheHilfe": "Schieb die Schritte mit den Pfeilen an ihren Platz.",
     "hilfePlatz": "Dieser Schritt gehört weiter nach vorn.",
     "nochmalReihe": "Ordne neu und versuch es nochmals. Oder nimm eine andere Situation.",
-    "stationenWieder": "… und wieder von vorn, bis es stimmt."
+    "stationenWieder": "… und wieder von vorn, bis es stimmt.",
+    "studioBild": "So sieht dein Studio aus: {dinge}"
   },
   "kapitel": {
     "1": {
       "name": "Die Garage",
       "thema": "Mit KI sprechen",
-      "ort": "Die Garage"
+      "ort": "Die Garage",
+      "deko": "🧰"
     },
     "2": {
       "name": "Wie die KI tickt",
       "thema": "Grundlagen",
-      "ort": "Die Garage mit Labor"
+      "ort": "Die Garage mit Labor",
+      "deko": "🧰 🔬"
     },
     "3": {
       "name": "Kiwi bekommt Hände",
       "thema": "KI handelt",
-      "ort": "Das Büro"
+      "ort": "Das Büro",
+      "deko": "🗄️ 🔧"
     },
     "4": {
       "name": "Das Studio vernetzt sich",
       "thema": "Anbindung",
-      "ort": "Büro mit Serverraum"
+      "ort": "Büro mit Serverraum",
+      "deko": "🗄️ 🔧 🖥️"
     },
     "5": {
       "name": "Echte Software",
       "thema": "Grundwissen",
-      "ort": "Die Studio-Etage"
+      "ort": "Die Studio-Etage",
+      "deko": "🏢 🖥️ 📁"
     },
     "6": {
       "name": "Sicher unterwegs",
       "thema": "Verantwortung",
-      "ort": "Das bekannte Studio"
+      "ort": "Das bekannte Studio",
+      "deko": "🏢 🖥️ 📁 🏆"
     }
   },
   "konzepte": {

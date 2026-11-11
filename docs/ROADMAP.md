@@ -16,7 +16,7 @@ Stand: 11. November 2026. Die Reihenfolge ist verbindlich, Termine gibt es bewus
 
 ## Stand
 
-Version 0.11: Das Spiel ist vollständig gebaut (12 Aufträge, 24 Kernkonzepte, Abschlussauftrag, Schnelltest, Studio-Einrichtung, freiwillige Fragen, Offline-Betrieb). **Alles Weitere braucht den Besitzer:** Testrunde (6.1), danach die Entscheide zu Hosting, Echt-Modus und Rechtlichem.
+Version 0.12: Das Spiel ist vollständig gebaut (12 Aufträge, 24 Kernkonzepte, Abschlussauftrag, Schnelltest, Studio-Einrichtung, freiwillige Fragen, Offline-Betrieb). **Alles Weitere braucht den Besitzer:** Testrunde (6.1), danach die Entscheide zu Hosting, Echt-Modus und Rechtlichem.
 
 ## Offen und jederzeit nachholbar: Testrunde (Schritt 6.1)
 
@@ -32,7 +32,7 @@ Jetzt, wo das ganze Spiel steht, spielen mindestens zwei Jugendliche (12 bis 14)
 | 6.4 | **Erledigt:** Schnelltest «Das kann ich schon», freiwillige Fragen vorher und nachher, Daumen pro Auftrag, Spielstand als Datei. |
 | 6.5 | **Erledigt:** Kapitel 3 «Kiwi bekommt Hände» (Aufträge «Jassclub» und «Schülerband») und Kapitel 4 «Das Studio vernetzt sich» (Aufträge «Velo-Laden» und «Blumenladen»). Seit Version 0.11 mit Übungsform «Sortieren», Ampel und Stationen (E-037). |
 | 6.6 | **Erledigt:** Kapitel 5 «Echte Software» (Aufträge «Kinderzirkus» und «Bibliothek»), Kapitel 6 «Sicher unterwegs» (Auftrag «Gemeinde») und der Abschlussauftrag «Dorffest». Alle 24 Kernkonzepte sind spielbar. |
-| 6.7 | **Technik erledigt:** installierbare Web-App, die ohne Internet läuft. **Entschieden:** GitHub Pages (E-038). **Offen:** Repository öffentlich machen oder Abo, dann einrichten. |
+| 6.7 | **Technik erledigt:** installierbare Web-App, die ohne Internet läuft. **Entschieden:** GitHub Pages (E-038). Vorbereitet seit Version 0.12, Anleitung in `VEROEFFENTLICHEN.md`. **Offen:** Der Besitzer schaltet Pages ein und startet die Veröffentlichung von Hand. |
 | 6.8 | Zugänglichkeit prüfen (Schriftgrössen, Kontraste, Bedienung mit Hilfstechnik). **Teilweise erledigt:** Kontraste gerechnet, Fokus und Beschriftungen geprüft. Noch offen: Prüfung mit Vorlesehilfe an echten Geräten. |
 | 6.9 | Echt-Modus für Erwachsene. Entscheid zum API-Schlüssel. |
 | 6.10 | Rechtliches vor Veröffentlichung: Name «Claude», Datenschutz, Impressum. |
