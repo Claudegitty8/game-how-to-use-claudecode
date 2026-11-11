@@ -1,0 +1,38 @@
+{
+  "id": "demo-baeckerei",
+  "kunde": "Frau Brunner, Bäckerei Brunner",
+  "wunsch": "Ein kleines Spiel für meine Kundschaft, während sie auf die Gipfeli wartet.",
+  "grundprompt": "Mach ein Spiel.",
+  "zutaten": [
+    {
+      "id": "ziel",
+      "name": "Sagen, was für ein Spiel",
+      "text": "Es soll ein Fangspiel sein, in dem man Gipfeli auffängt."
+    },
+    {
+      "id": "zielgruppe",
+      "name": "Sagen, für wen",
+      "text": "Es ist für Leute, die in der Bäckerei kurz anstehen."
+    }
+  ],
+  "fehlbilder": {
+    "ziel": [
+      "Fertig! In meinem Spiel sortiert eine Kartoffel Steuerformulare. Level 1 heisst «Formular A». Viel Spass!",
+      "Erledigt! Es ist ein Schachspiel mit 400 Figuren. Ich habe die Regeln selbst erfunden.",
+      "Hier ist dein Spiel: Man schaut einer Wand beim Trocknen zu. Es gibt 99 Wände."
+    ],
+    "zielgruppe": [
+      "Fertig! Ein Gipfeli-Fangspiel für Tiefseetaucher. Die Anleitung hat 40 Seiten, und man braucht eine Sauerstoffflasche.",
+      "Erledigt! Ein Gipfeli-Fangspiel für Profis. Eine Runde dauert drei Stunden.",
+      "Hier ist es: Gipfeli fangen, erklärt auf Latein. Das mögen doch alle, oder?"
+    ]
+  },
+  "erfolg": [
+    "Fertig! Ein Gipfeli-Fangspiel für die Warteschlange: Eine Runde dauert 30 Sekunden, und man spielt mit einem Finger.",
+    "Erledigt! Gipfeli fallen vom Himmel, man fängt sie mit dem Korb. Kurz, einfach und perfekt zum Anstehen."
+  ],
+  "hinweise": {
+    "ziel": "Kiwi wusste nicht, was für ein Spiel du willst. Also hat Kiwi geraten.",
+    "zielgruppe": "Kiwi wusste nicht, für wen das Spiel ist. Woher auch?"
+  }
+}

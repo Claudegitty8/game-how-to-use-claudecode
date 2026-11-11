@@ -1,0 +1,36 @@
+{
+  "kapitel": [
+    { "id": 1 },
+    { "id": 2 },
+    { "id": 3 },
+    { "id": 4 },
+    { "id": 5 },
+    { "id": 6 }
+  ],
+  "konzepte": [
+    { "id": "prompt", "kapitel": 1, "braucht": [] },
+    { "id": "kontext", "kapitel": 1, "braucht": ["prompt"] },
+    { "id": "beispiele", "kapitel": 1, "braucht": ["kontext"] },
+    { "id": "rolle", "kapitel": 1, "braucht": ["beispiele"] },
+    { "id": "wahrscheinlichkeit", "kapitel": 2, "braucht": ["rolle"] },
+    { "id": "halluzination", "kapitel": 2, "braucht": ["wahrscheinlichkeit"] },
+    { "id": "token", "kapitel": 2, "braucht": ["kontext", "halluzination"] },
+    { "id": "kontextfenster", "kapitel": 2, "braucht": ["kontext", "token"] },
+    { "id": "wissensstand", "kapitel": 2, "braucht": ["kontextfenster"] },
+    { "id": "tool", "kapitel": 3, "braucht": ["wissensstand"] },
+    { "id": "agentenschleife", "kapitel": 3, "braucht": ["tool"] },
+    { "id": "pruefschleife", "kapitel": 3, "braucht": ["agentenschleife"] },
+    { "id": "berechtigungen", "kapitel": 3, "braucht": ["agentenschleife", "pruefschleife"] },
+    { "id": "planen", "kapitel": 3, "braucht": ["berechtigungen"] },
+    { "id": "subagent", "kapitel": 3, "braucht": ["kontextfenster", "agentenschleife", "planen"] },
+    { "id": "api", "kapitel": 4, "braucht": ["subagent"] },
+    { "id": "api-schluessel", "kapitel": 4, "braucht": ["api"] },
+    { "id": "connector", "kapitel": 4, "braucht": ["tool", "api", "api-schluessel"] },
+    { "id": "skill", "kapitel": 4, "braucht": ["rolle", "connector"] },
+    { "id": "projekt", "kapitel": 5, "braucht": ["skill"] },
+    { "id": "commit", "kapitel": 5, "braucht": ["projekt"] },
+    { "id": "debugging", "kapitel": 5, "braucht": ["commit"] },
+    { "id": "claude-md", "kapitel": 5, "braucht": ["rolle", "kontextfenster", "debugging"] },
+    { "id": "prompt-injection", "kapitel": 6, "braucht": ["kontext", "tool", "berechtigungen", "api-schluessel", "claude-md"] }
+  ]
+}

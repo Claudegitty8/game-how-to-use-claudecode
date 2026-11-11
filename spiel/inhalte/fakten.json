@@ -1,0 +1,29 @@
+{
+  "hinweis": "Hier stehen alle Angaben, die schnell veralten (Zahlen, Namen, Modi). Im Spiel selbst werden Prinzipien gelehrt. Jeder Eintrag braucht eine offizielle Quelle und ein Prüfdatum.",
+  "fakten": [
+    {
+      "id": "agentenschleife-phasen",
+      "aussage": "Die Agentenschleife hat drei Phasen: Kontext sammeln, handeln, Ergebnis prüfen.",
+      "quelle": "https://code.claude.com/docs/en/how-claude-code-works",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "kontextfenster-groesse",
+      "aussage": "Je nach Modell fasst das Kontextfenster 200 000 bis 1 Million Tokens.",
+      "quelle": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "claude-md-laenge",
+      "aussage": "Empfehlung: Die Datei CLAUDE.md soll unter 200 Zeilen bleiben.",
+      "quelle": "https://code.claude.com/docs/en/features-overview",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "mindestalter",
+      "aussage": "Claude als Verbraucherprodukt ist nur für Personen ab 18 Jahren.",
+      "quelle": "https://support.claude.com/en/articles/15171100-age-assurance-on-claude",
+      "geprueft": "2026-11-11"
+    }
+  ]
+}
