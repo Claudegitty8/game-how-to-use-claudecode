@@ -91,6 +91,21 @@ export async function pruefeInhalte(ordner = STANDARD_ORDNER, sprachen = ['de'])
         }
       }
 
+      // Zierde fürs Studio: Jedes Ding braucht einen Preis und einen Namen.
+      const einrichtung = await lies(ordner, 'einrichtung.json', fehler);
+      for (const ding of einrichtung?.dinge ?? []) {
+        if (!(Number.isInteger(ding.preis) && ding.preis > 0)) fehler.push(`einrichtung.json: «${ding.id}» braucht einen Preis`);
+        if (!istText(texte.app?.einrichtung?.[ding.id])) fehler.push(`${sprache}/texte.json: Name für «${ding.id}» fehlt`);
+      }
+      // Freiwillige Fragen: genau eine richtige Antwort pro Frage.
+      const umfrage = await lies(ordner, `${sprache}/umfrage.json`, fehler);
+      for (const frage of umfrage?.fragen ?? []) {
+        const name = `${sprache}/umfrage.json «${frage.id}»`;
+        if (!istText(frage.frage) || zuLang(frage.frage)) fehler.push(`${name}: frage fehlt oder ist zu lang`);
+        if ((frage.optionen ?? []).filter((o) => o.richtig).length !== 1) fehler.push(`${name}: genau eine Antwort muss richtig sein`);
+        if ((frage.optionen ?? []).some((o) => !istText(o.text))) fehler.push(`${name}: Antwort ohne text`);
+      }
+
       let dateien = [];
       try {
         dateien = (await readdir(path.join(ordner, sprache, 'auftraege'))).filter((d) => d.endsWith('.json'));

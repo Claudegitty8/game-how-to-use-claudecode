@@ -1,0 +1,28 @@
+{
+  "name": "KI-Studio",
+  "short_name": "KI-Studio",
+  "lang": "de",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f3ee",
+  "theme_color": "#3f6b12",
+  "icons": [
+    {
+      "src": "bilder/kiwi-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "bilder/kiwi-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "bilder/kiwi.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

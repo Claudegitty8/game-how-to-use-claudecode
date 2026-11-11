@@ -1,6 +1,8 @@
 # Architektur: Lernspiel «KI-Studio»
 
-Stand: 11. November 2026 (Version 0.9). Dieses Dokument erklärt, womit und wie das Spiel gebaut ist.
+Stand: 11. November 2026 (Version 0.10).
+
+**Zusätze seit Version 0.10:** `spiel/code/logik/extras.js` (Schnelltest, Einrichtung, freiwillige Fragen, Daumen, Prüfung eines Spielstands aus einer Datei) mit der Oberfläche in `spiel/code/oberflaeche/extras.js`. Daten dazu: `spiel/inhalte/einrichtung.json` und `spiel/inhalte/de/umfrage.json`. Offline-Betrieb: `spiel/sw.js`, `spiel/manifest.webmanifest`, Symbole in `spiel/bilder/` (E-036). Der Spielstand hat drei neue Felder (`einrichtung`, `umfrage`, `daumen`). Ältere Stände der Version 2 funktionieren weiter, weil fehlende Felder als leer gelten. Dieses Dokument erklärt, womit und wie das Spiel gebaut ist.
 
 ## 1. Technikwahl
 

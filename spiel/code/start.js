@@ -5,6 +5,7 @@ import { erstelleKi } from './ki/schnittstelle.js';
 import { zeigeStudio } from './oberflaeche/studio.js';
 import { zeigeRunde, zeigeZwischen } from './oberflaeche/runde.js';
 import { zeigeLexikon, zeigeEinstellungen } from './oberflaeche/lexikon.js';
+import { zeigeSchnelltest, zeigeUmfrage } from './oberflaeche/extras.js';
 import { wendeSchriftAn } from './oberflaeche/schrift.js';
 
 const ANSICHTEN = {
@@ -13,7 +14,26 @@ const ANSICHTEN = {
   zwischen: zeigeZwischen,
   lexikon: zeigeLexikon,
   einstellungen: zeigeEinstellungen,
+  schnelltest: zeigeSchnelltest,
+  umfrage: zeigeUmfrage,
 };
+
+// Ohne Internet spielen: Ein kleiner Helfer im Browser (Service Worker) legt alle Dateien auf dem Gerät ab.
+// Wo das nicht erlaubt ist, läuft das Spiel normal weiter, nur eben mit Internet.
+const ABLAGE = 'ki-studio-ablage';
+async function richteOfflineEin() {
+  try {
+    if (!('serviceWorker' in navigator) || !('caches' in globalThis)) return;
+    await navigator.serviceWorker.register(new URL('../sw.js', import.meta.url));
+    const geladen = performance.getEntriesByType('resource')
+      .map((eintrag) => eintrag.name)
+      .filter((adresse) => adresse.startsWith(location.origin));
+    const ablage = await caches.open(ABLAGE);
+    await ablage.addAll([...new Set([location.href.split('#')[0], ...geladen])]);
+  } catch {
+    // Kein Offline-Betrieb auf diesem Gerät oder an diesem Ort. Das Spiel selbst ist davon nicht betroffen.
+  }
+}
 
 async function start() {
   const wurzel = document.getElementById('app');
@@ -47,6 +67,7 @@ async function start() {
     };
     wendeSchriftAn(app.stand.einstellungen.schrift);
     nav.zu('studio');
+    richteOfflineEin();
   } catch (fehler) {
     wurzel.replaceChildren();
     const meldung = document.createElement('p');

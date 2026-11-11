@@ -1,0 +1,37 @@
+{
+  "hinweis": "Zierde fürs Studio. Preise in Spiel-Tokens. Die Namen stehen in de/texte.json.",
+  "dinge": [
+    {
+      "id": "pflanze",
+      "preis": 1500
+    },
+    {
+      "id": "kaffee",
+      "preis": 2500
+    },
+    {
+      "id": "poster",
+      "preis": 3500
+    },
+    {
+      "id": "lampe",
+      "preis": 5000
+    },
+    {
+      "id": "sofa",
+      "preis": 7000
+    },
+    {
+      "id": "teppich",
+      "preis": 8000
+    },
+    {
+      "id": "aquarium",
+      "preis": 10000
+    },
+    {
+      "id": "discokugel",
+      "preis": 12000
+    }
+  ]
+}

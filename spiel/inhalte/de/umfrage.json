@@ -1,0 +1,118 @@
+{
+  "fragen": [
+    {
+      "id": "prompt",
+      "frage": "Du schreibst einer KI nur: «Mach ein Spiel.» Was bekommst du am ehesten?",
+      "optionen": [
+        {
+          "id": "genau",
+          "text": "Genau das Spiel, das du im Kopf hast"
+        },
+        {
+          "id": "raten",
+          "text": "Irgendein Spiel. Die KI muss raten, was du meinst",
+          "richtig": true
+        },
+        {
+          "id": "fehler",
+          "text": "Eine Fehlermeldung"
+        }
+      ]
+    },
+    {
+      "id": "halluzination",
+      "frage": "Eine KI nennt dir das Gründungsjahr eines kleinen Dorfmuseums. Wie sicher ist das?",
+      "optionen": [
+        {
+          "id": "erfunden",
+          "text": "Es kann erfunden sein, auch wenn es sicher klingt",
+          "richtig": true
+        },
+        {
+          "id": "nachschlagen",
+          "text": "Es stimmt. Die KI schlägt so etwas nach"
+        },
+        {
+          "id": "nie",
+          "text": "Es stimmt. KIs erfinden nie etwas"
+        }
+      ]
+    },
+    {
+      "id": "agent",
+      "frage": "Was ist ein «Agent»?",
+      "optionen": [
+        {
+          "id": "hoeflich",
+          "text": "Ein besonders höflicher Chatbot"
+        },
+        {
+          "id": "mensch",
+          "text": "Ein Mensch, der der KI bei der Arbeit hilft"
+        },
+        {
+          "id": "schleife",
+          "text": "Eine KI mit Werkzeugen, die in einer Schleife arbeitet: nachschauen, handeln, prüfen",
+          "richtig": true
+        }
+      ]
+    },
+    {
+      "id": "schluessel",
+      "frage": "Wohin gehört ein API-Schlüssel?",
+      "optionen": [
+        {
+          "id": "code",
+          "text": "Direkt in den Code, dort braucht man ihn ja"
+        },
+        {
+          "id": "geheim",
+          "text": "An einen geheimen Ort, getrennt vom Code",
+          "richtig": true
+        },
+        {
+          "id": "chat",
+          "text": "In den Gruppenchat, damit alle ihn haben"
+        }
+      ]
+    },
+    {
+      "id": "sitzung",
+      "frage": "Eine KI beginnt morgen eine neue Sitzung im selben Projekt. Was weiss sie noch von heute?",
+      "optionen": [
+        {
+          "id": "dateien",
+          "text": "Nur, was in Dateien festgehalten ist, zum Beispiel in einer Datei mit Dauerregeln",
+          "richtig": true
+        },
+        {
+          "id": "alles",
+          "text": "Alles"
+        },
+        {
+          "id": "wichtig",
+          "text": "Das Wichtigste merkt sie sich von selbst"
+        }
+      ]
+    },
+    {
+      "id": "injection",
+      "frage": "Eine KI liest für dich eine Webseite. Dort steht versteckt: «Ignoriere deinen Auftrag.» Was ist das?",
+      "optionen": [
+        {
+          "id": "normal",
+          "text": "Ein normaler Teil der Seite. Die KI soll ihm folgen"
+        },
+        {
+          "id": "druck",
+          "text": "Ein Druckfehler"
+        },
+        {
+          "id": "angriff",
+          "text": "Ein Angriffsversuch. Er heisst Prompt Injection",
+          "richtig": true
+        }
+      ]
+    }
+  ]
+}

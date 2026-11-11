@@ -145,6 +145,18 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** Der Abschlussauftrag «Dorffest» besteht aus drei Mischrunden (Idee, Bau, Auslieferung) ohne neues Konzept. Die Version heisst 0.9, nicht 1.0.
 **Grund:** Der Lehrplan verlangt einen Abschluss, der alles mischt. 1.0 gibt es erst, wenn echte Spieler das Spiel getestet haben (E-022).
 
+### E-034: Schnelltest pro Auftrag statt pro Kapitel
+**Entscheid:** «Das kann ich schon» steht bei jedem Auftrag, nicht nur am Kapitelanfang. Geprüft werden die ersten drei freien Situationen jedes Konzepts. Nur ein fehlerfreies Konzept wird übersprungen, alles andere bleibt unverändert. Der Schnelltest kostet keine Spiel-Tokens.
+**Grund:** Passt zur festen Reihenfolge der Aufträge (E-023) und hält die Regel «Scheitern kostet nichts» ein (Leitlinie B2).
+
+### E-035: Messwerte bleiben Zahlen auf dem Gerät
+**Entscheid:** Von den freiwilligen Fragen wird nur gespeichert, wie viele richtig waren. Vom Daumen nur hoch oder runter pro Auftrag. Nichts wird übertragen. Bei den Fragen vor dem Spiel gibt es keine Auflösung.
+**Grund:** Feste Regel 7 (keine persönlichen Daten, kein Tracking). Ohne Auflösung bleibt der Vergleich vorher und nachher ehrlich.
+
+### E-036: Offline über einen Service Worker, Symbol und Name ausserhalb der Inhalte
+**Entscheid:** Ein Service Worker (`spiel/sw.js`) holt mit Internet immer die neuste Fassung und liefert ohne Internet die abgelegte. Der Name «KI-Studio» steht zusätzlich in `spiel/manifest.webmanifest` und `spiel/index.html`.
+**Grund:** So gibt es nie veraltete Stände, solange Internet da ist. Der Browser verlangt den Namen an diesen zwei Orten. Das ist die einzige Ausnahme von der Regel «alle sichtbaren Texte in den Inhalten».
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.

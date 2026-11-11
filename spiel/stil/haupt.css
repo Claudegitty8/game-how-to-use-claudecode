@@ -303,3 +303,6 @@ main:focus { outline: none; }
 .stein { padding: 0.2rem 0.45rem; border-radius: 6px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.95rem; border: 1px solid var(--linie); }
 .farbe-0 { background: var(--gut-flaeche); } .farbe-1 { background: var(--warn-flaeche); } .farbe-2 { background: var(--grund); } .farbe-3 { background: transparent; }
 .kosten:empty, .budget-hinweis:empty { display: none; }
+
+/* Schnelltest: Ergebnisliste */
+.ergebnis-liste { padding-left: 1.2rem; display: grid; gap: 0.4rem; }

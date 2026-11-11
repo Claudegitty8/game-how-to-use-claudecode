@@ -6,6 +6,7 @@ import { baueWahl } from './wahl.js';
 import { ansicht, weiter, verbucheFrei, verbucheWiederholungsErgebnis, verbraucheTokens, SCHRITTE } from '../logik/ablauf.js';
 import { hilfeTeil } from '../logik/bewertung.js';
 import { erfolge, neuerFortschritt } from '../logik/meisterschaft.js';
+import { daumenKarte } from './extras.js';
 
 function schrittReihe(t, aktuell) {
   return el('ol', { klasse: 'schritte' }, SCHRITTE.map((schritt) => el('li', {
@@ -243,6 +244,7 @@ export function zeigeZwischen(wurzel, app, nav, { ereignis, konzept, titel, auft
       el('section', { klasse: 'karte' },
         el('p', { klasse: 'etikett', text: t.ueberraschungEtikett }),
         el('p', { text: auftrag.ueberraschung })),
+      daumenKarte(app, auftrag),
       zumStudio,
     );
     return;

@@ -2,6 +2,23 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.10.0, 11. November 2026: Alles, was ohne Entscheid des Besitzers geht
+
+**Neu**
+- **Ohne Internet spielen:** Nach dem ersten Laden liegt das Spiel auf dem Gerät. Es lässt sich als App auf den Startbildschirm legen (eigenes Symbol). Wirkt erst auf einem richtigen Hosting, nicht in der privaten Vorschau.
+- **Schnelltest «Das kann ich schon»:** Vor jedem Auftrag wählbar. Drei Aufgaben pro Konzept, je ein Versuch, ohne Hilfe. Wer alle drei schafft, überspringt die Einführung dieses Konzepts. Die Mischrunde bleibt, das Lexikon wird trotzdem gefüllt, und das Konzept kommt später als Wiederholung.
+- **Studio einrichten:** Gesparte Spiel-Tokens lassen sich für acht Dinge ausgeben, von der Zimmerpflanze bis zur Discokugel. Reine Zierde.
+- **Freiwillige Fragen vorher und nachher:** Sechs Fragen vor dem ersten Auftrag und nach dem letzten. Am Schluss sieht man den Vergleich. Gespeichert wird nur die Anzahl richtiger Antworten, nur auf dem Gerät.
+- **Daumen:** Am Ende jedes Auftrags ein Daumen hoch oder runter. Bleibt auf dem Gerät.
+- **Spielstand als Datei sichern und laden** (Einstellungen).
+- 48 Tests. Neu geprüft: Das ganze Spiel lässt sich auch nur mit Schnelltests und Mischrunden durchspielen.
+
+**Bekannte Grenzen**
+- Nicht mit echten Spielern getestet (E-022).
+- Die Zierde erscheint als Liste, nicht als gezeichnetes Studio.
+- Die Zugänglichkeit ist nicht mit Vorlesehilfen an echten Geräten geprüft.
+- Offen und Sache des Besitzers: Hosting, Echt-Modus, Rechtliches.
+
 ## 0.9.0, 11. November 2026: Das ganze Spiel, Kapitel 3 bis 6
 
 Das Spiel ist inhaltlich vollständig: 12 Aufträge, alle 24 Kernkonzepte, Abschlussauftrag.

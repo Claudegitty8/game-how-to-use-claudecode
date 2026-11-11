@@ -3,6 +3,7 @@ import { el, fuelle, knopf, kiwiFigur, punkte } from './bausteine.js';
 import { starteAuftrag } from '../logik/ablauf.js';
 import { gespartText } from './runde.js';
 import { erfolge, neuerFortschritt } from '../logik/meisterschaft.js';
+import { einrichtungKarte, umfrageKarte } from './extras.js';
 
 function rundenName(runde, texte) {
   return runde.konzept ? texte.konzepte[runde.konzept].name : runde.titel;
@@ -41,6 +42,10 @@ export function zeigeStudio(wurzel, app, nav) {
         if (!laeuft) app.setze(starteAuftrag(app.stand, auftrag, regeln, auftraege));
         nav.zu('runde');
       }, 'los'),
+      // Wer Vorwissen hat, kann vor dem Start abkürzen.
+      !laeuft && auftrag.runden.some((runde) => runde.konzept)
+        ? knopf(t.schnelltestKnopf, () => nav.zu('schnelltest'), 'knopf-zweit')
+        : null,
     );
   }
 
@@ -65,17 +70,20 @@ export function zeigeStudio(wurzel, app, nav) {
         el('p', { text: `«${a.kundenstimme}»` }),
         a.tokenBudget ? el('p', { klasse: 'klein', text: gespartText(t, stand.gespart?.[a.id]) }) : null)));
 
-  wurzel.append(
+  // Karten, die es gerade nicht gibt (null), werden ausgelassen.
+  wurzel.append(...[
     el('header', { klasse: 'kopf' },
       el('h1', { text: t.titel }),
       el('p', { text: texte.kapitel[(auftrag ?? auftraege.at(-1)).kapitel ?? 1].ort ?? t.studioName })),
     el('div', { klasse: 'kiwi-zeile' }, kiwiFigur(t.kiwiName, !auftrag), el('p', { klasse: 'sprechblase', text: gruss })),
     auftragKarte,
+    umfrageKarte(app, nav),
     meisterschaft,
+    einrichtungKarte(app, nav),
     wand,
     el('div', { klasse: 'knopf-reihe' },
       knopf(fuelle(t.lexikonKnopf, { anzahl: stand.lexikon.length }), () => nav.zu('lexikon'), 'knopf-zweit'),
       knopf(t.einstellungenKnopf, () => nav.zu('einstellungen'), 'knopf-zweit')),
     el('footer', { klasse: 'fuss', text: t.fuss }),
-  );
+  ].filter(Boolean));
 }

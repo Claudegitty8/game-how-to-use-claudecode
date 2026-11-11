@@ -16,6 +16,9 @@ export function neuerStand() {
     lexikon: ['ki'],       // freigeschaltete Lexikon-Einträge
     rundenZaehler: 0,      // Anzahl abgeschlossener Runden
     gespart: {},           // pro erledigtem Auftrag: gesparte Spiel-Tokens
+    einrichtung: [],       // gekaufte Zierde fürs Studio
+    umfrage: {},           // freiwillige Fragen: vorher und nachher, je Anzahl richtige
+    daumen: {},            // pro Auftrag: hoch oder runter
     einstellungen: { schrift: 'normal' },
   };
 }
@@ -34,7 +37,11 @@ function faelligeWiederholung(stand, alle, regeln) {
   return null;
 }
 
-function betrittRunde(stand, auftrag, regeln, index, alle) {
+function betrittRunde(stand, auftrag, regeln, start, alle) {
+  // Konzepte, die schon gemeistert sind (Schnelltest), werden übersprungen. Die Mischrunde am Schluss bleibt.
+  let index = start;
+  while (index < auftrag.runden.length - 1 && auftrag.runden[index].konzept
+    && istGemeistert(stand.fortschritt[auftrag.runden[index].konzept] ?? neuerFortschritt(), regeln)) index += 1;
   const runde = auftrag.runden[index];
   // Das Token-Budget gilt für den ganzen Auftrag und wandert von Runde zu Runde mit.
   const budget = stand.lauf?.auftrag === auftrag.id
