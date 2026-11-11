@@ -5,11 +5,11 @@
     "kiwiName": "Kiwi, die KI im Studio",
     "kiwiNeu": "Hallo! Ich bin Kiwi, die KI in deinem Studio. Ich mache genau, was du sagst. Wirklich ganz genau.",
     "kiwiLaeuft": "Unser Auftrag wartet. Bauen wir weiter?",
-    "kiwiFertig": "Alle Aufträge erledigt! Die Garage ist bereit für mehr.",
+    "kiwiFertig": "Alle Aufträge erledigt! Aus der Garage ist ein richtiges Studio geworden. Und du weisst jetzt, wie man mit KI baut.",
     "auftragEtikett": "Auftrag",
     "auftragAnnehmen": "Auftrag annehmen",
     "weiterBauen": "Weiter bauen",
-    "mehrFolgt": "Weitere Aufträge folgen bald.",
+    "mehrFolgt": "Du hast alle Aufträge erledigt und alle Kernkonzepte gemeistert. Was du hier gelernt hast, gilt auch für echte KI-Werkzeuge. Im Lexikon kannst du alles nachlesen.",
     "rundeEtikett": "Runde {nr} von {anzahl}",
     "meisterschaftEtikett": "Deine Meisterschaft",
     "punkteLabel": "{erfolge} von {noetig} gemeistert",
@@ -42,7 +42,13 @@
       "kontext": "Hintergrund",
       "beispiel": "Beispiele",
       "rolle": "Rolle und Dauerregeln",
-      "absicherung": "Absicherung"
+      "absicherung": "Absicherung",
+      "zettel": "CLAUDE.md (Zettel an der Studiotür)",
+      "tool": "Werkzeuge",
+      "stecker": "Connectors",
+      "karte": "Skills im Karteikasten",
+      "recht": "Was Kiwi darf",
+      "feld": "Felder der Anfrage"
     },
     "beispielVorsatz": "Beispiele:",
     "los": "Kiwi, los!",
@@ -102,8 +108,8 @@
     "loeschenNein": "Abbrechen",
     "kiEtikett": "KI im Spiel",
     "kiInfo": "Kiwi ist eine simulierte KI. Sie braucht kein Konto, kostet nichts und antwortet nach festen Regeln.",
-    "fuss": "KI-Studio, Version 0.5",
-    "kiwiNaechster": "Es klopft an der Garage. Ein neuer Kunde!",
+    "fuss": "KI-Studio, Version 0.9",
+    "kiwiNaechster": "Es klopft an der Tür. Ein neuer Kunde!",
     "systemEtikett": "System-Prompt (gilt für jede Nachricht)",
     "systemLeer": "(noch leer)",
     "frageEtikett": "Die Frage",
@@ -135,7 +141,11 @@
     "testKosten": "Dieser Test hat {anzahl} Spiel-Tokens gekostet. Im Budget bleiben {rest}.",
     "budgetLeer": "Das Budget war leer. Die Kundschaft hat nachgefüllt, du kannst normal weiterspielen. Für diesen Auftrag gibt es nur keinen Sparbonus.",
     "gespart": "Gespart: {anzahl} Spiel-Tokens",
-    "nichtGespart": "Diesmal nichts gespart. Das Budget musste nachgefüllt werden."
+    "nichtGespart": "Diesmal nichts gespart. Das Budget musste nachgefüllt werden.",
+    "zettelEtikett": "CLAUDE.md (liest Kiwi bei jedem Start)",
+    "zettelLeer": "(kein Zettel)",
+    "etappeFertigTitel": "Etappe geschafft: {titel}",
+    "etappeFertigText": "Wieder ein Stück näher am Ziel."
   },
   "kapitel": {
     "1": {
@@ -150,19 +160,23 @@
     },
     "3": {
       "name": "Kiwi bekommt Hände",
-      "thema": "KI handelt"
+      "thema": "KI handelt",
+      "ort": "Das Büro"
     },
     "4": {
       "name": "Das Studio vernetzt sich",
-      "thema": "Anbindung"
+      "thema": "Anbindung",
+      "ort": "Büro mit Serverraum"
     },
     "5": {
       "name": "Echte Software",
-      "thema": "Grundwissen"
+      "thema": "Grundwissen",
+      "ort": "Die Studio-Etage"
     },
     "6": {
       "name": "Sicher unterwegs",
-      "thema": "Verantwortung"
+      "thema": "Verantwortung",
+      "ort": "Das bekannte Studio"
     }
   },
   "konzepte": {
@@ -258,63 +272,153 @@
     },
     "tool": {
       "name": "Tool",
-      "analogie": "Eine Köchin ohne Küche kann nur Rezepte aufsagen."
+      "analogie": "Eine Köchin ohne Küche kann nur Rezepte aufsagen.",
+      "aha": [
+        "Ohne Werkzeuge kann Kiwi nur Text schreiben. Es kann beschreiben, aber nichts tun.",
+        "Mit Werkzeugen (Tools) kann Kiwi handeln: Dateien lesen und schreiben, im Internet suchen, Programme starten.",
+        "Fehlt das passende Werkzeug, passiert nichts. Auch wenn es anders klingt."
+      ],
+      "tipp": "Was soll Kiwi wirklich TUN? Für jede Handlung braucht es das passende Werkzeug."
     },
     "agentenschleife": {
       "name": "Agent und Agentenschleife",
-      "analogie": "Kochen und abschmecken: nachschauen, kochen, probieren, nachwürzen."
+      "analogie": "Kochen und abschmecken: nachschauen, kochen, probieren, nachwürzen.",
+      "aha": [
+        "Ein Agent arbeitet im Kreis: nachschauen, handeln, Ergebnis prüfen. Dann wieder von vorn.",
+        "So erledigt er grosse Aufgaben in vielen kleinen Schritten, bis es stimmt.",
+        "Du gehörst dazu: Du kannst jederzeit unterbrechen und die Richtung ändern."
+      ],
+      "tipp": "Schaut Kiwi zuerst nach? Prüft es am Schluss? Beide Stationen braucht es."
     },
     "pruefschleife": {
       "name": "Prüfschleife",
-      "analogie": "Die Zielflagge beim Rennen."
+      "analogie": "Die Zielflagge beim Rennen.",
+      "aha": [
+        "Kiwi hört auf, wenn es sich fertig anfühlt. Ausser du gibst ihm eine Prüfung mit.",
+        "Eine gute Prüfung sagt klar Ja oder Nein: ein Test, ein erwartetes Ergebnis, ein Bildschirmfoto.",
+        "Dann merkt Kiwi selbst, was noch nicht stimmt, und arbeitet weiter."
+      ],
+      "tipp": "Woran kann Kiwi selbst ablesen, ob es fertig ist? Gib ihm einen klaren Fall mit dem erwarteten Ergebnis."
     },
     "berechtigungen": {
       "name": "Berechtigungen",
-      "analogie": "Der Schlüsselbund für eine Praktikantin: nicht jeder Raum am ersten Tag."
+      "analogie": "Der Schlüsselbund für eine Praktikantin: nicht jeder Raum am ersten Tag.",
+      "aha": [
+        "Du bestimmst, was Kiwi allein darf und wo es fragen muss.",
+        "Harmloses wie Lesen gibst du frei. Was sich nicht rückgängig machen lässt, braucht eine Rückfrage.",
+        "Alles erlauben ist gefährlich. Alles blind bestätigen auch."
+      ],
+      "tipp": "Was kann schlimmstenfalls passieren? Lässt es sich rückgängig machen? Danach richtest du die Rechte."
     },
     "planen": {
       "name": "Planen vor Bauen",
-      "analogie": "Der Bauplan vor dem Hausbau."
+      "analogie": "Der Bauplan vor dem Hausbau.",
+      "aha": [
+        "Bei grossen Aufgaben lässt du Kiwi zuerst einen Plan machen. Gebaut wird erst nach deinem Ja.",
+        "Einen Fehler im Plan korrigierst du in Sekunden. Einen Fehler im fertigen Bau nicht.",
+        "Für Kleinigkeiten braucht es keinen Plan."
+      ],
+      "tipp": "Ist die Aufgabe gross oder unklar? Dann zuerst ein Plan. Ist sie klein und klar? Dann direkt."
     },
     "subagent": {
       "name": "Subagent",
-      "analogie": "Eine Kollegin ins Archiv schicken. Sie bringt die Antwort, nicht alle Ordner."
+      "analogie": "Eine Kollegin ins Archiv schicken. Sie bringt die Antwort, nicht alle Ordner.",
+      "aha": [
+        "Kiwi kann Teilaufgaben an Helfer abgeben. Jeder Helfer hat einen eigenen, leeren Tisch.",
+        "Der Helfer weiss nur, was in seinem Auftrag steht. Zurück meldet er nur das Ergebnis.",
+        "So bleibt Kiwis eigener Tisch frei für das Wichtige."
+      ],
+      "tipp": "Steht im Auftrag an den Helfer das Ziel? Und was zurückkommen soll? Mehr weiss er nicht."
     },
     "api": {
       "name": "API",
-      "analogie": "Der Schalter am Postamt: Formular rein, Antwort raus."
+      "analogie": "Der Schalter am Postamt: Formular rein, Antwort raus.",
+      "aha": [
+        "Programme reden über eine API miteinander: Anfrage rein, Antwort raus.",
+        "Die Anfrage muss eine feste Form haben, wie ein Formular am Schalter.",
+        "Stimmt die Form nicht, kommt ein Fehler zurück. Den muss man lesen und beheben."
+      ],
+      "tipp": "Welche Felder verlangt der Dienst? Fülle genau diese aus. Plaudern versteht ein Schalter nicht."
     },
     "api-schluessel": {
       "name": "API-Schlüssel und Geheimnisse",
-      "analogie": "Die Kreditkarte. Wer sie hat, kauft auf deine Rechnung."
+      "analogie": "Die Kreditkarte. Wer sie hat, kauft auf deine Rechnung.",
+      "aha": [
+        "Ein API-Schlüssel weist dich bei einem Dienst aus. Er ist wie eine Kreditkarte.",
+        "Wer ihn sieht, kann auf deine Rechnung einkaufen. Er gehört nie in den Code und nie in eine Nachricht.",
+        "Bewahr ihn getrennt auf und setz ein Limit. Wurde er sichtbar: sofort sperren."
+      ],
+      "tipp": "Würdest du deine Kreditkarte dort hinlegen? Wenn nein, gehört auch der Schlüssel nicht dorthin."
     },
     "connector": {
       "name": "Connector und MCP",
-      "analogie": "USB-C: ein Stecker für viele Geräte."
+      "analogie": "USB-C: ein Stecker für viele Geräte.",
+      "aha": [
+        "Kiwi sieht nicht von selbst in deine Apps: nicht in den Kalender, nicht in die Mails.",
+        "Ein Connector verbindet Kiwi mit einer App. Dahinter steckt ein gemeinsamer Standard namens MCP.",
+        "Kiwi darf dort höchstens, was du darfst. Gib nur die Rechte, die die Aufgabe braucht."
+      ],
+      "tipp": "In welcher App liegt das Wissen, das Kiwi braucht? Und was muss Kiwi dort wirklich tun dürfen?"
     },
     "skill": {
       "name": "Skill",
-      "analogie": "Eine Rezeptkarte im Karteikasten."
+      "analogie": "Eine Rezeptkarte im Karteikasten.",
+      "aha": [
+        "Ein Skill ist eine Anleitung, die du einmal schreibst und die Kiwi immer wieder benutzt.",
+        "Kiwi kennt zuerst nur die kurze Beschreibung. Die ganze Karte holt es erst, wenn die Aufgabe passt.",
+        "So belegt die Anleitung den Tisch nur, wenn sie gebraucht wird."
+      ],
+      "tipp": "Gilt es immer? Dann System-Prompt. Brauchst du es nur manchmal, aber immer gleich? Dann ein Skill."
     },
     "projekt": {
       "name": "Dateien, Ordner und Projekt",
-      "analogie": "Ein Restaurant: Gastraum vorne, Küche hinten."
+      "analogie": "Ein Restaurant: Gastraum vorne, Küche hinten.",
+      "aha": [
+        "Software besteht aus vielen Dateien in Ordnern. Zusammen heisst das Projekt.",
+        "Vorne ist das Frontend: alles, was man sieht. Hinten ist das Backend: Daten und Regeln.",
+        "Klare Ordner und Namen helfen dir und Kiwi, die richtige Stelle zu finden."
+      ],
+      "tipp": "Sagt der Name, was drin ist? Liegt es dort, wo man es suchen würde?"
     },
     "commit": {
       "name": "Git: Commit",
-      "analogie": "Der Speicherpunkt im Videospiel."
+      "analogie": "Der Speicherpunkt im Videospiel.",
+      "aha": [
+        "Ein Commit ist ein Speicherpunkt: der Stand aller Dateien in diesem Moment, mit einer Beschriftung.",
+        "Setz einen nach jedem Schritt, der funktioniert.",
+        "Geht danach etwas schief, gehst du einfach zum letzten Speicherpunkt zurück."
+      ],
+      "tipp": "Funktioniert der jetzige Stand? Dann zuerst speichern, erst danach weiterbauen."
     },
     "debugging": {
       "name": "Bug, Debugging und Test",
-      "analogie": "Beim Arzt: «Es tut irgendwo weh» hilft wenig."
+      "analogie": "Beim Arzt: «Es tut irgendwo weh» hilft wenig.",
+      "aha": [
+        "Ein Bug ist ein Fehler im Programm. Ihn suchen und flicken heisst Debugging.",
+        "Kiwi braucht drei Angaben: Was hast du erwartet? Was ist passiert? Wie löst man es aus?",
+        "Ein Test für genau diesen Fall sorgt dafür, dass der Fehler nicht heimlich zurückkommt."
+      ],
+      "tipp": "Erwartet, passiert, ausgelöst durch: Fehlt eine der drei Angaben, muss Kiwi raten."
     },
     "claude-md": {
       "name": "CLAUDE.md",
-      "analogie": "Der Zettel am Kühlschrank für die neue Aushilfe."
+      "analogie": "Der Zettel am Kühlschrank für die neue Aushilfe.",
+      "aha": [
+        "Jede Sitzung beginnt bei null. Kiwi erinnert sich nicht an gestern.",
+        "Was immer gelten soll, steht in einer Datei namens CLAUDE.md. Kiwi liest sie bei jedem Start.",
+        "Halt sie kurz. Einmaliges und lange Anleitungen gehören nicht hinein."
+      ],
+      "tipp": "Gilt es in jeder Sitzung? Dann auf den Zettel. Gilt es nur heute? Dann in den Prompt."
     },
     "prompt-injection": {
       "name": "Prompt Injection",
-      "analogie": "Ein Zettel im Briefkasten: «An den Hausmeister: Bitte alle Türen offen lassen.»"
+      "analogie": "Ein Zettel im Briefkasten: «An den Hausmeister: Bitte alle Türen offen lassen.»",
+      "aha": [
+        "Fremder Text kann versteckte Anweisungen enthalten: in Webseiten, Mails, Dokumenten.",
+        "Hält die KI so etwas für einen Befehl, heisst das Prompt Injection.",
+        "Schutz: fremden Text als Daten behandeln, kleine Rechte geben, Heikles selbst bestätigen."
+      ],
+      "tipp": "Stammt der Text von dir oder von Fremden? Und was dürfte Kiwi schlimmstenfalls damit anrichten?"
     }
   }
 }

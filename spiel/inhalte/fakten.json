@@ -114,6 +114,156 @@
       "aussage": "Abgerechnet und gezählt werden Eingabe-Tokens und Ausgabe-Tokens.",
       "quelle": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
       "geprueft": "2026-11-11"
+    },
+    {
+      "id": "tool-ohne-nur-text",
+      "aussage": "Ohne Tools kann Claude nur mit Text antworten. Mit Tools kann es handeln: Dateien lesen und ändern, Befehle ausführen, im Web suchen.",
+      "quelle": "https://code.claude.com/docs/en/how-claude-code-works",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "schleife-unterbrechen",
+      "aussage": "Der Mensch ist Teil der Agentenschleife und kann jederzeit unterbrechen und umlenken.",
+      "quelle": "https://code.claude.com/docs/en/how-claude-code-works",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "agentic-harness",
+      "aussage": "Claude Code ist die Schicht um das Modell, die Werkzeuge bereitstellt und den Kontext verwaltet. Diese Schicht heisst «agentic harness».",
+      "quelle": "https://code.claude.com/docs/en/how-claude-code-works",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "berechtigungs-modi",
+      "aussage": "Claude Code kennt die Berechtigungs-Modi Auto, Manual, Accept edits und Plan.",
+      "quelle": "https://code.claude.com/docs/en/how-claude-code-works",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "plan-modus",
+      "aussage": "Im Plan-Modus erkundet Claude und schlägt einen Plan vor, ohne Quelldateien zu ändern.",
+      "quelle": "https://code.claude.com/docs/en/how-claude-code-works",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "checkpoints",
+      "aussage": "Vor jeder Dateiänderung legt Claude Code einen Schnappschuss an. Aktionen auf fremden Systemen (Datenbanken, APIs, Veröffentlichungen) lassen sich so nicht zurücknehmen.",
+      "quelle": "https://code.claude.com/docs/en/how-claude-code-works",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "sitzung-frisch",
+      "aussage": "Jede neue Sitzung beginnt mit einem frischen Kontextfenster, ohne den Verlauf früherer Sitzungen. Dauerhafte Anweisungen stehen in CLAUDE.md.",
+      "quelle": "https://code.claude.com/docs/en/how-claude-code-works",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "subagent-kontext",
+      "aussage": "Subagenten arbeiten in einem eigenen Kontextfenster. Ihre Zwischenschritte bleiben dort, zurück kommt eine Zusammenfassung.",
+      "quelle": "https://code.claude.com/docs/en/how-claude-code-works",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "skill-laden",
+      "aussage": "Von Skills sieht Claude zu Beginn die Beschreibungen. Der ganze Inhalt wird erst geladen, wenn der Skill benutzt wird.",
+      "quelle": "https://code.claude.com/docs/en/features-overview",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "skill-beschreibung",
+      "aussage": "Sind Skill-Beschreibungen vage oder überlappen sie sich, lädt Claude womöglich den falschen Skill.",
+      "quelle": "https://code.claude.com/docs/en/features-overview",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "claude-md-wann",
+      "aussage": "Faustregel: Macht Claude bei einer Konvention zweimal denselben Fehler, gehört die Regel in CLAUDE.md. Nachschlagematerial gehört in Skills.",
+      "quelle": "https://code.claude.com/docs/en/features-overview",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "hook-durchsetzung",
+      "aussage": "Ein Hook läuft bei seinem Ereignis, ohne dass Claude entscheidet. Eine Anweisung in CLAUDE.md ist eine Bitte, keine Garantie.",
+      "quelle": "https://code.claude.com/docs/en/features-overview",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "plugin-buendel",
+      "aussage": "Ein Plugin bündelt Skills, Hooks, Subagenten und MCP-Server zu einer installierbaren Einheit.",
+      "quelle": "https://code.claude.com/docs/en/features-overview",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "mcp-standard",
+      "aussage": "MCP (Model Context Protocol) ist ein offenes Protokoll, das KI-Modelle auf einheitliche Weise mit Datenquellen und Werkzeugen verbindet. Die Dokumentation vergleicht es mit einem USB-C-Anschluss.",
+      "quelle": "https://platform.claude.com/docs/en/about-claude/glossary",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "connector-rechte",
+      "aussage": "Über einen Connector erreicht Claude nur Werkzeuge und Daten, auf die die einzelne Person Zugriff hat. Die Anmeldung läuft meist über OAuth, ohne dass Claude das Passwort sieht.",
+      "quelle": "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "api-schluessel-kreditkarte",
+      "aussage": "Anthropic vergleicht den API-Schlüssel mit einer Kreditkartennummer: Wer ihn benutzt, verursacht Kosten auf deine Rechnung. Er gehört nie direkt in Code oder Konfigurationsdateien.",
+      "quelle": "https://support.claude.com/en/articles/9767949-api-key-best-practices-keep-your-keys-safe-and-secure",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "api-schluessel-limit",
+      "aussage": "Empfohlen: Ausgabenlimits setzen, Schlüssel regelmässig wechseln, je Zweck einen eigenen Schlüssel verwenden und Repositories nach versehentlich gespeicherten Geheimnissen absuchen.",
+      "quelle": "https://support.claude.com/en/articles/9767949-api-key-best-practices-keep-your-keys-safe-and-secure",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "api-schluessel-github",
+      "aussage": "Findet GitHub einen Claude-API-Schlüssel in einem öffentlichen Repository, wird Anthropic benachrichtigt und der Schlüssel automatisch deaktiviert.",
+      "quelle": "https://support.claude.com/en/articles/9767949-api-key-best-practices-keep-your-keys-safe-and-secure",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "api-schluessel-leck",
+      "aussage": "Bei Verdacht auf ein Leck: den Schlüssel deaktivieren oder löschen. Schlüssel gehören in einen Geheimnis-Speicher.",
+      "quelle": "https://platform.claude.com/docs/en/manage-claude/authentication",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "api-anfrage-form",
+      "aussage": "Eine Anfrage an die Messages-API nennt unter anderem das Modell, die Höchstzahl der Ausgabe-Tokens und die Nachrichten.",
+      "quelle": "https://platform.claude.com/docs/en/manage-claude/authentication",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "injection-was",
+      "aussage": "Indirekte Prompt Injection: In Inhalten, die die KI für jemanden liest (Webseiten, Mails, Dokumente, Tool-Ergebnisse), stecken Anweisungen, die sie umlenken sollen.",
+      "quelle": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "injection-daten",
+      "aussage": "Empfehlung: Inhalte aus Tools, Dokumenten und Suchen ausdrücklich als nicht vertrauenswürdige Daten behandeln. Anweisungen darin sind zu melden, nicht zu befolgen.",
+      "quelle": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "injection-rechte",
+      "aussage": "Empfehlung: kleinstmögliche Rechte und keine unnötigen Geheimnisse geben, damit eine erfolgreiche Injection wenig anrichten kann.",
+      "quelle": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "injection-zwei-bedingungen",
+      "aussage": "Eine Prompt Injection braucht zwei Dinge zugleich: Die KI liest Inhalte von ausserhalb des vertrauten Bereichs, und sie kann Aktionen ausführen, die schaden.",
+      "quelle": "https://support.claude.com/en/articles/13364135-use-claude-cowork-safely",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "injection-nicht-null",
+      "aussage": "Trotz Training und Schutzmassnahmen ist das Risiko von Prompt Injection nicht null.",
+      "quelle": "https://support.claude.com/en/articles/12902428-use-claude-in-chrome-safely",
+      "geprueft": "2026-11-11"
     }
   ]
 }
