@@ -1,0 +1,694 @@
+{
+  "id": "bibliothek",
+  "kapitel": 5,
+  "tokenBudget": 6000,
+  "kunde": "Frau Aebi, Gemeindebibliothek Hinterwil",
+  "wunsch": "Unsere Ausleih-App spinnt. Und jeden Morgen müssen wir Kiwi alles wieder von vorn erklären!",
+  "kundenstimme": "Die Fehler sind weg und bleiben weg. Und Kiwi weiss jeden Morgen, wie wir arbeiten. Wie eine gute Kollegin.",
+  "ueberraschung": "Kapitel 5 ist geschafft! Das Studio ist jetzt bekannt. Das zieht auch Leute an, die Kiwi austricksen wollen.",
+  "lexikon": [
+    "claudecode",
+    "deployment"
+  ],
+  "runden": [
+    {
+      "id": "r1",
+      "art": "konzept",
+      "konzept": "debugging",
+      "probieren": {
+        "aufgabe": "db-a",
+        "nurTeile": [
+          "spinnt"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "db-a"
+      },
+      "luecke": {
+        "aufgabe": "db-b"
+      },
+      "frei": [
+        "db-c",
+        "db-d",
+        "db-e",
+        "db-f"
+      ]
+    },
+    {
+      "id": "r2",
+      "art": "konzept",
+      "konzept": "claude-md",
+      "probieren": {
+        "aufgabe": "md-a",
+        "nurTeile": [
+          "merk"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "md-a"
+      },
+      "luecke": {
+        "aufgabe": "md-b"
+      },
+      "frei": [
+        "md-c",
+        "md-d",
+        "md-e",
+        "md-f"
+      ]
+    },
+    {
+      "id": "r3",
+      "art": "misch",
+      "titel": "Alles zusammen",
+      "frei": [
+        "m10-a",
+        "m10-b"
+      ]
+    }
+  ],
+  "aufgaben": {
+    "db-a": {
+      "wunsch": "Der Knopf «Verlängern» in unserer Ausleih-App spinnt.",
+      "grundprompt": "Flick den Knopf «Verlängern».",
+      "teile": [
+        {
+          "id": "spinnt",
+          "art": "prompt",
+          "text": "Er spinnt halt. Mach ihn ganz."
+        },
+        {
+          "id": "erwartet",
+          "art": "kontext",
+          "text": "Erwartet: Die Leihfrist wird um zwei Wochen länger."
+        },
+        {
+          "id": "passiert",
+          "art": "kontext",
+          "text": "Passiert: Das Buch verschwindet aus der Liste."
+        },
+        {
+          "id": "schritte",
+          "art": "kontext",
+          "text": "So löst man es aus: Buch öffnen, auf «Verlängern» drücken."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "spinnt"
+            ]
+          },
+          "fehlbild": "knopfWeg"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "erwartet",
+              "passiert",
+              "schritte"
+            ]
+          },
+          "fehlbild": "knopfWeg"
+        }
+      ],
+      "fehlbilder": {
+        "knopfWeg": {
+          "texte": [
+            "Kiwi entfernt den Knopf «Verlängern». «Problem gelöst: Er spinnt nicht mehr.»",
+            "Kiwi färbt den Knopf blau. «Jetzt sieht er gesünder aus.» Das Buch verschwindet weiterhin."
+          ],
+          "hinweis": "«Spinnt» sagt Kiwi nichts. Es braucht drei Angaben: Was hast du erwartet? Was ist passiert? Wie löst man es aus?"
+        }
+      },
+      "erfolg": [
+        "Kiwi stellt den Fehler nach, findet die falsche Zeile und flickt sie. Die Frist wird länger, das Buch bleibt in der Liste."
+      ],
+      "loesung": [
+        "erwartet",
+        "passiert",
+        "schritte"
+      ]
+    },
+    "db-b": {
+      "typ": "wahl",
+      "wunsch": "Die Suche geht auch nicht richtig.",
+      "frage": "Welcher Fehlerbericht hilft Kiwi am meisten?",
+      "kiwi": "Kiwi sucht selbst nach «Heidi», sieht «Keine Treffer» und weiss genau, wo es ansetzen muss.",
+      "optionen": [
+        {
+          "id": "kaputt",
+          "text": "«Die Suche ist kaputt!!!»",
+          "hinweis": "Drei Ausrufezeichen ersetzen keine Angaben. Was ist kaputt, und wann?"
+        },
+        {
+          "id": "irgendwas",
+          "text": "«Irgendwas stimmt nicht, schau mal.»",
+          "hinweis": "Kiwi müsste raten, wo es suchen soll."
+        },
+        {
+          "id": "genau",
+          "text": "«Ich suche nach Heidi und erwarte das Buch Heidi. Es kommt: Keine Treffer.»",
+          "hinweis": "Erwartet, passiert, ausgelöst durch: Damit kann Kiwi den Fehler nachstellen.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "genau"
+      ]
+    },
+    "db-c": {
+      "typ": "wahl",
+      "wunsch": "Der Fehler ist geflickt. Bleibt er das auch?",
+      "frage": "Ein Fehler ist geflickt. Wie stellst du sicher, dass er nicht heimlich zurückkommt?",
+      "kiwi": "Ein Test prüft ab jetzt bei jeder Änderung: Verlängern macht die Frist länger. Sonst wird er rot.",
+      "optionen": [
+        {
+          "id": "glauben",
+          "text": "Fest daran glauben",
+          "hinweis": "Glauben hält keinen Fehler auf."
+        },
+        {
+          "id": "test",
+          "text": "Mit einem Test, der genau diesen Fall prüft",
+          "hinweis": "Der Test schlägt Alarm, sobald der alte Fehler wieder auftaucht.",
+          "richtig": true
+        },
+        {
+          "id": "finger",
+          "text": "Den Knopf nie mehr anfassen",
+          "hinweis": "Eine App, die man nicht mehr ändern darf, ist bald veraltet."
+        }
+      ],
+      "loesung": [
+        "test"
+      ]
+    },
+    "db-d": {
+      "typ": "wahl",
+      "wunsch": "Was heisst eigentlich «Bug»?",
+      "frage": "Was ist ein Bug?",
+      "kiwi": "Der Knopf sollte verlängern, liess aber Bücher verschwinden. Das ist ein Bug.",
+      "optionen": [
+        {
+          "id": "virus",
+          "text": "Ein Virus, der von aussen kommt",
+          "hinweis": "Ein Bug kommt nicht von aussen. Er steckt im eigenen Programm."
+        },
+        {
+          "id": "absicht",
+          "text": "Eine geheime Zusatzfunktion",
+          "hinweis": "Schön wäre es. Ein Bug ist ein Versehen."
+        },
+        {
+          "id": "fehler",
+          "text": "Ein Fehler im Programm: Es tut etwas anderes als gedacht",
+          "hinweis": "Bugs gehören zu jeder Software. Wichtig ist, sie genau zu beschreiben.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "fehler"
+      ]
+    },
+    "db-e": {
+      "typ": "wahl",
+      "wunsch": "Die App zeigt eine rote Meldung mit viel Kauderwelsch.",
+      "frage": "Die App zeigt: «Fehler in Zeile 12: datum ist leer.» Was machst du damit?",
+      "kiwi": "Du gibst Kiwi die Meldung wörtlich. Kiwi schaut in Zeile 12 und findet das leere Datum.",
+      "optionen": [
+        {
+          "id": "weitergeben",
+          "text": "Die Meldung wörtlich an Kiwi weitergeben",
+          "hinweis": "Eine Fehlermeldung ist ein Geschenk: Sie sagt oft genau, wo es klemmt.",
+          "richtig": true
+        },
+        {
+          "id": "wegklicken",
+          "text": "Wegklicken und «geht nicht» schreiben",
+          "hinweis": "Damit wirfst du den besten Hinweis weg."
+        },
+        {
+          "id": "loeschen",
+          "text": "Zeile 12 einfach löschen",
+          "hinweis": "Dann fehlt, was Zeile 12 tun sollte. Der nächste Fehler wartet schon."
+        }
+      ],
+      "loesung": [
+        "weitergeben"
+      ]
+    },
+    "db-f": {
+      "wunsch": "Bei Mahnungen zeigt die App manchmal einen falschen Betrag.",
+      "grundprompt": "Flick die Berechnung der Mahngebühr.",
+      "teile": [
+        {
+          "id": "manchmal",
+          "art": "prompt",
+          "text": "Es ist halt manchmal komisch."
+        },
+        {
+          "id": "erwartet",
+          "art": "kontext",
+          "text": "Erwartet: 3 Tage zu spät kostet 3 Franken."
+        },
+        {
+          "id": "passiert",
+          "art": "kontext",
+          "text": "Passiert: Angezeigt werden 30 Franken."
+        },
+        {
+          "id": "test",
+          "art": "absicherung",
+          "text": "Schreib einen Test für diesen Fall und arbeite, bis er grün ist."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "manchmal"
+            ]
+          },
+          "fehlbild": "raetsel"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "erwartet",
+              "passiert"
+            ]
+          },
+          "fehlbild": "raetsel"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "test"
+            ]
+          },
+          "fehlbild": "kommtWieder"
+        }
+      ],
+      "fehlbilder": {
+        "raetsel": {
+          "texte": [
+            "Kiwi ändert die Farbe der Mahnung auf ein freundliches Gelb. Der Betrag stimmt weiterhin nicht.",
+            "Kiwi rät: «Vielleicht liegt es am Mond?» und baut eine Mondphasen-Anzeige ein."
+          ],
+          "hinweis": "«Manchmal komisch» lässt Kiwi raten. Sag, was du erwartest und was stattdessen passiert."
+        },
+        "kommtWieder": {
+          "texte": [
+            "Kiwi flickt die Rechnung. Zwei Wochen später ändert jemand etwas, und es sind wieder 30 Franken. Niemand merkt es.",
+            "Geflickt! Bis zur nächsten Änderung. Dann ist der Fehler zurück, ganz leise."
+          ],
+          "hinweis": "Ohne Test kann ein Fehler unbemerkt zurückkommen. Ein Test hält Wache."
+        }
+      },
+      "erfolg": [
+        "Kiwi schreibt den Test «3 Tage zu spät = 3 Franken», sieht Rot, flickt die Rechnung, sieht Grün."
+      ],
+      "loesung": [
+        "erwartet",
+        "passiert",
+        "test"
+      ]
+    },
+    "md-a": {
+      "wunsch": "Gestern haben wir Kiwi alles erklärt: Wir schreiben Deutsch, und getestet wird mit «npm test». Heute ist eine neue Sitzung.",
+      "nachrichtVon": "Erste Nachricht der neuen Sitzung",
+      "grundprompt": "Bau die Funktion «Buch reservieren».",
+      "teile": [
+        {
+          "id": "merk",
+          "art": "prompt",
+          "text": "Du erinnerst dich ja an gestern."
+        },
+        {
+          "id": "zettel",
+          "art": "zettel",
+          "text": "Namen und Texte auf Deutsch. Tests laufen mit npm test."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "fehlt": [
+              "zettel"
+            ]
+          },
+          "fehlbild": "fremd"
+        }
+      ],
+      "fehlbilder": {
+        "fremd": {
+          "texte": [
+            "Kiwi begrüsst das Projekt wie ein Fremder und benennt alles um: Aus «ausleihe» wird «lending».",
+            "«Schön, dich kennenzulernen!» Kiwi weiss nichts mehr von gestern und rät, wie man hier testet. Falsch."
+          ],
+          "hinweis": "Jede Sitzung beginnt bei null. Was immer gelten soll, gehört in die Datei CLAUDE.md. Kiwi liest sie bei jedem Start."
+        }
+      },
+      "erfolg": [
+        "Kiwi liest zuerst den Zettel. Die neue Funktion heisst «reserviere», und die Tests laufen auf Anhieb."
+      ],
+      "loesung": [
+        "zettel"
+      ]
+    },
+    "md-b": {
+      "typ": "wahl",
+      "wunsch": "Was soll auf den Zettel?",
+      "frage": "Was gehört auf den Zettel (CLAUDE.md)?",
+      "kiwi": "Auf dem Zettel steht: «Tests laufen mit npm test.» Kiwi weiss es in jeder Sitzung.",
+      "optionen": [
+        {
+          "id": "heute",
+          "text": "«Heute bitte den Knopf blau machen.»",
+          "hinweis": "Das gilt nur heute. Es gehört in den Prompt, nicht auf den Zettel."
+        },
+        {
+          "id": "regel",
+          "text": "«Tests laufen mit npm test.»",
+          "hinweis": "Das gilt in jeder Sitzung. Genau solche Dauerregeln gehören auf den Zettel.",
+          "richtig": true
+        },
+        {
+          "id": "chronik",
+          "text": "Die ganze Geschichte der Bibliothek seit 1950",
+          "hinweis": "Das braucht Kiwi fast nie, und es würde jede Sitzung den Tisch füllen."
+        }
+      ],
+      "loesung": [
+        "regel"
+      ]
+    },
+    "md-c": {
+      "typ": "wahl",
+      "wunsch": "Wir haben fleissig ergänzt. Der Zettel hat jetzt 900 Zeilen.",
+      "frage": "Der Zettel ist auf 900 Zeilen angewachsen. Was passiert?",
+      "kiwi": "Kiwi liest 900 Zeilen, bevor es überhaupt anfängt. Die Regel «Texte auf Deutsch» geht darin unter.",
+      "optionen": [
+        {
+          "id": "besser",
+          "text": "Je länger, desto besser arbeitet Kiwi",
+          "hinweis": "Im Gegenteil: Je voller der Tisch, desto eher übersieht Kiwi etwas."
+        },
+        {
+          "id": "voll",
+          "text": "Er belegt in jeder Sitzung viel Platz, und Wichtiges geht eher unter",
+          "hinweis": "Der Zettel liegt immer auf dem Tisch. Halt ihn kurz und lagere lange Anleitungen aus.",
+          "richtig": true
+        },
+        {
+          "id": "egal",
+          "text": "Nichts. Die Länge spielt keine Rolle",
+          "hinweis": "Doch: Jede Zeile kostet in jeder Sitzung Platz und Tokens."
+        }
+      ],
+      "loesung": [
+        "voll"
+      ]
+    },
+    "md-d": {
+      "typ": "wahl",
+      "wunsch": "Kiwi schreibt das Datum schon wieder amerikanisch: Monat vor Tag!",
+      "frage": "Kiwi macht zum zweiten Mal denselben Fehler: Es schreibt das Datum amerikanisch. Was tust du?",
+      "kiwi": "Auf dem Zettel steht neu: «Datum immer als Tag.Monat.Jahr.» Der Fehler kommt nicht wieder.",
+      "optionen": [
+        {
+          "id": "zettel",
+          "text": "Die Regel auf den Zettel schreiben",
+          "hinweis": "Wiederholt sich ein Fehler, fehlt eine Dauerregel. Auf dem Zettel gilt sie ab jetzt immer.",
+          "richtig": true
+        },
+        {
+          "id": "jedesmal",
+          "text": "Es jedes Mal von Hand korrigieren",
+          "hinweis": "Dann korrigierst du es nächste Woche wieder. Und übernächste auch."
+        },
+        {
+          "id": "schimpfen",
+          "text": "Mit Kiwi schimpfen",
+          "hinweis": "Kiwi hat es morgen vergessen. Der Zettel nicht."
+        }
+      ],
+      "loesung": [
+        "zettel"
+      ]
+    },
+    "md-e": {
+      "typ": "wahl",
+      "wunsch": "Die Anleitung «So machen wir die Jahresinventur» ist zwei Seiten lang. Auch auf den Zettel?",
+      "frage": "Eine zweiseitige Anleitung braucht ihr einmal im Jahr. Wohin damit?",
+      "kiwi": "Die Inventur-Anleitung liegt als Skill im Karteikasten. Im Dezember holt Kiwi sie hervor.",
+      "optionen": [
+        {
+          "id": "zettel",
+          "text": "Auf den Zettel",
+          "hinweis": "Dort läge sie das ganze Jahr auf dem Tisch, für einen einzigen Tag."
+        },
+        {
+          "id": "nirgends",
+          "text": "Nirgends. Kiwi findet das selbst heraus",
+          "hinweis": "Dann macht Kiwi die Inventur jedes Jahr anders."
+        },
+        {
+          "id": "skill",
+          "text": "In einen Skill",
+          "hinweis": "Der Zettel ist für das, was immer gilt. Ein Skill ist für das, was man manchmal braucht.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "skill"
+      ]
+    },
+    "md-f": {
+      "wunsch": "Schreib unseren Zettel. Kurz und nützlich, bitte.",
+      "fenster": 2000,
+      "nachrichtVon": "Erste Nachricht der neuen Sitzung",
+      "grundprompt": "Bau die Funktion «Buch zurückgeben».",
+      "teile": [
+        {
+          "id": "sprache",
+          "art": "zettel",
+          "text": "Namen und Texte auf Deutsch."
+        },
+        {
+          "id": "test",
+          "art": "zettel",
+          "text": "Vor jedem Speicherpunkt: npm test."
+        },
+        {
+          "id": "heute",
+          "art": "zettel",
+          "text": "Heute: Knopf «Verlängern» flicken."
+        },
+        {
+          "id": "roman",
+          "art": "zettel",
+          "text": "Die vollständige Chronik der Bibliothek seit 1950.",
+          "tokens": 6000
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "tokensUeber": 2000
+          },
+          "fehlbild": "zuLang"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "heute"
+            ]
+          },
+          "fehlbild": "veraltet"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "sprache",
+              "test"
+            ]
+          },
+          "fehlbild": "luecke"
+        }
+      ],
+      "fehlbilder": {
+        "zuLang": {
+          "texte": [
+            "Kiwi liest zuerst die ganze Chronik. Als es fertig ist, hat es die Regel «auf Deutsch» vergessen.",
+            "Der Zettel ist so lang, dass die halbe Sitzung fürs Lesen draufgeht. Die App ist danach englisch."
+          ],
+          "hinweis": "Der Zettel liegt in jeder Sitzung auf dem Tisch. Was Kiwi selten braucht, gehört nicht darauf."
+        },
+        "veraltet": {
+          "texte": [
+            "Drei Wochen später steht immer noch drauf: «Heute: Knopf flicken.» Kiwi flickt den Knopf jeden Morgen aufs Neue.",
+            "Der Knopf ist längst ganz. Kiwi baut trotzdem täglich daran herum, weil es auf dem Zettel steht."
+          ],
+          "hinweis": "Einmaliges gehört in den Prompt. Auf dem Zettel gilt es für immer."
+        },
+        "luecke": {
+          "texte": [
+            "Kiwi tauft die neue Funktion «renewBook» und testet gar nicht. Auf dem Zettel stand nichts dazu.",
+            "Ohne die Regeln rät Kiwi: englische Namen, kein Test."
+          ],
+          "hinweis": "Die wichtigen Dauerregeln fehlen. Was in jeder Sitzung gelten soll, muss auf dem Zettel stehen."
+        }
+      },
+      "erfolg": [
+        "Zwei Zeilen, die immer gelten. Kiwi liest sie in einer Sekunde und hält sich daran."
+      ],
+      "loesung": [
+        "sprache",
+        "test"
+      ]
+    },
+    "m10-a": {
+      "wunsch": "Neue Sitzung, alter Fehler: Die Suche findet «Heidi» nicht. Diesmal machen wir es richtig.",
+      "nachrichtVon": "Erste Nachricht der neuen Sitzung",
+      "grundprompt": "Flick die Suche.",
+      "teile": [
+        {
+          "id": "kaputt",
+          "art": "prompt",
+          "text": "Die ist halt kaputt."
+        },
+        {
+          "id": "zettel",
+          "art": "zettel",
+          "text": "Namen und Texte auf Deutsch. Tests laufen mit npm test."
+        },
+        {
+          "id": "bericht",
+          "art": "kontext",
+          "text": "Erwartet: Die Suche nach «Heidi» zeigt das Buch. Passiert: «Keine Treffer»."
+        },
+        {
+          "id": "test",
+          "art": "absicherung",
+          "text": "Schreib einen Test für diesen Fall und arbeite, bis er grün ist."
+        },
+        {
+          "id": "punkt",
+          "art": "absicherung",
+          "text": "Danach: ein Speicherpunkt."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "kaputt"
+            ]
+          },
+          "fehlbild": "raetsel"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "zettel"
+            ]
+          },
+          "fehlbild": "fremd"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "bericht"
+            ]
+          },
+          "fehlbild": "raetsel"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "test"
+            ]
+          },
+          "fehlbild": "kommtWieder"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "punkt"
+            ]
+          },
+          "fehlbild": "keinZurueck"
+        }
+      ],
+      "fehlbilder": {
+        "raetsel": {
+          "texte": [
+            "Kiwi macht das Suchfeld grösser. «Jetzt sieht man besser, was man sucht.» Heidi bleibt verschollen.",
+            "Kiwi rät und sortiert die Bücher neu nach Farbe."
+          ],
+          "hinweis": "Ohne genauen Bericht weiss Kiwi nicht, was falsch läuft."
+        },
+        "fremd": {
+          "texte": [
+            "Kiwi flickt die Suche und nennt sie um in «searchEngine». Der Rest der App findet sie nicht mehr.",
+            "Kiwi kennt eure Regeln nicht und testet mit einem Befehl, den es hier nicht gibt."
+          ],
+          "hinweis": "Neue Sitzung, leerer Kopf. Die Dauerregeln müssen auf dem Zettel stehen."
+        },
+        "kommtWieder": {
+          "texte": [
+            "Heidi wird gefunden. Einen Monat später ist der Fehler wieder da. Kein Test hat gewarnt.",
+            "Geflickt, aber ohne Test. Beim nächsten Umbau verschwindet Heidi erneut."
+          ],
+          "hinweis": "Ein Test für genau diesen Fall hätte Alarm geschlagen."
+        },
+        "keinZurueck": {
+          "texte": [
+            "Die Suche läuft. Kiwi «verbessert» gleich weiter und macht sie wieder kaputt. Einen Speicherpunkt gab es nicht.",
+            "Alles gut, bis zur nächsten Änderung. Der gute Stand wurde nie gespeichert."
+          ],
+          "hinweis": "Was funktioniert, wird gespeichert. Sonst ist es beim nächsten Fehler weg."
+        }
+      },
+      "erfolg": [
+        "Kiwi liest den Zettel, stellt den Fehler nach, schreibt den Test, flickt, sieht Grün und setzt den Speicherpunkt «Suche findet Heidi»."
+      ],
+      "loesung": [
+        "zettel",
+        "bericht",
+        "test",
+        "punkt"
+      ]
+    },
+    "m10-b": {
+      "typ": "wahl",
+      "wunsch": "Zettel, Prompt, Skill: Wohin gehört was?",
+      "frage": "Wohin gehört der Satz «Die Bibliothek ist am Montag geschlossen, erwähne das heute im Newsletter»?",
+      "kiwi": "Der Satz steht im heutigen Prompt. Morgen ist er vergessen, und das ist richtig so.",
+      "optionen": [
+        {
+          "id": "zettel",
+          "text": "Auf den Zettel (CLAUDE.md)",
+          "hinweis": "Dann erwähnt Kiwi den Montag in jeder Sitzung, bei jeder Aufgabe."
+        },
+        {
+          "id": "prompt",
+          "text": "In den Prompt von heute",
+          "hinweis": "Was nur für diese eine Aufgabe gilt, gehört in den Prompt.",
+          "richtig": true
+        },
+        {
+          "id": "skill",
+          "text": "In einen Skill",
+          "hinweis": "Ein Skill ist für wiederkehrende Anleitungen. Das hier ist einmalig."
+        }
+      ],
+      "loesung": [
+        "prompt"
+      ]
+    }
+  }
+}

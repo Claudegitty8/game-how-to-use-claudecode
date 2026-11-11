@@ -1,0 +1,644 @@
+{
+  "id": "kinderzirkus",
+  "kapitel": 5,
+  "tokenBudget": 6000,
+  "kunde": "Herr Bärtschi, Kinderzirkus «Pirouette»",
+  "wunsch": "Unsere Ticket-Seite ist ein Durcheinander. Niemand findet etwas, und nach jeder Änderung ist etwas anderes kaputt.",
+  "kundenstimme": "Jede Datei hat ihren Platz, und wenn etwas schiefgeht, springen wir einfach zurück. Manege frei!",
+  "ueberraschung": "An der Studiotür hängt neu ein leerer Zettel. Kiwi schaut ihn jedes Mal an, wenn es hereinkommt. Was wohl draufstehen soll?",
+  "lexikon": [
+    "datenbank",
+    "branch"
+  ],
+  "runden": [
+    {
+      "id": "r1",
+      "art": "konzept",
+      "konzept": "projekt",
+      "probieren": {
+        "aufgabe": "pj-a",
+        "nurTeile": [
+          "irgendwo"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "pj-a"
+      },
+      "luecke": {
+        "aufgabe": "pj-b"
+      },
+      "frei": [
+        "pj-c",
+        "pj-d",
+        "pj-e",
+        "pj-f"
+      ]
+    },
+    {
+      "id": "r2",
+      "art": "konzept",
+      "konzept": "commit",
+      "probieren": {
+        "aufgabe": "cm-a",
+        "nurTeile": [
+          "weiter"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "cm-a"
+      },
+      "luecke": {
+        "aufgabe": "cm-b"
+      },
+      "frei": [
+        "cm-c",
+        "cm-d",
+        "cm-e",
+        "cm-f"
+      ]
+    },
+    {
+      "id": "r3",
+      "art": "misch",
+      "titel": "Alles zusammen",
+      "frei": [
+        "m9-a",
+        "m9-b"
+      ]
+    }
+  ],
+  "aufgaben": {
+    "pj-a": {
+      "wunsch": "Kiwi soll auf der Startseite einen Knopf «Tickets» einbauen. Unser Projekt ist … etwas unordentlich.",
+      "grundprompt": "Bau den Knopf «Tickets» ein.",
+      "teile": [
+        {
+          "id": "irgendwo",
+          "art": "prompt",
+          "text": "Irgendwo im Ordner neu_final_final2."
+        },
+        {
+          "id": "wo",
+          "art": "kontext",
+          "text": "Die Startseite ist die Datei seiten/start.html."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "irgendwo"
+            ]
+          },
+          "fehlbild": "fusszeile"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "wo"
+            ]
+          },
+          "fehlbild": "fusszeile"
+        }
+      ],
+      "fehlbilder": {
+        "fusszeile": {
+          "texte": [
+            "Kiwi findet die Startseite nicht und baut den Knopf in die Fusszeile der Datenschutzerklärung.",
+            "Der Knopf «Tickets» prangt jetzt in der Datei alt_kopie_3.html. Die schaut seit Jahren niemand an."
+          ],
+          "hinweis": "In einem unordentlichen Projekt findet auch Kiwi die richtige Datei nicht. Klare Ordner und Namen helfen."
+        }
+      },
+      "erfolg": [
+        "Kiwi öffnet seiten/start.html und setzt den Knopf «Tickets» oben auf die Startseite."
+      ],
+      "loesung": [
+        "wo"
+      ]
+    },
+    "pj-b": {
+      "typ": "wahl",
+      "wunsch": "Frontend, Backend: Was ist was?",
+      "frage": "Was gehört zum Frontend?",
+      "kiwi": "Der Knopf «Tickets» ist Frontend: Die Besucher sehen ihn und drücken darauf.",
+      "optionen": [
+        {
+          "id": "liste",
+          "text": "Die Liste aller verkauften Tickets auf dem Server",
+          "hinweis": "Das ist Backend: Daten im Hintergrund, die Besucher nie direkt sehen."
+        },
+        {
+          "id": "knopf",
+          "text": "Der Knopf «Tickets», den die Besucher sehen",
+          "hinweis": "Frontend ist alles, was man sieht und anfassen kann.",
+          "richtig": true
+        },
+        {
+          "id": "rechnung",
+          "text": "Die Berechnung, ob noch Plätze frei sind",
+          "hinweis": "Das passiert im Hintergrund, im Backend."
+        }
+      ],
+      "loesung": [
+        "knopf"
+      ]
+    },
+    "pj-c": {
+      "typ": "wahl",
+      "wunsch": "Wohin mit dem Foto vom Zirkuszelt?",
+      "frage": "In welchen Ordner gehört das Bild vom Zirkuszelt?",
+      "kiwi": "Das Foto liegt im Ordner bilder. Dort sucht man es auch.",
+      "optionen": [
+        {
+          "id": "bilder",
+          "text": "In den Ordner bilder",
+          "hinweis": "Gleiches zu Gleichem: So findest du es wieder, und Kiwi auch.",
+          "richtig": true
+        },
+        {
+          "id": "preise",
+          "text": "In die Datei mit den Preisen",
+          "hinweis": "Ein Bild in einer Preisliste? Dort sucht es niemand."
+        },
+        {
+          "id": "egal",
+          "text": "Egal, Hauptsache irgendwo",
+          "hinweis": "Irgendwo heisst: Beim nächsten Mal sucht ihr beide lange."
+        }
+      ],
+      "loesung": [
+        "bilder"
+      ]
+    },
+    "pj-d": {
+      "typ": "wahl",
+      "wunsch": "Wer entscheidet, ob eine Vorstellung ausverkauft ist?",
+      "frage": "Wo wird geprüft, ob eine Vorstellung ausverkauft ist?",
+      "kiwi": "Das Backend zählt alle Käufe und meldet: «Noch 12 Plätze.» Das Frontend zeigt es an.",
+      "optionen": [
+        {
+          "id": "frontend",
+          "text": "Im Frontend, auf dem Handy jedes Besuchers",
+          "hinweis": "Ein einzelnes Handy kennt die Käufe der anderen nicht."
+        },
+        {
+          "id": "bilder",
+          "text": "Im Ordner bilder",
+          "hinweis": "Dort liegen nur Bilder. Rechnen kann ein Ordner nicht."
+        },
+        {
+          "id": "backend",
+          "text": "Im Backend. Dort liegen die Daten aller Käufe",
+          "hinweis": "Nur das Backend sieht alle Käufe zusammen. Das Frontend zeigt das Ergebnis.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "backend"
+      ]
+    },
+    "pj-e": {
+      "typ": "wahl",
+      "wunsch": "Wie soll die Datei mit den Ticket-Preisen heissen?",
+      "frage": "Welcher Dateiname hilft dir und Kiwi am meisten?",
+      "kiwi": "In ticket-preise.json findet Kiwi die Preise auf Anhieb.",
+      "optionen": [
+        {
+          "id": "neu2",
+          "text": "neu2.json",
+          "hinweis": "Neu war sie einmal. Was drin ist, verrät der Name nicht."
+        },
+        {
+          "id": "klar",
+          "text": "ticket-preise.json",
+          "hinweis": "Ein guter Name sagt, was drin ist. Dann muss niemand raten.",
+          "richtig": true
+        },
+        {
+          "id": "final",
+          "text": "final_wirklich_final.json",
+          "hinweis": "Solche Namen kennt jeder. Welche Datei gilt, weiss am Ende niemand."
+        }
+      ],
+      "loesung": [
+        "klar"
+      ]
+    },
+    "pj-f": {
+      "wunsch": "Wir fangen neu an: das Projekt «Ticket-Seite». Wie legen wir es an?",
+      "grundprompt": "Leg das Projekt «Ticket-Seite» an.",
+      "teile": [
+        {
+          "id": "eine",
+          "art": "prompt",
+          "text": "Alles in eine einzige Datei namens zeug.txt."
+        },
+        {
+          "id": "ordner",
+          "art": "prompt",
+          "text": "Mit den Ordnern seiten, bilder und daten."
+        },
+        {
+          "id": "namen",
+          "art": "prompt",
+          "text": "Mit Dateinamen, die sagen, was drin ist."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "eine"
+            ]
+          },
+          "fehlbild": "chaos"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "ordner"
+            ]
+          },
+          "fehlbild": "chaos"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "namen"
+            ]
+          },
+          "fehlbild": "raetsel"
+        }
+      ],
+      "fehlbilder": {
+        "chaos": {
+          "texte": [
+            "In zeug.txt stehen jetzt Preise, Bilder, Texte und der Sitzplan durcheinander. 9000 Zeilen.",
+            "Alles liegt auf einem Haufen. Um den Kinderpreis zu ändern, sucht Kiwi zehn Minuten."
+          ],
+          "hinweis": "Ohne Ordnung wird jede Änderung zur Suche. Teile ein Projekt in Ordner nach Thema."
+        },
+        "raetsel": {
+          "texte": [
+            "Die Ordner stimmen. Darin liegen a.html, b.html und x7.html. Welche ist die Startseite?",
+            "Schöne Ordner. Die Dateien heissen neu.html, neu2.html und neu_neu.html."
+          ],
+          "hinweis": "Ordner allein genügen nicht. Auch der Dateiname muss sagen, was drin ist."
+        }
+      },
+      "erfolg": [
+        "Drei Ordner, klare Namen: seiten/start.html, bilder/zelt.jpg, daten/ticket-preise.json."
+      ],
+      "loesung": [
+        "ordner",
+        "namen"
+      ]
+    },
+    "cm-a": {
+      "wunsch": "Die Ticket-Seite läuft! Kiwi soll jetzt noch die Farben verbessern.",
+      "grundprompt": "Verbessere die Farben der Ticket-Seite.",
+      "teile": [
+        {
+          "id": "weiter",
+          "art": "prompt",
+          "text": "Mach einfach weiter, es läuft ja."
+        },
+        {
+          "id": "punkt",
+          "art": "absicherung",
+          "text": "Setz zuerst einen Speicherpunkt (Commit): «Ticket-Seite läuft»."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "weiter"
+            ]
+          },
+          "fehlbild": "keinZurueck"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "punkt"
+            ]
+          },
+          "fehlbild": "keinZurueck"
+        }
+      ],
+      "fehlbilder": {
+        "keinZurueck": {
+          "texte": [
+            "Kiwi «verbessert». Jetzt ist die Schrift weiss auf weiss, und der Knopf «Kaufen» ist verschwunden. Einen Weg zurück gibt es nicht.",
+            "Nach der Verbesserung fliegen die Clowns im Logo rückwärts. Der Stand von vorhin ist weg."
+          ],
+          "hinweis": "Ohne Speicherpunkt gibt es kein Zurück. Setz einen Commit nach jedem Schritt, der funktioniert."
+        }
+      },
+      "erfolg": [
+        "Kiwi setzt den Speicherpunkt und ändert die Farben. Das Orange gefällt nicht? Ein Schritt zurück, und alles ist wie vorher."
+      ],
+      "loesung": [
+        "punkt"
+      ]
+    },
+    "cm-b": {
+      "typ": "wahl",
+      "wunsch": "Wann soll man so einen Speicherpunkt setzen?",
+      "frage": "Wann setzt du einen Speicherpunkt (Commit)?",
+      "kiwi": "Der Kinderpreis funktioniert. Speicherpunkt. Jetzt kommt der Sitzplan dran.",
+      "optionen": [
+        {
+          "id": "jahr",
+          "text": "Einmal im Jahr",
+          "hinweis": "Dann verlierst du im schlimmsten Fall ein Jahr Arbeit."
+        },
+        {
+          "id": "mitten",
+          "text": "Mitten in einem halbfertigen Umbau",
+          "hinweis": "Ein halbfertiger Stand ist ein schlechter Ort zum Zurückkehren."
+        },
+        {
+          "id": "laeuft",
+          "text": "Nach jedem Schritt, der funktioniert",
+          "hinweis": "So ist der letzte Speicherpunkt immer ein Stand, der läuft.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "laeuft"
+      ]
+    },
+    "cm-c": {
+      "typ": "wahl",
+      "wunsch": "Wie beschrifte ich einen Speicherpunkt?",
+      "frage": "Welche Beschriftung hilft dir in drei Wochen am meisten?",
+      "kiwi": "In der Liste der Speicherpunkte steht: «Kinderpreis eingebaut». Du weisst sofort, was das war.",
+      "optionen": [
+        {
+          "id": "zeug",
+          "text": "«Zeug»",
+          "hinweis": "In drei Wochen weisst du nicht mehr, welches Zeug gemeint war."
+        },
+        {
+          "id": "klar",
+          "text": "«Tickets: Kinderpreis eingebaut»",
+          "hinweis": "Eine gute Beschriftung sagt kurz, was sich geändert hat.",
+          "richtig": true
+        },
+        {
+          "id": "asdf",
+          "text": "«asdf»",
+          "hinweis": "Schnell getippt, später nutzlos."
+        }
+      ],
+      "loesung": [
+        "klar"
+      ]
+    },
+    "cm-d": {
+      "typ": "wahl",
+      "wunsch": "Seit Kiwis letzter Änderung startet die Seite nicht mehr!",
+      "frage": "Nach der letzten Änderung startet die Seite nicht mehr. Davor hast du einen Speicherpunkt gesetzt. Was tust du?",
+      "kiwi": "Ein Schritt zurück zum Speicherpunkt. Die Seite läuft wieder. Jetzt ein neuer Versuch, in kleineren Schritten.",
+      "optionen": [
+        {
+          "id": "zurueck",
+          "text": "Zum Speicherpunkt zurückgehen und es neu versuchen",
+          "hinweis": "Dafür sind Speicherpunkte da: Der letzte laufende Stand ist nur einen Schritt entfernt.",
+          "richtig": true
+        },
+        {
+          "id": "hand",
+          "text": "Alles von Hand neu schreiben",
+          "hinweis": "Nicht nötig. Der laufende Stand ist gespeichert."
+        },
+        {
+          "id": "loeschen",
+          "text": "Das Projekt löschen",
+          "hinweis": "Viel zu grob. Du hast einen Speicherpunkt, benutz ihn."
+        }
+      ],
+      "loesung": [
+        "zurueck"
+      ]
+    },
+    "cm-e": {
+      "typ": "wahl",
+      "wunsch": "Was merkt sich so ein Commit überhaupt?",
+      "frage": "Was hält ein Commit fest?",
+      "kiwi": "Der Commit «Sitzplan fertig» hält fest, wie jede Datei in diesem Moment aussah.",
+      "optionen": [
+        {
+          "id": "zeile",
+          "text": "Nur die allerletzte Zeile, die geändert wurde",
+          "hinweis": "Ein Commit hält den Stand des ganzen Projekts fest, nicht nur eine Zeile."
+        },
+        {
+          "id": "computer",
+          "text": "Eine Kopie des ganzen Computers",
+          "hinweis": "Nur das Projekt. Deine Ferienfotos gehören nicht dazu."
+        },
+        {
+          "id": "stand",
+          "text": "Den Stand der Projekt-Dateien in diesem Moment, mit einer Beschriftung",
+          "hinweis": "Wie ein Speicherpunkt im Videospiel: Genau so sah alles aus.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "stand"
+      ]
+    },
+    "cm-f": {
+      "wunsch": "Heute kommen drei Dinge dazu: Kinderpreis, Sitzplan und Gutscheine.",
+      "grundprompt": "Bau Kinderpreis, Sitzplan und Gutscheine ein.",
+      "teile": [
+        {
+          "id": "schluss",
+          "art": "prompt",
+          "text": "Alles auf einmal. Gespeichert wird ganz am Schluss."
+        },
+        {
+          "id": "einzeln",
+          "art": "prompt",
+          "text": "Eins nach dem anderen."
+        },
+        {
+          "id": "jedes",
+          "art": "absicherung",
+          "text": "Nach jedem Teil, der funktioniert: ein Speicherpunkt."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "schluss"
+            ]
+          },
+          "fehlbild": "allesWeg"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "einzeln"
+            ]
+          },
+          "fehlbild": "knaeuel"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "jedes"
+            ]
+          },
+          "fehlbild": "allesWeg"
+        }
+      ],
+      "fehlbilder": {
+        "allesWeg": {
+          "texte": [
+            "Die Gutscheine machen alles kaputt. Zurück geht es nur zum Stand von gestern. Kinderpreis und Sitzplan sind auch weg.",
+            "Beim dritten Teil kracht es. Weil nie gespeichert wurde, beginnt der ganze Tag von vorn."
+          ],
+          "hinweis": "Ein Speicherpunkt nach jedem funktionierenden Teil hätte zwei von drei gerettet."
+        },
+        "knaeuel": {
+          "texte": [
+            "Kiwi baut alles gleichzeitig. Etwas geht nicht. Liegt es am Preis, am Sitzplan oder an den Gutscheinen? Niemand weiss es.",
+            "Drei Baustellen auf einmal: Der Fehler steckt irgendwo in 400 neuen Zeilen."
+          ],
+          "hinweis": "In kleinen Schritten siehst du sofort, welcher Schritt den Fehler brachte."
+        }
+      },
+      "erfolg": [
+        "Kinderpreis, Speicherpunkt. Sitzplan, Speicherpunkt. Bei den Gutscheinen hakt es: ein Schritt zurück, neuer Versuch, läuft."
+      ],
+      "loesung": [
+        "einzeln",
+        "jedes"
+      ]
+    },
+    "m9-a": {
+      "wunsch": "Kiwi soll eine neue Seite «Anfahrt» anlegen. Sauber abgelegt und so, dass wir zurückkönnen.",
+      "grundprompt": "Leg die neue Seite «Anfahrt» an.",
+      "teile": [
+        {
+          "id": "chaos",
+          "art": "prompt",
+          "text": "Leg sie ab, wo gerade Platz ist."
+        },
+        {
+          "id": "wo",
+          "art": "kontext",
+          "text": "Neue Seiten gehören in den Ordner seiten."
+        },
+        {
+          "id": "name",
+          "art": "prompt",
+          "text": "Nenn die Datei anfahrt.html."
+        },
+        {
+          "id": "punkt",
+          "art": "absicherung",
+          "text": "Setz vorher einen Speicherpunkt."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "chaos"
+            ]
+          },
+          "fehlbild": "verlegt"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "wo"
+            ]
+          },
+          "fehlbild": "verlegt"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "name"
+            ]
+          },
+          "fehlbild": "raetsel"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "punkt"
+            ]
+          },
+          "fehlbild": "keinZurueck"
+        }
+      ],
+      "fehlbilder": {
+        "verlegt": {
+          "texte": [
+            "Die Anfahrt liegt jetzt im Ordner bilder, zwischen Zelt und Clown. Der Link auf der Startseite führt ins Leere.",
+            "Kiwi legt die Seite im Ordner daten ab. Dort findet sie niemand."
+          ],
+          "hinweis": "Sag Kiwi, wo im Projekt etwas hingehört. Oder halte die Ordnung so klar, dass es offensichtlich ist."
+        },
+        "raetsel": {
+          "texte": [
+            "Die Seite liegt richtig. Sie heisst neu3.html.",
+            "Im Ordner seiten liegt jetzt seite_final.html. Welche Seite das ist, weiss in einem Monat niemand mehr."
+          ],
+          "hinweis": "Der Name muss sagen, was drin ist."
+        },
+        "keinZurueck": {
+          "texte": [
+            "Beim Anlegen überschreibt Kiwi versehentlich die Startseite. Einen Speicherpunkt gibt es nicht.",
+            "Die neue Seite ist da, die alte Navigation weg. Zurück kann niemand."
+          ],
+          "hinweis": "Vor einer Änderung am laufenden Projekt: zuerst ein Speicherpunkt."
+        }
+      },
+      "erfolg": [
+        "Speicherpunkt gesetzt, dann liegt seiten/anfahrt.html am richtigen Ort. Und der Weg zurück wäre offen."
+      ],
+      "loesung": [
+        "wo",
+        "name",
+        "punkt"
+      ]
+    },
+    "m9-b": {
+      "typ": "wahl",
+      "wunsch": "Der Ticket-Verkauf klemmt. Das Formular sieht gut aus, aber die Käufe kommen nie an.",
+      "frage": "Das Formular wird richtig angezeigt, aber Käufe werden nicht gespeichert. Wo sucht Kiwi zuerst?",
+      "kiwi": "Kiwi schaut ins Backend: Dort werden die Käufe nicht in die Datenbank geschrieben.",
+      "optionen": [
+        {
+          "id": "backend",
+          "text": "Im Backend, wo die Käufe gespeichert werden",
+          "hinweis": "Angezeigt wird richtig, gespeichert wird nicht. Also liegt der Fehler hinten, bei den Daten.",
+          "richtig": true
+        },
+        {
+          "id": "bilder",
+          "text": "Im Ordner bilder",
+          "hinweis": "Mit Bildern hat das Speichern von Käufen nichts zu tun."
+        },
+        {
+          "id": "farben",
+          "text": "Bei den Farben des Formulars",
+          "hinweis": "Das Formular sieht ja gut aus. Der Fehler liegt dahinter."
+        }
+      ],
+      "loesung": [
+        "backend"
+      ]
+    }
+  }
+}
