@@ -1,6 +1,6 @@
-# Testbogen: Probespiel «Bäckerei Brunner»
+# Testbogen: Probespiel Kapitel 1
 
-Für Version 0.2. Ziel: herausfinden, ob die Kernidee funktioniert, bevor weitere Inhalte entstehen.
+Für Version 0.3 (Aufträge «Bäckerei Brunner» und «Turnverein»). Für einen ersten Test genügt der erste Auftrag. Ziel: herausfinden, ob die Kernidee funktioniert, bevor weitere Inhalte entstehen.
 
 ## Wen und wie viele
 

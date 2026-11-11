@@ -12,17 +12,19 @@ Stand: 11. November 2026. Die Reihenfolge ist verbindlich, Termine gibt es bewus
 
 - **Phase 5, Erstes spielbares Stück:** Auftrag «Bäckerei Brunner» mit drei Runden und Mischrunde, Meisterschaft, Hilfen, Lexikon, Speichern. Testbogen in `TESTBOGEN.md`.
 
-## Als Nächstes: Testrunde (Schritt 6.1)
+- **Schritt 6.2 (Teil):** Zweiter Auftrag «Turnverein» mit Rolle und System-Prompt, mehrere Aufträge, Wiederholungen über Aufträge hinweg. Kapitel 1 ist damit komplett.
 
-Bevor weitere Inhalte entstehen, spielen mindestens zwei Jugendliche (12 bis 14) und zwei Erwachsene ohne Vorwissen den ersten Auftrag. Der Besitzer führt die Testrunde mit `TESTBOGEN.md` durch und bringt die Notizen zurück. Daraus entstehen die Änderungen für Version 0.3.
+## Offen und jederzeit nachholbar: Testrunde (Schritt 6.1)
+
+Am besten bevor Kapitel 2 entsteht, spielen mindestens zwei Jugendliche (12 bis 14) und zwei Erwachsene ohne Vorwissen den ersten Auftrag. Der Besitzer führt die Testrunde mit `TESTBOGEN.md` durch und bringt die Notizen zurück. Daraus entsteht eine Liste von Änderungen. Der Besitzer hat entschieden, vorerst ohne Testrunde weiterzubauen (E-022).
 
 ## Phase 6, Ausbau
 
 | Schritt | Inhalt |
 |---|---|
 | 6.1 | Testrunde mit zwei Jugendlichen und zwei Erwachsenen. Ergebnisse einarbeiten. |
-| 6.2 | Ergebnisse der Testrunde einarbeiten. Kapitel 1 fertig (zweiter Auftrag mit Rolle und System-Prompt), Wiederholungen über Aufträge hinweg, verschobene Punkte aus E-020. |
-| 6.3 | Tokens als Ressource, Kapitel 2. |
+| 6.2 | Rest: Ergebnisse der Testrunde einarbeiten, verschobene Punkte aus E-020. |
+| 6.3 | **Als Nächstes:** Kapitel 2 «Wie die KI tickt». Neue Werkstatt-Teile (Sichtfenster in Kiwi, Token-Zähler, Kontextfenster als Tischfläche), Tokens als Ressource, fünf Konzepte in zwei Aufträgen. Braucht neue Übungsformen (Vorhersagen, Sortieren) und ist deutlich grösser als Schritt 6.2. |
 | 6.4 | Schnelltest für Leute mit Vorwissen, Vorher-Nachher-Fragen. |
 | 6.5 | Kapitel 3 und 4. |
 | 6.6 | Kapitel 5 und 6, Abschlussauftrag. |

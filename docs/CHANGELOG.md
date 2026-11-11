@@ -2,6 +2,21 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.3.0, 11. November 2026: Kapitel 1 komplett
+
+**Neu**
+- Zweiter Auftrag «Turnverein Flinke Füchse»: Der Verein will den Chat-Helfer Turni. Eine Runde zum vierten Kernkonzept «Rolle und System-Prompt» und eine Mischrunde mit allen vier Konzepten.
+- Die Werkbank zeigt bei diesen Aufgaben zwei Felder: den System-Prompt (gilt für jede Nachricht) und die Nachricht eines Mitglieds.
+- Neues Fehlbild «dauerhaft»: Was einmalig ist und trotzdem im System-Prompt landet, wiederholt Kiwi für immer.
+- Mehrere Aufträge hintereinander. Nach einem erledigten Auftrag klopft der nächste Kunde an.
+- Wiederholungen wandern von Auftrag zu Auftrag mit.
+- Aufträge können Lexikon-Begriffe mitbringen, die nicht abgeprüft werden (hier: Chatbot).
+- 8 neue Aufgaben mit 34 Fehlbildern. Insgesamt 28 Aufgaben, 114 Fehlbilder, 6 Lexikon-Einträge, 26 Tests.
+
+**Bekannte Grenzen**
+- Weiterhin nicht mit echten Spielern getestet (E-022).
+- Läuft noch nicht ohne Internet.
+
 ## 0.2.0, 11. November 2026: Erster spielbarer Auftrag
 
 **Neu**

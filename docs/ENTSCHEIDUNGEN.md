@@ -91,6 +91,20 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** Diese Punkte aus `GAME_DESIGN.md` sind in Version 0.2 bewusst noch nicht gebaut: Bonus-Ereignisse während des Auftrags (es gibt eine Überraschung am Schluss), weniger Vorgaben in der Lücke für starke Spieler, Spielstand als Datei sichern, gezeichnete Studio-Ansicht.
 **Grund:** Sie sind für die Frage «Funktioniert die Kernidee?» nicht nötig. Zuerst kommt die Testrunde mit echten Spielern.
 
+## 2026-11-11, Phase 6 (Ausbau)
+
+### E-021: System-Prompt als eigenes Feld der Werkbank
+**Entscheid:** Textteile der Art `rolle` bilden den System-Prompt, der getrennt vom Prompt angezeigt wird. In der Runde «Rolle und System-Prompt» ist die Nachricht eines Mitglieds vorgegeben, der Spieler baut nur den System-Prompt. Einmaliges im System-Prompt führt zum Fehlbild «Kiwi wiederholt es für immer».
+**Grund:** So entspricht die Mechanik der echten Trennung zwischen dauerhafter Anweisung und einzelner Nachricht (Leitlinie B1). Die offizielle Dokumentation empfiehlt, die Rolle im System-Prompt zu setzen.
+
+### E-022: Weiterbauen ohne Testrunde
+**Entscheid:** Auf Wunsch des Besitzers wird vorerst ohne Testrunde mit echten Spielern weitergebaut. Die Testrunde bleibt offen und empfohlen, bevor Kapitel 2 fertig ist.
+**Grund:** Entscheid des Besitzers. Risiko: Fällt die Kernidee im Test durch, müssen mehr Inhalte umgeschrieben werden.
+
+### E-023: Aufträge in fester Reihenfolge
+**Entscheid:** Aufträge werden nacheinander gespielt, in der Reihenfolge aus `lader.js`. Die Wahl zwischen zwei Aufträgen (GAME_DESIGN, Abschnitt 9) kommt frühestens in Kapitel 2.
+**Grund:** Jeder Auftrag führt neue Konzepte ein, die auf den vorherigen aufbauen. Eine Wahl braucht doppelte Inhalte.
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.

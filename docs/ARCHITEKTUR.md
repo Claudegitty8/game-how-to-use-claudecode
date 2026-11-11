@@ -82,11 +82,12 @@ Weil die Logik weder Browser noch Oberfläche kennt, lässt sie sich automatisch
 
 **`<sprache>/lexikon.json`:** pro Eintrag `begriff`, `englisch`, `erklaerung`, `kern` (Kernkonzept oder leer) und wahlweise `quatsch` und `genauer`.
 
-**`<sprache>/auftraege/<id>.json`:** ein Auftrag.
+**`<sprache>/auftraege/<id>.json`:** ein Auftrag. Die Spielreihenfolge der Aufträge steht in `spiel/code/inhalte/lader.js`.
 
 | Feld | Bedeutung |
 |---|---|
 | `kunde`, `wunsch`, `kundenstimme`, `ueberraschung` | Rahmen des Auftrags |
+| `lexikon` | wahlweise: Lexikon-Begriffe, die beim Annehmen des Auftrags freigeschaltet und nicht abgeprüft werden |
 | `runden` | Liste der Runden in Spielreihenfolge |
 | `aufgaben` | alle Aufgaben des Auftrags, nach Kennung |
 
@@ -98,7 +99,8 @@ Eine **Aufgabe**:
 |---|---|
 | `wunsch` | was die Kundin in dieser Situation will |
 | `grundprompt` | womit der Spieler startet |
-| `teile` | wählbare Textteile mit `id`, `art` (`prompt`, `kontext` oder `beispiel`) und `text` |
+| `teile` | wählbare Textteile mit `id`, `art` (`rolle`, `prompt`, `kontext` oder `beispiel`) und `text`. Teile der Art `rolle` bilden den System-Prompt, alle anderen den Prompt. |
+| `nachrichtVon` | wahlweise: Beschriftung des Prompt-Felds, wenn die Nachricht von jemand anderem stammt (z. B. «Nachricht eines Kindes») |
 | `pruefungen` | geordnete Liste. Die erste zutreffende bestimmt das Fehlbild. |
 | `fehlbilder` | pro Fehlbild mindestens zwei `texte` (Varianten von KI-Quatsch) und ein `hinweis` |
 | `erfolg` | Ergebnistexte, wenn keine Prüfung zutrifft |
