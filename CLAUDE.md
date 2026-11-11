@@ -9,6 +9,7 @@ Lernspiel, in dem man spielerisch lernt, mit KI Spiele und Apps zu bauen. Zielgr
 - `docs/GAME_DESIGN.md`: Kernschleife, Werkstatt, Runden, erster Auftrag.
 - `docs/ARCHITEKTUR.md`: Technik, Ordner, Datenformate.
 - `docs/ROADMAP.md`: was als Nächstes kommt.
+- `docs/TESTBOGEN.md`: Anleitung und Fragen für Probespiele.
 - `docs/ENTSCHEIDUNGEN.md`: alle Entscheide mit Begründung.
 - `docs/MASTER_PROMPT_V2.md`: der vollständige Auftrag mit Phasen.
 

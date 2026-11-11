@@ -74,7 +74,8 @@ Kiwis Verhalten im simulierten Modus folgt festen Regeln, die als Daten abgelegt
 ## 6. Feedback und Hilfen
 
 - **Sofort:** Nach jedem Test erscheint das Ergebnis und ein Satz «Das ist passiert, weil …».
-- **Drei Hilfestufen auf Wunsch:** Hinweis auf den Bereich, Hinweis auf den Steckplatz, Lösung zeigen. Eine gezeigte Lösung zählt nicht als freier Erfolg, es folgt eine neue Situation.
+- **Drei Hilfestufen auf Wunsch:** allgemeiner Tipp, Hinweis auf ein bestimmtes Teil, Lösung zeigen. Der Tipp ist frei. Ab der zweiten Stufe zählt die Situation nicht für die Meisterschaft und kommt später nochmals (E-017).
+- **Erster Versuch zählt:** Für die Meisterschaft zählt eine freie Situation nur, wenn sie beim ersten Test richtig ist. Wer danebenliegt, darf weiterprobieren und den Quatsch geniessen, die Situation kommt später nochmals (E-017).
 - **Anpassung:** Wer zweimal hintereinander scheitert, bekommt automatisch die erste Hilfestufe angeboten. Wer alles auf Anhieb löst, bekommt in der Lücken-Stufe weniger Vorgaben.
 - **Schnelltest:** Zu Beginn jedes Kapitels kann man «Das kann ich schon» wählen. Wer drei freie Aufgaben pro Konzept besteht, überspringt die Einführung. Das Lexikon wird trotzdem gefüllt.
 

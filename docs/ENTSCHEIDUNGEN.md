@@ -69,8 +69,31 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** Alle Dokumente liegen ab jetzt in `docs/` im GitHub-Repository. Dort wird geändert. Kopien im Claude-Projekt «Spielerisch Lernen» dienen nur zum Nachlesen und werden bei Bedarf nachgeführt.
 **Grund:** Jede Information nur an einem Ort. Claude Code liest die Dokumente aus dem Repository.
 
+## 2026-11-11, Phase 5 (Erstes spielbares Stück)
+
+### E-016: Neues Aufgabenformat, Kostprobe entfernt
+**Entscheid:** Aufgaben haben jetzt Textteile mit einer Art (Prompt, Kontext, Beispiel) und eine geordnete Liste von Prüfungen statt «nötiger Zutaten». Die Kostprobe aus Phase 4 (`de/demo.json`, `oberflaeche/startseite.js`) ist gelöscht und durch den Auftrag «Bäckerei Brunner» ersetzt.
+**Grund:** Das alte Format konnte nur «etwas fehlt» ausdrücken. Für echtes KI-Verhalten braucht es auch «etwas Schädliches ist dabei» (vage Wörter, unwichtiger Kontext, unpassendes Beispiel) und «zu wenige Beispiele».
+
+### E-017: Was für die Meisterschaft zählt
+**Entscheid:** Eine freie Situation zählt nur, wenn sie beim ersten Test richtig ist und höchstens die erste Hilfestufe (allgemeiner Tipp) benutzt wurde. Alles andere kostet nichts, die Situation kommt später nochmals.
+**Grund:** Nach einem Fehlversuch verrät der Hinweis fast die Lösung. Würde der zweite Versuch zählen, wäre «selbstständig richtig» nicht mehr erfüllt. Gleichzeitig soll Weiterprobieren erlaubt bleiben, weil der Quatsch der Spass ist.
+
+### E-018: Vier freie Situationen pro Konzept
+**Entscheid:** Jede Konzept-Runde hat mindestens vier freie Situationen. Drei müssen gezählt gelöst werden. Die übrige dient später als Wiederholung.
+**Grund:** So gibt es nach einem Fehlversuch eine andere Situation, und die Wiederholung zeigt etwas, das der Spieler noch nicht gelöst hat.
+
+### E-019: Aufträge enthalten Struktur und Text in einer Datei
+**Entscheid:** Ein Auftrag liegt als eine Datei pro Sprache vor (`de/auftraege/baeckerei.json`), mit Ablauf und Texten zusammen.
+**Grund:** Fehlbilder, Textteile und Prüfungen hängen eng zusammen und lassen sich so gemeinsam schreiben und prüfen. Für eine weitere Sprache wird die ganze Datei übersetzt.
+
+### E-020: Verschoben auf später
+**Entscheid:** Diese Punkte aus `GAME_DESIGN.md` sind in Version 0.2 bewusst noch nicht gebaut: Bonus-Ereignisse während des Auftrags (es gibt eine Überraschung am Schluss), weniger Vorgaben in der Lücke für starke Spieler, Spielstand als Datei sichern, gezeichnete Studio-Ansicht.
+**Grund:** Sie sind für die Frage «Funktioniert die Kernidee?» nicht nötig. Zuerst kommt die Testrunde mit echten Spielern.
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.
 - Für den API-Schlüssel im Echt-Modus gilt vorläufig der Vorschlag «Weg A» aus `ARCHITEKTUR.md`, Abschnitt 8. Entscheid in Phase 6.
 - Die Hüllen für Desktop und iOS sind noch nicht geprüft.
+- Das Fehlbild «Mit nur einem Beispiel kopiert die KI es» ist in der offiziellen Dokumentation nur sinngemäss belegt (Beispiele sollen sich genug unterscheiden, damit keine ungewollten Muster übernommen werden).

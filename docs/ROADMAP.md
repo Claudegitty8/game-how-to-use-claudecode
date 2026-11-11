@@ -10,28 +10,18 @@ Stand: 11. November 2026. Die Reihenfolge ist verbindlich, Termine gibt es bewus
 - **Phase 3, Prompt-Prüfung:** `MASTER_PROMPT_V2.md`.
 - **Phase 4, Fundament:** Technik, Ordner, Architektur, leere App mit Kostprobe, Tests, Inhaltsprüfung.
 
-## Als Nächstes: Phase 5, erstes spielbares Stück
+- **Phase 5, Erstes spielbares Stück:** Auftrag «Bäckerei Brunner» mit drei Runden und Mischrunde, Meisterschaft, Hilfen, Lexikon, Speichern. Testbogen in `TESTBOGEN.md`.
 
-Der Auftrag «Bäckerei Brunner» (siehe `GAME_DESIGN.md`, Abschnitt 15).
+## Als Nächstes: Testrunde (Schritt 6.1)
 
-1. Datenformat für Aufträge, Runden und die fünf Schritte erweitern.
-2. Runde 1 «Prompt»: Probieren, Aha, Beispiel, Lücke, drei freie Situationen.
-3. Meisterschaftsanzeige und Hilfestufen.
-4. Runde 2 «Kontext geben» und Runde 3 «Beispiele geben».
-5. Mischrunde.
-6. Lexikon mit den ersten Einträgen.
-7. Studio-Ansicht «Garage» und Auftragswand.
-8. Speichern nach jedem Schritt, Spielstand löschen.
-9. Testbogen für Probespiele.
+Bevor weitere Inhalte entstehen, spielen mindestens zwei Jugendliche (12 bis 14) und zwei Erwachsene ohne Vorwissen den ersten Auftrag. Der Besitzer führt die Testrunde mit `TESTBOGEN.md` durch und bringt die Notizen zurück. Daraus entstehen die Änderungen für Version 0.3.
 
-**Fertig, wenn:** Der Auftrag am Handy durchspielbar ist, alle Prüfungen bestehen und der Testbogen bereitliegt.
-
-## Danach: Phase 6, Ausbau
+## Phase 6, Ausbau
 
 | Schritt | Inhalt |
 |---|---|
 | 6.1 | Testrunde mit zwei Jugendlichen und zwei Erwachsenen. Ergebnisse einarbeiten. |
-| 6.2 | Kapitel 1 fertig (Rolle und System-Prompt), Wiederholungen über Aufträge hinweg. |
+| 6.2 | Ergebnisse der Testrunde einarbeiten. Kapitel 1 fertig (zweiter Auftrag mit Rolle und System-Prompt), Wiederholungen über Aufträge hinweg, verschobene Punkte aus E-020. |
 | 6.3 | Tokens als Ressource, Kapitel 2. |
 | 6.4 | Schnelltest für Leute mit Vorwissen, Vorher-Nachher-Fragen. |
 | 6.5 | Kapitel 3 und 4. |

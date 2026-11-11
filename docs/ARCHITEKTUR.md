@@ -1,6 +1,6 @@
 # Architektur: Lernspiel «KI-Studio»
 
-Stand: 11. November 2026 (Phase 4). Dieses Dokument erklärt, womit und wie das Spiel gebaut ist.
+Stand: 11. November 2026 (Phase 5). Dieses Dokument erklärt, womit und wie das Spiel gebaut ist.
 
 ## 1. Technikwahl
 
@@ -33,18 +33,28 @@ spiel/
   index.html              Einstiegsseite
   stil/haupt.css          Aussehen
   code/
-    start.js              verbindet die Teile
-    logik/                SPIELLOGIK: Regeln, Bewertung, Meisterschaft
+    start.js              verbindet die Teile und schaltet zwischen Ansichten um
+    logik/                SPIELLOGIK
+      ablauf.js             wo der Spieler steht und was als Nächstes kommt
+      meisterschaft.js      Meisterschaftsregel und Wiederholungsabstände
+      bewertung.js          prüft eine gebaute Lösung, wählt das Fehlbild
+      prompt.js             setzt den Prompt aus den gewählten Teilen zusammen
     ki/                   KI-Schnittstelle: simuliert, später echt
-    oberflaeche/          OBERFLÄCHE: was man sieht und antippt
+    oberflaeche/          OBERFLÄCHE
+      studio.js             Startbildschirm «Die Garage»
+      runde.js              die fünf Schritte, Mischrunde, Wiederholung
+      werkbank.js           Prompt aus Textteilen zusammenstecken
+      lexikon.js            Lexikon und Einstellungen
+      bausteine.js          kleine Helfer (Knöpfe, Punkte, Kiwi)
     speicher/             Spielstand auf dem Gerät
     inhalte/              lädt die Lerninhalte
   inhalte/                LERNINHALTE als Daten
     regeln.json           einstellbare Zahlen (z. B. 3 Erfolge)
     lehrplan.json         Kapitel, Konzepte, Voraussetzungen
     fakten.json           schnell veraltende Angaben mit Quelle und Datum
-    de/texte.json         alle sichtbaren Texte auf Deutsch
-    de/demo.json          Kostprobe einer Aufgabe
+    de/texte.json         Texte der Oberfläche, pro Konzept Name, Merkbild, Aha, Tipp
+    de/lexikon.json       Lexikon-Einträge
+    de/auftraege/         ein Auftrag pro Datei
 tests/                    automatische Tests
 werkzeuge/                Inhaltsprüfung, lokaler Server
 docs/                     Dokumente
@@ -56,11 +66,11 @@ docs/                     Dokumente
 |---|---|---|
 | `logik/` | nichts ausser eigenen Dateien | Oberfläche, Browser, Texte |
 | `ki/` | `logik/` | Oberfläche |
-| `speicher/`, `inhalte/` | Browser | Spielregeln |
-| `oberflaeche/` | bekommt alles übergeben | Spielregeln oder feste Texte enthalten |
+| `speicher/`, `inhalte/` | Browser, `logik/ablauf.js` für den leeren Stand | Spielregeln |
+| `oberflaeche/` | ruft `logik/` auf, bekommt Inhalte übergeben | Spielregeln oder feste Texte enthalten |
 | `start.js` | alles | – |
 
-Weil die Logik weder Browser noch Oberfläche kennt, lässt sie sich automatisch testen.
+Weil die Logik weder Browser noch Oberfläche kennt, lässt sie sich automatisch testen. Der Spielstand wird nie verändert, jede Funktion gibt einen neuen Stand zurück.
 
 ## 4. Datenformate der Lerninhalte
 
@@ -68,21 +78,35 @@ Weil die Logik weder Browser noch Oberfläche kennt, lässt sie sich automatisch
 
 **`lehrplan.json`:** Liste der Kapitel und der Konzepte. Jedes Konzept hat eine `id`, sein `kapitel` und `braucht` (Konzepte, die vorher gemeistert sein müssen). Die Reihenfolge der Liste ist die Lernreihenfolge. Diese Datei ist sprachneutral.
 
-**`<sprache>/texte.json`:** Texte der Oberfläche (`app`), Namen der Kapitel und pro Konzept `name` und `analogie`.
+**`<sprache>/texte.json`:** Texte der Oberfläche (`app`), Namen der Kapitel und pro Konzept `name` und `analogie`. Konzepte, die schon spielbar sind, haben zusätzlich `aha` (ein bis drei Sätze) und `tipp` (Hilfestufe 1).
 
-**Aufgabe** (heute `de/demo.json`, in Phase 5 ein Ordner pro Auftrag):
+**`<sprache>/lexikon.json`:** pro Eintrag `begriff`, `englisch`, `erklaerung`, `kern` (Kernkonzept oder leer) und wahlweise `quatsch` und `genauer`.
+
+**`<sprache>/auftraege/<id>.json`:** ein Auftrag.
 
 | Feld | Bedeutung |
 |---|---|
+| `kunde`, `wunsch`, `kundenstimme`, `ueberraschung` | Rahmen des Auftrags |
+| `runden` | Liste der Runden in Spielreihenfolge |
+| `aufgaben` | alle Aufgaben des Auftrags, nach Kennung |
+
+Eine **Konzept-Runde** (`art: "konzept"`) nennt ihr `konzept` und die Aufgaben für die Schritte: `probieren` (mit `nurTeile`: nur diese Teile sind sichtbar), `beispiel`, `luecke` (mit `vorgabe`: diese Teile stecken schon) und `frei` (mindestens vier Situationen). Das Aha kommt aus `texte.json`. Eine **Mischrunde** (`art: "misch"`) hat nur `titel` und `frei`.
+
+Eine **Aufgabe**:
+
+| Feld | Bedeutung |
+|---|---|
+| `wunsch` | was die Kundin in dieser Situation will |
 | `grundprompt` | womit der Spieler startet |
-| `zutaten` | wählbare Bausteine mit `id`, `name`, `text`. Reihenfolge = Wichtigkeit. `noetig: false` für plausible, aber unnötige Bausteine. |
-| `fehlbilder` | pro nötiger Zutat mindestens zwei Varianten von KI-Quatsch |
-| `hinweise` | pro nötiger Zutat ein Satz, der den Zusammenhang erklärt |
-| `erfolg` | Ergebnistexte, wenn alles Nötige da ist |
+| `teile` | wählbare Textteile mit `id`, `art` (`prompt`, `kontext` oder `beispiel`) und `text` |
+| `pruefungen` | geordnete Liste. Die erste zutreffende bestimmt das Fehlbild. |
+| `fehlbilder` | pro Fehlbild mindestens zwei `texte` (Varianten von KI-Quatsch) und ein `hinweis` |
+| `erfolg` | Ergebnistexte, wenn keine Prüfung zutrifft |
+| `loesung` | eine richtige Auswahl, für «Beispiel» und «Lösung zeigen» |
+
+Eine **Prüfung** trifft zu, wenn eines davon gilt: `gewaehlt` (eines dieser Teile ist angesteckt, z. B. ein vages), `fehlt` (eines dieser Teile fehlt), `aus` mit `hoechstens` (höchstens so viele Teile aus der Liste sind angesteckt, z. B. nur ein Beispiel). Der Platzhalter `{teil}` in einem Fehlbild wird durch das eine gewählte Beispiel ersetzt.
 
 **`fakten.json`:** Jeder Eintrag hat `id`, `aussage`, `quelle` (offizielle Seite) und `geprueft` (Datum).
-
-Das Format wird in Phase 5 erweitert (Runden, fünf Schritte, mehrere Situationen, Lexikon).
 
 ## 5. Die KI-Schnittstelle
 
@@ -90,24 +114,24 @@ Beide KI-Modi erfüllen denselben Vertrag (`spiel/code/ki/schnittstelle.js`):
 
 ```
 ki.antworte({ aufgabe, auswahl, versuch })
-  → { text, ok, luecke, tokens: { eingabe, ausgabe }, modus }
+  → { text, ok, fehlbild, hinweis, tokens: { eingabe, ausgabe }, modus }
 ```
 
-- **Simuliert** (`simuliert.js`): fragt die Spiellogik, was fehlt, und wählt das passende Fehlbild aus den Daten.
-- **Echt** (noch nicht gebaut): schickt denselben Aufbau an Claude und zeigt die Antwort.
+- **Simuliert** (`simuliert.js`): fragt die Spiellogik, welche Prüfung zutrifft, und wählt eine Variante des passenden Fehlbilds. Beim nächsten Versuch kommt eine andere Variante.
+- **Echt** (noch nicht gebaut): schickt denselben Prompt an Claude und zeigt die Antwort.
 
 Bewertet wird immer in `logik/bewertung.js`, nie von der echten KI. So bleibt der Lernfortschritt in beiden Modi gleich.
 
 ## 6. Spielstand
 
-Der Spielstand liegt im Speicher des Browsers auf dem Gerät (`localStorage`). Es gibt kein Konto und keine Übertragung. Erlaubt ein Gerät kein Speichern, läuft das Spiel mit einem Stand im Arbeitsspeicher weiter. Der Stand trägt eine Versionsnummer, damit spätere Änderungen alte Stände umwandeln können.
+Der Spielstand liegt im Speicher des Browsers auf dem Gerät (`localStorage`). Es gibt kein Konto und keine Übertragung. Erlaubt ein Gerät kein Speichern, läuft das Spiel mit einem Stand im Arbeitsspeicher weiter. Der Stand trägt eine Versionsnummer (aktuell 2). Stände älterer Versionen werden vorerst verworfen. Vor der Veröffentlichung braucht es eine Umwandlung, damit niemand Fortschritt verliert. In den Einstellungen lässt sich der Stand löschen.
 
 ## 7. Automatische Prüfungen
 
 | Prüfung | Befehl | Was sie sichert |
 |---|---|---|
-| Tests | `npm test` | Meisterschaftsregel, Wiederholung, Bewertung, simulierte KI, Speicher |
-| Inhaltsprüfung | `npm run inhalte` | Jedes Konzept hat Name und Analogie. Voraussetzungen kommen vorher. Jede Zutat hat Fehlbilder und Hinweis. Jeder Fakt hat Quelle und Datum. |
+| Tests | `npm test` | Meisterschaftsregel, Wiederholung, Bewertung, Spielablauf (ganzer Auftrag wird durchgespielt), simulierte KI, Speicher |
+| Inhaltsprüfung | `npm run inhalte` | Jede Runde hat alle fünf Schritte. Probieren ergibt immer Quatsch. Jede Lösung besteht, ein leerer Prompt nie. Jedes Fehlbild hat zwei Varianten und einen Hinweis. Kein Text über 40 Wörter. Jeder Fakt hat Quelle und Datum. |
 | Beides | `npm run pruefen` | vor jedem Commit |
 
 ## 8. Vorschlag: API-Schlüssel für den Echt-Modus
