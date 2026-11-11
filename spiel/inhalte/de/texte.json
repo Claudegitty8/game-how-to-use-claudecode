@@ -1,55 +1,247 @@
 {
   "app": {
     "titel": "KI-Studio",
-    "untertitel": "Fundament steht. Hier siehst du eine erste Kostprobe der Werkstatt.",
-    "auftragEtikett": "Auftrag",
-    "werkbankEtikett": "Dein Prompt",
-    "bausteinHilfe": "Tippe Bausteine an, um sie anzustecken oder wegzunehmen.",
-    "los": "Kiwi, los!",
+    "studioName": "Die Garage",
     "kiwiName": "Kiwi, die KI im Studio",
-    "kiwiBereit": "Ich bin bereit. Sag mir, was ich bauen soll!",
+    "kiwiNeu": "Hallo! Ich bin Kiwi, die KI in deinem Studio. Ich mache genau, was du sagst. Wirklich ganz genau.",
+    "kiwiLaeuft": "Unser Auftrag wartet. Bauen wir weiter?",
+    "kiwiFertig": "Auftrag erledigt! Die Garage ist bereit für mehr.",
+    "auftragEtikett": "Auftrag",
+    "auftragAnnehmen": "Auftrag annehmen",
+    "weiterBauen": "Weiter bauen",
+    "mehrFolgt": "Weitere Aufträge folgen bald.",
+    "rundeEtikett": "Runde {nr} von {anzahl}",
+    "meisterschaftEtikett": "Deine Meisterschaft",
+    "punkteLabel": "{erfolge} von {noetig} gemeistert",
+    "wandEtikett": "Auftragswand",
+    "wandLeer": "Hier hängen bald deine erledigten Aufträge.",
+    "lexikonKnopf": "Lexikon ({anzahl})",
+    "einstellungenKnopf": "Einstellungen",
+    "zurueck": "‹ Studio",
+    "schritt": {
+      "probieren": "Probieren",
+      "aha": "Aha!",
+      "beispiel": "Beispiel",
+      "luecke": "Lücke",
+      "frei": "Frei",
+      "wiederholung": "Übrigens …",
+      "misch": "Alles zusammen"
+    },
+    "schrittHilfe": {
+      "probieren": "Bau einen Prompt und schau, was Kiwi daraus macht. Hier kann nichts schiefgehen.",
+      "beispiel": "So sieht ein guter Prompt aus. Drück auf «Kiwi, los!».",
+      "luecke": "Ein Teil steht schon. Ergänze, was noch fehlt.",
+      "frei": "Jetzt ohne Hilfe. Lies den Wunsch genau.",
+      "misch": "Hier brauchst du alles, was du gelernt hast.",
+      "wiederholung": "Eine Frage zu früher. Du hast einen Versuch."
+    },
+    "promptEtikett": "Dein Prompt",
+    "teileHilfe": "Tippe Textteile an, um sie anzustecken oder wegzunehmen.",
+    "art": {
+      "prompt": "Was und wie",
+      "kontext": "Hintergrund",
+      "beispiel": "Beispiele"
+    },
+    "beispielVorsatz": "Beispiele:",
+    "los": "Kiwi, los!",
+    "kiwiBereit": "Ich bin bereit.",
     "gelungen": "Genau so. Kiwi wusste alles, was nötig war.",
-    "checkEtikett": "Fundament-Check",
-    "checkInhalte": "Lerninhalte geladen: {konzepte} Kernkonzepte in {kapitel} Kapiteln.",
-    "checkSpeicher": "Spielstand wird auf diesem Gerät gespeichert. Das ist dein Besuch Nr. {besuche}.",
-    "checkSpeicherAus": "Dieses Gerät erlaubt kein Speichern. Das Spiel läuft trotzdem.",
-    "checkKi": "KI-Modus: {modus}. Kein Konto, keine Kosten.",
-    "planEtikett": "Was dich erwartet",
-    "konzeptAnzahl": "Konzepte: {anzahl}",
-    "fuss": "KI-Studio, Version 0.1 (Fundament)"
+    "wasPassiert": "Was ist da passiert?",
+    "ahaWeiter": "Zeig mir ein Beispiel",
+    "beispielWeiter": "Jetzt du",
+    "weiter": "Weiter",
+    "naechste": "Nächste Situation",
+    "andere": "Andere Situation",
+    "gezaehlt": "Das zählt für die Meisterschaft!",
+    "nichtGezaehlt": "Gelöst! Für die Meisterschaft zählt nur der erste Versuch ohne Hilfe. Diese Situation kommt später nochmals.",
+    "nochmal": "Ändere deinen Prompt und versuch es nochmals. Oder nimm eine andere Situation.",
+    "nochmalMisch": "Ändere deinen Prompt und versuch es nochmals.",
+    "hilfe": [
+      "Tipp",
+      "Zeig mir, wo",
+      "Lösung zeigen"
+    ],
+    "hilfeAngebot": "Zweimal daneben ist ganz normal. Magst du einen Tipp?",
+    "hilfeZuviel": "Brauchst du diesen Teil wirklich?",
+    "hilfeFehlt": "Schau dir diesen Teil an.",
+    "hilfeLoesung": "Das ist eine mögliche Lösung. Sie zählt nicht für die Meisterschaft.",
+    "tippMisch": "Geh die drei Gruppen einzeln durch: Was und wie, Hintergrund, Beispiele.",
+    "ahaAnalogie": "Merkbild",
+    "ahaLexikon": "Neu im Lexikon: {begriff}",
+    "wiederholungGut": "Du hast es noch drauf!",
+    "wiederholungSchlecht": "Kein Problem. Das üben wir bald nochmals.",
+    "rundeFertigTitel": "Gemeistert: {konzept}",
+    "rundeFertigText": "Dreimal ohne Hilfe richtig. Das sitzt.",
+    "pause": "Gute Stelle für eine Pause. Dein Stand ist gespeichert.",
+    "zumStudio": "Zurück ins Studio",
+    "auftragFertigTitel": "Auftrag erledigt!",
+    "kundenstimmeEtikett": "Das sagt die Kundin",
+    "ueberraschungEtikett": "Überraschung",
+    "situationZaehler": "Aufgabe {nr} von {anzahl}",
+    "lexikonTitel": "Lexikon",
+    "lexikonOffen": "Noch {anzahl} Kernbegriffe zu entdecken.",
+    "lexEnglisch": "Englisch",
+    "lexAnalogie": "Merkbild",
+    "lexQuatsch": "Kiwis Quatsch dazu",
+    "lexGenauer": "Genauer gesagt",
+    "einstellungenTitel": "Einstellungen",
+    "schriftEtikett": "Schriftgrösse",
+    "schrift": {
+      "normal": "Normal",
+      "gross": "Gross",
+      "sehrgross": "Sehr gross"
+    },
+    "standEtikett": "Spielstand",
+    "standInfo": "Dein Spielstand bleibt auf diesem Gerät. Es gibt kein Konto.",
+    "standInfoAus": "Dieses Gerät erlaubt kein Speichern. Dein Fortschritt gilt nur, solange die Seite offen ist.",
+    "loeschen": "Spielstand löschen",
+    "loeschenFrage": "Wirklich alles löschen? Das lässt sich nicht rückgängig machen.",
+    "loeschenJa": "Ja, löschen",
+    "loeschenNein": "Abbrechen",
+    "kiEtikett": "KI im Spiel",
+    "kiInfo": "Kiwi ist eine simulierte KI. Sie braucht kein Konto, kostet nichts und antwortet nach festen Regeln.",
+    "fuss": "KI-Studio, Version 0.2"
   },
   "kapitel": {
-    "1": { "name": "Die Garage", "thema": "Mit KI sprechen" },
-    "2": { "name": "Wie die KI tickt", "thema": "Grundlagen" },
-    "3": { "name": "Kiwi bekommt Hände", "thema": "KI handelt" },
-    "4": { "name": "Das Studio vernetzt sich", "thema": "Anbindung" },
-    "5": { "name": "Echte Software", "thema": "Grundwissen" },
-    "6": { "name": "Sicher unterwegs", "thema": "Verantwortung" }
+    "1": {
+      "name": "Die Garage",
+      "thema": "Mit KI sprechen"
+    },
+    "2": {
+      "name": "Wie die KI tickt",
+      "thema": "Grundlagen"
+    },
+    "3": {
+      "name": "Kiwi bekommt Hände",
+      "thema": "KI handelt"
+    },
+    "4": {
+      "name": "Das Studio vernetzt sich",
+      "thema": "Anbindung"
+    },
+    "5": {
+      "name": "Echte Software",
+      "thema": "Grundwissen"
+    },
+    "6": {
+      "name": "Sicher unterwegs",
+      "thema": "Verantwortung"
+    }
   },
   "konzepte": {
-    "prompt": { "name": "Prompt", "analogie": "Eine Bestellung im Restaurant. «Etwas zu essen» ergibt irgendetwas." },
-    "kontext": { "name": "Kontext geben", "analogie": "Eine neue Mitarbeiterin am ersten Tag. Klug, aber sie kennt den Laden nicht." },
-    "beispiele": { "name": "Beispiele geben", "analogie": "Dem Coiffeur ein Foto zeigen." },
-    "rolle": { "name": "Rolle und System-Prompt", "analogie": "Stellenbeschreibung und Hausordnung." },
-    "wahrscheinlichkeit": { "name": "Wahrscheinlichkeit statt Wissen", "analogie": "Die Wortvorschläge der Handy-Tastatur, nur viel stärker." },
-    "halluzination": { "name": "Halluzination und Prüfen", "analogie": "Ein Schüler, der lieber etwas erfindet, als ein Feld leer zu lassen." },
-    "token": { "name": "Token", "analogie": "Lego-Steine. Text wird aus kleinen Steinen gebaut, und man zahlt pro Stein." },
-    "kontextfenster": { "name": "Kontextfenster", "analogie": "Ein Schreibtisch. Was nicht drauf passt, fällt herunter." },
-    "wissensstand": { "name": "Wissensstand", "analogie": "Ein Lexikon, das an einem bestimmten Tag gedruckt wurde." },
-    "tool": { "name": "Tool", "analogie": "Eine Köchin ohne Küche kann nur Rezepte aufsagen." },
-    "agentenschleife": { "name": "Agent und Agentenschleife", "analogie": "Kochen und abschmecken: nachschauen, kochen, probieren, nachwürzen." },
-    "pruefschleife": { "name": "Prüfschleife", "analogie": "Die Zielflagge beim Rennen." },
-    "berechtigungen": { "name": "Berechtigungen", "analogie": "Der Schlüsselbund für eine Praktikantin: nicht jeder Raum am ersten Tag." },
-    "planen": { "name": "Planen vor Bauen", "analogie": "Der Bauplan vor dem Hausbau." },
-    "subagent": { "name": "Subagent", "analogie": "Eine Kollegin ins Archiv schicken. Sie bringt die Antwort, nicht alle Ordner." },
-    "api": { "name": "API", "analogie": "Der Schalter am Postamt: Formular rein, Antwort raus." },
-    "api-schluessel": { "name": "API-Schlüssel und Geheimnisse", "analogie": "Die Kreditkarte. Wer sie hat, kauft auf deine Rechnung." },
-    "connector": { "name": "Connector und MCP", "analogie": "USB-C: ein Stecker für viele Geräte." },
-    "skill": { "name": "Skill", "analogie": "Eine Rezeptkarte im Karteikasten." },
-    "projekt": { "name": "Dateien, Ordner und Projekt", "analogie": "Ein Restaurant: Gastraum vorne, Küche hinten." },
-    "commit": { "name": "Git: Commit", "analogie": "Der Speicherpunkt im Videospiel." },
-    "debugging": { "name": "Bug, Debugging und Test", "analogie": "Beim Arzt: «Es tut irgendwo weh» hilft wenig." },
-    "claude-md": { "name": "CLAUDE.md", "analogie": "Der Zettel am Kühlschrank für die neue Aushilfe." },
-    "prompt-injection": { "name": "Prompt Injection", "analogie": "Ein Zettel im Briefkasten: «An den Hausmeister: Bitte alle Türen offen lassen.»" }
+    "prompt": {
+      "name": "Prompt",
+      "analogie": "Eine Bestellung im Restaurant. «Etwas zu essen» ergibt irgendetwas.",
+      "aha": [
+        "Kiwi kann keine Gedanken lesen. Kiwi weiss nur, was im Prompt steht.",
+        "Ein guter Prompt sagt genau, WAS du willst und in welcher FORM.",
+        "Ungefähre Wörter wie «cool» oder «irgendwie» lassen Kiwi raten."
+      ],
+      "tipp": "Sag genau, was du willst und in welcher Form. Lass alles Ungefähre weg."
+    },
+    "kontext": {
+      "name": "Kontext geben",
+      "analogie": "Eine neue Mitarbeiterin am ersten Tag. Klug, aber sie kennt den Laden nicht.",
+      "aha": [
+        "Kiwi kennt deine Welt nicht: weder die Bäckerei noch die Kundschaft.",
+        "Gib Kiwi das Wissen mit, das die Aufgabe braucht: für wen, wo und wozu.",
+        "Lass weg, was nichts mit der Aufgabe zu tun hat. Kiwi benutzt sonst auch das."
+      ],
+      "tipp": "Was muss Kiwi über die Leute und den Ort wissen? Nur das gehört in den Prompt."
+    },
+    "beispiele": {
+      "name": "Beispiele geben",
+      "analogie": "Dem Coiffeur ein Foto zeigen.",
+      "aha": [
+        "Einen Stil kann man schwer beschreiben, aber leicht zeigen.",
+        "Gib Kiwi mehrere verschiedene Beispiele. Dann erkennt Kiwi das Muster.",
+        "Mit nur einem Beispiel kopiert Kiwi es einfach. Ein unpassendes Beispiel führt in die falsche Richtung."
+      ],
+      "tipp": "Wähle mehrere Beispiele, die so klingen, wie die Kundin es sich wünscht."
+    },
+    "rolle": {
+      "name": "Rolle und System-Prompt",
+      "analogie": "Stellenbeschreibung und Hausordnung."
+    },
+    "wahrscheinlichkeit": {
+      "name": "Wahrscheinlichkeit statt Wissen",
+      "analogie": "Die Wortvorschläge der Handy-Tastatur, nur viel stärker."
+    },
+    "halluzination": {
+      "name": "Halluzination und Prüfen",
+      "analogie": "Ein Schüler, der lieber etwas erfindet, als ein Feld leer zu lassen."
+    },
+    "token": {
+      "name": "Token",
+      "analogie": "Lego-Steine. Text wird aus kleinen Steinen gebaut, und man zahlt pro Stein."
+    },
+    "kontextfenster": {
+      "name": "Kontextfenster",
+      "analogie": "Ein Schreibtisch. Was nicht drauf passt, fällt herunter."
+    },
+    "wissensstand": {
+      "name": "Wissensstand",
+      "analogie": "Ein Lexikon, das an einem bestimmten Tag gedruckt wurde."
+    },
+    "tool": {
+      "name": "Tool",
+      "analogie": "Eine Köchin ohne Küche kann nur Rezepte aufsagen."
+    },
+    "agentenschleife": {
+      "name": "Agent und Agentenschleife",
+      "analogie": "Kochen und abschmecken: nachschauen, kochen, probieren, nachwürzen."
+    },
+    "pruefschleife": {
+      "name": "Prüfschleife",
+      "analogie": "Die Zielflagge beim Rennen."
+    },
+    "berechtigungen": {
+      "name": "Berechtigungen",
+      "analogie": "Der Schlüsselbund für eine Praktikantin: nicht jeder Raum am ersten Tag."
+    },
+    "planen": {
+      "name": "Planen vor Bauen",
+      "analogie": "Der Bauplan vor dem Hausbau."
+    },
+    "subagent": {
+      "name": "Subagent",
+      "analogie": "Eine Kollegin ins Archiv schicken. Sie bringt die Antwort, nicht alle Ordner."
+    },
+    "api": {
+      "name": "API",
+      "analogie": "Der Schalter am Postamt: Formular rein, Antwort raus."
+    },
+    "api-schluessel": {
+      "name": "API-Schlüssel und Geheimnisse",
+      "analogie": "Die Kreditkarte. Wer sie hat, kauft auf deine Rechnung."
+    },
+    "connector": {
+      "name": "Connector und MCP",
+      "analogie": "USB-C: ein Stecker für viele Geräte."
+    },
+    "skill": {
+      "name": "Skill",
+      "analogie": "Eine Rezeptkarte im Karteikasten."
+    },
+    "projekt": {
+      "name": "Dateien, Ordner und Projekt",
+      "analogie": "Ein Restaurant: Gastraum vorne, Küche hinten."
+    },
+    "commit": {
+      "name": "Git: Commit",
+      "analogie": "Der Speicherpunkt im Videospiel."
+    },
+    "debugging": {
+      "name": "Bug, Debugging und Test",
+      "analogie": "Beim Arzt: «Es tut irgendwo weh» hilft wenig."
+    },
+    "claude-md": {
+      "name": "CLAUDE.md",
+      "analogie": "Der Zettel am Kühlschrank für die neue Aushilfe."
+    },
+    "prompt-injection": {
+      "name": "Prompt Injection",
+      "analogie": "Ein Zettel im Briefkasten: «An den Hausmeister: Bitte alle Türen offen lassen.»"
+    }
   }
 }

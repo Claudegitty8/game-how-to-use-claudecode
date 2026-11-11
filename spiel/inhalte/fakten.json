@@ -24,6 +24,24 @@
       "aussage": "Claude als Verbraucherprodukt ist nur für Personen ab 18 Jahren.",
       "quelle": "https://support.claude.com/en/articles/15171100-age-assurance-on-claude",
       "geprueft": "2026-11-11"
+    },
+    {
+      "id": "prompt-klar-und-direkt",
+      "aussage": "Offizielle Empfehlung: klare, ausdrückliche Anweisungen geben und genau sagen, welches Ergebnis und welche Form man will.",
+      "quelle": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "kontext-hilft",
+      "aussage": "Offizielle Empfehlung: Hintergrund und Begründung mitgeben, damit die Antwort besser zum Ziel passt.",
+      "quelle": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "beispiele-anzahl",
+      "aussage": "Offizielle Empfehlung: 3 bis 5 Beispiele, die zum Anwendungsfall passen und sich genug unterscheiden, damit das Modell keine ungewollten Muster übernimmt.",
+      "quelle": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "geprueft": "2026-11-11"
     }
   ]
 }

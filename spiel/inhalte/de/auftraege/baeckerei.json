@@ -1,0 +1,1004 @@
+{
+  "id": "baeckerei",
+  "kunde": "Frau Brunner, Bäckerei Brunner",
+  "wunsch": "Ich hätte gern ein kleines Spiel für meine Kundschaft, während sie auf die Gipfeli wartet.",
+  "kundenstimme": "Die Leute stehen jetzt extra an, um zu spielen. Merci vielmal!",
+  "ueberraschung": "Frau Brunner hat dich dem Turnverein empfohlen. Bald klopft ein neuer Kunde an die Garage.",
+  "runden": [
+    {
+      "id": "r1",
+      "art": "konzept",
+      "konzept": "prompt",
+      "probieren": { "aufgabe": "p-a", "nurTeile": ["vage1", "vage2"] },
+      "beispiel": { "aufgabe": "p-a" },
+      "luecke": { "aufgabe": "p-b", "vorgabe": ["ziel"] },
+      "frei": ["p-c", "p-d", "p-e", "p-f"]
+    },
+    {
+      "id": "r2",
+      "art": "konzept",
+      "konzept": "kontext",
+      "probieren": { "aufgabe": "k-a", "nurTeile": ["katze"] },
+      "beispiel": { "aufgabe": "k-a" },
+      "luecke": { "aufgabe": "k-b", "vorgabe": ["wer"] },
+      "frei": ["k-c", "k-d", "k-e", "k-f"]
+    },
+    {
+      "id": "r3",
+      "art": "konzept",
+      "konzept": "beispiele",
+      "probieren": { "aufgabe": "b-a", "nurTeile": ["b1"] },
+      "beispiel": { "aufgabe": "b-a" },
+      "luecke": { "aufgabe": "b-b", "vorgabe": ["b1"] },
+      "frei": ["b-c", "b-d", "b-e", "b-f"]
+    },
+    {
+      "id": "r4",
+      "art": "misch",
+      "titel": "Alles zusammen",
+      "frei": ["m-a", "m-b"]
+    }
+  ],
+  "aufgaben": {
+    "p-a": {
+      "wunsch": "Ich hätte gern ein kleines Spiel für meine Kundschaft.",
+      "grundprompt": "Mach ein Spiel.",
+      "teile": [
+        { "id": "ziel", "art": "prompt", "text": "Man fängt fallende Gipfeli mit einem Korb." },
+        { "id": "form", "art": "prompt", "text": "Eine Runde dauert 30 Sekunden." },
+        { "id": "vage1", "art": "prompt", "text": "Es soll cool sein." },
+        { "id": "vage2", "art": "prompt", "text": "Du weisst schon, was ich meine." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["vage1", "vage2"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["ziel"] }, "fehlbild": "keinZiel" },
+        { "wenn": { "fehlt": ["form"] }, "fehlbild": "keineForm" }
+      ],
+      "fehlbilder": {
+        "vage": {
+          "texte": [
+            "Fertig! «Cool» fand ich schwierig. Darum spielt das Spiel jetzt am Nordpol, und alle Figuren frieren.",
+            "Erledigt! Ich wusste nicht genau, was du meinst. Ich habe einfach überall Sonnenbrillen draufgemalt."
+          ],
+          "hinweis": "Ungefähre Wörter sagen Kiwi nichts Genaues. Kiwi muss raten, was du meinst."
+        },
+        "keinZiel": {
+          "texte": [
+            "Fertig! In meinem Spiel sortiert eine Kartoffel Steuerformulare. Level 1 heisst «Formular A». Viel Spass!",
+            "Erledigt! Es ist Schach mit 400 Figuren. Die Regeln habe ich selbst erfunden."
+          ],
+          "hinweis": "Kiwi wusste nicht, was für ein Spiel du willst. Also hat Kiwi geraten."
+        },
+        "keineForm": {
+          "texte": [
+            "Fertig! Gipfeli fangen, wie gewünscht. Eine Runde dauert vier Stunden. Ist das recht?",
+            "Erledigt! Man fängt Gipfeli. Das Spiel hört nie auf. Wirklich nie."
+          ],
+          "hinweis": "Kiwi wusste nicht, wie lang eine Runde sein soll. Also hat Kiwi geraten."
+        }
+      },
+      "erfolg": [
+        "Fertig! Gipfeli fallen vom Himmel, man fängt sie mit dem Korb. Nach 30 Sekunden ist Schluss. Genau wie bestellt.",
+        "Erledigt! Ein Korb, viele Gipfeli, 30 Sekunden Zeit. Kurz und klar."
+      ],
+      "loesung": ["ziel", "form"]
+    },
+    "p-b": {
+      "wunsch": "Das Spiel braucht noch einen Titel. Kurz muss er sein.",
+      "grundprompt": "Schreib einen Titel.",
+      "teile": [
+        { "id": "ziel", "art": "prompt", "text": "Der Titel ist für ein Spiel, in dem man Gipfeli fängt." },
+        { "id": "form", "art": "prompt", "text": "Er hat höchstens drei Wörter." },
+        { "id": "vage", "art": "prompt", "text": "Mach ihn irgendwie gut." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["ziel"] }, "fehlbild": "keinZiel" },
+        { "wenn": { "fehlt": ["form"] }, "fehlbild": "keineForm" }
+      ],
+      "fehlbilder": {
+        "vage": {
+          "texte": [
+            "Dein Titel: «Gut». Du wolltest ihn ja gut.",
+            "Dein Titel: «Irgendwie». Passt das?"
+          ],
+          "hinweis": "«Irgendwie gut» ist keine genaue Angabe. Kiwi nimmt es wörtlich."
+        },
+        "keinZiel": {
+          "texte": [
+            "Hier ist dein Titel: «Die Rückkehr der Staubsauger».",
+            "Dein Titel: «Bericht über Schrauben, Teil 7»."
+          ],
+          "hinweis": "Kiwi wusste nicht, wofür der Titel ist."
+        },
+        "keineForm": {
+          "texte": [
+            "Dein Titel: «Das unglaubliche Abenteuer vom Gipfeli, das eines Morgens vom Himmel fiel und in einem Korb landete».",
+            "Dein Titel: «Gipfeli fangen leicht gemacht: ein Spiel in sieben Kapiteln für Jung und Alt»."
+          ],
+          "hinweis": "Kiwi wusste nicht, wie lang der Titel sein darf."
+        }
+      },
+      "erfolg": ["Dein Titel: «Gipfeli im Korb».", "Dein Titel: «Fang das Gipfeli»."],
+      "loesung": ["ziel", "form"]
+    },
+    "p-c": {
+      "wunsch": "Ich brauche eine Spielregel für die Anleitung. Sie soll sagen, wie man Punkte bekommt.",
+      "grundprompt": "Schreib eine Spielregel.",
+      "teile": [
+        { "id": "ziel", "art": "prompt", "text": "Die Regel erklärt, wie man im Gipfeli-Spiel Punkte bekommt." },
+        { "id": "form", "art": "prompt", "text": "Sie ist ein einziger kurzer Satz." },
+        { "id": "vage", "art": "prompt", "text": "Sie soll verständlich sein, du weisst schon." },
+        { "id": "zuviel", "art": "prompt", "text": "Schreib dazu alles, was dir einfällt." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["zuviel"] }, "fehlbild": "lang" },
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["ziel"] }, "fehlbild": "keinZiel" },
+        { "wenn": { "fehlt": ["form"] }, "fehlbild": "keineForm" }
+      ],
+      "fehlbilder": {
+        "lang": {
+          "texte": [
+            "Regel 1 von 212: Ein Gipfeli ist ein Gebäck. Regel 2: Ein Korb ist ein Behälter. Regel 3 folgt sogleich.",
+            "Gern! Zuerst die ganze Geschichte des Gipfelis. Kapitel 1: Der Teig."
+          ],
+          "hinweis": "Du hast Kiwi gebeten, alles zu schreiben. Kiwi hat alles geschrieben."
+        },
+        "vage": {
+          "texte": [
+            "Verständlich für wen? Ich habe die Regel in Babysprache geschrieben: «Gipfi fangi, Punkti!»",
+            "Ich wusste nicht genau, was du meinst. Die Regel lautet jetzt: «Mach es richtig.»"
+          ],
+          "hinweis": "«Du weisst schon» hilft Kiwi nicht. Kiwi weiss es eben nicht."
+        },
+        "keinZiel": {
+          "texte": [
+            "Die Regel lautet: «Wer zuerst den Rasen mäht, gewinnt.»",
+            "Die Regel lautet: «Der Läufer zieht schräg.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, was die Regel erklären soll."
+        },
+        "keineForm": {
+          "texte": [
+            "Die Regel hat 14 Absätze und drei Fussnoten. Soll ich sie vorlesen?",
+            "Hier ist die Regel als Gedicht mit 20 Strophen."
+          ],
+          "hinweis": "Kiwi wusste nicht, wie lang die Regel sein soll."
+        }
+      },
+      "erfolg": ["«Für jedes gefangene Gipfeli gibt es einen Punkt.»"],
+      "loesung": ["ziel", "form"]
+    },
+    "p-d": {
+      "wunsch": "Wer gewinnt, soll einen netten Satz sehen. Kurz, die Leute haben es eilig.",
+      "grundprompt": "Schreib einen Satz.",
+      "teile": [
+        { "id": "ziel", "art": "prompt", "text": "Der Satz gratuliert zum Sieg im Gipfeli-Spiel." },
+        { "id": "form", "art": "prompt", "text": "Er hat höchstens sechs Wörter." },
+        { "id": "vage", "art": "prompt", "text": "Er soll schön sein." },
+        { "id": "falsch", "art": "prompt", "text": "Der Satz tröstet nach einer Niederlage." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "falsch" },
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["ziel"] }, "fehlbild": "keinZiel" },
+        { "wenn": { "fehlt": ["form"] }, "fehlbild": "keineForm" }
+      ],
+      "fehlbilder": {
+        "falsch": {
+          "texte": [
+            "«Kopf hoch, nächstes Mal klappt es!» Die Siegerin schaut verwirrt.",
+            "«Nicht traurig sein!» Dabei hat die Person doch gewonnen."
+          ],
+          "hinweis": "Kiwi hat genau das gemacht, was im Prompt stand. Frau Brunner wollte aber einen Satz für Sieger."
+        },
+        "vage": {
+          "texte": [
+            "Ein schöner Satz: «Der Mond schimmert silbern über dem stillen See.» Schön, oder?",
+            "Schön soll er sein: «Rosen sind rot, Veilchen sind blau.»"
+          ],
+          "hinweis": "«Schön» kann alles heissen. Kiwi hat sich etwas Schönes ausgesucht."
+        },
+        "keinZiel": {
+          "texte": ["Dein Satz: «Bitte Schuhe ausziehen.»", "Dein Satz: «Der Zug fährt auf Gleis 3.»"],
+          "hinweis": "Kiwi wusste nicht, was der Satz sagen soll."
+        },
+        "keineForm": {
+          "texte": [
+            "«Herzlichen Glückwunsch! Du hast gewonnen, und zwar auf eine Art, die …» Es folgen noch 300 Wörter.",
+            "«Glückwunsch!» Danach kommt eine Rede von zehn Minuten."
+          ],
+          "hinweis": "Kiwi wusste nicht, wie kurz der Satz sein soll."
+        }
+      },
+      "erfolg": ["«Bravo, alle Gipfeli gefangen!»", "«Gewonnen! Stark gefangen!»"],
+      "loesung": ["ziel", "form"]
+    },
+    "p-e": {
+      "wunsch": "Das Spiel braucht einen Startknopf. Was soll draufstehen?",
+      "grundprompt": "Beschrifte einen Knopf.",
+      "teile": [
+        { "id": "ziel", "art": "prompt", "text": "Der Knopf startet das Gipfeli-Spiel." },
+        { "id": "form", "art": "prompt", "text": "Die Beschriftung ist ein einziges Wort." },
+        { "id": "vage", "art": "prompt", "text": "Mach etwas Passendes." },
+        { "id": "zuviel", "art": "prompt", "text": "Erkläre auf dem Knopf auch gleich das ganze Spiel." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["zuviel"] }, "fehlbild": "lang" },
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["ziel"] }, "fehlbild": "keinZiel" },
+        { "wenn": { "fehlt": ["form"] }, "fehlbild": "keineForm" }
+      ],
+      "fehlbilder": {
+        "lang": {
+          "texte": [
+            "Auf dem Knopf steht jetzt die ganze Anleitung. Der Knopf ist zwei Meter breit.",
+            "Der Knopf erklärt zuerst das Spiel. Man liest eine Viertelstunde, dann geht es los."
+          ],
+          "hinweis": "Du hast eine Erklärung bestellt. Kiwi hat sie auf den Knopf gequetscht."
+        },
+        "vage": {
+          "texte": [
+            "Passend zu was? Auf dem Knopf steht jetzt «Knopf».",
+            "Ich fand «Dienstag» passend. Heute ist nämlich Dienstag."
+          ],
+          "hinweis": "«Etwas Passendes» sagt nicht, wozu es passen soll."
+        },
+        "keinZiel": {
+          "texte": ["Auf dem Knopf steht «Notausgang».", "Auf dem Knopf steht «Licht aus»."],
+          "hinweis": "Kiwi wusste nicht, was der Knopf tut."
+        },
+        "keineForm": {
+          "texte": [
+            "Auf dem Knopf steht: «Bitte hier drücken, um das Spiel mit den Gipfeli jetzt sofort zu starten, danke».",
+            "Der Knopf hat jetzt drei Zeilen Text und eine Fussnote."
+          ],
+          "hinweis": "Kiwi wusste nicht, wie kurz die Beschriftung sein soll."
+        }
+      },
+      "erfolg": ["Auf dem Knopf steht «Los!».", "Auf dem Knopf steht «Start»."],
+      "loesung": ["ziel", "form"]
+    },
+    "p-f": {
+      "wunsch": "Aufs Plakat an der Tür soll ein Werbesatz für das Spiel. Er muss auf eine Zeile passen.",
+      "grundprompt": "Schreib einen Werbesatz.",
+      "teile": [
+        { "id": "ziel", "art": "prompt", "text": "Er macht Lust auf das Gipfeli-Spiel in der Bäckerei Brunner." },
+        { "id": "form", "art": "prompt", "text": "Er passt auf eine einzige Zeile." },
+        { "id": "vage", "art": "prompt", "text": "Mach ihn cool." },
+        { "id": "falsch", "art": "prompt", "text": "Er ist mindestens eine Seite lang." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "falsch" },
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["ziel"] }, "fehlbild": "keinZiel" },
+        { "wenn": { "fehlt": ["form"] }, "fehlbild": "keineForm" }
+      ],
+      "fehlbilder": {
+        "falsch": {
+          "texte": [
+            "Der Werbesatz hat jetzt 600 Wörter. Das Plakat reicht bis zum Boden und noch zwei Meter auf die Strasse.",
+            "Seite 1 von 3: «Liebe Kundschaft, zunächst ein Rückblick auf die Geschichte des Hauses.»"
+          ],
+          "hinweis": "Kiwi hat genau das gemacht, was im Prompt stand. Frau Brunner wollte aber eine Zeile."
+        },
+        "vage": {
+          "texte": [
+            "«Eiskalt: das Gipfeli-Spiel direkt aus dem Tiefkühler!»",
+            "«Gipfeli mit Sonnenbrille: so cool war Brot noch nie!»"
+          ],
+          "hinweis": "«Cool» kann vieles heissen. Kiwi hat geraten."
+        },
+        "keinZiel": {
+          "texte": ["«Kaufen Sie jetzt Winterreifen!»", "«Neu: Socken im Dreierpack!»"],
+          "hinweis": "Kiwi wusste nicht, wofür geworben wird."
+        },
+        "keineForm": {
+          "texte": [
+            "Der Satz ist da. Er ist so lang, dass er dreimal ums Plakat läuft.",
+            "«Kommt alle her und spielt, denn …» Es folgen noch 80 Wörter."
+          ],
+          "hinweis": "Kiwi wusste nicht, wie viel Platz auf dem Plakat ist."
+        }
+      },
+      "erfolg": ["«Fang dein Gipfeli: jetzt spielen bei Brunner!»"],
+      "loesung": ["ziel", "form"]
+    },
+    "k-a": {
+      "wunsch": "Kiwi soll erklären, wie man das Spiel spielt.",
+      "grundprompt": "Schreib eine Anleitung in drei kurzen Sätzen für das Gipfeli-Fangspiel.",
+      "teile": [
+        { "id": "wer", "art": "kontext", "text": "Die Spieler sind Leute, die kurz in der Bäckerei anstehen." },
+        { "id": "wo", "art": "kontext", "text": "Gespielt wird am Handy, mit einem Finger." },
+        { "id": "katze", "art": "kontext", "text": "Übrigens: Meine Katze heisst Minka." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["katze"] }, "fehlbild": "katze" },
+        { "wenn": { "fehlt": ["wer"] }, "fehlbild": "keinWer" },
+        { "wenn": { "fehlt": ["wo"] }, "fehlbild": "keinWo" }
+      ],
+      "fehlbilder": {
+        "katze": {
+          "texte": [
+            "«Erstens: Grüsse Minka. Zweitens: Fang Gipfeli für Minka. Drittens: Minka gewinnt.»",
+            "«Die wichtigste Regel: Minka darf nicht auf dem Handy schlafen.»"
+          ],
+          "hinweis": "Die Katze hat mit dem Spiel nichts zu tun. Kiwi hat sie trotzdem eingebaut."
+        },
+        "keinWer": {
+          "texte": [
+            "Eine Anleitung für Tiefseetaucher: «Erstens Sauerstoff prüfen. Zweitens abtauchen. Drittens Gipfeli fangen.»",
+            "Eine Anleitung für Profis: «Trainiere zuerst sechs Wochen. Dann fang das Gipfeli.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, für wen die Anleitung ist. Woher auch?"
+        },
+        "keinWo": {
+          "texte": [
+            "«Schliesse zuerst den Joystick an. Drücke dann die rote Taste am Automaten.»",
+            "«Stell dich in die Turnhalle und fang die Gipfeli mit einem echten Korb.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, worauf gespielt wird."
+        }
+      },
+      "erfolg": [
+        "«Tippe auf Start. Schiebe den Korb mit dem Finger. Fang so viele Gipfeli, wie du kannst!»"
+      ],
+      "loesung": ["wer", "wo"]
+    },
+    "k-b": {
+      "wunsch": "Ich möchte eine Begrüssung im Spiel. Bei uns kennt man sich.",
+      "grundprompt": "Schreib eine Begrüssung in einem Satz.",
+      "teile": [
+        { "id": "wer", "art": "kontext", "text": "Begrüsst wird die Kundschaft der Bäckerei Brunner." },
+        { "id": "ton", "art": "kontext", "text": "Bei uns sagen alle Du zueinander." },
+        { "id": "unnoetig", "art": "kontext", "text": "Die Bäckerei hat einen roten Briefkasten." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["unnoetig"] }, "fehlbild": "unnoetig" },
+        { "wenn": { "fehlt": ["wer"] }, "fehlbild": "keinWer" },
+        { "wenn": { "fehlt": ["ton"] }, "fehlbild": "keinTon" }
+      ],
+      "fehlbilder": {
+        "unnoetig": {
+          "texte": [
+            "«Hallo! Wusstest du, dass wir einen roten Briefkasten haben? Er ist sehr rot.»",
+            "«Willkommen beim Briefkasten-Spiel!»"
+          ],
+          "hinweis": "Der Briefkasten ist für die Begrüssung unwichtig. Kiwi hat ihn trotzdem benutzt."
+        },
+        "keinWer": {
+          "texte": ["«Willkommen, liebe Astronauten!»", "«Sei gegrüsst, Fremder aus der Ferne!»"],
+          "hinweis": "Kiwi wusste nicht, wer begrüsst wird."
+        },
+        "keinTon": {
+          "texte": [
+            "«Sehr geehrte Damen und Herren, wir heissen Sie förmlich willkommen.»",
+            "«Hochverehrtes Publikum, treten Sie bitte ein.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, wie man in der Bäckerei miteinander redet."
+        }
+      },
+      "erfolg": ["«Hoi, schön bist du da! Fängst du ein Gipfeli?»"],
+      "loesung": ["wer", "ton"]
+    },
+    "k-c": {
+      "wunsch": "Viele Spieler sind Kinder. Kiwi soll ihnen erklären, was ein Punkt ist.",
+      "grundprompt": "Erkläre in einem Satz, was ein Punkt im Spiel ist.",
+      "teile": [
+        { "id": "wer", "art": "kontext", "text": "Die Erklärung ist für Kinder ab sechs Jahren." },
+        { "id": "was", "art": "kontext", "text": "Im Spiel gibt es einen Punkt pro gefangenem Gipfeli." },
+        { "id": "falsch", "art": "kontext", "text": "Die Leser sind Fachleute für Mathematik." },
+        { "id": "unnoetig", "art": "kontext", "text": "Frau Brunner trägt gern grüne Schürzen." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "falsch" },
+        { "wenn": { "gewaehlt": ["unnoetig"] }, "fehlbild": "unnoetig" },
+        { "wenn": { "fehlt": ["was"] }, "fehlbild": "keinWas" },
+        { "wenn": { "fehlt": ["wer"] }, "fehlbild": "keinWer" }
+      ],
+      "fehlbilder": {
+        "falsch": {
+          "texte": [
+            "«Ein Punkt ist ein Element der natürlichen Zahlen, das additiv verknüpft wird.»",
+            "«Der Punktestand wächst linear mit der Anzahl der Fangereignisse.»"
+          ],
+          "hinweis": "Kiwi hat für Fachleute geschrieben, genau wie im Prompt. Gemeint waren Kinder."
+        },
+        "unnoetig": {
+          "texte": [
+            "«Für jedes Gipfeli bekommst du eine grüne Schürze.»",
+            "«Ein Punkt ist grün, wie die Schürze von Frau Brunner.»"
+          ],
+          "hinweis": "Die Schürze hat mit den Punkten nichts zu tun. Kiwi hat sie trotzdem eingebaut."
+        },
+        "keinWas": {
+          "texte": [
+            "«Ein Punkt ist ein kleiner runder Fleck, zum Beispiel am Ende eines Satzes.»",
+            "«Einen Punkt bekommst du, wenn du dreimal hüpfst.»"
+          ],
+          "hinweis": "Kiwi kennt die Regeln deines Spiels nicht. Du musst sie mitgeben."
+        },
+        "keinWer": {
+          "texte": [
+            "«Ein Punkt wird als Zähleinheit dem Punktekonto gutgeschrieben.»",
+            "«Pro Fangvorgang erfolgt eine Gutschrift von einem Punkt.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, dass Kinder mitlesen."
+        }
+      },
+      "erfolg": ["«Immer wenn du ein Gipfeli fängst, bekommst du einen Punkt.»"],
+      "loesung": ["wer", "was"]
+    },
+    "k-d": {
+      "wunsch": "Am Schluss soll das Spiel sagen, was man gewinnt und wo man es bekommt.",
+      "grundprompt": "Schreib einen Satz über den Gewinn im Gipfeli-Spiel.",
+      "teile": [
+        { "id": "was", "art": "kontext", "text": "Wer 20 Punkte schafft, bekommt ein Gipfeli gratis." },
+        { "id": "wo", "art": "kontext", "text": "Den Gewinn holt man direkt an der Theke ab." },
+        { "id": "falsch", "art": "kontext", "text": "Jeder Gewinner bekommt ein Velo." },
+        { "id": "unnoetig", "art": "kontext", "text": "Unser Ofen ist schon sehr alt." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "falsch" },
+        { "wenn": { "gewaehlt": ["unnoetig"] }, "fehlbild": "unnoetig" },
+        { "wenn": { "fehlt": ["was"] }, "fehlbild": "keinWas" },
+        { "wenn": { "fehlt": ["wo"] }, "fehlbild": "keinWo" }
+      ],
+      "fehlbilder": {
+        "falsch": {
+          "texte": [
+            "«Du gewinnst ein Velo!» Frau Brunner rechnet nach: Das wären 40 Velos pro Tag.",
+            "«Glückwunsch, hol dein Velo ab!» Vor der Bäckerei bildet sich eine sehr lange Schlange."
+          ],
+          "hinweis": "Kiwi glaubt, was im Prompt steht. Diese Angabe stimmte nicht."
+        },
+        "unnoetig": {
+          "texte": [
+            "«Du gewinnst einen sehr alten Ofen!»",
+            "«Dein Gewinn: ein Blick auf unseren alten Ofen.»"
+          ],
+          "hinweis": "Der Ofen hat mit dem Gewinn nichts zu tun. Kiwi hat ihn trotzdem eingebaut."
+        },
+        "keinWas": {
+          "texte": [
+            "«Du gewinnst ein Auto!» Frau Brunner wird blass.",
+            "«Du gewinnst eine Reise ans Meer!»"
+          ],
+          "hinweis": "Kiwi wusste nicht, was es zu gewinnen gibt, und hat etwas erfunden."
+        },
+        "keinWo": {
+          "texte": [
+            "«Du gewinnst ein Gipfeli. Wir schicken es dir per Post.»",
+            "«Dein Gipfeli wartet im Internet auf dich.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, wo man den Gewinn abholt."
+        }
+      },
+      "erfolg": ["«Mit 20 Punkten gibt es ein Gipfeli gratis: einfach an der Theke abholen!»"],
+      "loesung": ["was", "wo"]
+    },
+    "k-e": {
+      "wunsch": "Kiwi soll schreiben, wann man spielen kann. Nämlich nur, wenn wir offen haben.",
+      "grundprompt": "Schreib einen Satz dazu, wann man das Gipfeli-Spiel spielen kann.",
+      "teile": [
+        { "id": "zeit", "art": "kontext", "text": "Die Bäckerei ist von 6 bis 18 Uhr offen. Nur dann läuft das Spiel." },
+        { "id": "wer", "art": "kontext", "text": "Der Satz ist für die Kundschaft, in Du-Form." },
+        { "id": "falsch", "art": "kontext", "text": "Die Bäckerei ist rund um die Uhr offen." },
+        { "id": "unnoetig", "art": "kontext", "text": "Montags gibt es Nussgipfel." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "falsch" },
+        { "wenn": { "gewaehlt": ["unnoetig"] }, "fehlbild": "unnoetig" },
+        { "wenn": { "fehlt": ["zeit"] }, "fehlbild": "keineZeit" },
+        { "wenn": { "fehlt": ["wer"] }, "fehlbild": "keinWer" }
+      ],
+      "fehlbilder": {
+        "falsch": {
+          "texte": [
+            "«Du kannst rund um die Uhr spielen!» Um drei Uhr nachts steht jemand vor der Tür.",
+            "«Wir sind immer offen!» Frau Brunner wüsste das gern selbst."
+          ],
+          "hinweis": "Kiwi glaubt, was im Prompt steht. Diese Angabe stimmte nicht."
+        },
+        "unnoetig": {
+          "texte": [
+            "«Du kannst spielen, wenn es Nussgipfel gibt. Also nur montags.»",
+            "«Spielzeit ist Nussgipfelzeit!»"
+          ],
+          "hinweis": "Die Nussgipfel haben nichts mit den Spielzeiten zu tun. Kiwi hat sie trotzdem eingebaut."
+        },
+        "keineZeit": {
+          "texte": [
+            "«Du kannst jede Nacht von 2 bis 3 Uhr spielen.»",
+            "«Gespielt wird nur bei Vollmond.»"
+          ],
+          "hinweis": "Kiwi kennt eure Öffnungszeiten nicht und hat geraten."
+        },
+        "keinWer": {
+          "texte": [
+            "«Die geschätzte Kundschaft wird ersucht, das Spiel zwischen 6 und 18 Uhr zu benutzen.»",
+            "«Benutzung gemäss Betriebszeiten, 6 bis 18 Uhr.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, wer den Satz liest und wie ihr mit den Leuten redet."
+        }
+      },
+      "erfolg": ["«Du kannst spielen, solange wir offen haben: von 6 bis 18 Uhr.»"],
+      "loesung": ["zeit", "wer"]
+    },
+    "k-f": {
+      "wunsch": "Wer verliert, soll einen Trost lesen. Unsere Leute stehen in der Schlange und haben es eilig.",
+      "grundprompt": "Schreib einen Trost für alle, die im Gipfeli-Spiel verlieren.",
+      "teile": [
+        { "id": "wer", "art": "kontext", "text": "Die Leute stehen an und haben nur ein paar Sekunden Zeit." },
+        { "id": "ton", "art": "kontext", "text": "Bei uns ist der Ton freundlich und lustig." },
+        { "id": "falsch", "art": "kontext", "text": "Die Leute haben viel Zeit und lesen gern lange Texte." },
+        { "id": "unnoetig", "art": "kontext", "text": "Der Boden der Bäckerei ist gefliest." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "falsch" },
+        { "wenn": { "gewaehlt": ["unnoetig"] }, "fehlbild": "unnoetig" },
+        { "wenn": { "fehlt": ["wer"] }, "fehlbild": "keinWer" },
+        { "wenn": { "fehlt": ["ton"] }, "fehlbild": "keinTon" }
+      ],
+      "fehlbilder": {
+        "falsch": {
+          "texte": [
+            "«Lieber Verlierer, nimm dir einen Stuhl. In den folgenden zwölf Absätzen erkläre ich dir alles.»",
+            "Der Trost ist fertig. Lesezeit: etwa 20 Minuten. Die Schlange reicht bis zur Strasse."
+          ],
+          "hinweis": "Kiwi hat für Leute mit viel Zeit geschrieben, genau wie im Prompt."
+        },
+        "unnoetig": {
+          "texte": [
+            "«Nicht traurig sein. Schau, der Boden ist gefliest!»",
+            "«Verloren? Immerhin sind die Fliesen schön.»"
+          ],
+          "hinweis": "Die Fliesen helfen beim Trösten nicht. Kiwi hat sie trotzdem benutzt."
+        },
+        "keinWer": {
+          "texte": [
+            "«Verlieren gehört dazu. Lass uns in Ruhe darüber sprechen. Erstens …» Es folgen zehn Punkte.",
+            "Hier ist ein Trost in drei Kapiteln, mit Vorwort."
+          ],
+          "hinweis": "Kiwi wusste nicht, dass die Leute es eilig haben."
+        },
+        "keinTon": {
+          "texte": [
+            "«Sie haben verloren. Das Ergebnis ist endgültig.»",
+            "«Niederlage festgestellt. Bitte treten Sie zur Seite.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, welcher Ton zu euch passt."
+        }
+      },
+      "erfolg": ["«Knapp daneben! Das nächste Gipfeli fängst du.»"],
+      "loesung": ["wer", "ton"]
+    },
+    "b-a": {
+      "wunsch": "Ich brauche Namen für die Level. Sie sollen klingen wie meine Sprüche in der Backstube.",
+      "grundprompt": "Erfinde fünf Level-Namen für das Gipfeli-Spiel in der Bäckerei Brunner.",
+      "teile": [
+        { "id": "b1", "art": "beispiel", "text": "«Zopf im Kopf»" },
+        { "id": "b2", "art": "beispiel", "text": "«Brot in Not»" },
+        { "id": "unpassend", "art": "beispiel", "text": "«Level 1»" }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["unpassend"] }, "fehlbild": "falscherStil" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 0 }, "fehlbild": "keins" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 1 }, "fehlbild": "eins" }
+      ],
+      "fehlbilder": {
+        "falscherStil": {
+          "texte": [
+            "«Level 1», «Level 2», «Level 3», «Level 4», «Level 5».",
+            "«Level A», «Level B», «Level C», «Level D», «Level E»."
+          ],
+          "hinweis": "Kiwi ahmt Beispiele nach. Dieses Beispiel klang nicht nach Frau Brunners Sprüchen."
+        },
+        "keins": {
+          "texte": [
+            "«Sturm der Verdammnis», «Drachenfeuer», «Endgegner», «Zone X», «Die letzte Schlacht».",
+            "«Aufgabe A», «Aufgabe B», «Aufgabe C», «Aufgabe D», «Aufgabe E»."
+          ],
+          "hinweis": "Kiwi kennt Frau Brunners Sprüche nicht. Einen Stil kann man schwer beschreiben, aber leicht zeigen."
+        },
+        "eins": {
+          "texte": [
+            "«{teil}», «{teil} 2», «{teil} 3», «Die Rückkehr von {teil}», «{teil}: das Finale».",
+            "«{teil}», «{teil}», «{teil}», «{teil}» und zum Schluss: «{teil}»."
+          ],
+          "hinweis": "Mit nur einem Beispiel sieht Kiwi kein Muster. Kiwi kopiert es einfach."
+        }
+      },
+      "erfolg": ["«Zopf im Kopf», «Brot in Not», «Teig am Steig», «Mehl am Fell», «Kruste an der Küste»."],
+      "loesung": ["b1", "b2"]
+    },
+    "b-b": {
+      "wunsch": "Wer ein Gipfeli fängt, soll ein kurzes Lob sehen. Bei uns klingt das immer nach Backstube.",
+      "grundprompt": "Schreib vier kurze Lob-Rufe für das Gipfeli-Spiel.",
+      "teile": [
+        { "id": "b1", "art": "beispiel", "text": "«Knusprig gefangen!»" },
+        { "id": "b2", "art": "beispiel", "text": "«Ofenfrisch erwischt!»" },
+        { "id": "b3", "art": "beispiel", "text": "«Goldbraun gemacht!»" },
+        { "id": "unpassend", "art": "beispiel", "text": "«Operation erfolgreich abgeschlossen.»" }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["unpassend"] }, "fehlbild": "falscherStil" },
+        { "wenn": { "aus": ["b1", "b2", "b3"], "hoechstens": 0 }, "fehlbild": "keins" },
+        { "wenn": { "aus": ["b1", "b2", "b3"], "hoechstens": 1 }, "fehlbild": "eins" }
+      ],
+      "fehlbilder": {
+        "falscherStil": {
+          "texte": [
+            "«Vorgang abgeschlossen.» «Ziel erfasst.» «Objekt gesichert.» «Mission erfüllt.»",
+            "«Fangvorgang erfolgreich.» «Fangvorgang erneut erfolgreich.» «Bestätigt.» «Ende.»"
+          ],
+          "hinweis": "Kiwi hat den Ton dieses Beispiels übernommen. Nach Backstube klingt das nicht."
+        },
+        "keins": {
+          "texte": [
+            "«Gut.» «Sehr gut.» «Auch gut.» «Gut gemacht.»",
+            "«Yeah!» «Wow!» «Boom!» «Krass!»"
+          ],
+          "hinweis": "Ohne Beispiel weiss Kiwi nicht, wie ein Lob nach Backstube klingt."
+        },
+        "eins": {
+          "texte": [
+            "«{teil}» «{teil}» «{teil}» «{teil}» Viermal genau dasselbe.",
+            "«{teil}» Und dann noch dreimal, Wort für Wort gleich."
+          ],
+          "hinweis": "Mit nur einem Beispiel sieht Kiwi kein Muster. Kiwi kopiert es einfach."
+        }
+      },
+      "erfolg": ["«Knusprig gefangen!» «Ofenfrisch erwischt!» «Butterzart geschnappt!» «Frisch gebacken, gut gepackt!»"],
+      "loesung": ["b1", "b2"]
+    },
+    "b-c": {
+      "wunsch": "Kiwi soll Punkte-Meldungen schreiben. Ich mag sie kurz, mit Ausrufezeichen und immer mit einer Zahl.",
+      "grundprompt": "Schreib drei Punkte-Meldungen für das Gipfeli-Spiel.",
+      "teile": [
+        { "id": "b1", "art": "beispiel", "text": "«3 Gipfeli! Weiter so!»" },
+        { "id": "b2", "art": "beispiel", "text": "«10 Gipfeli! Stark!»" },
+        { "id": "u1", "art": "beispiel", "text": "«Sie haben soeben eine beträchtliche Anzahl Backwaren gesammelt.»" },
+        { "id": "u2", "art": "beispiel", "text": "«Gut.»" }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["u1"] }, "fehlbild": "foermlich" },
+        { "wenn": { "gewaehlt": ["u2"] }, "fehlbild": "knapp" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 0 }, "fehlbild": "keins" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 1 }, "fehlbild": "eins" }
+      ],
+      "fehlbilder": {
+        "foermlich": {
+          "texte": [
+            "«Sie haben 3 Backwaren gesammelt.» «Sie haben 10 Backwaren gesammelt.» «Sie haben 25 Backwaren gesammelt.»",
+            "«Hiermit bestätigen wir den Eingang von 3 Gipfeli.» Die anderen zwei klingen genauso."
+          ],
+          "hinweis": "Kiwi ahmt den Ton der Beispiele nach. Dieses Beispiel klang nach Amt."
+        },
+        "knapp": {
+          "texte": ["«Gut.» «Gut.» «Auch gut.»", "«Gut.» «Besser.» «Am besten.»"],
+          "hinweis": "In diesem Beispiel fehlten Zahl und Ausrufezeichen. Kiwi hat es trotzdem nachgemacht."
+        },
+        "keins": {
+          "texte": [
+            "«Punktestand aktualisiert.» «Punktestand erneut aktualisiert.» «Punktestand weiterhin aktualisiert.»",
+            "«Plus eins.» «Plus eins.» «Plus eins.»"
+          ],
+          "hinweis": "Ohne Beispiel kennt Kiwi den Stil nicht, den Frau Brunner mag."
+        },
+        "eins": {
+          "texte": [
+            "«{teil}» «{teil}» «{teil}» Dreimal genau dasselbe.",
+            "«{teil}» Und dann noch zweimal, Wort für Wort gleich."
+          ],
+          "hinweis": "Mit nur einem Beispiel sieht Kiwi kein Muster. Kiwi kopiert es einfach."
+        }
+      },
+      "erfolg": ["«5 Gipfeli! Super!» «15 Gipfeli! Klasse!» «30 Gipfeli! Rekord!»"],
+      "loesung": ["b1", "b2"]
+    },
+    "b-d": {
+      "wunsch": "Wenn die Zeit um ist, soll ein Abschiedsgruss kommen. Bei uns sagt man das herzlich und auf Schweizerdeutsch.",
+      "grundprompt": "Schreib drei Abschiedsgrüsse für das Gipfeli-Spiel.",
+      "teile": [
+        { "id": "b1", "art": "beispiel", "text": "«Adie, bis zum nächschte Gipfeli!»" },
+        { "id": "b2", "art": "beispiel", "text": "«Merci und en schöne Tag!»" },
+        { "id": "b3", "art": "beispiel", "text": "«Tschüss zäme, bis gly!»" },
+        { "id": "unpassend", "art": "beispiel", "text": "«Auf Wiedersehen. Die Sitzung ist beendet.»" }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["unpassend"] }, "fehlbild": "falscherStil" },
+        { "wenn": { "aus": ["b1", "b2", "b3"], "hoechstens": 0 }, "fehlbild": "keins" },
+        { "wenn": { "aus": ["b1", "b2", "b3"], "hoechstens": 1 }, "fehlbild": "eins" }
+      ],
+      "fehlbilder": {
+        "falscherStil": {
+          "texte": [
+            "«Auf Wiedersehen. Der Vorgang ist abgeschlossen.» «Auf Wiedersehen. Bitte verlassen Sie das Spiel.»",
+            "«Ende der Sitzung.» «Ende der Sitzung.» «Ende.»"
+          ],
+          "hinweis": "Kiwi hat den steifen Ton dieses Beispiels übernommen. Herzlich klingt anders."
+        },
+        "keins": {
+          "texte": [
+            "«Goodbye!» «Au revoir!» «Sayonara!»",
+            "«Lebe wohl, edler Recke!» «Gehabt Euch wohl!» «Fahret hin in Frieden!»"
+          ],
+          "hinweis": "Kiwi wusste nicht, wie man sich bei euch verabschiedet. Zeig es mit Beispielen."
+        },
+        "eins": {
+          "texte": [
+            "«{teil}» «{teil}» «{teil}» Dreimal genau dasselbe.",
+            "«{teil}» Und dann noch zweimal, Wort für Wort gleich."
+          ],
+          "hinweis": "Mit nur einem Beispiel sieht Kiwi kein Muster. Kiwi kopiert es einfach."
+        }
+      },
+      "erfolg": ["«Adie mitenand!» «Merci, bis bald!» «Uf Wiederluege und en Guete!»"],
+      "loesung": ["b1", "b2"]
+    },
+    "b-e": {
+      "wunsch": "Die Gipfeli im Spiel sollen lustige Namen haben. Wie Leute aus dem Dorf, aber aus der Backstube.",
+      "grundprompt": "Erfinde vier Namen für Gipfeli-Figuren.",
+      "teile": [
+        { "id": "b1", "art": "beispiel", "text": "«Bruno Butterhorn»" },
+        { "id": "b2", "art": "beispiel", "text": "«Gisela Goldkruste»" },
+        { "id": "u1", "art": "beispiel", "text": "«Objekt 7»" },
+        { "id": "u2", "art": "beispiel", "text": "«Rex der Zerstörer»" }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["u1"] }, "fehlbild": "nummern" },
+        { "wenn": { "gewaehlt": ["u2"] }, "fehlbild": "wild" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 0 }, "fehlbild": "keins" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 1 }, "fehlbild": "eins" }
+      ],
+      "fehlbilder": {
+        "nummern": {
+          "texte": [
+            "«Objekt 8», «Objekt 9», «Objekt 10», «Objekt 11».",
+            "«Einheit A», «Einheit B», «Einheit C», «Einheit D»."
+          ],
+          "hinweis": "Kiwi hat das Muster «Objekt mit Nummer» erkannt und weitergeführt."
+        },
+        "wild": {
+          "texte": [
+            "«Brutus der Brecher», «Zora die Schreckliche», «Donnerfaust», «Der Krümel-Vernichter».",
+            "«Hagen der Harte», «Kralle», «Eisenzahn», «Der Schatten»."
+          ],
+          "hinweis": "Dieses Beispiel klang nach Monsterfilm. Kiwi hat den Stil übernommen."
+        },
+        "keins": {
+          "texte": [
+            "«Gipfeli 1», «Gipfeli 2», «Gipfeli 3», «Gipfeli 4».",
+            "«Hans», «Peter», «Ruth», «Kevin»."
+          ],
+          "hinweis": "Ohne Beispiel weiss Kiwi nicht, welche Art von Namen Frau Brunner lustig findet."
+        },
+        "eins": {
+          "texte": [
+            "«{teil}», «{teil} Junior», «{teil} der Zweite», «Nochmals {teil}».",
+            "«{teil}», «{teil}», «{teil}» und, Überraschung: «{teil}»."
+          ],
+          "hinweis": "Mit nur einem Beispiel sieht Kiwi kein Muster. Kiwi kopiert es einfach."
+        }
+      },
+      "erfolg": ["«Bruno Butterhorn», «Gisela Goldkruste», «Karl Knusper», «Frieda Feinteig»."],
+      "loesung": ["b1", "b2"]
+    },
+    "b-f": {
+      "wunsch": "Für die Wartezeit möchte ich Mini-Witze. Harmlos sollen sie sein und immer mit Brot oder Gebäck.",
+      "grundprompt": "Schreib drei Mini-Witze für die Bäckerei.",
+      "teile": [
+        { "id": "b1", "art": "beispiel", "text": "«Warum ging das Gipfeli zum Arzt? Es fühlte sich krümelig.»" },
+        { "id": "b2", "art": "beispiel", "text": "«Was macht das Brot im Fitnessstudio? Es geht auf.»" },
+        { "id": "unpassend", "art": "beispiel", "text": "«Kommt ein Pferd in eine Bar.»" }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["unpassend"] }, "fehlbild": "falscherStil" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 0 }, "fehlbild": "keins" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 1 }, "fehlbild": "eins" }
+      ],
+      "fehlbilder": {
+        "falscherStil": {
+          "texte": [
+            "«Kommt ein Pferd in eine Bank.» «Kommt ein Pferd in eine Bäckerei.» «Kommt ein Pferd.»",
+            "Hier sind drei Witze über Pferde. Brot kommt keines vor."
+          ],
+          "hinweis": "Dieses Beispiel handelte von einem Pferd. Kiwi hat das Muster übernommen."
+        },
+        "keins": {
+          "texte": [
+            "«Witz eins: ein Brot. Haha.» «Witz zwei: noch ein Brot. Haha.» «Witz drei: Haha.»",
+            "Hier sind drei Witze. Jeder ist zwei Seiten lang, und ich erkläre am Schluss die Pointe."
+          ],
+          "hinweis": "Ohne Beispiel weiss Kiwi nicht, was Frau Brunner unter einem Mini-Witz versteht."
+        },
+        "eins": {
+          "texte": [
+            "«{teil}» Den habe ich dreimal aufgeschrieben. Er ist einfach gut.",
+            "«{teil}» Und als zweiten und dritten Witz: nochmals denselben."
+          ],
+          "hinweis": "Mit nur einem Beispiel sieht Kiwi kein Muster. Kiwi kopiert es einfach."
+        }
+      },
+      "erfolg": [
+        "«Warum ist der Zopf so entspannt? Er lässt sich nicht verdrehen.» «Was sagt der Teig am Montag? Ich muss noch gehen.» «Wie heisst ein mutiges Brötchen? Semmel-Held.»"
+      ],
+      "loesung": ["b1", "b2"]
+    },
+    "m-a": {
+      "wunsch": "Die Kinder im Quartier wollen auch ein Spiel. Ich brauche eine Idee in einem Satz, mit einem Namen wie meine Level-Namen.",
+      "grundprompt": "Erfinde ein neues Spiel.",
+      "teile": [
+        { "id": "ziel", "art": "prompt", "text": "Beschreibe die Idee in einem Satz und gib dem Spiel einen Namen." },
+        { "id": "vage", "art": "prompt", "text": "Mach es irgendwie lustig." },
+        { "id": "wer", "art": "kontext", "text": "Das Spiel ist für Kinder von sechs bis zehn Jahren." },
+        { "id": "wo", "art": "kontext", "text": "Es spielt in einer Bäckerei." },
+        { "id": "unnoetig", "art": "kontext", "text": "Mein Velo ist blau." },
+        { "id": "b1", "art": "beispiel", "text": "«Zopf im Kopf»" },
+        { "id": "b2", "art": "beispiel", "text": "«Brot in Not»" },
+        { "id": "unpassend", "art": "beispiel", "text": "«Projekt 4B»" }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["ziel"] }, "fehlbild": "keinZiel" },
+        { "wenn": { "gewaehlt": ["unnoetig"] }, "fehlbild": "unnoetig" },
+        { "wenn": { "fehlt": ["wer"] }, "fehlbild": "keinWer" },
+        { "wenn": { "fehlt": ["wo"] }, "fehlbild": "keinWo" },
+        { "wenn": { "gewaehlt": ["unpassend"] }, "fehlbild": "falscherStil" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 0 }, "fehlbild": "keinBeispiel" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 1 }, "fehlbild": "einBeispiel" }
+      ],
+      "fehlbilder": {
+        "vage": {
+          "texte": [
+            "Lustig? Im Spiel erzählt ein Clown 40 Minuten lang Witze. Man selbst macht nichts.",
+            "Ich habe überall «haha» hingeschrieben. Jetzt ist es lustig."
+          ],
+          "hinweis": "«Irgendwie lustig» ist ungenau. Kiwi musste raten."
+        },
+        "keinZiel": {
+          "texte": [
+            "Hier ist das Spiel: 300 Seiten Regeln, zwölf Spielbretter und ein Handbuch. Einen Namen hat es nicht.",
+            "Fertig! Das Spiel ist da. Ich verrate aber nicht, worum es geht."
+          ],
+          "hinweis": "Kiwi wusste nicht, was genau du haben willst: eine Idee in einem Satz, mit Namen."
+        },
+        "unnoetig": {
+          "texte": [
+            "«Velo-Blau»: Die Kinder malen in der Bäckerei ein Velo blau an.",
+            "Im Spiel fährt ein blaues Velo durch den Teig. Einen Namen hat es auch: «Blau im Bau»."
+          ],
+          "hinweis": "Dein Velo hat mit dem Spiel nichts zu tun. Kiwi hat es trotzdem eingebaut."
+        },
+        "keinWer": {
+          "texte": [
+            "«Brot in Not 2»: Man füllt die Steuererklärung einer Bäckerei aus. Ein Spass für Buchhalter!",
+            "«Teig im Zweig»: Man berechnet Backzeiten mit Formeln. Für Erwachsene mit Taschenrechner."
+          ],
+          "hinweis": "Kiwi wusste nicht, dass Kinder spielen."
+        },
+        "keinWo": {
+          "texte": [
+            "«Stern am Kern»: Kinder fliegen mit einer Rakete zum Mars.",
+            "«Hai im Mai»: Kinder tauchen im Meer nach Schätzen."
+          ],
+          "hinweis": "Kiwi wusste nicht, dass das Spiel in einer Bäckerei spielen soll."
+        },
+        "falscherStil": {
+          "texte": [
+            "«Projekt 4C»: Kinder sortieren in der Bäckerei Brötchen nach Grösse.",
+            "«Projekt 5A»: Kinder verzieren in der Bäckerei Kuchen."
+          ],
+          "hinweis": "Kiwi hat den Namen dem Beispiel «Projekt 4B» nachgebaut. Nach Frau Brunner klingt das nicht."
+        },
+        "keinBeispiel": {
+          "texte": [
+            "«Bäckerei-Simulator Junior»: Kinder verzieren Kuchen um die Wette.",
+            "«Kuchenspiel»: Kinder verzieren Kuchen."
+          ],
+          "hinweis": "Ohne Beispiel wusste Kiwi nicht, wie Frau Brunners Namen klingen."
+        },
+        "einBeispiel": {
+          "texte": [
+            "«{teil} 2»: Kinder verzieren in der Bäckerei Kuchen um die Wette.",
+            "«{teil}, schon wieder»: Kinder verzieren in der Bäckerei Kuchen."
+          ],
+          "hinweis": "Mit nur einem Beispiel hat Kiwi den Namen fast kopiert."
+        }
+      },
+      "erfolg": [
+        "«Teig am Steig»: Kinder führen eine Teigkugel über einen Wackelsteg bis in den Ofen.",
+        "«Mehl am Fell»: Kinder helfen der Bäckerkatze, das Mehl aus dem Fell zu schütteln."
+      ],
+      "loesung": ["ziel", "wer", "wo", "b1", "b2"]
+    },
+    "m-b": {
+      "wunsch": "Jetzt noch eine Einladung fürs Schaufenster, damit die Familien vom neuen Spiel erfahren. Kurz und fröhlich, wie meine Sprüche.",
+      "grundprompt": "Schreib eine Einladung.",
+      "teile": [
+        { "id": "form", "art": "prompt", "text": "Sie hat genau zwei kurze Sätze." },
+        { "id": "vage", "art": "prompt", "text": "Sie soll ansprechend sein." },
+        { "id": "was", "art": "kontext", "text": "Das neue Spiel heisst «Teig am Steig» und läuft in der Bäckerei Brunner." },
+        { "id": "wer", "art": "kontext", "text": "Eingeladen sind Kinder und ihre Eltern." },
+        { "id": "falsch", "art": "kontext", "text": "Eingeladen sind nur Erwachsene ohne Kinder." },
+        { "id": "b1", "art": "beispiel", "text": "«Hopp, hopp, zum Gipfeli-Stopp!»" },
+        { "id": "b2", "art": "beispiel", "text": "«Schnell herbei, das Brot ist neu!»" },
+        { "id": "unpassend", "art": "beispiel", "text": "«Sehr geehrte Kundschaft, hiermit informieren wir Sie.»" }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["form"] }, "fehlbild": "keineForm" },
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "falsch" },
+        { "wenn": { "fehlt": ["was"] }, "fehlbild": "keinWas" },
+        { "wenn": { "fehlt": ["wer"] }, "fehlbild": "keinWer" },
+        { "wenn": { "gewaehlt": ["unpassend"] }, "fehlbild": "falscherStil" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 0 }, "fehlbild": "keinBeispiel" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 1 }, "fehlbild": "einBeispiel" }
+      ],
+      "fehlbilder": {
+        "vage": {
+          "texte": [
+            "Ich habe die Einladung in Gold gedruckt und parfümiert. Ansprechend, oder? Drauf steht allerdings nichts.",
+            "Ansprechend? Ich spreche die Leute jetzt direkt an: «He, Sie da!»"
+          ],
+          "hinweis": "«Ansprechend» sagt nicht, was drinstehen soll."
+        },
+        "keineForm": {
+          "texte": [
+            "Die Einladung ist fertig. Sie ist vier Seiten lang und hat ein Inhaltsverzeichnis.",
+            "Einladung, Teil 1 von 6: «Es begab sich vor langer Zeit in einer Backstube.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, wie kurz die Einladung sein soll."
+        },
+        "falsch": {
+          "texte": [
+            "«Zutritt nur für Erwachsene ohne Kinder!» Vor dem Schaufenster stehen drei enttäuschte Kinder.",
+            "«Kinder müssen draussen bleiben.» Frau Brunner ist entsetzt."
+          ],
+          "hinweis": "Kiwi glaubt, was im Prompt steht. Diese Angabe war falsch."
+        },
+        "keinWas": {
+          "texte": [
+            "«Kommt alle! Es gibt etwas Neues. Was, weiss ich leider nicht.»",
+            "«Neu bei uns: ein Schachturnier!» Davon weiss in der Bäckerei niemand etwas."
+          ],
+          "hinweis": "Kiwi wusste nicht, wozu eingeladen wird."
+        },
+        "keinWer": {
+          "texte": [
+            "«Liebe Geschäftspartner, wir laden zur Produktvorstellung.»",
+            "«An alle Rentnerinnen und Rentner: Es gibt ein neues Spiel!»"
+          ],
+          "hinweis": "Kiwi wusste nicht, wer eingeladen ist."
+        },
+        "falscherStil": {
+          "texte": [
+            "«Sehr geehrte Familien, hiermit informieren wir Sie über das Spiel Teig am Steig. Hochachtungsvoll.»",
+            "«Sehr geehrte Kundschaft, wir teilen mit: Ein Spiel ist vorhanden.»"
+          ],
+          "hinweis": "Kiwi hat den steifen Ton dieses Beispiels übernommen."
+        },
+        "keinBeispiel": {
+          "texte": [
+            "«Neues Spiel verfügbar. Kinder und Eltern können teilnehmen.»",
+            "«Es gibt ein Spiel. Kommt.»"
+          ],
+          "hinweis": "Ohne Beispiel kennt Kiwi den fröhlichen Ton von Frau Brunner nicht."
+        },
+        "einBeispiel": {
+          "texte": [
+            "«{teil} {teil}» Ich habe deinen Spruch einfach zweimal hingeschrieben.",
+            "«{teil}» Und als zweiter Satz: nochmals dasselbe."
+          ],
+          "hinweis": "Mit nur einem Beispiel hat Kiwi den Spruch einfach kopiert."
+        }
+      },
+      "erfolg": [
+        "«Kinder und Eltern, kommt geschwind: Bei Brunner gibt es Teig am Steig! Wer bringt die Kugel in den Ofen?»"
+      ],
+      "loesung": ["form", "was", "wer", "b1", "b2"]
+    }
+  }
+}

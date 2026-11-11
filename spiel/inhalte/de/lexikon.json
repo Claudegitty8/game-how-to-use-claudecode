@@ -1,0 +1,30 @@
+{
+  "ki": {
+    "begriff": "KI",
+    "englisch": "AI (Artificial Intelligence)",
+    "kern": null,
+    "erklaerung": "KI heisst künstliche Intelligenz. Gemeint sind Programme, die Aufgaben lösen, für die man sonst Menschen braucht, zum Beispiel Texte schreiben."
+  },
+  "prompt": {
+    "begriff": "Prompt",
+    "englisch": "Prompt",
+    "kern": "prompt",
+    "erklaerung": "Ein Prompt ist das, was du der KI schreibst: deine Bestellung. Je genauer er ist, desto besser passt das Ergebnis.",
+    "quatsch": "Auf «Mach ein Spiel» baute Kiwi ein Spiel, in dem eine Kartoffel Steuerformulare sortiert."
+  },
+  "kontext": {
+    "begriff": "Kontext",
+    "englisch": "Context",
+    "kern": "kontext",
+    "erklaerung": "Kontext ist das Hintergrundwissen, das du der KI mitgibst. Sie kennt nur, was im Prompt steht.",
+    "quatsch": "Ohne Kontext schrieb Kiwi die Spielanleitung für Tiefseetaucher."
+  },
+  "beispiele": {
+    "begriff": "Beispiele",
+    "englisch": "Examples (few-shot prompting)",
+    "kern": "beispiele",
+    "erklaerung": "Beispiele zeigen der KI, wie das Ergebnis klingen oder aussehen soll. Mehrere verschiedene Beispiele wirken besser als ein einziges.",
+    "quatsch": "Mit nur einem Beispiel nannte Kiwi alle Level fast gleich.",
+    "genauer": "Fachleute geben oft noch ein paar Beispiele mehr als im Spiel und achten darauf, dass sie sich unterscheiden."
+  }
+}
