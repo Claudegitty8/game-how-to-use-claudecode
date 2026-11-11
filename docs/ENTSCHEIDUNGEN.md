@@ -113,6 +113,18 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** Sätze, die Halluzinationen verhindern (nur gegebene Quellen benutzen, Nichtwissen erlauben, Beleg verlangen), bilden die Gruppe «Absicherung».
 **Grund:** Es sind die drei offiziell empfohlenen Gegenmittel. Als eigene Gruppe werden sie zu einem Werkzeug, das der Spieler später in jedem Auftrag wiedererkennt.
 
+### E-026: Spiel-Tokens statt echter Tokens
+**Entscheid:** Das Spiel zählt «Spiel-Tokens»: rund 1,3 pro Wort, grosse Dokumente tragen einen festen Wert. Die Oberfläche nennt sie immer «Spiel-Tokens», das Lexikon sagt offen, dass es keine echte Zählung ist.
+**Grund:** Echte Token-Zahlen hängen von Modell und Sprache ab und ändern sich (Leitlinie D2). Für das Lernziel genügt: Länge kostet, bei Eingabe und Ausgabe.
+
+### E-027: Token-Budget ohne Sackgasse
+**Entscheid:** Ab dem Auftrag «Dorfzeitung» hat jeder Auftrag ein Token-Budget. Probieren und Beispiel sind gratis. Ist das Budget leer, wird es zur Hälfte nachgefüllt, die einzige Folge ist «nichts gespart». Was nicht auf Kiwis Tisch passt, wird beim Abziehen nicht mitgerechnet.
+**Grund:** Umsetzung von E-007 und Leitlinie B2: Kosten sollen spürbar sein, aber Fehler dürfen nie bestrafen oder das Weiterspielen verhindern.
+
+### E-028: Kontextfenster als Tisch mit drei Zuständen
+**Entscheid:** «Kiwis Tisch» hat drei Zustände: viel Platz, eng (Kiwi wird ungenau), voll (etwas fällt herunter, auch die Frage).
+**Grund:** Entspricht zwei belegten Effekten: Genauigkeit sinkt mit wachsender Token-Zahl, und Chat-Oberflächen lassen Älteres zuerst herausfallen. Vereinfachung: Die Schnittstelle für Programmierer lehnt zu lange Eingaben stattdessen mit einem Fehler ab. Das steht bei den Fakten.
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.

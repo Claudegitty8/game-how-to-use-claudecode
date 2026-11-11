@@ -24,9 +24,9 @@ Am besten bevor Kapitel 2 entsteht, spielen mindestens zwei Jugendliche (12 bis 
 |---|---|
 | 6.1 | Testrunde mit zwei Jugendlichen und zwei Erwachsenen. Ergebnisse einarbeiten. |
 | 6.2 | Rest: Ergebnisse der Testrunde einarbeiten, verschobene Punkte aus E-020. |
-| 6.3 | Kapitel 2 «Wie die KI tickt». **Etappe 1 erledigt:** Auftrag «Dorfmuseum» mit Wahrscheinlichkeit und Halluzination, Übungsform Vorhersagen, Bausteine Absicherung. **Als Nächstes Etappe 2:** vierter Auftrag mit Token, Kontextfenster und Wissensstand. Dazu Token-Zähler, Kontextfenster als Tischfläche und Tokens als Budget (E-007). |
+| 6.3 | **Erledigt:** Kapitel 2 «Wie die KI tickt» mit den Aufträgen «Dorfmuseum» und «Dorfzeitung», Übungsform Vorhersagen, Absicherung, Token-Zähler, Kiwis Tisch, Token-Budget. Offen daraus: gesparte Tokens für den Studio-Ausbau ausgeben. |
 | 6.4 | Schnelltest für Leute mit Vorwissen, Vorher-Nachher-Fragen. |
-| 6.5 | Kapitel 3 und 4. |
+| 6.5 | **Als Nächstes:** Kapitel 3 «Kiwi bekommt Hände» mit sechs Konzepten (Tool, Agentenschleife, Prüfschleife, Berechtigungen, Planen, Subagent). Braucht neue Werkstatt-Teile: Werkzeuggürtel, Schleife mit Stationen, Ampel für Berechtigungen. Danach Kapitel 4. |
 | 6.6 | Kapitel 5 und 6, Abschlussauftrag. |
 | 6.7 | Installierbare Web-App, die ohne Internet läuft. Hosting entscheiden. |
 | 6.8 | Zugänglichkeit prüfen (Schriftgrössen, Kontraste, Bedienung mit Hilfstechnik). |

@@ -38,7 +38,7 @@ spiel/
       ablauf.js             wo der Spieler steht und was als Nächstes kommt
       meisterschaft.js      Meisterschaftsregel und Wiederholungsabstände
       bewertung.js          prüft eine gebaute Lösung, wählt das Fehlbild
-      prompt.js             setzt den Prompt aus den gewählten Teilen zusammen
+      prompt.js             setzt den Prompt zusammen und zählt Spiel-Tokens
     ki/                   KI-Schnittstelle: simuliert, später echt
     oberflaeche/          OBERFLÄCHE
       studio.js             Startbildschirm «Die Garage»
@@ -87,6 +87,7 @@ Weil die Logik weder Browser noch Oberfläche kennt, lässt sie sich automatisch
 | Feld | Bedeutung |
 |---|---|
 | `kapitel` | Nummer des Kapitels. Bestimmt, wie das Studio heisst. |
+| `tokenBudget` | wahlweise: Spiel-Tokens für den ganzen Auftrag. Jeder Test ausser Probieren und Beispiel wird abgezogen. |
 | `kunde`, `wunsch`, `kundenstimme`, `ueberraschung` | Rahmen des Auftrags |
 | `lexikon` | wahlweise: Lexikon-Begriffe, die beim Annehmen des Auftrags freigeschaltet und nicht abgeprüft werden |
 | `runden` | Liste der Runden in Spielreihenfolge |
@@ -107,7 +108,9 @@ Eine **Aufgabe**:
 | `erfolg` | Ergebnistexte, wenn keine Prüfung zutrifft |
 | `loesung` | eine richtige Auswahl, für «Beispiel» und «Lösung zeigen» |
 
-Eine **Prüfung** trifft zu, wenn eines davon gilt: `gewaehlt` (eines dieser Teile ist angesteckt, z. B. ein vages), `fehlt` (eines dieser Teile fehlt), `aus` mit `hoechstens` (höchstens so viele Teile aus der Liste sind angesteckt, z. B. nur ein Beispiel). Der Platzhalter `{teil}` in einem Fehlbild wird durch das eine gewählte Beispiel ersetzt.
+Wahlweise hat eine Aufgabe `budget` (Obergrenze für den Prompt in Spiel-Tokens) oder `fenster` und `eng` (Grösse von Kiwis Tisch und die Schwelle, ab der er zu voll ist). Ein Teil kann mit `tokens` eine feste Grösse tragen (für grosse Dokumente), ein Fehlbild mit `ausgabeTokens` den Preis einer langen Antwort.
+
+Eine **Prüfung** trifft zu, wenn eines davon gilt: `gewaehlt` (eines dieser Teile ist angesteckt, z. B. ein vages), `fehlt` (eines dieser Teile fehlt), `aus` mit `hoechstens` (höchstens so viele Teile aus der Liste sind angesteckt, z. B. nur ein Beispiel), `tokensUeber` (der Prompt hat mehr Spiel-Tokens als die Zahl). Der Platzhalter `{teil}` in einem Fehlbild wird durch das eine gewählte Beispiel ersetzt.
 
 Eine **Vorhersage-Aufgabe** (`typ: "wahl"`) hat statt Teilen und Prüfungen: `frage`, `optionen` (jede mit `id`, `text`, `hinweis`, genau eine mit `richtig`), `kiwi` (was Kiwi tatsächlich tut, unabhängig von der Wahl), `loesung` und wahlweise `anteile` (Wörter mit `stufe` 1 bis 3 für den «Blick in Kiwis Kopf»). Die Oberfläche dafür ist `oberflaeche/wahl.js`.
 

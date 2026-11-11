@@ -2,6 +2,22 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.5.0, 11. November 2026: Kapitel 2 komplett
+
+**Neu**
+- Vierter Auftrag «Dorfzeitung Hinterwiler Bote»: drei Konzept-Runden und eine Mischrunde.
+- Konzept 7 «Token»: Token-Zähler in der Werkbank, Aufgaben mit Obergrenze, Token-Steine zeigen, wie ein Satz zerfällt.
+- Konzept 8 «Kontextfenster»: «Kiwis Tisch» zeigt als Balken, wie voll das Kontextfenster ist. Zu voll macht Kiwi ungenau, übervoll lässt die Frage herunterfallen.
+- Konzept 9 «Wissensstand»: Kiwi kennt weder Neuigkeiten von gestern noch das heutige Datum, ausser man gibt sie mit.
+- **Token-Budget pro Auftrag** (E-007): Jeder Test kostet Spiel-Tokens. Probieren und Beispiel sind gratis. Was übrig bleibt, steht als «gespart» an der Auftragswand. Ist das Budget leer, wird nachgefüllt, es gibt dann nur keinen Sparbonus.
+- Neue Prüfung `tokensUeber` für Budget und Kontextfenster. Die Inhaltsprüfung stellt sicher, dass Anzeige und Bewertung dieselben Grenzen benutzen.
+- 21 neue Aufgaben. Insgesamt 64 Aufgaben, 13 Lexikon-Einträge, 19 geprüfte Fakten, 35 Tests.
+
+**Bekannte Grenzen**
+- Gesparte Tokens lassen sich noch für nichts ausgeben (Studio-Ausbau folgt später).
+- Weiterhin nicht mit echten Spielern getestet (E-022).
+- Läuft noch nicht ohne Internet.
+
 ## 0.4.0, 11. November 2026: Kapitel 2, Etappe 1
 
 **Neu**
