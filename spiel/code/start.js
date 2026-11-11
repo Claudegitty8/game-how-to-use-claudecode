@@ -1,16 +1,50 @@
-// Einstieg: holt Inhalte, Speicher und KI und übergibt sie der Oberfläche.
+// Einstieg: holt Inhalte, Speicher und KI und schaltet zwischen den Ansichten um.
 import { ladeInhalte } from './inhalte/lader.js';
 import { erstelleSpeicher } from './speicher/speicher.js';
 import { erstelleKi } from './ki/schnittstelle.js';
-import { zeigeStartseite } from './oberflaeche/startseite.js';
+import { zeigeStudio } from './oberflaeche/studio.js';
+import { zeigeRunde, zeigeZwischen } from './oberflaeche/runde.js';
+import { zeigeLexikon, zeigeEinstellungen } from './oberflaeche/lexikon.js';
+import { wendeSchriftAn } from './oberflaeche/schrift.js';
+
+const ANSICHTEN = {
+  studio: zeigeStudio,
+  runde: zeigeRunde,
+  zwischen: zeigeZwischen,
+  lexikon: zeigeLexikon,
+  einstellungen: zeigeEinstellungen,
+};
 
 async function start() {
   const wurzel = document.getElementById('app');
   try {
     const inhalte = await ladeInhalte('de');
     const speicher = erstelleSpeicher();
-    const ki = erstelleKi('simuliert');
-    zeigeStartseite(wurzel, { inhalte, speicher, ki });
+    const app = {
+      inhalte,
+      speicher,
+      ki: erstelleKi('simuliert'),
+      stand: speicher.laden(),
+      // Jede Änderung am Spielstand wird sofort gespeichert.
+      setze(stand) {
+        this.stand = stand;
+        speicher.speichern(stand);
+      },
+      // Vorerst gibt es genau einen Auftrag.
+      auftrag() {
+        return inhalte.auftraege[0];
+      },
+    };
+    const nav = {
+      zu(name, daten) {
+        wurzel.replaceChildren();
+        ANSICHTEN[name](wurzel, app, nav, daten);
+        window.scrollTo(0, 0);
+        wurzel.focus({ preventScroll: true });
+      },
+    };
+    wendeSchriftAn(app.stand.einstellungen.schrift);
+    nav.zu('studio');
   } catch (fehler) {
     wurzel.replaceChildren();
     const meldung = document.createElement('p');

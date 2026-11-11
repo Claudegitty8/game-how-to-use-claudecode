@@ -187,3 +187,89 @@ button:focus-visible { outline: 3px solid var(--akzent); outline-offset: 2px; }
 @media (prefers-reduced-motion: no-preference) {
   .baustein-zeichen, .auge { transition: transform 0.15s, height 0.15s; }
 }
+
+/* ---------- Ab Version 0.2: Spielablauf ---------- */
+:root[data-schrift="gross"] { font-size: 20px; }
+:root[data-schrift="sehrgross"] { font-size: 23px; }
+
+main:focus { outline: none; }
+[hidden] { display: none !important; }
+
+.knopf, .knopf-zweit, .knopf-leise, .knopf-warn {
+  padding: 0.6rem 1rem;
+  background: transparent;
+  border: 2px solid var(--linie);
+  font-weight: 600;
+}
+.knopf-leise { border-color: transparent; padding-left: 0; color: var(--akzent); }
+.knopf-warn { border-color: var(--warn); color: var(--warn); }
+
+.knopf-reihe { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.knopf-reihe > * { flex: 1 1 9rem; }
+.aktionen { display: grid; gap: 0.6rem; }
+.aktionen:empty { display: none; }
+
+.leiste { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.leiste-titel { color: var(--leise); font-size: 0.9rem; }
+
+.schritte {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+}
+.schritte li {
+  flex: 1;
+  text-align: center;
+  padding: 0.3rem 0.1rem;
+  border-bottom: 3px solid var(--linie);
+  color: var(--leise);
+}
+.schritte li.aktuell { border-color: var(--kiwi-dunkel); color: var(--text); font-weight: 700; }
+
+.punkte { display: inline-flex; gap: 0.3rem; vertical-align: middle; }
+.punkt {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 2px solid var(--kiwi-dunkel);
+}
+.punkt.voll { background: var(--kiwi-dunkel); }
+
+.meister-zeile, .meister-liste li, .eintrag summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.meister-liste { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
+
+.teil-gruppe { display: grid; gap: 0.5rem; }
+.baustein:disabled { opacity: 0.75; cursor: default; }
+.baustein.markiert { border-color: var(--akzent); border-style: dashed; }
+.teil-hinweis, .hilfe-text, .status { font-size: 0.95rem; }
+.teil-hinweis:empty, .hilfe-text:empty, .status:empty { display: none; }
+.teil-hinweis, .hilfe-text { color: var(--akzent); }
+.status { font-weight: 600; }
+
+.aha h2 { font-size: 1.4rem; }
+.merkbild {
+  border-left: 4px solid var(--kiwi);
+  padding-left: 0.8rem;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.runden { padding-left: 1.4rem; display: grid; gap: 0.2rem; color: var(--leise); }
+.runden .aktuell { color: var(--text); font-weight: 700; }
+.runden .geschafft { text-decoration: line-through; }
+.runden .geschafft::after { content: " ✓"; }
+
+.feier { justify-items: center; text-align: center; }
+.wand-eintrag { display: grid; gap: 0.2rem; }
+
+.eintrag summary { cursor: pointer; font-weight: 700; min-height: 44px; }
+.rueckfrage { display: grid; gap: 0.6rem; background: var(--warn-flaeche); border-radius: 10px; padding: 0.8rem; }
+.eintrag { display: block; }
+.eintrag > p { margin-top: 0.5rem; }

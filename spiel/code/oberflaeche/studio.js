@@ -1,0 +1,76 @@
+// Das Studio: Startbildschirm mit Auftrag, Meisterschaft und Auftragswand.
+import { el, fuelle, knopf, kiwiFigur, punkte } from './bausteine.js';
+import { starteAuftrag } from '../logik/ablauf.js';
+import { erfolge, neuerFortschritt } from '../logik/meisterschaft.js';
+
+function rundenName(runde, texte) {
+  return runde.konzept ? texte.konzepte[runde.konzept].name : runde.titel;
+}
+
+export function zeigeStudio(wurzel, app, nav) {
+  const { texte, regeln, auftraege } = app.inhalte;
+  const t = texte.app;
+  const { stand } = app;
+  const auftrag = app.auftrag();
+  const erledigt = stand.erledigt.includes(auftrag.id);
+  const laeuft = Boolean(stand.lauf);
+  const noetig = regeln.erfolgeFuerMeisterschaft;
+
+  const gruss = erledigt ? t.kiwiFertig : laeuft ? t.kiwiLaeuft : t.kiwiNeu;
+
+  // --- Auftrag ---
+  const auftragKarte = el('section', { klasse: 'karte auftrag' },
+    el('p', { klasse: 'etikett', text: t.auftragEtikett }),
+    el('h2', { text: auftrag.kunde }),
+    el('p', { klasse: 'wunsch', text: `«${auftrag.wunsch}»` }));
+
+  if (erledigt) {
+    auftragKarte.append(el('p', { klasse: 'klein', text: t.mehrFolgt }));
+  } else {
+    const aktuelle = laeuft ? stand.lauf.runde : -1;
+    auftragKarte.append(
+      el('ol', { klasse: 'runden' }, auftrag.runden.map((runde, index) => el('li', {
+        klasse: index < aktuelle ? 'geschafft' : index === aktuelle ? 'aktuell' : null,
+        'aria-current': index === aktuelle ? 'step' : null,
+        text: rundenName(runde, texte),
+      }))),
+      knopf(laeuft ? t.weiterBauen : t.auftragAnnehmen, () => {
+        if (!laeuft) app.setze(starteAuftrag(app.stand, auftrag, regeln));
+        nav.zu('runde');
+      }, 'los'),
+    );
+  }
+
+  // --- Meisterschaft ---
+  const konzepte = auftraege.flatMap((a) => a.runden).filter((runde) => runde.konzept);
+  const meisterschaft = el('section', { klasse: 'karte' },
+    el('p', { klasse: 'etikett', text: t.meisterschaftEtikett }),
+    el('ul', { klasse: 'meister-liste' }, konzepte.map((runde) => {
+      const anzahl = Math.min(noetig, erfolge(stand.fortschritt[runde.konzept] ?? neuerFortschritt()));
+      return el('li', {}, el('span', { text: texte.konzepte[runde.konzept].name }), punkte(anzahl, noetig, t.punkteLabel));
+    })));
+
+  // --- Auftragswand ---
+  const fertige = auftraege.filter((a) => stand.erledigt.includes(a.id));
+  const wand = el('section', { klasse: 'karte' },
+    el('p', { klasse: 'etikett', text: t.wandEtikett }),
+    fertige.length === 0
+      ? el('p', { klasse: 'klein', text: t.wandLeer })
+      : fertige.map((a) => el('div', { klasse: 'wand-eintrag' },
+        el('strong', { text: a.kunde }),
+        el('p', { text: `«${a.kundenstimme}»` }))));
+
+  wurzel.append(
+    el('header', { klasse: 'kopf' },
+      el('h1', { text: t.titel }),
+      el('p', { text: t.studioName })),
+    el('div', { klasse: 'kiwi-zeile' }, kiwiFigur(t.kiwiName, erledigt), el('p', { klasse: 'sprechblase', text: gruss })),
+    auftragKarte,
+    meisterschaft,
+    wand,
+    el('div', { klasse: 'knopf-reihe' },
+      knopf(fuelle(t.lexikonKnopf, { anzahl: stand.lexikon.length }), () => nav.zu('lexikon'), 'knopf-zweit'),
+      knopf(t.einstellungenKnopf, () => nav.zu('einstellungen'), 'knopf-zweit')),
+    el('footer', { klasse: 'fuss', text: t.fuss }),
+  );
+}
