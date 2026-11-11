@@ -4,7 +4,8 @@ import {
   neuerFortschritt, verbucheVersuch, erfolge, istGemeistert,
   darfStarten, naechsterAbstand, verbucheWiederholung,
 } from '../spiel/code/logik/meisterschaft.js';
-import { bewerte } from '../spiel/code/logik/bewertung.js';
+import { bewerte, hilfeTeil } from '../spiel/code/logik/bewertung.js';
+import { bauePrompt } from '../spiel/code/logik/prompt.js';
 
 const regeln = { erfolgeFuerMeisterschaft: 3, wiederholungsAbstaende: [1, 3, 7] };
 
@@ -51,9 +52,38 @@ test('Wiederholungen kommen in wachsenden Abständen und bei Misserfolg früher'
   assert.equal(naechsterAbstand(f, regeln), null);
 });
 
-test('Bewertung nennt die wichtigste fehlende Zutat', () => {
-  const aufgabe = { zutaten: [{ id: 'ziel' }, { id: 'zielgruppe' }, { id: 'extra', noetig: false }] };
-  assert.deepEqual(bewerte(aufgabe, []), { ok: false, fehlend: ['ziel', 'zielgruppe'], wichtigsteLuecke: 'ziel' });
-  assert.equal(bewerte(aufgabe, ['ziel']).wichtigsteLuecke, 'zielgruppe');
-  assert.equal(bewerte(aufgabe, ['ziel', 'zielgruppe']).ok, true);
+const aufgabe = {
+  grundprompt: 'Erfinde Namen.',
+  teile: [
+    { id: 'ziel', art: 'prompt', text: 'Für ein Spiel.' },
+    { id: 'vage', art: 'prompt', text: 'Mach es cool.' },
+    { id: 'b1', art: 'beispiel', text: '«Eins»' },
+    { id: 'b2', art: 'beispiel', text: '«Zwei»' },
+  ],
+  pruefungen: [
+    { wenn: { gewaehlt: ['vage'] }, fehlbild: 'vage' },
+    { wenn: { fehlt: ['ziel'] }, fehlbild: 'keinZiel' },
+    { wenn: { aus: ['b1', 'b2'], hoechstens: 0 }, fehlbild: 'keins' },
+    { wenn: { aus: ['b1', 'b2'], hoechstens: 1 }, fehlbild: 'eins' },
+  ],
+  loesung: ['ziel', 'b1', 'b2'],
+};
+
+test('Bewertung: Die erste zutreffende Prüfung bestimmt das Fehlbild', () => {
+  assert.equal(bewerte(aufgabe, []).fehlbild, 'keinZiel');
+  assert.equal(bewerte(aufgabe, ['vage']).fehlbild, 'vage');
+  assert.equal(bewerte(aufgabe, ['ziel']).fehlbild, 'keins');
+  assert.equal(bewerte(aufgabe, ['ziel', 'b2']).fehlbild, 'eins');
+  assert.equal(bewerte(aufgabe, ['ziel', 'b1', 'b2']).ok, true);
+});
+
+test('Hilfe zeigt zuerst auf ein schädliches Teil, sonst auf ein fehlendes', () => {
+  assert.deepEqual(hilfeTeil(aufgabe, ['vage', 'ziel']), { id: 'vage', grund: 'zuviel' });
+  assert.deepEqual(hilfeTeil(aufgabe, ['ziel', 'b2']), { id: 'b1', grund: 'fehlt' });
+  assert.equal(hilfeTeil(aufgabe, ['ziel', 'b1', 'b2']), null);
+});
+
+test('Der Prompt wird in fester Reihenfolge zusammengesetzt', () => {
+  assert.equal(bauePrompt(aufgabe, ['b2', 'ziel', 'b1'], 'Beispiele:'), 'Erfinde Namen. Für ein Spiel. Beispiele: «Eins», «Zwei»');
+  assert.equal(bauePrompt(aufgabe, []), 'Erfinde Namen.');
 });

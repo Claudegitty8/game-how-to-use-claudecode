@@ -1,7 +1,7 @@
 // Die eine Schnittstelle für beide KI-Modi (simuliert und später echt).
 //
 // Vertrag: ki.antworte(anfrage) liefert ein Promise mit
-//   { text, ok, luecke, tokens: { eingabe, ausgabe }, modus }
+//   { text, ok, fehlbild, hinweis, tokens: { eingabe, ausgabe }, modus }
 // anfrage = { aufgabe, auswahl, versuch }
 //
 // Der Lernfortschritt hängt nie vom Modus ab: Bewertet wird immer in logik/.

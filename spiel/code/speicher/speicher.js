@@ -1,10 +1,8 @@
 // Spielstand: bleibt nur auf dem Gerät. Fällt der Gerätespeicher aus,
 // läuft das Spiel mit einem Stand im Arbeitsspeicher weiter.
-const SCHLUESSEL = 'ki-studio-stand-v1';
+import { neuerStand, STAND_VERSION } from '../logik/ablauf.js';
 
-export function leererStand() {
-  return { version: 1, besuche: 0, fortschritt: {} };
-}
+const SCHLUESSEL = 'ki-studio-stand';
 
 function holeLager() {
   try {
@@ -24,10 +22,11 @@ export function erstelleSpeicher(lager = holeLager()) {
     laden() {
       if (imKopf) return structuredClone(imKopf);
       try {
-        const roh = lager?.getItem(SCHLUESSEL);
-        return roh ? JSON.parse(roh) : leererStand();
+        const stand = JSON.parse(lager?.getItem(SCHLUESSEL) ?? 'null');
+        // Stände aus älteren Versionen werden verworfen, bis es eine Umwandlung gibt.
+        return stand?.version === STAND_VERSION ? stand : neuerStand();
       } catch {
-        return leererStand();
+        return neuerStand();
       }
     },
     speichern(stand) {
@@ -38,6 +37,15 @@ export function erstelleSpeicher(lager = holeLager()) {
       } catch {
         return false;
       }
+    },
+    loeschen() {
+      imKopf = null;
+      try {
+        lager?.removeItem(SCHLUESSEL);
+      } catch {
+        // Nichts zu tun: Der Stand im Arbeitsspeicher ist bereits weg.
+      }
+      return neuerStand();
     },
   };
 }
