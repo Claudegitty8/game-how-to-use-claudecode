@@ -174,7 +174,8 @@
         {
           "id": "alles",
           "art": "recht",
-          "text": "Kiwi darf alles, ohne zu fragen."
+          "text": "Kiwi darf alles, ohne zu fragen.",
+          "ampel": "rot"
         },
         {
           "id": "schreiben",
@@ -357,7 +358,8 @@
         {
           "id": "pub",
           "art": "recht",
-          "text": "Veröffentlichen: nur nach Rückfrage"
+          "text": "Veröffentlichen: nur nach Rückfrage",
+          "ampel": "gelb"
         }
       ],
       "pruefungen": [
@@ -445,12 +447,14 @@
         {
           "id": "lesen",
           "art": "recht",
-          "text": "Bestenliste lesen: frei"
+          "text": "Bestenliste lesen: frei",
+          "ampel": "gruen"
         },
         {
           "id": "alles",
           "art": "recht",
-          "text": "Alles frei, auch die Liste löschen"
+          "text": "Alles frei, auch die Liste löschen",
+          "ampel": "rot"
         }
       ],
       "pruefungen": [

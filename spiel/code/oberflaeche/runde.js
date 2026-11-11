@@ -1,8 +1,7 @@
 // Zeigt den aktuellen Schritt einer Runde: Probieren, Aha, Beispiel, Lücke, Frei,
 // Mischrunde oder Wiederholung. Die Regeln dazu stehen in logik/ablauf.js.
 import { el, fuelle, knopf, kiwiFigur, punkte, leiste } from './bausteine.js';
-import { baueWerkbank } from './werkbank.js';
-import { baueWahl } from './wahl.js';
+import { baueUebung, istFrage } from './werkbank.js';
 import { ansicht, weiter, verbucheFrei, verbucheWiederholungsErgebnis, verbraucheTokens, SCHRITTE } from '../logik/ablauf.js';
 import { hilfeTeil } from '../logik/bewertung.js';
 import { erfolge, neuerFortschritt } from '../logik/meisterschaft.js';
@@ -42,6 +41,9 @@ function zeigeAha(wurzel, app, nav, a, auftrag) {
       el('p', { klasse: 'etikett', text: t.schritt.aha }),
       el('h2', { text: konzept.name }),
       konzept.aha.map((satz) => el('p', { text: satz })),
+      konzept.stationen ? el('div', { klasse: 'stationen-bild' },
+        el('ol', { klasse: 'stationen' }, konzept.stationen.map((station) => el('li', { text: station }))),
+        el('p', { klasse: 'klein', text: t.stationenWieder })) : null,
       el('div', { klasse: 'merkbild' },
         el('p', { klasse: 'etikett', text: t.ahaAnalogie }),
         el('p', { text: konzept.analogie })),
@@ -67,8 +69,8 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   let fehlschlaege = 0;
   let hilfeStufe = 0;
 
-  const istWahl = aufgabe.typ === 'wahl';
-  const werkbank = (istWahl ? baueWahl : baueWerkbank)({
+  const istWahl = istFrage(aufgabe);
+  const werkbank = baueUebung({
     aufgabe,
     t,
     sichtbar: a.nurTeile ?? null,
@@ -170,7 +172,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
         status.textContent = zaehlt ? t.gezaehlt : t.nichtGezaehlt;
         fertig(knopf(t.naechste, () => schliesseAb({ ok: true, zaehlt }), 'los'));
       } else {
-        status.textContent = istWahl ? t.nochmalWahl : t.nochmal;
+        status.textContent = aufgabe.typ === 'reihe' ? t.nochmalReihe : istWahl ? t.nochmalWahl : t.nochmal;
         aktionen.replaceChildren(knopf(t.andere, () => schliesseAb({ ok: false, zaehlt: false }), 'knopf-zweit'));
       }
     } else if (art === 'misch') {
@@ -199,7 +201,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
     } else if (hilfeStufe === 2) {
       const teil = hilfeTeil(aufgabe, werkbank.auswahl());
       hilfeText.textContent = '';
-      const text = { zuviel: t.hilfeZuviel, fehlt: t.hilfeFehlt, falsch: t.hilfeFalscheWahl };
+      const text = { zuviel: t.hilfeZuviel, fehlt: t.hilfeFehlt, falsch: t.hilfeFalscheWahl, platz: t.hilfePlatz };
       if (teil) werkbank.markiere(teil.id, text[teil.grund]);
     } else {
       werkbank.setze(aufgabe.loesung);

@@ -29,6 +29,7 @@
       },
       "frei": [
         "db-c",
+        "db-g",
         "db-d",
         "db-e",
         "db-f"
@@ -689,6 +690,43 @@
       "loesung": [
         "prompt"
       ]
+    },
+    "db-g": {
+      "typ": "reihe",
+      "wunsch": "Die Suche findet «Momo» nicht. Wie geht Kiwi am besten vor?",
+      "frage": "Bring die Schritte beim Fehlerflicken in die richtige Reihenfolge.",
+      "schritte": [
+        {
+          "id": "flicken",
+          "text": "Die falsche Zeile flicken"
+        },
+        {
+          "id": "pruefen",
+          "text": "Prüfen, ob «Momo» jetzt gefunden wird, und das als Test festhalten"
+        },
+        {
+          "id": "bericht",
+          "text": "Den Fehlerbericht lesen: erwartet, passiert, ausgelöst durch"
+        },
+        {
+          "id": "nachstellen",
+          "text": "Den Fehler nachstellen: selbst nach «Momo» suchen"
+        }
+      ],
+      "loesung": [
+        "bericht",
+        "nachstellen",
+        "flicken",
+        "pruefen"
+      ],
+      "kiwi": "Kiwi liest den Bericht, sieht den Fehler mit eigenen Augen, flickt ihn und hält die Prüfung als Test fest.",
+      "daneben": {
+        "texte": [
+          "Kiwi flickt, bevor es den Fehler gesehen hat. Geflickt ist jetzt etwas ganz anderes.",
+          "Kiwi prüft zuerst, ob der Fehler weg ist. Er ist noch da: Geflickt wurde ja noch nichts."
+        ],
+        "hinweis": "Erst verstehen und nachstellen, dann flicken, dann prüfen."
+      }
     }
   }
 }

@@ -2,6 +2,19 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.11.0, 11. November 2026: Feinschliff
+
+**Neu**
+- **Übungsform «Sortieren»:** Schritte mit Pfeilen in die richtige Reihenfolge schieben. Fünf Aufgaben: Agentenschleife, Berechtigungen (harmlos bis heikel), API, Commit und Debugging. Sie stehen an zweiter Stelle der freien Situationen, damit jeder sie sieht.
+- **Ampel an den Rechten:** Jedes Recht zeigt einen farbigen Punkt (grün frei, gelb mit Rückfrage, rot alles frei). Die Farbe ergänzt den Text nur.
+- **Stationen im Aha:** Agentenschleife und Prüfschleife zeigen ihre drei Stationen als kleine Kette.
+- Symbole vor den neuen Bausteingruppen (Werkzeuge, Connectors, Skills, Rechte, Felder, Zettel).
+- Zugänglichkeit: Alle Farbpaare in Hell und Dunkel haben einen Kontrast von mindestens 5,4 zu 1 (verlangt sind 4,5). Sichtbarer Fokus auch bei Lexikon-Einträgen. Die Pfeile beim Sortieren sind beschriftet und gross genug für den Daumen.
+- Insgesamt 182 Aufgaben, 50 Tests.
+
+**Entschieden, noch nicht umgesetzt**
+- Hosting soll über GitHub Pages laufen (E-038). Dafür muss das Repository öffentlich werden oder ein bezahltes Abo her. Das macht der Besitzer oder gibt es ausdrücklich frei.
+
 ## 0.10.0, 11. November 2026: Alles, was ohne Entscheid des Besitzers geht
 
 **Neu**

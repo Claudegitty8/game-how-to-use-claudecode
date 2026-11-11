@@ -1,8 +1,7 @@
 // Zusätze: Schnelltest, freiwillige Fragen, Studio einrichten, Daumen.
 // Die Regeln dazu stehen in logik/extras.js.
 import { el, fuelle, knopf, kiwiFigur, leiste } from './bausteine.js';
-import { baueWerkbank } from './werkbank.js';
-import { baueWahl } from './wahl.js';
+import { baueUebung, istFrage } from './werkbank.js';
 import {
   schnelltestAufgaben, verbucheSchnelltest, guthaben, kaufe, verbucheUmfrage, verbucheDaumen,
 } from '../logik/extras.js';
@@ -48,8 +47,8 @@ export function zeigeSchnelltest(wurzel, app, nav, daten = {}) {
 
   const { konzept, aufgabe: aufgabeId } = reihe[ergebnisse.length];
   const aufgabe = auftrag.aufgaben[aufgabeId];
-  const istWahl = aufgabe.typ === 'wahl';
-  const werkbank = (istWahl ? baueWahl : baueWerkbank)({ aufgabe, t });
+  const istWahl = istFrage(aufgabe);
+  const werkbank = baueUebung({ aufgabe, t });
   const kiwi = kiwiFigur(t.kiwiName);
   const sprechblase = el('p', { klasse: 'sprechblase', text: t.kiwiBereit });
   const status = el('p', { klasse: 'status' });

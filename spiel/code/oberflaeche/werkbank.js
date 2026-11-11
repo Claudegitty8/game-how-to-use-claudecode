@@ -1,7 +1,22 @@
 // Die Werkbank: Hier steckt der Spieler seinen Prompt aus Textteilen zusammen.
 // Sie kennt keine Spielregeln. Sie zeigt nur an und meldet die Auswahl.
 import { el, fuelle } from './bausteine.js';
+import { baueWahl } from './wahl.js';
+import { baueReihe } from './reihe.js';
 import { ARTEN, bauePrompt, baueSystemPrompt, hatSystemPrompt, hatZettel, zaehleTokens } from '../logik/prompt.js';
+
+// Wählt zur Aufgabe die passende Übungsform: Zusammenstecken, Vorhersagen oder Sortieren.
+export function baueUebung(optionen) {
+  const { typ } = optionen.aufgabe;
+  if (typ === 'wahl') return baueWahl(optionen);
+  if (typ === 'reihe') return baueReihe(optionen);
+  return baueWerkbank(optionen);
+}
+
+// Vorhersagen und Sortieren sind Fragen, kein Prompt.
+export function istFrage(aufgabe) {
+  return aufgabe.typ === 'wahl' || aufgabe.typ === 'reihe';
+}
 
 export function baueWerkbank({ aufgabe, t, sichtbar = null, vorgabe = [], auswahl = [], gesperrt = false, zeigeTokens = false }) {
   const gewaehlt = new Set([...vorgabe, ...auswahl]);
@@ -63,7 +78,9 @@ export function baueWerkbank({ aufgabe, t, sichtbar = null, vorgabe = [], auswah
             hinweisZumTeil.textContent = '';
             zeichne();
           },
-        }, el('span', { klasse: 'baustein-zeichen', 'aria-hidden': 'true', text: '+' }), el('span', { text: teil.text }));
+        }, el('span', { klasse: 'baustein-zeichen', 'aria-hidden': 'true', text: '+' }),
+          teil.ampel ? el('span', { klasse: `ampel ampel-${teil.ampel}`, 'aria-hidden': 'true' }) : null,
+          el('span', { text: teil.text }));
         knoepfe.set(teil.id, knoten);
         return knoten;
       }));

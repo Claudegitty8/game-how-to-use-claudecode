@@ -157,6 +157,14 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** Ein Service Worker (`spiel/sw.js`) holt mit Internet immer die neuste Fassung und liefert ohne Internet die abgelegte. Der Name «KI-Studio» steht zusätzlich in `spiel/manifest.webmanifest` und `spiel/index.html`.
 **Grund:** So gibt es nie veraltete Stände, solange Internet da ist. Der Browser verlangt den Namen an diesen zwei Orten. Das ist die einzige Ausnahme von der Regel «alle sichtbaren Texte in den Inhalten».
 
+### E-037: Übungsform «Sortieren», Ampel und Stationen
+**Entscheid:** Dritte Aufgabenart `typ: "reihe"`: Schritte werden mit Pfeilen verschoben, richtig ist nur die genaue Reihenfolge. Teile der Art `recht` tragen ein Feld `ampel` (gruen, gelb, rot). Konzepte können im Aha `stationen` zeigen.
+**Grund:** Löst die offenen Punkte aus E-029 ein. Pfeile statt Ziehen, weil sie am Handy und mit Tastatur oder Vorlesehilfe gleich gut gehen.
+
+### E-038: Hosting über GitHub Pages
+**Entscheid:** Der Besitzer hat GitHub Pages gewählt. Eingerichtet ist es noch nicht.
+**Grund:** Kein neues Konto nötig. Offen: Das Repository ist privat. Pages braucht ein öffentliches Repository oder ein bezahltes GitHub-Abo. Veröffentlichen geschieht nur nach ausdrücklicher Zustimmung.
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.

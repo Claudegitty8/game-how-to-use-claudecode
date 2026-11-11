@@ -306,3 +306,34 @@ main:focus { outline: none; }
 
 /* Schnelltest: Ergebnisliste */
 .ergebnis-liste { padding-left: 1.2rem; display: grid; gap: 0.4rem; }
+
+/* Sortieren: Schritte mit Pfeilen verschieben */
+.reihe { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; counter-reset: platz; }
+.reihe-zeile {
+  counter-increment: platz;
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.5rem 0.6rem; border: 2px solid var(--linie); border-radius: 12px; background: var(--flaeche);
+}
+.reihe-zeile::before { content: counter(platz) "."; font-weight: 700; color: var(--leise); min-width: 1.4rem; }
+.reihe-zeile.markiert { border-color: var(--warn); background: var(--warn-flaeche); }
+.reihe-text { flex: 1; }
+.reihe-knoepfe { display: flex; gap: 0.35rem; }
+.reihe-knopf {
+  width: 2.75rem; height: 2.75rem; border: 2px solid var(--linie); border-radius: 10px;
+  background: transparent; color: var(--text); font-size: 1rem;
+}
+.reihe-knopf:disabled { opacity: 0.35; }
+
+/* Ampel an den Rechten: Die Farbe ergänzt den Text, sie ersetzt ihn nicht. */
+.ampel { flex: none; width: 0.85rem; height: 0.85rem; border-radius: 50%; border: 2px solid var(--text); }
+.ampel-gruen { background: #3f9b3a; }
+.ampel-gelb { background: #e8b923; }
+.ampel-rot { background: #c93a32; }
+
+/* Stationen einer Schleife im Aha */
+.stationen-bild { display: grid; gap: 0.3rem; }
+.stationen { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+.stationen li { padding: 0.35rem 0.7rem; border: 2px solid var(--kiwi-dunkel); border-radius: 999px; font-weight: 600; }
+.stationen li + li::before { content: "→"; margin-right: 0.6rem; margin-left: -0.2rem; color: var(--leise); font-weight: 400; }
+
+summary:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid var(--akzent); outline-offset: 2px; }

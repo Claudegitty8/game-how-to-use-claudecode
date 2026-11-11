@@ -45,7 +45,7 @@ export function schaetzeSpielTokens(text) {
 // So viele Spiel-Tokens schickt der Spieler: Grundprompt plus alle angesteckten Teile.
 // Grosse Dokumente tragen ihre Grösse als festen Wert (teil.tokens).
 export function zaehleTokens(aufgabe, auswahl = []) {
-  if (aufgabe.typ === 'wahl') return schaetzeSpielTokens(aufgabe.frage);
+  if (aufgabe.typ === 'wahl' || aufgabe.typ === 'reihe') return schaetzeSpielTokens(aufgabe.frage);
   return aufgabe.teile
     .filter((teil) => auswahl.includes(teil.id))
     .reduce((summe, teil) => summe + (teil.tokens ?? schaetzeSpielTokens(teil.text)), schaetzeSpielTokens(aufgabe.grundprompt));

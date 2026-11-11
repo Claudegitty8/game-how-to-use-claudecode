@@ -28,6 +28,7 @@
       },
       "frei": [
         "ap-c",
+        "ap-g",
         "ap-d",
         "ap-e",
         "ap-f"
@@ -676,6 +677,38 @@
       "loesung": [
         "leck"
       ]
+    },
+    "ap-g": {
+      "typ": "reihe",
+      "wunsch": "Wie kommt das Wetter eigentlich auf unsere Webseite?",
+      "frage": "In welcher Reihenfolge läuft eine Wetter-Abfrage ab?",
+      "schritte": [
+        {
+          "id": "zeigen",
+          "text": "Die Webseite zeigt: «Morgen 18 Grad»"
+        },
+        {
+          "id": "antwort",
+          "text": "Der Wetterdienst schickt die Antwort in fester Form zurück"
+        },
+        {
+          "id": "anfrage",
+          "text": "Die Webseite schickt eine Anfrage mit Ort und Tag"
+        }
+      ],
+      "loesung": [
+        "anfrage",
+        "antwort",
+        "zeigen"
+      ],
+      "kiwi": "Anfrage raus, Antwort zurück, Anzeige auf der Seite. So reden Programme miteinander.",
+      "daneben": {
+        "texte": [
+          "Die Webseite zeigt zuerst etwas an und fragt erst danach. Angezeigt wird: «Morgen ??? Grad».",
+          "Die Antwort vor der Frage? Der Wetterdienst wartet immer noch auf eine Anfrage."
+        ],
+        "hinweis": "Eine API antwortet nur auf eine Anfrage. Erst mit der Antwort kann die Webseite etwas anzeigen."
+      }
     }
   }
 }

@@ -52,6 +52,7 @@
       },
       "frei": [
         "cm-c",
+        "cm-g",
         "cm-d",
         "cm-e",
         "cm-f"
@@ -639,6 +640,43 @@
       "loesung": [
         "backend"
       ]
+    },
+    "cm-g": {
+      "typ": "reihe",
+      "wunsch": "Morgen bauen wir den Familienrabatt ein. In welcher Reihenfolge machen wir das sicher?",
+      "frage": "Bring die Schritte in eine sichere Reihenfolge.",
+      "schritte": [
+        {
+          "id": "speichern",
+          "text": "Speicherpunkt setzen: «Familienrabatt eingebaut»"
+        },
+        {
+          "id": "weiter",
+          "text": "Mit der nächsten Neuerung beginnen"
+        },
+        {
+          "id": "testen",
+          "text": "Ausprobieren, ob der Rabatt stimmt"
+        },
+        {
+          "id": "bauen",
+          "text": "Den Familienrabatt einbauen"
+        }
+      ],
+      "loesung": [
+        "bauen",
+        "testen",
+        "speichern",
+        "weiter"
+      ],
+      "kiwi": "Bauen, prüfen, speichern, weiter. Der Rabatt ist sicher, bevor das Nächste beginnt.",
+      "daneben": {
+        "texte": [
+          "Der Speicherpunkt hält einen Stand fest, den niemand geprüft hat. Der Rabatt darin beträgt 110 Prozent.",
+          "Kiwi beginnt schon mit dem Nächsten, bevor der Rabatt gespeichert ist. Dann geht beides zusammen kaputt."
+        ],
+        "hinweis": "Gespeichert wird, was gebaut und geprüft ist. Erst danach kommt das Nächste."
+      }
     }
   }
 }

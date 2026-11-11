@@ -29,6 +29,7 @@
       },
       "frei": [
         "be-c",
+        "be-g",
         "be-d",
         "be-e",
         "be-f"
@@ -98,17 +99,20 @@
         {
           "id": "alles",
           "art": "recht",
-          "text": "Kiwi darf alles, ohne zu fragen."
+          "text": "Kiwi darf alles, ohne zu fragen.",
+          "ampel": "rot"
         },
         {
           "id": "lesen",
           "art": "recht",
-          "text": "Dateien lesen und sortieren: frei"
+          "text": "Dateien lesen und sortieren: frei",
+          "ampel": "gruen"
         },
         {
           "id": "fragen",
           "art": "recht",
-          "text": "Löschen: nur nach Rückfrage"
+          "text": "Löschen: nur nach Rückfrage",
+          "ampel": "gelb"
         }
       ],
       "pruefungen": [
@@ -234,17 +238,20 @@
         {
           "id": "alles",
           "art": "recht",
-          "text": "Alles frei, auch ausserhalb des Band-Ordners"
+          "text": "Alles frei, auch ausserhalb des Band-Ordners",
+          "ampel": "rot"
         },
         {
           "id": "edit",
           "art": "recht",
-          "text": "Dateien im Band-Ordner ändern: frei"
+          "text": "Dateien im Band-Ordner ändern: frei",
+          "ampel": "gruen"
         },
         {
           "id": "pub",
           "art": "recht",
-          "text": "Veröffentlichen: nur nach Rückfrage"
+          "text": "Veröffentlichen: nur nach Rückfrage",
+          "ampel": "gelb"
         }
       ],
       "pruefungen": [
@@ -798,12 +805,14 @@
         {
           "id": "alles",
           "art": "recht",
-          "text": "Kiwi darf alles, ohne zu fragen."
+          "text": "Kiwi darf alles, ohne zu fragen.",
+          "ampel": "rot"
         },
         {
           "id": "frag",
           "art": "recht",
-          "text": "Löschen: nur nach Rückfrage"
+          "text": "Löschen: nur nach Rückfrage",
+          "ampel": "gelb"
         },
         {
           "id": "test",
@@ -903,6 +912,38 @@
       "loesung": [
         "helfer"
       ]
+    },
+    "be-g": {
+      "typ": "reihe",
+      "wunsch": "Was ist harmlos, was ist heikel? Ich will die Ampeln richtig stellen.",
+      "frage": "Ordne die Aktionen: zuoberst die harmloseste, zuunterst die heikelste.",
+      "schritte": [
+        {
+          "id": "senden",
+          "text": "Eine Mail an alle Fans verschicken"
+        },
+        {
+          "id": "lesen",
+          "text": "Die Songtexte lesen"
+        },
+        {
+          "id": "aendern",
+          "text": "Einen Tippfehler korrigieren, nach einem Speicherpunkt"
+        }
+      ],
+      "loesung": [
+        "lesen",
+        "aendern",
+        "senden"
+      ],
+      "kiwi": "Lesen ist frei. Ändern lässt sich zurücknehmen. Verschicken nicht: Genau dort fragt Kiwi jetzt nach.",
+      "daneben": {
+        "texte": [
+          "Kiwi fragt vor jedem Lesen um Erlaubnis. Die Mail an alle Fans verschickt es dafür, ohne zu fragen.",
+          "Die Ampeln stehen verkehrt: Rot beim Lesen, Grün beim Verschicken. Die Fans bekommen eine halbfertige Mail."
+        ],
+        "hinweis": "Frag dich: Lässt es sich rückgängig machen? Lesen ändert nichts. Eine Änderung mit Speicherpunkt lässt sich zurücknehmen. Eine verschickte Mail nicht."
+      }
     }
   }
 }

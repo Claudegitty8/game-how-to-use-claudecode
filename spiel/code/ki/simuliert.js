@@ -28,6 +28,18 @@ export function erstelleSimulierteKi() {
           modus: 'simuliert',
         };
       }
+      if (aufgabe.typ === 'reihe') {
+        // Stimmt die Reihenfolge, läuft alles rund. Sonst zeigt Kiwi, was bei falscher Reihenfolge passiert.
+        const text = urteil.ok ? aufgabe.kiwi : aufgabe.daneben.texte[versuch % aufgabe.daneben.texte.length];
+        return {
+          text,
+          ok: urteil.ok,
+          fehlbild: urteil.fehlbild,
+          hinweis: urteil.ok ? null : aufgabe.daneben.hinweis,
+          tokens: { eingabe: schaetzeSpielTokens(aufgabe.frage), ausgabe: schaetzeSpielTokens(text) },
+          modus: 'simuliert',
+        };
+      }
       const fehlbild = urteil.ok ? null : aufgabe.fehlbilder[urteil.fehlbild];
       const varianten = urteil.ok ? aufgabe.erfolg : fehlbild.texte;
       const text = setzeTeilEin(varianten[versuch % varianten.length], aufgabe, auswahl, urteil.pruefung);

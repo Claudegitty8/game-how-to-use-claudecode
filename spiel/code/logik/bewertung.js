@@ -27,8 +27,15 @@ function bewerteWahl(aufgabe, auswahl) {
   return { ok: Boolean(option?.richtig), fehlbild: option?.richtig ? null : option?.id ?? 'leer', pruefung: null, option };
 }
 
+// Übungsform «Sortieren»: Die Schritte müssen genau in der richtigen Reihenfolge stehen.
+function bewerteReihe(aufgabe, auswahl) {
+  const ok = auswahl.length === aufgabe.loesung.length && aufgabe.loesung.every((id, stelle) => auswahl[stelle] === id);
+  return { ok, fehlbild: ok ? null : 'daneben', pruefung: null };
+}
+
 export function bewerte(aufgabe, auswahl = []) {
   if (aufgabe.typ === 'wahl') return bewerteWahl(aufgabe, auswahl);
+  if (aufgabe.typ === 'reihe') return bewerteReihe(aufgabe, auswahl);
   const gewaehlt = new Set(auswahl);
   const treffer = aufgabe.pruefungen.find((pruefung) => trifftZu(pruefung.wenn, gewaehlt, aufgabe)) ?? null;
   return { ok: !treffer, fehlbild: treffer?.fehlbild ?? null, pruefung: treffer };
@@ -42,6 +49,11 @@ export function hilfeTeil(aufgabe, auswahl = []) {
     const falsche = aufgabe.optionen.filter((o) => !o.richtig);
     const ziel = falsche.find((o) => o.id === auswahl[0]) ?? falsche[0];
     return ziel ? { id: ziel.id, grund: 'falsch' } : null;
+  }
+  if (aufgabe.typ === 'reihe') {
+    // Beim Sortieren: der erste Platz, der nicht stimmt. Der richtige Schritt dafür steht noch zu weit hinten.
+    const stelle = aufgabe.loesung.findIndex((id, index) => auswahl[index] !== id);
+    return stelle < 0 ? null : { id: aufgabe.loesung[stelle], grund: 'platz' };
   }
   const gewaehlt = new Set(auswahl);
   const schaedlich = new Set(aufgabe.pruefungen.flatMap((pruefung) => pruefung.wenn.gewaehlt ?? []));

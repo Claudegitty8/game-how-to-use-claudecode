@@ -99,3 +99,29 @@ test('Daumen und Prüfung eines Spielstands aus einer Datei', () => {
   assert.equal(istSpielstand({ ...stand, erledigt: 'alles' }), false);
   assert.equal(istSpielstand({ ...stand, version: 99 }), false);
 });
+
+// --- Übungsform «Sortieren» ---
+const { bewerte, hilfeTeil } = await import('../spiel/code/logik/bewertung.js');
+const { erstelleKi } = await import('../spiel/code/ki/schnittstelle.js');
+const sortieren = alle.find((a) => a.id === 'jassclub').aufgaben['ag-g'];
+
+test('Sortieren: Nur die genaue Reihenfolge ist richtig, die Hilfe zeigt den ersten falschen Platz', () => {
+  assert.equal(bewerte(sortieren, sortieren.loesung).ok, true);
+  assert.equal(bewerte(sortieren, sortieren.schritte.map((s) => s.id)).ok, false);
+  assert.equal(bewerte(sortieren, sortieren.loesung.slice(0, 2)).ok, false);
+  assert.deepEqual(hilfeTeil(sortieren, ['schauen', 'pruefen', 'handeln']), { id: 'handeln', grund: 'platz' });
+  assert.equal(hilfeTeil(sortieren, sortieren.loesung), null);
+});
+
+test('Sortieren: Die simulierte KI zeigt, was bei falscher Reihenfolge passiert', async () => {
+  const ki = erstelleKi('simuliert');
+  const falsch = await ki.antworte({ aufgabe: sortieren, auswahl: ['pruefen', 'handeln', 'schauen'], versuch: 0 });
+  assert.equal(falsch.ok, false);
+  assert.equal(falsch.text, sortieren.daneben.texte[0]);
+  assert.equal(falsch.hinweis, sortieren.daneben.hinweis);
+  const zweiter = await ki.antworte({ aufgabe: sortieren, auswahl: ['pruefen', 'handeln', 'schauen'], versuch: 1 });
+  assert.notEqual(zweiter.text, falsch.text);
+  const richtig = await ki.antworte({ aufgabe: sortieren, auswahl: sortieren.loesung });
+  assert.equal(richtig.ok, true);
+  assert.equal(richtig.text, sortieren.kiwi);
+});

@@ -52,6 +52,7 @@
       },
       "frei": [
         "ag-c",
+        "ag-g",
         "ag-d",
         "ag-e",
         "ag-f"
@@ -884,6 +885,38 @@
       "loesung": [
         "handelt"
       ]
+    },
+    "ag-g": {
+      "typ": "reihe",
+      "wunsch": "Auf der Hilfe-Seite steht «Trupmf» statt «Trumpf». Wie geht Kiwi vor?",
+      "frage": "Bring die Schritte eines Agenten in die richtige Reihenfolge.",
+      "schritte": [
+        {
+          "id": "pruefen",
+          "text": "Nachschauen, ob der Fehler jetzt weg ist"
+        },
+        {
+          "id": "handeln",
+          "text": "Das Wort in der Datei korrigieren"
+        },
+        {
+          "id": "schauen",
+          "text": "Die Datei mit der Hilfe-Seite suchen und lesen"
+        }
+      ],
+      "loesung": [
+        "schauen",
+        "handeln",
+        "pruefen"
+      ],
+      "kiwi": "Kiwi sucht die Datei, korrigiert das Wort und schaut nach: Der Fehler ist weg.",
+      "daneben": {
+        "texte": [
+          "Kiwi prüft zuerst, ob der Fehler weg ist. Er ist noch da. Natürlich: Es hat ja noch nichts gemacht.",
+          "Kiwi korrigiert drauflos, in der falschen Datei. Nachgeschaut hat es erst danach."
+        ],
+        "hinweis": "Erst nachschauen, dann handeln, dann prüfen. In dieser Reihenfolge läuft die Schleife."
+      }
     }
   }
 }

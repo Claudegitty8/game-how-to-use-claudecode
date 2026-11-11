@@ -194,6 +194,10 @@ export function pruefeAufgabe(aufgabe, name, fehler) {
     pruefeWahl(aufgabe, name, fehler);
     return;
   }
+  if (aufgabe.typ === 'reihe') {
+    pruefeReihe(aufgabe, name, fehler);
+    return;
+  }
   if (!istText(aufgabe.wunsch)) fehler.push(`${name}: wunsch fehlt`);
   if (!istText(aufgabe.grundprompt)) fehler.push(`${name}: grundprompt fehlt`);
   if (!Array.isArray(aufgabe.erfolg) || aufgabe.erfolg.length < 1) fehler.push(`${name}: mindestens ein Erfolgstext nötig`);
@@ -204,6 +208,7 @@ export function pruefeAufgabe(aufgabe, name, fehler) {
     ids.add(teil.id);
     if (!istText(teil.text)) fehler.push(`${name}: Teil «${teil.id}» braucht einen text`);
     if (!ARTEN.includes(teil.art)) fehler.push(`${name}: Teil «${teil.id}» hat eine unbekannte art`);
+    if ('ampel' in teil && !['gruen', 'gelb', 'rot'].includes(teil.ampel)) fehler.push(`${name}: Teil «${teil.id}» hat eine unbekannte ampel`);
   }
 
   const fehlbilder = aufgabe.fehlbilder ?? {};
@@ -247,6 +252,27 @@ export function pruefeAufgabe(aufgabe, name, fehler) {
     ...(aufgabe.teile ?? []).map((teil) => teil.text),
     ...Object.values(fehlbilder).flatMap((fehlbild) => [...(fehlbild.texte ?? []), fehlbild.hinweis]),
   ];
+  if (texte.some(zuLang)) fehler.push(`${name}: Ein Text hat mehr als ${MAX_WOERTER} Wörter`);
+}
+
+// Übungsform «Sortieren»: mindestens drei Schritte, die Lösung nennt jeden genau einmal,
+// und die gezeigte Anfangsreihenfolge ist noch nicht die Lösung.
+function pruefeReihe(aufgabe, name, fehler) {
+  for (const feld of ['wunsch', 'frage', 'kiwi']) {
+    if (!istText(aufgabe[feld])) fehler.push(`${name}: ${feld} fehlt`);
+  }
+  const schritte = aufgabe.schritte ?? [];
+  const ids = schritte.map((schritt) => schritt.id);
+  if (schritte.length < 3) fehler.push(`${name}: mindestens drei Schritte nötig`);
+  if (schritte.some((schritt) => !istText(schritt.text))) fehler.push(`${name}: Schritt ohne text`);
+  const loesung = aufgabe.loesung ?? [];
+  if (new Set(ids).size !== ids.length || loesung.length !== ids.length || [...loesung].sort().join() !== [...ids].sort().join()) {
+    fehler.push(`${name}: Die Lösung muss jeden Schritt genau einmal nennen`);
+  }
+  if (bewerte(aufgabe, ids).ok) fehler.push(`${name}: Die Schritte stehen schon in der richtigen Reihenfolge`);
+  if (!bewerte(aufgabe, loesung).ok) fehler.push(`${name}: Die Lösung besteht nicht`);
+  if ((aufgabe.daneben?.texte ?? []).length < 2 || !istText(aufgabe.daneben?.hinweis)) fehler.push(`${name}: daneben braucht zwei Varianten und einen Hinweis`);
+  const texte = [aufgabe.wunsch, aufgabe.frage, aufgabe.kiwi, ...schritte.map((s) => s.text), ...(aufgabe.daneben?.texte ?? []), aufgabe.daneben?.hinweis];
   if (texte.some(zuLang)) fehler.push(`${name}: Ein Text hat mehr als ${MAX_WOERTER} Wörter`);
 }
 

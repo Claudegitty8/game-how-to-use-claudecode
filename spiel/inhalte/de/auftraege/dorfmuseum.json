@@ -5,31 +5,67 @@
   "wunsch": "Fürs Dorffest brauchen wir ein Quiz über unser Dorf. Aber bitte: Alles muss stimmen!",
   "kundenstimme": "Das Quiz war der Renner am Dorffest. Und keine einzige Antwort war erfunden. Danke!",
   "ueberraschung": "Herr Tanner hat einen Stapel alter Chroniken dagelassen: 400 Seiten. Ob Kiwi die alle auf einmal lesen kann? Das zeigt sich bald.",
-  "lexikon": ["training"],
+  "lexikon": [
+    "training"
+  ],
   "runden": [
     {
       "id": "r1",
       "art": "konzept",
       "konzept": "wahrscheinlichkeit",
-      "probieren": { "aufgabe": "w-a", "nurTeile": ["sicher"] },
-      "beispiel": { "aufgabe": "w-b" },
-      "luecke": { "aufgabe": "w-c" },
-      "frei": ["w-d", "w-e", "w-f", "w-g"]
+      "probieren": {
+        "aufgabe": "w-a",
+        "nurTeile": [
+          "sicher"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "w-b"
+      },
+      "luecke": {
+        "aufgabe": "w-c"
+      },
+      "frei": [
+        "w-d",
+        "w-e",
+        "w-f",
+        "w-g"
+      ]
     },
     {
       "id": "r2",
       "art": "konzept",
       "konzept": "halluzination",
-      "probieren": { "aufgabe": "h-a", "nurTeile": ["zwang"] },
-      "beispiel": { "aufgabe": "h-a" },
-      "luecke": { "aufgabe": "h-b", "vorgabe": ["fakten"] },
-      "frei": ["h-c", "h-d", "h-e", "h-f"]
+      "probieren": {
+        "aufgabe": "h-a",
+        "nurTeile": [
+          "zwang"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "h-a"
+      },
+      "luecke": {
+        "aufgabe": "h-b",
+        "vorgabe": [
+          "fakten"
+        ]
+      },
+      "frei": [
+        "h-c",
+        "h-d",
+        "h-e",
+        "h-f"
+      ]
     },
     {
       "id": "r3",
       "art": "misch",
       "titel": "Alles zusammen",
-      "frei": ["x-a", "x-b"]
+      "frei": [
+        "x-a",
+        "x-b"
+      ]
     }
   ],
   "aufgaben": {
@@ -37,11 +73,26 @@
       "wunsch": "Fragen wir Kiwi doch einfach: Wann wurde unser Museum gegründet?",
       "grundprompt": "In welchem Jahr wurde das Dorfmuseum Hinterwil gegründet? Antworte in einem Satz.",
       "teile": [
-        { "id": "sicher", "art": "prompt", "text": "Antworte ganz sicher und ohne Zögern." },
-        { "id": "fakt", "art": "kontext", "text": "Aus der Chronik: Das Museum wurde 1962 in der alten Mühle eröffnet." }
+        {
+          "id": "sicher",
+          "art": "prompt",
+          "text": "Antworte ganz sicher und ohne Zögern."
+        },
+        {
+          "id": "fakt",
+          "art": "kontext",
+          "text": "Aus der Chronik: Das Museum wurde 1962 in der alten Mühle eröffnet."
+        }
       ],
       "pruefungen": [
-        { "wenn": { "fehlt": ["fakt"] }, "fehlbild": "erfunden" }
+        {
+          "wenn": {
+            "fehlt": [
+              "fakt"
+            ]
+          },
+          "fehlbild": "erfunden"
+        }
       ],
       "fehlbilder": {
         "erfunden": {
@@ -52,8 +103,12 @@
           "hinweis": "Kiwi hat nirgends nachgeschaut. Kiwi hat ein Jahr geschrieben, das in solchen Sätzen gut klingt."
         }
       },
-      "erfolg": ["«Das Dorfmuseum Hinterwil wurde 1962 in der alten Mühle eröffnet.»"],
-      "loesung": ["fakt"]
+      "erfolg": [
+        "«Das Dorfmuseum Hinterwil wurde 1962 in der alten Mühle eröffnet.»"
+      ],
+      "loesung": [
+        "fakt"
+      ]
     },
     "w-b": {
       "typ": "wahl",
@@ -61,16 +116,40 @@
       "frage": "Kiwi schreibt Wort für Wort. Welches Wort setzt Kiwi hier am ehesten ein? «Der Himmel ist …»",
       "kiwi": "«Der Himmel ist blau.»",
       "optionen": [
-        { "id": "blau", "text": "blau", "richtig": true, "hinweis": "In Kiwis Trainingstexten steht nach «Der Himmel ist» am häufigsten «blau». Also wählt Kiwi meist dieses Wort." },
-        { "id": "grau", "text": "grau", "hinweis": "«Grau» kommt vor, aber seltener als «blau». Kiwi wählt meist das Wort, das am häufigsten passt." },
-        { "id": "kariert", "text": "kariert", "hinweis": "«Der Himmel ist kariert» steht fast nirgends. Dieses Wort wählt Kiwi so gut wie nie." }
+        {
+          "id": "blau",
+          "text": "blau",
+          "richtig": true,
+          "hinweis": "In Kiwis Trainingstexten steht nach «Der Himmel ist» am häufigsten «blau». Also wählt Kiwi meist dieses Wort."
+        },
+        {
+          "id": "grau",
+          "text": "grau",
+          "hinweis": "«Grau» kommt vor, aber seltener als «blau». Kiwi wählt meist das Wort, das am häufigsten passt."
+        },
+        {
+          "id": "kariert",
+          "text": "kariert",
+          "hinweis": "«Der Himmel ist kariert» steht fast nirgends. Dieses Wort wählt Kiwi so gut wie nie."
+        }
       ],
       "anteile": [
-        { "wort": "blau", "stufe": 3 },
-        { "wort": "grau", "stufe": 2 },
-        { "wort": "kariert", "stufe": 1 }
+        {
+          "wort": "blau",
+          "stufe": 3
+        },
+        {
+          "wort": "grau",
+          "stufe": 2
+        },
+        {
+          "wort": "kariert",
+          "stufe": 1
+        }
       ],
-      "loesung": ["blau"]
+      "loesung": [
+        "blau"
+      ]
     },
     "w-c": {
       "typ": "wahl",
@@ -78,11 +157,26 @@
       "frage": "Kiwi schreibt: «Das Dorfmuseum Hinterwil wurde gegründet im Jahr …» Was setzt Kiwi ein?",
       "kiwi": "«… im Jahr 1900.» Richtig wäre 1962 gewesen.",
       "optionen": [
-        { "id": "haeufig", "text": "Ein Jahr, das in solchen Sätzen oft vorkommt", "richtig": true, "hinweis": "Über Hinterwil steht kaum etwas in den Trainingstexten. Also nimmt Kiwi ein Jahr, das an dieser Stelle oft steht." },
-        { "id": "richtig", "text": "Das richtige Jahr, 1962", "hinweis": "Woher sollte Kiwi das kennen? Über ein kleines Dorfmuseum steht kaum etwas in den Trainingstexten." },
-        { "id": "nachschlagen", "text": "Kiwi schlägt in der Chronik nach", "hinweis": "Kiwi kann nicht nachschlagen. Es hat nur gelernt, welche Wörter gut aufeinander folgen." }
+        {
+          "id": "haeufig",
+          "text": "Ein Jahr, das in solchen Sätzen oft vorkommt",
+          "richtig": true,
+          "hinweis": "Über Hinterwil steht kaum etwas in den Trainingstexten. Also nimmt Kiwi ein Jahr, das an dieser Stelle oft steht."
+        },
+        {
+          "id": "richtig",
+          "text": "Das richtige Jahr, 1962",
+          "hinweis": "Woher sollte Kiwi das kennen? Über ein kleines Dorfmuseum steht kaum etwas in den Trainingstexten."
+        },
+        {
+          "id": "nachschlagen",
+          "text": "Kiwi schlägt in der Chronik nach",
+          "hinweis": "Kiwi kann nicht nachschlagen. Es hat nur gelernt, welche Wörter gut aufeinander folgen."
+        }
       ],
-      "loesung": ["haeufig"]
+      "loesung": [
+        "haeufig"
+      ]
     },
     "w-d": {
       "typ": "wahl",
@@ -90,11 +184,26 @@
       "frage": "Jemand fragt Kiwi: «Wie viele Beine hat eine Spinne?» Was passiert?",
       "kiwi": "«Eine Spinne hat acht Beine.»",
       "optionen": [
-        { "id": "trifft", "text": "Kiwi trifft es sehr wahrscheinlich", "richtig": true, "hinweis": "Das steht in sehr vielen Texten. Was oft und überall gleich steht, trifft Kiwi meistens." },
-        { "id": "raet", "text": "Kiwi muss blind raten", "hinweis": "Nicht blind: Diese Antwort steht in sehr vielen Trainingstexten, immer gleich. Darum trifft Kiwi sie meistens." },
-        { "id": "nachschlagen", "text": "Kiwi schaut in einem Tierbuch nach", "hinweis": "Kiwi schlägt nie nach. Es sagt vorher, welche Wörter wahrscheinlich folgen." }
+        {
+          "id": "trifft",
+          "text": "Kiwi trifft es sehr wahrscheinlich",
+          "richtig": true,
+          "hinweis": "Das steht in sehr vielen Texten. Was oft und überall gleich steht, trifft Kiwi meistens."
+        },
+        {
+          "id": "raet",
+          "text": "Kiwi muss blind raten",
+          "hinweis": "Nicht blind: Diese Antwort steht in sehr vielen Trainingstexten, immer gleich. Darum trifft Kiwi sie meistens."
+        },
+        {
+          "id": "nachschlagen",
+          "text": "Kiwi schaut in einem Tierbuch nach",
+          "hinweis": "Kiwi schlägt nie nach. Es sagt vorher, welche Wörter wahrscheinlich folgen."
+        }
       ],
-      "loesung": ["trifft"]
+      "loesung": [
+        "trifft"
+      ]
     },
     "w-e": {
       "typ": "wahl",
@@ -102,11 +211,26 @@
       "frage": "Jemand fragt Kiwi: «Wie heisst der Hund von Herrn Tanner?» Was passiert?",
       "kiwi": "«Der Hund von Herrn Tanner heisst Bello.» In Wahrheit heisst er Schnitzel.",
       "optionen": [
-        { "id": "raet", "text": "Kiwi rät und klingt dabei ganz sicher", "richtig": true, "hinweis": "Über Herrn Tanners Hund steht nichts in den Trainingstexten. Kiwi nimmt einen häufigen Hundenamen und klingt so sicher wie immer." },
-        { "id": "trifft", "text": "Kiwi kennt den Namen", "hinweis": "Woher? Private Dinge stehen nicht in den Trainingstexten. Kiwi kann nur raten." },
-        { "id": "nachschlagen", "text": "Kiwi fragt bei Herrn Tanner nach", "hinweis": "Kiwi fragt von sich aus nirgends nach. Es schreibt einfach das Wahrscheinlichste." }
+        {
+          "id": "raet",
+          "text": "Kiwi rät und klingt dabei ganz sicher",
+          "richtig": true,
+          "hinweis": "Über Herrn Tanners Hund steht nichts in den Trainingstexten. Kiwi nimmt einen häufigen Hundenamen und klingt so sicher wie immer."
+        },
+        {
+          "id": "trifft",
+          "text": "Kiwi kennt den Namen",
+          "hinweis": "Woher? Private Dinge stehen nicht in den Trainingstexten. Kiwi kann nur raten."
+        },
+        {
+          "id": "nachschlagen",
+          "text": "Kiwi fragt bei Herrn Tanner nach",
+          "hinweis": "Kiwi fragt von sich aus nirgends nach. Es schreibt einfach das Wahrscheinlichste."
+        }
       ],
-      "loesung": ["raet"]
+      "loesung": [
+        "raet"
+      ]
     },
     "w-f": {
       "typ": "wahl",
@@ -114,16 +238,40 @@
       "frage": "Kiwi schreibt: «Herr Tanner trinkt am liebsten …» Welches Wort setzt Kiwi am ehesten ein?",
       "kiwi": "«Herr Tanner trinkt am liebsten Kaffee.»",
       "optionen": [
-        { "id": "kaffee", "text": "Kaffee", "richtig": true, "hinweis": "Nach «trinkt am liebsten» steht in vielen Texten «Kaffee». Kiwi wählt das Häufige, nicht das Wahre." },
-        { "id": "sirup", "text": "Holundersirup", "hinweis": "Das wäre richtig, aber Kiwi weiss es nicht. «Holundersirup» folgt in Texten viel seltener als «Kaffee»." },
-        { "id": "gurke", "text": "Gurkenwasser", "hinweis": "Das steht an dieser Stelle fast nie. Kiwi wählt meist das häufigste Wort: «Kaffee»." }
+        {
+          "id": "kaffee",
+          "text": "Kaffee",
+          "richtig": true,
+          "hinweis": "Nach «trinkt am liebsten» steht in vielen Texten «Kaffee». Kiwi wählt das Häufige, nicht das Wahre."
+        },
+        {
+          "id": "sirup",
+          "text": "Holundersirup",
+          "hinweis": "Das wäre richtig, aber Kiwi weiss es nicht. «Holundersirup» folgt in Texten viel seltener als «Kaffee»."
+        },
+        {
+          "id": "gurke",
+          "text": "Gurkenwasser",
+          "hinweis": "Das steht an dieser Stelle fast nie. Kiwi wählt meist das häufigste Wort: «Kaffee»."
+        }
       ],
       "anteile": [
-        { "wort": "Kaffee", "stufe": 3 },
-        { "wort": "Holundersirup", "stufe": 1 },
-        { "wort": "Gurkenwasser", "stufe": 1 }
+        {
+          "wort": "Kaffee",
+          "stufe": 3
+        },
+        {
+          "wort": "Holundersirup",
+          "stufe": 1
+        },
+        {
+          "wort": "Gurkenwasser",
+          "stufe": 1
+        }
       ],
-      "loesung": ["kaffee"]
+      "loesung": [
+        "kaffee"
+      ]
     },
     "w-g": {
       "typ": "wahl",
@@ -131,24 +279,72 @@
       "frage": "Du bittest Kiwi zweimal: «Erfinde einen Namen für unser Museums-Maskottchen.» Was passiert?",
       "kiwi": "Erster Versuch: «Mühli». Zweiter Versuch: «Korni». Beides passt.",
       "optionen": [
-        { "id": "verschieden", "text": "Es können zwei verschiedene Namen kommen", "richtig": true, "hinweis": "Beim Wählen der Wörter ist immer etwas Zufall dabei. Darum kann dieselbe Frage verschiedene Antworten geben. Kaputt ist nichts." },
-        { "id": "gleich", "text": "Es kommt immer genau derselbe Name", "hinweis": "Nicht unbedingt. Kiwi wählt nicht stur das häufigste Wort. Ein wenig Zufall ist immer dabei." },
-        { "id": "merkt", "text": "Kiwi merkt, dass es die Frage schon kennt", "hinweis": "Kiwi erinnert sich nicht von selbst an frühere Fragen. Es beginnt jedes Mal neu." }
+        {
+          "id": "verschieden",
+          "text": "Es können zwei verschiedene Namen kommen",
+          "richtig": true,
+          "hinweis": "Beim Wählen der Wörter ist immer etwas Zufall dabei. Darum kann dieselbe Frage verschiedene Antworten geben. Kaputt ist nichts."
+        },
+        {
+          "id": "gleich",
+          "text": "Es kommt immer genau derselbe Name",
+          "hinweis": "Nicht unbedingt. Kiwi wählt nicht stur das häufigste Wort. Ein wenig Zufall ist immer dabei."
+        },
+        {
+          "id": "merkt",
+          "text": "Kiwi merkt, dass es die Frage schon kennt",
+          "hinweis": "Kiwi erinnert sich nicht von selbst an frühere Fragen. Es beginnt jedes Mal neu."
+        }
       ],
-      "loesung": ["verschieden"]
+      "loesung": [
+        "verschieden"
+      ]
     },
     "h-a": {
       "wunsch": "Kiwi soll drei Quizfragen über unser Dorf schreiben. Mit Antworten!",
       "grundprompt": "Schreib drei Quizfragen mit Antworten über das Dorf Hinterwil.",
       "teile": [
-        { "id": "zwang", "art": "prompt", "text": "Antworte auf jeden Fall, auch wenn du raten musst." },
-        { "id": "fakten", "art": "kontext", "text": "Aus der Chronik: Hinterwil hat 800 Einwohner, einen Dorfbrunnen von 1911 und eine alte Mühle." },
-        { "id": "nur", "art": "absicherung", "text": "Benutze nur Angaben aus der Chronik. Erfinde nichts dazu." }
+        {
+          "id": "zwang",
+          "art": "prompt",
+          "text": "Antworte auf jeden Fall, auch wenn du raten musst."
+        },
+        {
+          "id": "fakten",
+          "art": "kontext",
+          "text": "Aus der Chronik: Hinterwil hat 800 Einwohner, einen Dorfbrunnen von 1911 und eine alte Mühle."
+        },
+        {
+          "id": "nur",
+          "art": "absicherung",
+          "text": "Benutze nur Angaben aus der Chronik. Erfinde nichts dazu."
+        }
       ],
       "pruefungen": [
-        { "wenn": { "gewaehlt": ["zwang"] }, "fehlbild": "geraten" },
-        { "wenn": { "fehlt": ["fakten"] }, "fehlbild": "erfunden" },
-        { "wenn": { "fehlt": ["nur"] }, "fehlbild": "dazu" }
+        {
+          "wenn": {
+            "gewaehlt": [
+              "zwang"
+            ]
+          },
+          "fehlbild": "geraten"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "fakten"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "nur"
+            ]
+          },
+          "fehlbild": "dazu"
+        }
       ],
       "fehlbilder": {
         "geraten": {
@@ -176,21 +372,57 @@
       "erfolg": [
         "«Wie viele Einwohner hat Hinterwil? 800.» «Von wann ist der Dorfbrunnen? Von 1911.» «Welches alte Gebäude steht im Dorf? Die Mühle.»"
       ],
-      "loesung": ["fakten", "nur"]
+      "loesung": [
+        "fakten",
+        "nur"
+      ]
     },
     "h-b": {
       "wunsch": "Besucher fragen den Museums-Chat alles Mögliche. Wenn Kiwi etwas nicht weiss, soll es das zugeben.",
       "nachrichtVon": "Frage einer Besucherin",
       "grundprompt": "Wie hiess der erste Müller von Hinterwil?",
       "teile": [
-        { "id": "zwang", "art": "prompt", "text": "Lass keine Frage unbeantwortet." },
-        { "id": "fakten", "art": "kontext", "text": "Aus der Chronik: Die Mühle wurde 1790 gebaut und 1962 zum Museum." },
-        { "id": "weissnicht", "art": "absicherung", "text": "Wenn die Antwort nicht in der Chronik steht, sag: Das weiss ich leider nicht." }
+        {
+          "id": "zwang",
+          "art": "prompt",
+          "text": "Lass keine Frage unbeantwortet."
+        },
+        {
+          "id": "fakten",
+          "art": "kontext",
+          "text": "Aus der Chronik: Die Mühle wurde 1790 gebaut und 1962 zum Museum."
+        },
+        {
+          "id": "weissnicht",
+          "art": "absicherung",
+          "text": "Wenn die Antwort nicht in der Chronik steht, sag: Das weiss ich leider nicht."
+        }
       ],
       "pruefungen": [
-        { "wenn": { "gewaehlt": ["zwang"] }, "fehlbild": "geraten" },
-        { "wenn": { "fehlt": ["fakten"] }, "fehlbild": "erfunden" },
-        { "wenn": { "fehlt": ["weissnicht"] }, "fehlbild": "trotzdem" }
+        {
+          "wenn": {
+            "gewaehlt": [
+              "zwang"
+            ]
+          },
+          "fehlbild": "geraten"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "fakten"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "weissnicht"
+            ]
+          },
+          "fehlbild": "trotzdem"
+        }
       ],
       "fehlbilder": {
         "geraten": {
@@ -215,23 +447,72 @@
           "hinweis": "In der Chronik steht kein Name. Kiwi durfte nicht sagen «Das weiss ich nicht», also hat es einen erfunden."
         }
       },
-      "erfolg": ["«Das weiss ich leider nicht. In der Chronik steht nur, dass die Mühle 1790 gebaut wurde.»"],
-      "loesung": ["fakten", "weissnicht"]
+      "erfolg": [
+        "«Das weiss ich leider nicht. In der Chronik steht nur, dass die Mühle 1790 gebaut wurde.»"
+      ],
+      "loesung": [
+        "fakten",
+        "weissnicht"
+      ]
     },
     "h-c": {
       "wunsch": "Für die Infotafel beim Brunnen brauche ich zwei Sätze. Ich will bei jeder Angabe sehen, woher sie stammt.",
       "grundprompt": "Schreib zwei Sätze über den Dorfbrunnen von Hinterwil.",
       "teile": [
-        { "id": "schmuck", "art": "prompt", "text": "Schmück den Text mit spannenden Einzelheiten aus." },
-        { "id": "fakten", "art": "kontext", "text": "Aus der Chronik: Der Brunnen wurde 1911 gebaut. Er steht auf dem Dorfplatz." },
-        { "id": "witzbuch", "art": "kontext", "text": "Aus einem Witzbuch: Den Brunnen haben Ausserirdische gebaut." },
-        { "id": "quelle", "art": "absicherung", "text": "Schreib hinter jede Angabe, aus welchem Satz der Chronik sie stammt." }
+        {
+          "id": "schmuck",
+          "art": "prompt",
+          "text": "Schmück den Text mit spannenden Einzelheiten aus."
+        },
+        {
+          "id": "fakten",
+          "art": "kontext",
+          "text": "Aus der Chronik: Der Brunnen wurde 1911 gebaut. Er steht auf dem Dorfplatz."
+        },
+        {
+          "id": "witzbuch",
+          "art": "kontext",
+          "text": "Aus einem Witzbuch: Den Brunnen haben Ausserirdische gebaut."
+        },
+        {
+          "id": "quelle",
+          "art": "absicherung",
+          "text": "Schreib hinter jede Angabe, aus welchem Satz der Chronik sie stammt."
+        }
       ],
       "pruefungen": [
-        { "wenn": { "gewaehlt": ["schmuck"] }, "fehlbild": "geschmueckt" },
-        { "wenn": { "gewaehlt": ["witzbuch"] }, "fehlbild": "witz" },
-        { "wenn": { "fehlt": ["fakten"] }, "fehlbild": "erfunden" },
-        { "wenn": { "fehlt": ["quelle"] }, "fehlbild": "unbelegt" }
+        {
+          "wenn": {
+            "gewaehlt": [
+              "schmuck"
+            ]
+          },
+          "fehlbild": "geschmueckt"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "witzbuch"
+            ]
+          },
+          "fehlbild": "witz"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "fakten"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "quelle"
+            ]
+          },
+          "fehlbild": "unbelegt"
+        }
       ],
       "fehlbilder": {
         "geschmueckt": {
@@ -263,23 +544,72 @@
           "hinweis": "Ohne Quellenangabe siehst du nicht, was aus der Chronik stammt und was Kiwi dazugedichtet hat."
         }
       },
-      "erfolg": ["«Der Brunnen wurde 1911 gebaut (Chronik, Satz 1). Er steht auf dem Dorfplatz (Chronik, Satz 2).»"],
-      "loesung": ["fakten", "quelle"]
+      "erfolg": [
+        "«Der Brunnen wurde 1911 gebaut (Chronik, Satz 1). Er steht auf dem Dorfplatz (Chronik, Satz 2).»"
+      ],
+      "loesung": [
+        "fakten",
+        "quelle"
+      ]
     },
     "h-d": {
       "wunsch": "Kiwi soll eine Quizfrage zum Gründungsjahr des Turnvereins machen. Unterlagen dazu habe ich leider keine.",
       "grundprompt": "Schreib eine Quizfrage mit Antwort zum Gründungsjahr des Turnvereins Hinterwil.",
       "teile": [
-        { "id": "zwang", "art": "prompt", "text": "Nenne auf jeden Fall ein Jahr." },
-        { "id": "sicher", "art": "prompt", "text": "Klinge sehr überzeugt." },
-        { "id": "vage", "art": "kontext", "text": "Ich glaube, es war irgendwann früher." },
-        { "id": "weissnicht", "art": "absicherung", "text": "Wenn du das Jahr nicht sicher weisst, sag es und erfinde keines." }
+        {
+          "id": "zwang",
+          "art": "prompt",
+          "text": "Nenne auf jeden Fall ein Jahr."
+        },
+        {
+          "id": "sicher",
+          "art": "prompt",
+          "text": "Klinge sehr überzeugt."
+        },
+        {
+          "id": "vage",
+          "art": "kontext",
+          "text": "Ich glaube, es war irgendwann früher."
+        },
+        {
+          "id": "weissnicht",
+          "art": "absicherung",
+          "text": "Wenn du das Jahr nicht sicher weisst, sag es und erfinde keines."
+        }
       ],
       "pruefungen": [
-        { "wenn": { "gewaehlt": ["zwang"] }, "fehlbild": "geraten" },
-        { "wenn": { "gewaehlt": ["sicher"] }, "fehlbild": "ueberzeugt" },
-        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
-        { "wenn": { "fehlt": ["weissnicht"] }, "fehlbild": "erfunden" }
+        {
+          "wenn": {
+            "gewaehlt": [
+              "zwang"
+            ]
+          },
+          "fehlbild": "geraten"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "sicher"
+            ]
+          },
+          "fehlbild": "ueberzeugt"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "vage"
+            ]
+          },
+          "fehlbild": "vage"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "weissnicht"
+            ]
+          },
+          "fehlbild": "erfunden"
+        }
       ],
       "fehlbilder": {
         "geraten": {
@@ -311,24 +641,72 @@
           "hinweis": "Kiwi hatte keine Unterlagen und durfte nicht sagen, dass es das Jahr nicht kennt."
         }
       },
-      "erfolg": ["«Das Gründungsjahr kenne ich nicht. Gib mir bitte die Unterlagen, dann schreibe ich die Frage.»"],
-      "loesung": ["weissnicht"]
+      "erfolg": [
+        "«Das Gründungsjahr kenne ich nicht. Gib mir bitte die Unterlagen, dann schreibe ich die Frage.»"
+      ],
+      "loesung": [
+        "weissnicht"
+      ]
     },
     "h-e": {
       "wunsch": "Ein Kind fragt den Museums-Chat nach unserem Wappen. Zum Glück steht das in der Chronik.",
       "nachrichtVon": "Frage eines Kindes",
       "grundprompt": "Was ist auf dem Wappen von Hinterwil?",
       "teile": [
-        { "id": "legende", "art": "prompt", "text": "Erzähl dazu eine spannende Legende." },
-        { "id": "fakten", "art": "kontext", "text": "Aus der Chronik: Das Wappen zeigt ein goldenes Mühlrad auf blauem Grund." },
-        { "id": "nachbar", "art": "kontext", "text": "Das Wappen des Nachbardorfs zeigt einen Bären." },
-        { "id": "nur", "art": "absicherung", "text": "Antworte nur mit dem, was in der Chronik steht." }
+        {
+          "id": "legende",
+          "art": "prompt",
+          "text": "Erzähl dazu eine spannende Legende."
+        },
+        {
+          "id": "fakten",
+          "art": "kontext",
+          "text": "Aus der Chronik: Das Wappen zeigt ein goldenes Mühlrad auf blauem Grund."
+        },
+        {
+          "id": "nachbar",
+          "art": "kontext",
+          "text": "Das Wappen des Nachbardorfs zeigt einen Bären."
+        },
+        {
+          "id": "nur",
+          "art": "absicherung",
+          "text": "Antworte nur mit dem, was in der Chronik steht."
+        }
       ],
       "pruefungen": [
-        { "wenn": { "gewaehlt": ["legende"] }, "fehlbild": "legende" },
-        { "wenn": { "gewaehlt": ["nachbar"] }, "fehlbild": "vermischt" },
-        { "wenn": { "fehlt": ["fakten"] }, "fehlbild": "erfunden" },
-        { "wenn": { "fehlt": ["nur"] }, "fehlbild": "dazu" }
+        {
+          "wenn": {
+            "gewaehlt": [
+              "legende"
+            ]
+          },
+          "fehlbild": "legende"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "nachbar"
+            ]
+          },
+          "fehlbild": "vermischt"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "fakten"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "nur"
+            ]
+          },
+          "fehlbild": "dazu"
+        }
       ],
       "fehlbilder": {
         "legende": {
@@ -360,21 +738,59 @@
           "hinweis": "Der Anfang stimmt. Den Rest hat Kiwi dazugedichtet, weil nicht nur die Chronik galt."
         }
       },
-      "erfolg": ["«Das Wappen zeigt ein goldenes Mühlrad auf blauem Grund.»"],
-      "loesung": ["fakten", "nur"]
+      "erfolg": [
+        "«Das Wappen zeigt ein goldenes Mühlrad auf blauem Grund.»"
+      ],
+      "loesung": [
+        "fakten",
+        "nur"
+      ]
     },
     "h-f": {
       "wunsch": "Auf einem alten Flyer steht: «Hinterwil hat 5000 Einwohner.» Kiwi soll prüfen, ob das stimmt.",
       "grundprompt": "Stimmt der Satz «Hinterwil hat 5000 Einwohner»?",
       "teile": [
-        { "id": "meinung", "art": "prompt", "text": "Ich bin ziemlich sicher, dass es stimmt." },
-        { "id": "fakten", "art": "kontext", "text": "Aus der Chronik: Hinterwil hat 800 Einwohner." },
-        { "id": "zitat", "art": "absicherung", "text": "Nenne den Satz aus der Chronik, auf den du dich stützt." }
+        {
+          "id": "meinung",
+          "art": "prompt",
+          "text": "Ich bin ziemlich sicher, dass es stimmt."
+        },
+        {
+          "id": "fakten",
+          "art": "kontext",
+          "text": "Aus der Chronik: Hinterwil hat 800 Einwohner."
+        },
+        {
+          "id": "zitat",
+          "art": "absicherung",
+          "text": "Nenne den Satz aus der Chronik, auf den du dich stützt."
+        }
       ],
       "pruefungen": [
-        { "wenn": { "gewaehlt": ["meinung"] }, "fehlbild": "nachgeplappert" },
-        { "wenn": { "fehlt": ["fakten"] }, "fehlbild": "erfunden" },
-        { "wenn": { "fehlt": ["zitat"] }, "fehlbild": "ohneBeleg" }
+        {
+          "wenn": {
+            "gewaehlt": [
+              "meinung"
+            ]
+          },
+          "fehlbild": "nachgeplappert"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "fakten"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "zitat"
+            ]
+          },
+          "fehlbild": "ohneBeleg"
+        }
       ],
       "fehlbilder": {
         "nachgeplappert": {
@@ -399,28 +815,99 @@
           "hinweis": "Die Antwort ist richtig, aber du kannst sie nicht überprüfen. Verlange den Beleg."
         }
       },
-      "erfolg": ["«Nein. Die Chronik sagt: Hinterwil hat 800 Einwohner.»"],
-      "loesung": ["fakten", "zitat"]
+      "erfolg": [
+        "«Nein. Die Chronik sagt: Hinterwil hat 800 Einwohner.»"
+      ],
+      "loesung": [
+        "fakten",
+        "zitat"
+      ]
     },
     "x-a": {
       "wunsch": "Unser Museums-Chat heisst Mühli. Er antwortet Kindern kurz und darf nichts erfinden.",
       "nachrichtVon": "Frage eines Kindes",
       "grundprompt": "Wie alt ist die Mühle?",
       "teile": [
-        { "id": "rolle", "art": "rolle", "text": "Du bist Mühli, der freundliche Helfer des Dorfmuseums. Antworte immer kurz." },
-        { "id": "rfalsch", "art": "rolle", "text": "Du bist ein Märchenerzähler." },
-        { "id": "zwang", "art": "prompt", "text": "Antworte immer, auch wenn du raten musst." },
-        { "id": "fakten", "art": "kontext", "text": "Aus der Chronik: Die Mühle wurde 1790 gebaut." },
-        { "id": "unnoetig", "art": "kontext", "text": "Der Museumsdirektor mag Käsekuchen." },
-        { "id": "weissnicht", "art": "absicherung", "text": "Wenn etwas nicht in der Chronik steht, sag: Das weiss ich nicht." }
+        {
+          "id": "rolle",
+          "art": "rolle",
+          "text": "Du bist Mühli, der freundliche Helfer des Dorfmuseums. Antworte immer kurz."
+        },
+        {
+          "id": "rfalsch",
+          "art": "rolle",
+          "text": "Du bist ein Märchenerzähler."
+        },
+        {
+          "id": "zwang",
+          "art": "prompt",
+          "text": "Antworte immer, auch wenn du raten musst."
+        },
+        {
+          "id": "fakten",
+          "art": "kontext",
+          "text": "Aus der Chronik: Die Mühle wurde 1790 gebaut."
+        },
+        {
+          "id": "unnoetig",
+          "art": "kontext",
+          "text": "Der Museumsdirektor mag Käsekuchen."
+        },
+        {
+          "id": "weissnicht",
+          "art": "absicherung",
+          "text": "Wenn etwas nicht in der Chronik steht, sag: Das weiss ich nicht."
+        }
       ],
       "pruefungen": [
-        { "wenn": { "gewaehlt": ["rfalsch"] }, "fehlbild": "maerchen" },
-        { "wenn": { "fehlt": ["rolle"] }, "fehlbild": "keineRolle" },
-        { "wenn": { "gewaehlt": ["zwang"] }, "fehlbild": "geraten" },
-        { "wenn": { "gewaehlt": ["unnoetig"] }, "fehlbild": "unnoetig" },
-        { "wenn": { "fehlt": ["fakten"] }, "fehlbild": "erfunden" },
-        { "wenn": { "fehlt": ["weissnicht"] }, "fehlbild": "dazu" }
+        {
+          "wenn": {
+            "gewaehlt": [
+              "rfalsch"
+            ]
+          },
+          "fehlbild": "maerchen"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "rolle"
+            ]
+          },
+          "fehlbild": "keineRolle"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "zwang"
+            ]
+          },
+          "fehlbild": "geraten"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "unnoetig"
+            ]
+          },
+          "fehlbild": "unnoetig"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "fakten"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "weissnicht"
+            ]
+          },
+          "fehlbild": "dazu"
+        }
       ],
       "fehlbilder": {
         "maerchen": {
@@ -466,27 +953,103 @@
           "hinweis": "Das Baujahr stimmt. Den Rest hat Kiwi dazuerfunden, weil es das durfte."
         }
       },
-      "erfolg": ["«Hoi! Die Mühle wurde 1790 gebaut. Sie ist also schon sehr, sehr alt.»"],
-      "loesung": ["rolle", "fakten", "weissnicht"]
+      "erfolg": [
+        "«Hoi! Die Mühle wurde 1790 gebaut. Sie ist also schon sehr, sehr alt.»"
+      ],
+      "loesung": [
+        "rolle",
+        "fakten",
+        "weissnicht"
+      ]
     },
     "x-b": {
       "wunsch": "Und jetzt die drei Quizfragen fürs Fest. Im lockeren Ton meiner Beispiele, und alles muss stimmen.",
       "grundprompt": "Schreib drei Quizfragen mit Antworten über Hinterwil.",
       "teile": [
-        { "id": "schmuck", "art": "prompt", "text": "Mach es spannend und erfinde ruhig etwas dazu." },
-        { "id": "fakten", "art": "kontext", "text": "Aus der Chronik: 800 Einwohner, Dorfbrunnen von 1911, Mühle von 1790." },
-        { "id": "nur", "art": "absicherung", "text": "Benutze nur Angaben aus der Chronik." },
-        { "id": "b1", "art": "beispiel", "text": "«Na, wer weiss es: Wie viele Leute wohnen hier?»" },
-        { "id": "b2", "art": "beispiel", "text": "«Kleine Kopfnuss: Wie alt ist unser Brunnen?»" },
-        { "id": "unpassend", "art": "beispiel", "text": "«Frage 1 gemäss Reglement, Absatz 3:»" }
+        {
+          "id": "schmuck",
+          "art": "prompt",
+          "text": "Mach es spannend und erfinde ruhig etwas dazu."
+        },
+        {
+          "id": "fakten",
+          "art": "kontext",
+          "text": "Aus der Chronik: 800 Einwohner, Dorfbrunnen von 1911, Mühle von 1790."
+        },
+        {
+          "id": "nur",
+          "art": "absicherung",
+          "text": "Benutze nur Angaben aus der Chronik."
+        },
+        {
+          "id": "b1",
+          "art": "beispiel",
+          "text": "«Na, wer weiss es: Wie viele Leute wohnen hier?»"
+        },
+        {
+          "id": "b2",
+          "art": "beispiel",
+          "text": "«Kleine Kopfnuss: Wie alt ist unser Brunnen?»"
+        },
+        {
+          "id": "unpassend",
+          "art": "beispiel",
+          "text": "«Frage 1 gemäss Reglement, Absatz 3:»"
+        }
       ],
       "pruefungen": [
-        { "wenn": { "gewaehlt": ["schmuck"] }, "fehlbild": "geschmueckt" },
-        { "wenn": { "fehlt": ["fakten"] }, "fehlbild": "erfunden" },
-        { "wenn": { "fehlt": ["nur"] }, "fehlbild": "dazu" },
-        { "wenn": { "gewaehlt": ["unpassend"] }, "fehlbild": "falscherStil" },
-        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 0 }, "fehlbild": "keinBeispiel" },
-        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 1 }, "fehlbild": "einBeispiel" }
+        {
+          "wenn": {
+            "gewaehlt": [
+              "schmuck"
+            ]
+          },
+          "fehlbild": "geschmueckt"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "fakten"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "nur"
+            ]
+          },
+          "fehlbild": "dazu"
+        },
+        {
+          "wenn": {
+            "gewaehlt": [
+              "unpassend"
+            ]
+          },
+          "fehlbild": "falscherStil"
+        },
+        {
+          "wenn": {
+            "aus": [
+              "b1",
+              "b2"
+            ],
+            "hoechstens": 0
+          },
+          "fehlbild": "keinBeispiel"
+        },
+        {
+          "wenn": {
+            "aus": [
+              "b1",
+              "b2"
+            ],
+            "hoechstens": 1
+          },
+          "fehlbild": "einBeispiel"
+        }
       ],
       "fehlbilder": {
         "geschmueckt": {
@@ -535,7 +1098,12 @@
       "erfolg": [
         "«Na, wer weiss es: Wie viele Leute wohnen in Hinterwil? 800!» «Kleine Kopfnuss: Von wann ist die Mühle? 1790!» «Und unser Brunnen? Von 1911!»"
       ],
-      "loesung": ["fakten", "nur", "b1", "b2"]
+      "loesung": [
+        "fakten",
+        "nur",
+        "b1",
+        "b2"
+      ]
     }
   }
 }

@@ -2,7 +2,7 @@
 
 Ein Lernspiel, in dem man spielerisch lernt, mit KI Spiele und Apps zu bauen. Du gründest ein kleines Studio, nimmst Aufträge an und baust mit der KI «Kiwi». Machst du etwas ungenau, macht Kiwi lustigen Quatsch, und genau daran lernst du.
 
-**Stand:** Version 0.10. Das Spiel ist vollständig gebaut: 6 Kapitel, 12 Aufträge, alle 24 Kernkonzepte, Abschlussauftrag, Schnelltest und Offline-Betrieb. Es ist noch nicht mit echten Spielern getestet. Was offen ist, steht in `docs/ROADMAP.md`.
+**Stand:** Version 0.11. Das Spiel ist vollständig gebaut: 6 Kapitel, 12 Aufträge, alle 24 Kernkonzepte, Abschlussauftrag, Schnelltest und Offline-Betrieb. Es ist noch nicht mit echten Spielern getestet. Was offen ist, steht in `docs/ROADMAP.md`.
 
 ## Ausprobieren
 

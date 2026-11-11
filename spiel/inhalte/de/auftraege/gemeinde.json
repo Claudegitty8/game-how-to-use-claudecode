@@ -183,17 +183,20 @@
         {
           "id": "lesen",
           "art": "recht",
-          "text": "Webseiten lesen: frei"
+          "text": "Webseiten lesen: frei",
+          "ampel": "gruen"
         },
         {
           "id": "alles",
           "art": "recht",
-          "text": "Alles frei: Mails senden, Dateien löschen, Geld überweisen"
+          "text": "Alles frei: Mails senden, Dateien löschen, Geld überweisen",
+          "ampel": "rot"
         },
         {
           "id": "frag",
           "art": "recht",
-          "text": "Senden und Löschen: nur nach Rückfrage"
+          "text": "Senden und Löschen: nur nach Rückfrage",
+          "ampel": "gelb"
         },
         {
           "id": "schluessel",

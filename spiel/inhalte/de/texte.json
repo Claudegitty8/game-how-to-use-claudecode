@@ -43,12 +43,12 @@
       "beispiel": "Beispiele",
       "rolle": "Rolle und Dauerregeln",
       "absicherung": "Absicherung",
-      "zettel": "CLAUDE.md (Zettel an der Studiotür)",
-      "tool": "Werkzeuge",
-      "stecker": "Connectors",
-      "karte": "Skills im Karteikasten",
-      "recht": "Was Kiwi darf",
-      "feld": "Felder der Anfrage"
+      "zettel": "📌 CLAUDE.md (Zettel an der Studiotür)",
+      "tool": "🧰 Werkzeuge",
+      "stecker": "🔌 Connectors",
+      "karte": "🗂️ Skills im Karteikasten",
+      "recht": "🚦 Was Kiwi darf",
+      "feld": "📋 Felder der Anfrage"
     },
     "beispielVorsatz": "Beispiele:",
     "los": "Kiwi, los!",
@@ -108,7 +108,7 @@
     "loeschenNein": "Abbrechen",
     "kiEtikett": "KI im Spiel",
     "kiInfo": "Kiwi ist eine simulierte KI. Sie braucht kein Konto, kostet nichts und antwortet nach festen Regeln.",
-    "fuss": "KI-Studio, Version 0.10",
+    "fuss": "KI-Studio, Version 0.11",
     "kiwiNaechster": "Es klopft an der Tür. Ein neuer Kunde!",
     "systemEtikett": "System-Prompt (gilt für jede Nachricht)",
     "systemLeer": "(noch leer)",
@@ -190,7 +190,13 @@
     "standLaden": "Spielstand aus Datei laden",
     "standGeladen": "Spielstand geladen.",
     "standUngueltig": "Diese Datei ist kein gültiger Spielstand.",
-    "offlineInfo": "Nach dem ersten Laden läuft das Spiel auch ohne Internet, wenn dein Gerät das erlaubt."
+    "offlineInfo": "Nach dem ersten Laden läuft das Spiel auch ohne Internet, wenn dein Gerät das erlaubt.",
+    "reiheHoch": "«{text}» nach oben schieben",
+    "reiheRunter": "«{text}» nach unten schieben",
+    "reiheHilfe": "Schieb die Schritte mit den Pfeilen an ihren Platz.",
+    "hilfePlatz": "Dieser Schritt gehört weiter nach vorn.",
+    "nochmalReihe": "Ordne neu und versuch es nochmals. Oder nimm eine andere Situation.",
+    "stationenWieder": "… und wieder von vorn, bis es stimmt."
   },
   "kapitel": {
     "1": {
@@ -333,7 +339,12 @@
         "So erledigt er grosse Aufgaben in vielen kleinen Schritten, bis es stimmt.",
         "Du gehörst dazu: Du kannst jederzeit unterbrechen und die Richtung ändern."
       ],
-      "tipp": "Schaut Kiwi zuerst nach? Prüft es am Schluss? Beide Stationen braucht es."
+      "tipp": "Schaut Kiwi zuerst nach? Prüft es am Schluss? Beide Stationen braucht es.",
+      "stationen": [
+        "Nachschauen",
+        "Handeln",
+        "Prüfen"
+      ]
     },
     "pruefschleife": {
       "name": "Prüfschleife",
@@ -343,7 +354,12 @@
         "Eine gute Prüfung sagt klar Ja oder Nein: ein Test, ein erwartetes Ergebnis, ein Bildschirmfoto.",
         "Dann merkt Kiwi selbst, was noch nicht stimmt, und arbeitet weiter."
       ],
-      "tipp": "Woran kann Kiwi selbst ablesen, ob es fertig ist? Gib ihm einen klaren Fall mit dem erwarteten Ergebnis."
+      "tipp": "Woran kann Kiwi selbst ablesen, ob es fertig ist? Gib ihm einen klaren Fall mit dem erwarteten Ergebnis.",
+      "stationen": [
+        "Bauen",
+        "Prüfen",
+        "Flicken"
+      ]
     },
     "berechtigungen": {
       "name": "Berechtigungen",
