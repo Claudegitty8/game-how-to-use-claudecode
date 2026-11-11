@@ -1,0 +1,587 @@
+{
+  "id": "blumenladen",
+  "kapitel": 4,
+  "tokenBudget": 6000,
+  "kunde": "Frau Okafor, Blumenladen «Blütenrausch»",
+  "wunsch": "Wir eröffnen einen zweiten Laden! Kiwi soll bei der Feier helfen: Termin, Einladung, Flyer. Alles in unserem Stil.",
+  "kundenstimme": "Die Feier war am richtigen Tag, die Flyer sahen aus wie aus einem Guss. Und keine einzige Mail ging falsch raus!",
+  "ueberraschung": "Kapitel 4 ist geschafft! Das Studio zieht auf eine ganze Etage. Was ihr jetzt baut, läuft bei echten Kunden. Zeit für Ordnung und Speicherpunkte.",
+  "lexikon": [
+    "plugin"
+  ],
+  "runden": [
+    {
+      "id": "r1",
+      "art": "konzept",
+      "konzept": "connector",
+      "probieren": {
+        "aufgabe": "co-a",
+        "nurTeile": [
+          "denk"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "co-a"
+      },
+      "luecke": {
+        "aufgabe": "co-b"
+      },
+      "frei": [
+        "co-c",
+        "co-d",
+        "co-e",
+        "co-f"
+      ]
+    },
+    {
+      "id": "r2",
+      "art": "konzept",
+      "konzept": "skill",
+      "probieren": {
+        "aufgabe": "sk-a",
+        "nurTeile": [
+          "schoen"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "sk-a"
+      },
+      "luecke": {
+        "aufgabe": "sk-b"
+      },
+      "frei": [
+        "sk-c",
+        "sk-d",
+        "sk-e",
+        "sk-f"
+      ]
+    },
+    {
+      "id": "r3",
+      "art": "misch",
+      "titel": "Alles zusammen",
+      "frei": [
+        "m8-a",
+        "m8-b"
+      ]
+    }
+  ],
+  "aufgaben": {
+    "co-a": {
+      "wunsch": "Kiwi soll einen Termin für unsere Eröffnungsfeier vorschlagen. Ich bin aber nicht jeden Samstag da.",
+      "grundprompt": "Schlag einen Samstag im Mai für die Eröffnungsfeier vor, an dem Frau Okafor Zeit hat.",
+      "teile": [
+        {
+          "id": "denk",
+          "art": "prompt",
+          "text": "Überleg einfach ganz genau."
+        },
+        {
+          "id": "kalender",
+          "art": "stecker",
+          "text": "Kalender von Frau Okafor"
+        },
+        {
+          "id": "musik",
+          "art": "stecker",
+          "text": "Musik-App"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "fehlt": [
+              "kalender"
+            ]
+          },
+          "fehlbild": "ferien"
+        }
+      ],
+      "fehlbilder": {
+        "ferien": {
+          "texte": [
+            "«Der 16. Mai ist perfekt!» An diesem Tag liegt Frau Okafor am Strand von Kreta.",
+            "Kiwi schlägt den 9. Mai vor. Da ist Frau Okafor an der Hochzeit ihrer Schwester."
+          ],
+          "hinweis": "Kiwi sieht nicht von selbst in deinen Kalender. Ohne Connector hat es geraten."
+        }
+      },
+      "erfolg": [
+        "Kiwi schaut über den Connector in den Kalender: «Am 23. Mai ist noch alles frei. Passt das?»"
+      ],
+      "loesung": [
+        "kalender"
+      ]
+    },
+    "co-b": {
+      "typ": "wahl",
+      "wunsch": "Was ist denn ein Connector?",
+      "frage": "Was ist ein Connector?",
+      "kiwi": "Frau Okafor steckt den Kalender an. Jetzt kann Kiwi dort nachschauen.",
+      "optionen": [
+        {
+          "id": "schneller",
+          "text": "Ein schnelleres Kiwi",
+          "hinweis": "Ein Connector macht Kiwi nicht schneller. Er gibt Kiwi Zugang zu einer App."
+        },
+        {
+          "id": "verbindung",
+          "text": "Eine Verbindung zwischen Kiwi und einer deiner Apps",
+          "hinweis": "Über einen Connector kann Kiwi in einer App nachschauen oder dort etwas tun.",
+          "richtig": true
+        },
+        {
+          "id": "speicher",
+          "text": "Ein grösserer Tisch für Kiwi",
+          "hinweis": "Der Tisch bleibt gleich gross. Ein Connector bringt neue Werkzeuge, nicht mehr Platz."
+        }
+      ],
+      "loesung": [
+        "verbindung"
+      ]
+    },
+    "co-c": {
+      "typ": "wahl",
+      "wunsch": "Wenn Kiwi an meinen Dateien hängt: Was darf es dann dort?",
+      "frage": "Kiwi ist über einen Connector mit deiner Datei-Ablage verbunden. Was darf Kiwi dort?",
+      "kiwi": "Kiwi sieht die Ordner von Frau Okafor. Die Ordner anderer Leute sieht es nicht.",
+      "optionen": [
+        {
+          "id": "alles",
+          "text": "Alles, auch in den Konten anderer Leute",
+          "hinweis": "Nein. Kiwi handelt in deinem Namen und kommt nur dorthin, wo du selbst hinkommst."
+        },
+        {
+          "id": "nichts",
+          "text": "Gar nichts",
+          "hinweis": "Dann wäre der Connector nutzlos. Kiwi darf, was du ihm dort erlaubst."
+        },
+        {
+          "id": "wiedu",
+          "text": "Höchstens das, was du selbst darfst und ihm erlaubt hast",
+          "hinweis": "Ein Connector gibt Kiwi nie mehr Rechte, als du selbst hast. Und du kannst sie weiter einschränken.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "wiedu"
+      ]
+    },
+    "co-d": {
+      "typ": "wahl",
+      "wunsch": "Welche Blumen liefen diese Woche am besten? Das steht in unserer Laden-App.",
+      "frage": "Kiwi soll sagen, welche Blumen diese Woche am meisten bestellt wurden. Die Bestellungen stehen in der Laden-App. Was fehlt?",
+      "kiwi": "Mit dem Connector zur Laden-App meldet Kiwi: «Tulpen, mit Abstand.»",
+      "optionen": [
+        {
+          "id": "stecker",
+          "text": "Ein Connector zur Laden-App",
+          "hinweis": "Die Bestellungen liegen in einer App. Ohne Verbindung dorthin kann Kiwi nur raten.",
+          "richtig": true
+        },
+        {
+          "id": "prompt",
+          "text": "Ein längerer Prompt",
+          "hinweis": "Auch der längste Prompt bringt die Bestellungen nicht auf Kiwis Tisch."
+        },
+        {
+          "id": "nichts",
+          "text": "Nichts. Kiwi weiss das",
+          "hinweis": "Woher? Eure Bestellungen standen in keinem Trainingstext."
+        }
+      ],
+      "loesung": [
+        "stecker"
+      ]
+    },
+    "co-e": {
+      "typ": "wahl",
+      "wunsch": "Warum reden alle von diesem Standard, MCP?",
+      "frage": "Warum ist ein gemeinsamer Standard für Connectors praktisch?",
+      "kiwi": "Der Kalender hat einen einzigen Stecker gebaut. Er passt bei Kiwi und bei anderen KI-Programmen.",
+      "optionen": [
+        {
+          "id": "klug",
+          "text": "Er macht die KI klüger",
+          "hinweis": "Klüger wird die KI davon nicht. Sie kommt nur an mehr Orte."
+        },
+        {
+          "id": "einmal",
+          "text": "Eine App baut ihren Stecker einmal, und er passt zu vielen KI-Programmen",
+          "hinweis": "Wie bei USB-C: ein Stecker für viele Geräte, statt für jedes Gerät ein eigenes Kabel.",
+          "richtig": true
+        },
+        {
+          "id": "geheim",
+          "text": "Er hält alles geheim",
+          "hinweis": "Ein Standard regelt die Form der Verbindung. Wem du vertraust, musst du selbst entscheiden."
+        }
+      ],
+      "loesung": [
+        "einmal"
+      ]
+    },
+    "co-f": {
+      "wunsch": "Kiwi soll die Einladung zur Feier schreiben und als Entwurf in mein Mail-Programm legen. Abschicken will ich selbst.",
+      "grundprompt": "Schreib die Einladung zur Eröffnungsfeier und leg sie als Entwurf ab.",
+      "teile": [
+        {
+          "id": "mail",
+          "art": "stecker",
+          "text": "Mail: nur Entwürfe anlegen"
+        },
+        {
+          "id": "mailAlles",
+          "art": "stecker",
+          "text": "Mail: alles, auch senden und löschen"
+        },
+        {
+          "id": "kalender",
+          "art": "stecker",
+          "text": "Kalender von Frau Okafor"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "mailAlles"
+            ]
+          },
+          "fehlbild": "verschickt"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "mail"
+            ]
+          },
+          "fehlbild": "nurText"
+        }
+      ],
+      "fehlbilder": {
+        "verschickt": {
+          "texte": [
+            "Kiwi verschickt die Einladung gleich an alle 800 Kontakte. Auch an den Zahnarzt. Mit dem Tippfehler «Eröffnugn».",
+            "Die Einladung ist draussen, bevor Frau Okafor sie gelesen hat. Das Datum darin ist falsch."
+          ],
+          "hinweis": "Gib einem Connector nur die Rechte, die die Aufgabe braucht. Hier genügen Entwürfe."
+        },
+        "nurText": {
+          "texte": [
+            "Kiwi schreibt eine schöne Einladung in den Chat. Im Mail-Programm liegt nichts.",
+            "«Der Entwurf ist abgelegt!» Im Mail-Programm findet Frau Okafor keinen."
+          ],
+          "hinweis": "Ohne Mail-Connector kommt Kiwi nicht ins Mail-Programm. Es kann nur Text schreiben."
+        }
+      },
+      "erfolg": [
+        "Im Mail-Programm liegt ein Entwurf. Frau Okafor liest ihn, ändert ein Wort und schickt ihn selbst ab."
+      ],
+      "loesung": [
+        "mail"
+      ]
+    },
+    "sk-a": {
+      "wunsch": "Kiwi soll fünf Flyer machen. Alle wie aus einem Guss: unser Grün, unsere Schrift, unser Spruch.",
+      "grundprompt": "Gestalte den Flyer für den Muttertag.",
+      "teile": [
+        {
+          "id": "schoen",
+          "art": "prompt",
+          "text": "Mach ihn einfach schön."
+        },
+        {
+          "id": "hausstil",
+          "art": "karte",
+          "text": "Skill «Hausstil Blütenrausch»: Farben, Schrift und Spruch des Ladens"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "fehlt": [
+              "hausstil"
+            ]
+          },
+          "fehlbild": "neonpink"
+        }
+      ],
+      "fehlbilder": {
+        "neonpink": {
+          "texte": [
+            "Der Muttertags-Flyer ist neonpink mit Frakturschrift. Der von letzter Woche war braun mit Comic-Schrift.",
+            "Jeder Flyer sieht anders aus. Auf diesem steht der Spruch: «Blumen sind auch nur Gemüse.»"
+          ],
+          "hinweis": "Kiwi kennt euren Hausstil nicht und erfindet ihn jedes Mal neu. Ein Skill hält ihn einmal fest."
+        }
+      },
+      "erfolg": [
+        "Kiwi holt die Karte «Hausstil» aus dem Karteikasten. Der Flyer hat euer Grün, eure Schrift und den Spruch «Sag es mit Blüten»."
+      ],
+      "loesung": [
+        "hausstil"
+      ]
+    },
+    "sk-b": {
+      "typ": "wahl",
+      "wunsch": "Was ist ein Skill?",
+      "frage": "Was ist ein Skill?",
+      "kiwi": "Frau Okafor schreibt den Hausstil einmal auf eine Karte. Kiwi holt sie hervor, wann immer ein Flyer ansteht.",
+      "optionen": [
+        {
+          "id": "anleitung",
+          "text": "Eine Anleitung, die du einmal schreibst und die Kiwi bei Bedarf hervorholt",
+          "hinweis": "Wie eine Rezeptkarte im Karteikasten: einmal geschrieben, immer wieder benutzt.",
+          "richtig": true
+        },
+        {
+          "id": "stecker",
+          "text": "Eine Verbindung zu einer App",
+          "hinweis": "Das wäre ein Connector. Ein Skill ist Wissen, keine Verbindung."
+        },
+        {
+          "id": "immer",
+          "text": "Eine Regel, die in jeder Nachricht gilt",
+          "hinweis": "Das wäre der System-Prompt. Ein Skill kommt nur, wenn er gebraucht wird."
+        }
+      ],
+      "loesung": [
+        "anleitung"
+      ]
+    },
+    "sk-c": {
+      "typ": "wahl",
+      "wunsch": "Liest Kiwi dann jedes Mal den ganzen Karteikasten?",
+      "frage": "Im Karteikasten liegen zehn Skills. Wann liest Kiwi eine Karte ganz?",
+      "kiwi": "Kiwi kennt von jeder Karte nur die Überschrift. Beim Flyer zieht es die Karte «Hausstil» und liest sie ganz.",
+      "optionen": [
+        {
+          "id": "immer",
+          "text": "Alle zehn, bei jeder Nachricht",
+          "hinweis": "Dann wäre der Tisch ständig voll. Genau das vermeidet ein Skill."
+        },
+        {
+          "id": "nie",
+          "text": "Nie. Die Überschrift genügt",
+          "hinweis": "Die Überschrift sagt nur, wofür die Karte ist. Die Anleitung steht auf der Karte."
+        },
+        {
+          "id": "passt",
+          "text": "Erst wenn die Aufgabe dazu passt",
+          "hinweis": "Vorher kennt Kiwi nur die kurze Beschreibung. So bleibt der Tisch frei.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "passt"
+      ]
+    },
+    "sk-d": {
+      "typ": "wahl",
+      "wunsch": "«Sei zu Kundinnen und Kunden immer freundlich und sag Sie.» Wohin gehört das?",
+      "frage": "Wohin gehört diese Regel? «Antworte der Kundschaft immer freundlich und per Sie.»",
+      "kiwi": "Die Regel steht im System-Prompt. Kiwi hält sich in jeder Antwort daran.",
+      "optionen": [
+        {
+          "id": "skill",
+          "text": "In einen Skill",
+          "hinweis": "Ein Skill kommt nur bei passenden Aufgaben. Diese Regel soll aber immer gelten."
+        },
+        {
+          "id": "system",
+          "text": "In den System-Prompt",
+          "hinweis": "Was in jeder Nachricht gelten soll und kurz ist, gehört in den System-Prompt.",
+          "richtig": true
+        },
+        {
+          "id": "jedesmal",
+          "text": "In jede einzelne Nachricht, von Hand",
+          "hinweis": "Das vergisst man irgendwann. Dauerregeln schreibt man einmal fest."
+        }
+      ],
+      "loesung": [
+        "system"
+      ]
+    },
+    "sk-e": {
+      "typ": "wahl",
+      "wunsch": "Unsere Anleitung «So machen wir die Monatsabrechnung» ist zwei Seiten lang. Wir brauchen sie einmal im Monat.",
+      "frage": "Wohin gehört eine lange Anleitung, die ihr nur ab und zu braucht?",
+      "kiwi": "Die Anleitung liegt als Skill im Karteikasten. Am Monatsende zieht Kiwi sie hervor. Sonst stört sie nicht.",
+      "optionen": [
+        {
+          "id": "system",
+          "text": "In den System-Prompt",
+          "hinweis": "Dann lägen zwei Seiten bei jeder Nachricht auf dem Tisch. Das kostet Platz und Tokens."
+        },
+        {
+          "id": "tippen",
+          "text": "Jedes Mal neu eintippen",
+          "hinweis": "Mühsam, und jedes Mal ein bisschen anders. Genau dafür gibt es Skills."
+        },
+        {
+          "id": "skill",
+          "text": "In einen Skill",
+          "hinweis": "Sie belegt den Tisch nur, wenn sie gebraucht wird. Und sie ist jedes Mal dieselbe.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "skill"
+      ]
+    },
+    "sk-f": {
+      "typ": "wahl",
+      "wunsch": "Wir haben zwei Karten. Beide heissen «Macht Karten». Geht das gut?",
+      "frage": "Zwei Skills haben fast dieselbe Beschreibung: «Macht Karten». Kiwi soll eine Trauerkarte gestalten. Was kann passieren?",
+      "kiwi": "Kiwi zieht die Karte «Partydeko». Die Trauerkarte bekommt Konfetti und den Spruch «Lass krachen!».",
+      "optionen": [
+        {
+          "id": "nichts",
+          "text": "Nichts. Kiwi findet immer die richtige",
+          "hinweis": "Kiwi wählt nach der Beschreibung. Ist sie unklar, wird auch die Wahl unsicher."
+        },
+        {
+          "id": "beide",
+          "text": "Kiwi benutzt nie einen Skill mit unklarem Namen",
+          "hinweis": "Doch, es greift zu. Nur eben vielleicht daneben."
+        },
+        {
+          "id": "falsch",
+          "text": "Kiwi greift womöglich zur falschen Karte",
+          "hinweis": "Kiwi wählt einen Skill anhand seiner Beschreibung. Schreib klar hin, wofür er ist.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "falsch"
+      ]
+    },
+    "m8-a": {
+      "wunsch": "Jetzt alles zusammen: die Einladung im Hausstil, am richtigen Tag, als Entwurf in meinem Mail-Programm.",
+      "grundprompt": "Gestalte die Einladung zur Eröffnungsfeier und leg sie als Entwurf ab.",
+      "teile": [
+        {
+          "id": "kalender",
+          "art": "stecker",
+          "text": "Kalender von Frau Okafor"
+        },
+        {
+          "id": "mail",
+          "art": "stecker",
+          "text": "Mail: nur Entwürfe anlegen"
+        },
+        {
+          "id": "mailAlles",
+          "art": "stecker",
+          "text": "Mail: alles, auch senden und löschen"
+        },
+        {
+          "id": "hausstil",
+          "art": "karte",
+          "text": "Skill «Hausstil Blütenrausch»: Farben, Schrift und Spruch des Ladens"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "mailAlles"
+            ]
+          },
+          "fehlbild": "verschickt"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "kalender"
+            ]
+          },
+          "fehlbild": "ferien"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "hausstil"
+            ]
+          },
+          "fehlbild": "neonpink"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "mail"
+            ]
+          },
+          "fehlbild": "nurText"
+        }
+      ],
+      "fehlbilder": {
+        "verschickt": {
+          "texte": [
+            "Kiwi schickt die Einladung sofort an alle. Frau Okafor wollte sie noch ihrem Mann zeigen.",
+            "Verschickt an 800 Leute. Der Lieferant fragt, ob er auch Kuchen mitbringen soll."
+          ],
+          "hinweis": "Zum Entwerfen braucht Kiwi kein Senderecht. Gib nur, was die Aufgabe braucht."
+        },
+        "ferien": {
+          "texte": [
+            "Die Einladung nennt den 16. Mai. Da ist Frau Okafor auf Kreta.",
+            "Als Datum steht «ein Samstag im Mai». Kiwi wusste nicht, welcher frei ist."
+          ],
+          "hinweis": "Ohne Kalender-Connector kennt Kiwi die freien Tage nicht."
+        },
+        "neonpink": {
+          "texte": [
+            "Die Einladung ist neonpink und in Frakturschrift. Vom Hausstil keine Spur.",
+            "Kiwi wählt Braun und Comic-Schrift. Der Spruch lautet: «Kommt halt vorbei.»"
+          ],
+          "hinweis": "Ohne den Skill «Hausstil» erfindet Kiwi den Stil neu."
+        },
+        "nurText": {
+          "texte": [
+            "Die Einladung steht im Chat. Im Mail-Programm liegt kein Entwurf.",
+            "«Entwurf abgelegt!» Im Mail-Programm ist nichts zu finden."
+          ],
+          "hinweis": "Ohne Mail-Connector kommt Kiwi nicht ins Mail-Programm."
+        }
+      },
+      "erfolg": [
+        "Kiwi prüft den Kalender, gestaltet im Hausstil und legt den Entwurf ab: «Eröffnung am 23. Mai. Sag es mit Blüten!»"
+      ],
+      "loesung": [
+        "kalender",
+        "mail",
+        "hausstil"
+      ]
+    },
+    "m8-b": {
+      "typ": "wahl",
+      "wunsch": "Skill, Connector, System-Prompt: Ich bringe das durcheinander.",
+      "frage": "Kiwi soll die Bestellungen aus der Laden-App holen und daraus nach eurer Anleitung die Abrechnung machen. Was braucht es?",
+      "kiwi": "Der Connector holt die Bestellungen. Der Skill sagt, wie eure Abrechnung aussehen soll.",
+      "optionen": [
+        {
+          "id": "nurskill",
+          "text": "Nur einen Skill",
+          "hinweis": "Der Skill weiss, WIE es geht. An die Bestellungen kommt Kiwi damit aber nicht."
+        },
+        {
+          "id": "nurstecker",
+          "text": "Nur einen Connector",
+          "hinweis": "Der Connector bringt die Daten. Wie eure Abrechnung aussieht, weiss Kiwi dann noch nicht."
+        },
+        {
+          "id": "beide",
+          "text": "Einen Connector für die Daten und einen Skill für die Anleitung",
+          "hinweis": "Der Connector gibt Zugang, der Skill gibt Wissen. Zusammen ergeben sie die fertige Abrechnung.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "beide"
+      ]
+    }
+  }
+}

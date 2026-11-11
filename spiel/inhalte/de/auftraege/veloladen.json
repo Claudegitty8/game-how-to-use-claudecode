@@ -1,0 +1,681 @@
+{
+  "id": "veloladen",
+  "kapitel": 4,
+  "tokenBudget": 6000,
+  "kunde": "Frau Kälin, Velo-Laden «Kettenglück»",
+  "wunsch": "Auf unserer Webseite soll stehen, ob morgen Velowetter ist. Dafür gibt es doch so Wetterdienste?",
+  "kundenstimme": "«Morgen 18 Grad und Sonne: Velowetter!» Die Kundschaft liebt es. Und die Rechnung vom Wetterdienst blieb klein.",
+  "ueberraschung": "Jemand hat eine Steckerleiste und einen Karteikasten ins Büro geliefert. Wofür Kiwi die wohl braucht?",
+  "lexikon": [
+    "json"
+  ],
+  "runden": [
+    {
+      "id": "r1",
+      "art": "konzept",
+      "konzept": "api",
+      "probieren": {
+        "aufgabe": "ap-a",
+        "nurTeile": [
+          "frei"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "ap-a"
+      },
+      "luecke": {
+        "aufgabe": "ap-b"
+      },
+      "frei": [
+        "ap-c",
+        "ap-d",
+        "ap-e",
+        "ap-f"
+      ]
+    },
+    {
+      "id": "r2",
+      "art": "konzept",
+      "konzept": "api-schluessel",
+      "probieren": {
+        "aufgabe": "sc-a",
+        "nurTeile": [
+          "code",
+          "chat"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "sc-a"
+      },
+      "luecke": {
+        "aufgabe": "sc-b"
+      },
+      "frei": [
+        "sc-c",
+        "sc-d",
+        "sc-e",
+        "sc-f"
+      ]
+    },
+    {
+      "id": "r3",
+      "art": "misch",
+      "titel": "Alles zusammen",
+      "frei": [
+        "m7-a",
+        "m7-b"
+      ]
+    }
+  ],
+  "aufgaben": {
+    "ap-a": {
+      "wunsch": "Unsere Webseite soll das Wetter von morgen zeigen. Der Wetterdienst hat dafür eine API.",
+      "nachrichtVon": "Anfrage an die Wetter-API",
+      "grundprompt": "Anfrage an den Wetterdienst:",
+      "teile": [
+        {
+          "id": "frei",
+          "art": "prompt",
+          "text": "Hoi Wetterdienst, wie wird es denn so bei uns?"
+        },
+        {
+          "id": "ort",
+          "art": "feld",
+          "text": "ort: Hinterwil"
+        },
+        {
+          "id": "tag",
+          "art": "feld",
+          "text": "tag: morgen"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "frei"
+            ]
+          },
+          "fehlbild": "f400"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "ort",
+              "tag"
+            ]
+          },
+          "fehlbild": "f400"
+        }
+      ],
+      "fehlbilder": {
+        "f400": {
+          "texte": [
+            "Der Wetterdienst antwortet nur: «Fehler 400». Kiwi baut daraus die Anzeige: «Morgen 400 Grad.»",
+            "Antwort: «Fehler 400: Anfrage nicht verstanden.» Auf der Webseite steht jetzt gross: «Wetter: Fehler»."
+          ],
+          "hinweis": "Eine API versteht nur Anfragen in ihrer festen Form. Fehlt ein Feld oder steht etwas Freies drin, kommt ein Fehler zurück."
+        }
+      },
+      "erfolg": [
+        "Der Wetterdienst antwortet: «temperatur: 18, himmel: sonnig». Die Webseite zeigt: «Morgen 18 Grad und Sonne. Velowetter!»"
+      ],
+      "loesung": [
+        "ort",
+        "tag"
+      ]
+    },
+    "ap-b": {
+      "typ": "wahl",
+      "wunsch": "Was ist das eigentlich, so eine API?",
+      "frage": "Was ist eine API?",
+      "kiwi": "Die Webseite schickt eine Anfrage an den Wetterdienst und bekommt eine Antwort zurück. Kein Mensch ist dazwischen.",
+      "optionen": [
+        {
+          "id": "mensch",
+          "text": "Ein Mensch, der Anfragen per Mail beantwortet",
+          "hinweis": "Bei einer API reden zwei Programme miteinander, ohne Menschen dazwischen."
+        },
+        {
+          "id": "schalter",
+          "text": "Ein Schalter, über den Programme reden: Anfrage in fester Form rein, Antwort raus",
+          "hinweis": "Wie am Postschalter: Das Formular muss stimmen, dann kommt die Antwort.",
+          "richtig": true
+        },
+        {
+          "id": "seite",
+          "text": "Ein anderes Wort für Webseite",
+          "hinweis": "Eine Webseite ist für Menschen gemacht. Eine API ist für Programme gemacht."
+        }
+      ],
+      "loesung": [
+        "schalter"
+      ]
+    },
+    "ap-c": {
+      "typ": "wahl",
+      "wunsch": "Der Wetterdienst meldet einen Fehler. Was nun?",
+      "frage": "Die API antwortet: «Fehler: Feld tag fehlt.» Was ist richtig?",
+      "kiwi": "Kiwi ergänzt das Feld «tag» und schickt die Anfrage nochmals. Jetzt kommt das Wetter zurück.",
+      "optionen": [
+        {
+          "id": "zeigen",
+          "text": "Die Fehlermeldung als Wetter anzeigen",
+          "hinweis": "So entsteht «Morgen 400 Grad». Ein Fehler ist keine Antwort."
+        },
+        {
+          "id": "andere",
+          "text": "Sofort einen anderen Wetterdienst suchen",
+          "hinweis": "Nicht nötig. Die Meldung sagt genau, was fehlt."
+        },
+        {
+          "id": "korrigieren",
+          "text": "Die Anfrage korrigieren und nochmals schicken",
+          "hinweis": "Eine Fehlermeldung sagt, was nicht stimmt. Lies sie und korrigiere die Anfrage.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "korrigieren"
+      ]
+    },
+    "ap-d": {
+      "typ": "wahl",
+      "wunsch": "Erreicht man Kiwi eigentlich auch über so einen Schalter?",
+      "frage": "Auch eine KI erreicht man über eine API. Was schickt ein Programm dorthin?",
+      "kiwi": "Das Programm schickt eine Anfrage in fester Form. Zurück kommt Kiwis Antwort, ebenfalls in fester Form.",
+      "optionen": [
+        {
+          "id": "form",
+          "text": "Eine Anfrage in fester Form: welches Modell, welche Nachrichten, wie lang die Antwort höchstens sein darf",
+          "hinweis": "Genau. Auch hier gilt: Die Form muss stimmen, sonst kommt ein Fehler zurück.",
+          "richtig": true
+        },
+        {
+          "id": "brief",
+          "text": "Einen freundlichen Brief in freier Form",
+          "hinweis": "Ein Schalter für Programme versteht keine Briefe. Er verlangt feste Felder."
+        },
+        {
+          "id": "nichts",
+          "text": "Nichts. Die KI merkt selbst, was man will",
+          "hinweis": "Ohne Anfrage keine Antwort. Die KI sieht nur, was man ihr schickt."
+        }
+      ],
+      "loesung": [
+        "form"
+      ]
+    },
+    "ap-e": {
+      "typ": "wahl",
+      "wunsch": "Warum antwortet der Wetterdienst so trocken: «temperatur: 18»?",
+      "frage": "Warum antwortet eine API in fester Form statt in schönen Sätzen?",
+      "kiwi": "Die Webseite liest aus der Antwort das Feld «temperatur» und zeigt: «18 Grad».",
+      "optionen": [
+        {
+          "id": "faul",
+          "text": "Weil sich niemand Mühe gegeben hat",
+          "hinweis": "Es ist Absicht. Die feste Form ist für Programme viel praktischer."
+        },
+        {
+          "id": "lesbar",
+          "text": "Damit ein Programm die Antwort zuverlässig lesen kann",
+          "hinweis": "Ein Programm sucht ein bestimmtes Feld. Das klappt nur, wenn die Form immer gleich ist.",
+          "richtig": true
+        },
+        {
+          "id": "geheim",
+          "text": "Damit Menschen sie nicht verstehen",
+          "hinweis": "Geheim ist daran nichts. Es geht nur um Zuverlässigkeit."
+        }
+      ],
+      "loesung": [
+        "lesbar"
+      ]
+    },
+    "ap-f": {
+      "wunsch": "Die Webseite soll auch zeigen, ob der Laden heute offen ist. Das weiss unser Kalenderdienst.",
+      "nachrichtVon": "Anfrage an die Kalender-API",
+      "grundprompt": "Anfrage an den Kalenderdienst:",
+      "teile": [
+        {
+          "id": "datum",
+          "art": "feld",
+          "text": "datum: heute"
+        },
+        {
+          "id": "laden",
+          "art": "feld",
+          "text": "laden: Kettenglück"
+        },
+        {
+          "id": "gruss",
+          "art": "prompt",
+          "text": "PS: Liebe Grüsse und einen schönen Tag noch!"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "gruss"
+            ]
+          },
+          "fehlbild": "abgelehnt"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "datum",
+              "laden"
+            ]
+          },
+          "fehlbild": "unvollstaendig"
+        }
+      ],
+      "fehlbilder": {
+        "abgelehnt": {
+          "texte": [
+            "Der Kalenderdienst antwortet: «Fehler: unbekanntes Feld PS.» Auf der Webseite steht: «Heute: Fehler».",
+            "«Fehler 400.» Der Schalter kann mit lieben Grüssen nichts anfangen."
+          ],
+          "hinweis": "Freier Text gehört nicht in eine API-Anfrage. Der Schalter kennt nur seine Felder."
+        },
+        "unvollstaendig": {
+          "texte": [
+            "«Fehler: Pflichtfeld fehlt.» Die Webseite zeigt: «Heute offen: vielleicht».",
+            "Der Dienst antwortet: «Welcher Laden? Welcher Tag?» Die Anzeige bleibt leer."
+          ],
+          "hinweis": "Der Dienst braucht alle Pflichtfelder. Fehlt eines, kommt ein Fehler zurück."
+        }
+      },
+      "erfolg": [
+        "Der Kalenderdienst antwortet: «offen: ja, bis: 18.30». Die Webseite zeigt: «Heute offen bis 18.30 Uhr.»"
+      ],
+      "loesung": [
+        "datum",
+        "laden"
+      ]
+    },
+    "sc-a": {
+      "wunsch": "Der Wetterdienst hat uns einen API-Schlüssel gegeben. Wohin damit?",
+      "grundprompt": "Der Schlüssel für den Wetterdienst kommt …",
+      "teile": [
+        {
+          "id": "code",
+          "art": "prompt",
+          "text": "… direkt in den Code der Webseite."
+        },
+        {
+          "id": "chat",
+          "art": "prompt",
+          "text": "… in eine Nachricht an alle im Team."
+        },
+        {
+          "id": "tresor",
+          "art": "absicherung",
+          "text": "… in den Tresor: geheime Einstellungen, getrennt vom Code."
+        },
+        {
+          "id": "limit",
+          "art": "absicherung",
+          "text": "Dazu setzen wir ein Ausgabenlimit."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "code",
+              "chat"
+            ]
+          },
+          "fehlbild": "geklaut"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "tresor"
+            ]
+          },
+          "fehlbild": "geklaut"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "limit"
+            ]
+          },
+          "fehlbild": "ohneLimit"
+        }
+      ],
+      "fehlbilder": {
+        "geklaut": {
+          "texte": [
+            "Am nächsten Morgen hat «jemand» mit dem Schlüssel 40 000 Wetterabfragen für Grönland bestellt. Die Rechnung geht an Frau Kälin.",
+            "Der Schlüssel stand offen da. Jetzt lässt ein Fremder damit Gedichte über Käse schreiben. Auf eure Rechnung."
+          ],
+          "hinweis": "Ein API-Schlüssel ist wie eine Kreditkarte. Wer ihn sieht, kann auf deine Rechnung einkaufen."
+        },
+        "ohneLimit": {
+          "texte": [
+            "Der Schlüssel liegt sicher. Aber ein Fehler im Code fragt das Wetter 9000-mal pro Minute ab. Niemand bremst.",
+            "Alles sicher verstaut. Dann läuft ein Programm Amok, und die Rechnung wächst ungebremst."
+          ],
+          "hinweis": "Ein Limit schützt dich, falls doch etwas schiefgeht: bei einem Leck oder einem Fehler im eigenen Code."
+        }
+      },
+      "erfolg": [
+        "Der Schlüssel liegt im Tresor. Im Code steht nur: «Hol den Schlüssel aus dem Tresor.» Mehr als das Limit kann niemand ausgeben."
+      ],
+      "loesung": [
+        "tresor",
+        "limit"
+      ]
+    },
+    "sc-b": {
+      "typ": "wahl",
+      "wunsch": "Ist so ein Schlüssel denn so heikel?",
+      "frage": "Womit lässt sich ein API-Schlüssel am besten vergleichen?",
+      "kiwi": "Mit dem Schlüssel bestellt der Velo-Laden beim Wetterdienst. Jede Bestellung kommt auf Frau Kälins Rechnung.",
+      "optionen": [
+        {
+          "id": "visitenkarte",
+          "text": "Mit einer Visitenkarte",
+          "hinweis": "Eine Visitenkarte darf jeder haben. Einen API-Schlüssel nicht."
+        },
+        {
+          "id": "hausnummer",
+          "text": "Mit einer Hausnummer",
+          "hinweis": "Eine Hausnummer ist öffentlich. Ein Schlüssel muss geheim bleiben."
+        },
+        {
+          "id": "kreditkarte",
+          "text": "Mit einer Kreditkarte",
+          "hinweis": "Wer deine Kreditkarte hat, kauft auf deine Rechnung. Beim API-Schlüssel ist es genauso.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "kreditkarte"
+      ]
+    },
+    "sc-c": {
+      "typ": "wahl",
+      "wunsch": "Oh nein. Der Schlüssel ist im öffentlichen Code gelandet!",
+      "frage": "Dein API-Schlüssel stand versehentlich im öffentlichen Code. Was tust du zuerst?",
+      "kiwi": "Frau Kälin sperrt den alten Schlüssel und erstellt einen neuen. Der alte ist jetzt wertlos.",
+      "optionen": [
+        {
+          "id": "sperren",
+          "text": "Den Schlüssel sofort sperren und einen neuen erstellen",
+          "hinweis": "Was einmal sichtbar war, gilt als gestohlen. Nur Sperren macht den alten Schlüssel wertlos.",
+          "richtig": true
+        },
+        {
+          "id": "loeschen",
+          "text": "Die Zeile im Code löschen und hoffen",
+          "hinweis": "Zu spät: In den alten Speicherpunkten steht der Schlüssel weiterhin. Und vielleicht hat ihn schon jemand kopiert."
+        },
+        {
+          "id": "warten",
+          "text": "Abwarten, ob etwas passiert",
+          "hinweis": "Wenn etwas passiert, ist die Rechnung schon da. Sofort sperren."
+        }
+      ],
+      "loesung": [
+        "sperren"
+      ]
+    },
+    "sc-d": {
+      "typ": "wahl",
+      "wunsch": "Unser Lehrling Jonas braucht auch Zugang zum Wetterdienst.",
+      "frage": "Eine zweite Person braucht Zugang zur API. Was ist richtig?",
+      "kiwi": "Jonas bekommt einen eigenen Schlüssel. Geht seiner verloren, sperrt man nur diesen einen.",
+      "optionen": [
+        {
+          "id": "chat",
+          "text": "Du schickst ihm deinen Schlüssel per Chat",
+          "hinweis": "Ein Schlüssel in einer Nachricht ist nicht mehr geheim. Nachrichten werden weitergeleitet und gespeichert."
+        },
+        {
+          "id": "eigener",
+          "text": "Er bekommt einen eigenen Schlüssel",
+          "hinweis": "Jede Person und jedes Programm bekommt einen eigenen Schlüssel. So lässt sich einer sperren, ohne alle zu stören.",
+          "richtig": true
+        },
+        {
+          "id": "pinnwand",
+          "text": "Der Schlüssel kommt im Laden an die Pinnwand",
+          "hinweis": "Dann kennt ihn jeder, der den Laden betritt. Samt Lieferant und Kundschaft."
+        }
+      ],
+      "loesung": [
+        "eigener"
+      ]
+    },
+    "sc-e": {
+      "typ": "wahl",
+      "wunsch": "Kiwi will den Schlüssel direkt in die Datei wetter.js schreiben. Ist das in Ordnung?",
+      "frage": "Kiwi fragt: «Soll ich den Schlüssel direkt in die Datei wetter.js schreiben?» Was antwortest du?",
+      "kiwi": "Kiwi schreibt in den Code nur: «Hol den Schlüssel aus den geheimen Einstellungen.» Der Schlüssel selbst steht nirgends im Code.",
+      "optionen": [
+        {
+          "id": "ja",
+          "text": "Ja, das ist am einfachsten",
+          "hinweis": "Einfach, aber gefährlich: Code wird geteilt, kopiert und veröffentlicht. Der Schlüssel reist dann mit."
+        },
+        {
+          "id": "kommentar",
+          "text": "Ja, aber gut versteckt in einem Kommentar",
+          "hinweis": "Versteckt ist nicht geheim. Wer den Code sieht, sieht auch den Kommentar."
+        },
+        {
+          "id": "nein",
+          "text": "Nein. Der Code soll ihn aus den geheimen Einstellungen holen",
+          "hinweis": "Code und Geheimnisse gehören getrennt. So kannst du den Code zeigen, ohne den Schlüssel zu verraten.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "nein"
+      ]
+    },
+    "sc-f": {
+      "wunsch": "Die Wetteranzeige bleibt leer. Ich will im Velo-Forum um Hilfe fragen und meinen Code zeigen.",
+      "nachrichtVon": "Frage im Velo-Forum",
+      "grundprompt": "Meine Wetteranzeige bleibt leer. Wer kann helfen?",
+      "teile": [
+        {
+          "id": "ganz",
+          "art": "kontext",
+          "text": "Hier der ganze Code, samt der Zeile mit dem Schlüssel."
+        },
+        {
+          "id": "ohne",
+          "art": "kontext",
+          "text": "Hier der Code, mit «SCHLÜSSEL_HIER» statt dem echten Schlüssel."
+        },
+        {
+          "id": "fehler",
+          "art": "kontext",
+          "text": "Die genaue Fehlermeldung lautet: «Feld tag fehlt»."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "ganz"
+            ]
+          },
+          "fehlbild": "geklaut"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "ohne"
+            ]
+          },
+          "fehlbild": "keinCode"
+        }
+      ],
+      "fehlbilder": {
+        "geklaut": {
+          "texte": [
+            "Zehn Minuten später benutzt das halbe Forum den Schlüssel von Frau Kälin. Geholfen hat niemand.",
+            "Ein freundlicher Fremder antwortet: «Danke für den Schlüssel!» Die Rechnung kommt Ende Monat."
+          ],
+          "hinweis": "Zeig nie den echten Schlüssel, auch nicht, wenn du Hilfe suchst. Ersetze ihn vorher durch einen Platzhalter."
+        },
+        "keinCode": {
+          "texte": [
+            "Das Forum antwortet: «Ohne Code können wir nur raten. Vielleicht ist der Stecker draussen?»",
+            "Drei Antworten, drei Vermutungen. Keine passt. Niemand hat den Code gesehen."
+          ],
+          "hinweis": "Wer helfen soll, braucht den Code. Zeig ihn, aber ohne das Geheimnis."
+        }
+      },
+      "erfolg": [
+        "Jemand antwortet: «In Zeile 4 fehlt das Feld tag.» Der Schlüssel blieb geheim."
+      ],
+      "loesung": [
+        "ohne",
+        "fehler"
+      ]
+    },
+    "m7-a": {
+      "wunsch": "Jetzt alles zusammen: Die Regen-Warnung soll laufen. Richtig und sicher.",
+      "nachrichtVon": "Anfrage an die Wetter-API",
+      "grundprompt": "Anfrage an den Wetterdienst:",
+      "teile": [
+        {
+          "id": "ort",
+          "art": "feld",
+          "text": "ort: Hinterwil"
+        },
+        {
+          "id": "tag",
+          "art": "feld",
+          "text": "tag: morgen"
+        },
+        {
+          "id": "code",
+          "art": "prompt",
+          "text": "schlüssel: steht gleich hier, für alle sichtbar"
+        },
+        {
+          "id": "tresor",
+          "art": "absicherung",
+          "text": "Der Schlüssel kommt aus dem Tresor."
+        },
+        {
+          "id": "test",
+          "art": "absicherung",
+          "text": "Prüfung: Für «morgen» muss eine Temperatur zurückkommen."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "code"
+            ]
+          },
+          "fehlbild": "geklaut"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "tresor"
+            ]
+          },
+          "fehlbild": "keinZutritt"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "ort",
+              "tag"
+            ]
+          },
+          "fehlbild": "f400"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "test"
+            ]
+          },
+          "fehlbild": "ungeprueft"
+        }
+      ],
+      "fehlbilder": {
+        "geklaut": {
+          "texte": [
+            "Am nächsten Morgen hat «jemand» mit dem Schlüssel 40 000 Wetterabfragen für Grönland bestellt. Die Rechnung geht an Frau Kälin.",
+            "Der Schlüssel stand offen da. Jetzt lässt ein Fremder damit Gedichte über Käse schreiben. Auf eure Rechnung."
+          ],
+          "hinweis": "Ein API-Schlüssel ist wie eine Kreditkarte. Wer ihn sieht, kann auf deine Rechnung einkaufen."
+        },
+        "f400": {
+          "texte": [
+            "Der Wetterdienst antwortet nur: «Fehler 400». Kiwi baut daraus die Anzeige: «Morgen 400 Grad.»",
+            "Antwort: «Fehler 400: Anfrage nicht verstanden.» Auf der Webseite steht jetzt gross: «Wetter: Fehler»."
+          ],
+          "hinweis": "Eine API versteht nur Anfragen in ihrer festen Form. Fehlt ein Feld oder steht etwas Freies drin, kommt ein Fehler zurück."
+        },
+        "keinZutritt": {
+          "texte": [
+            "Der Wetterdienst antwortet: «Fehler 401: Wer bist du?» Ohne Schlüssel gibt es kein Wetter.",
+            "«Zutritt verweigert.» Die Anfrage hatte keinen Schlüssel dabei."
+          ],
+          "hinweis": "Ohne Schlüssel weiss der Dienst nicht, wer fragt. Der Schlüssel muss mit, aber sicher aus dem Tresor."
+        },
+        "ungeprueft": {
+          "texte": [
+            "Die Regen-Warnung ist «fertig». Sie meldet jeden Tag Regen, auch bei strahlender Sonne. Niemand hat es geprüft.",
+            "Kiwi meldet Erfolg. Die Warnung zeigt das Wetter von Hinterwil in Kanada."
+          ],
+          "hinweis": "Ohne Prüfung merkt niemand, ob die Antwort des Dienstes richtig ankommt."
+        }
+      },
+      "erfolg": [
+        "Die Anfrage stimmt, der Schlüssel kommt aus dem Tresor, und die Prüfung zeigt: «18 Grad». Die Regen-Warnung läuft."
+      ],
+      "loesung": [
+        "ort",
+        "tag",
+        "tresor",
+        "test"
+      ]
+    },
+    "m7-b": {
+      "typ": "wahl",
+      "wunsch": "Ich möchte sehen, was der Wetterdienst uns diesen Monat gekostet hat.",
+      "frage": "Warum lohnt es sich, die Nutzung deines Schlüssels regelmässig anzuschauen?",
+      "kiwi": "Frau Kälin sieht: wie erwartet 30 Abfragen pro Tag. Alles in Ordnung.",
+      "optionen": [
+        {
+          "id": "spass",
+          "text": "Aus Neugier, es bringt aber nichts",
+          "hinweis": "Doch: Ungewohnte Zahlen sind oft das erste Zeichen, dass etwas nicht stimmt."
+        },
+        {
+          "id": "leck",
+          "text": "Du merkst früh, wenn ein Fremder den Schlüssel benutzt oder ein Fehler Geld verbrennt",
+          "hinweis": "Ein Blick auf die Nutzung zeigt ein Leck, bevor die Rechnung gross wird.",
+          "richtig": true
+        },
+        {
+          "id": "schneller",
+          "text": "Dann antwortet der Dienst schneller",
+          "hinweis": "Die Geschwindigkeit ändert sich nicht. Es geht um Kontrolle."
+        }
+      ],
+      "loesung": [
+        "leck"
+      ]
+    }
+  }
+}
