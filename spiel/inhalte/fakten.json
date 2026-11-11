@@ -48,6 +48,30 @@
       "aussage": "Offizielle Empfehlung: Eine Rolle im System-Prompt richtet Verhalten und Ton der KI auf den Anwendungsfall aus. Schon ein einzelner Satz macht einen Unterschied.",
       "quelle": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
       "geprueft": "2026-11-11"
+    },
+    {
+      "id": "naechstes-wort",
+      "aussage": "Sprachmodelle wie das hinter Claude werden im Vortraining darauf trainiert, anhand des bisherigen Textes das nächste Wort vorherzusagen.",
+      "quelle": "https://platform.claude.com/docs/en/about-claude/glossary",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "temperatur-zufall",
+      "aussage": "Die Temperatur steuert, wie zufällig ein Modell beim Erzeugen von Text wählt. Selbst bei Temperatur 0 können gleiche Eingaben verschiedene Ausgaben ergeben.",
+      "quelle": "https://platform.claude.com/docs/en/about-claude/glossary",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "halluzination-gegenmittel",
+      "aussage": "Offizielle Gegenmittel gegen Halluzinationen: dem Modell erlauben, «Ich weiss es nicht» zu sagen, Antworten auf wörtliche Zitate stützen und Belege verlangen.",
+      "quelle": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+      "geprueft": "2026-11-11"
+    },
+    {
+      "id": "nach-dem-mund-reden",
+      "aussage": "Anthropic beschreibt «Sycophancy» als Neigung mancher KI-Modelle, Nutzern zu sagen, was sie hören wollen, statt was wahr und hilfreich ist.",
+      "quelle": "https://www.anthropic.com/news/protecting-well-being-of-users",
+      "geprueft": "2026-11-11"
     }
   ]
 }

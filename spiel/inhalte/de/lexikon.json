@@ -40,5 +40,27 @@
     "englisch": "Chatbot",
     "kern": null,
     "erklaerung": "Ein Chatbot ist ein Programm, mit dem man schreibend redet. Dahinter steckt heute oft eine KI mit einem System-Prompt."
+  },
+  "training": {
+    "begriff": "Training",
+    "englisch": "Training",
+    "kern": null,
+    "erklaerung": "Im Training liest ein Sprachmodell riesige Mengen Text und lernt daraus, welche Wörter aufeinander folgen. Danach lernt es nicht mehr von selbst dazu."
+  },
+  "wahrscheinlichkeit": {
+    "begriff": "Sprachmodell",
+    "englisch": "Large Language Model (LLM)",
+    "kern": "wahrscheinlichkeit",
+    "erklaerung": "Ein Sprachmodell hat aus sehr vielen Texten gelernt, welches Wort wahrscheinlich als nächstes kommt. Es schlägt nichts nach, es sagt vorher.",
+    "quatsch": "Kiwi gründete das Dorfmuseum kurzerhand im Jahr 1847, weil das gut klang.",
+    "genauer": "Kiwi wählt nicht immer das allerwahrscheinlichste Wort. Etwas Zufall ist dabei, darum kann dieselbe Frage verschiedene Antworten geben. Die Balken im Spiel sind Schätzungen zum Veranschaulichen."
+  },
+  "halluzination": {
+    "begriff": "Halluzination",
+    "englisch": "Hallucination",
+    "kern": "halluzination",
+    "erklaerung": "Eine Halluzination ist eine Angabe, die die KI erfunden hat und die trotzdem überzeugend klingt.",
+    "quatsch": "Kiwi erfand für Hinterwil ein Schloss samt Ritter Kunibald.",
+    "genauer": "Neuere Modelle halluzinieren seltener, aber ganz verschwunden ist es nicht. Prüfen bleibt nötig."
   }
 }

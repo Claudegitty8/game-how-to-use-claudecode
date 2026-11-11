@@ -6,7 +6,7 @@ import path from 'node:path';
 import { bewerte } from '../spiel/code/logik/bewertung.js';
 
 const STANDARD_ORDNER = fileURLToPath(new URL('../spiel/inhalte/', import.meta.url));
-const ARTEN = ['rolle', 'prompt', 'kontext', 'beispiel'];
+const ARTEN = ['rolle', 'prompt', 'kontext', 'absicherung', 'beispiel'];
 const MAX_WOERTER = 40; // Leitlinie B7: kein Textblock über 40 Wörter
 
 async function lies(ordner, datei, fehler) {
@@ -175,6 +175,10 @@ export function pruefeAuftrag(auftrag, name, { regeln, konzepte, texte, lexikon 
 // Eine Aufgabe ist in Ordnung, wenn ihre Lösung besteht, ein leerer Prompt scheitert
 // und jedes Fehlbild mehrere Varianten und einen erklärenden Hinweis hat.
 export function pruefeAufgabe(aufgabe, name, fehler) {
+  if (aufgabe.typ === 'wahl') {
+    pruefeWahl(aufgabe, name, fehler);
+    return;
+  }
   if (!istText(aufgabe.wunsch)) fehler.push(`${name}: wunsch fehlt`);
   if (!istText(aufgabe.grundprompt)) fehler.push(`${name}: grundprompt fehlt`);
   if (!Array.isArray(aufgabe.erfolg) || aufgabe.erfolg.length < 1) fehler.push(`${name}: mindestens ein Erfolgstext nötig`);
@@ -217,6 +221,27 @@ export function pruefeAufgabe(aufgabe, name, fehler) {
     ...(aufgabe.teile ?? []).map((teil) => teil.text),
     ...Object.values(fehlbilder).flatMap((fehlbild) => [...(fehlbild.texte ?? []), fehlbild.hinweis]),
   ];
+  if (texte.some(zuLang)) fehler.push(`${name}: Ein Text hat mehr als ${MAX_WOERTER} Wörter`);
+}
+
+// Übungsform «Vorhersagen»: genau eine richtige Antwort, jede Antwort mit Erklärung.
+function pruefeWahl(aufgabe, name, fehler) {
+  for (const feld of ['wunsch', 'frage', 'kiwi']) {
+    if (!istText(aufgabe[feld])) fehler.push(`${name}: ${feld} fehlt`);
+  }
+  const optionen = aufgabe.optionen ?? [];
+  if (optionen.length < 2) fehler.push(`${name}: mindestens zwei Antworten nötig`);
+  const richtige = optionen.filter((option) => option.richtig);
+  if (richtige.length !== 1) fehler.push(`${name}: genau eine Antwort muss richtig sein`);
+  if (new Set(optionen.map((option) => option.id)).size !== optionen.length) fehler.push(`${name}: Antwort doppelt`);
+  for (const option of optionen) {
+    if (!istText(option.text) || !istText(option.hinweis)) fehler.push(`${name}: Antwort «${option.id}» braucht text und hinweis`);
+  }
+  if (aufgabe.loesung?.length !== 1 || aufgabe.loesung[0] !== richtige[0]?.id) fehler.push(`${name}: loesung muss die richtige Antwort nennen`);
+  for (const anteil of aufgabe.anteile ?? []) {
+    if (!istText(anteil.wort) || ![1, 2, 3].includes(anteil.stufe)) fehler.push(`${name}: anteile brauchen wort und stufe 1 bis 3`);
+  }
+  const texte = [aufgabe.wunsch, aufgabe.frage, aufgabe.kiwi, ...optionen.flatMap((option) => [option.text, option.hinweis])];
   if (texte.some(zuLang)) fehler.push(`${name}: Ein Text hat mehr als ${MAX_WOERTER} Wörter`);
 }
 

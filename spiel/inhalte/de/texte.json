@@ -41,7 +41,8 @@
       "prompt": "Was und wie",
       "kontext": "Hintergrund",
       "beispiel": "Beispiele",
-      "rolle": "Rolle und Dauerregeln"
+      "rolle": "Rolle und Dauerregeln",
+      "absicherung": "Absicherung"
     },
     "beispielVorsatz": "Beispiele:",
     "los": "Kiwi, los!",
@@ -101,19 +102,38 @@
     "loeschenNein": "Abbrechen",
     "kiEtikett": "KI im Spiel",
     "kiInfo": "Kiwi ist eine simulierte KI. Sie braucht kein Konto, kostet nichts und antwortet nach festen Regeln.",
-    "fuss": "KI-Studio, Version 0.3",
+    "fuss": "KI-Studio, Version 0.4",
     "kiwiNaechster": "Es klopft an der Garage. Ein neuer Kunde!",
     "systemEtikett": "System-Prompt (gilt für jede Nachricht)",
-    "systemLeer": "(noch leer)"
+    "systemLeer": "(noch leer)",
+    "frageEtikett": "Die Frage",
+    "antworten": "Antwort prüfen",
+    "waehleZuerst": "Wähle zuerst eine Antwort.",
+    "hilfeFalscheWahl": "Diese Antwort ist es nicht.",
+    "nochmalWahl": "Überleg nochmals und wähle neu. Oder nimm eine andere Situation.",
+    "sichtfenster": "Blick in Kiwis Kopf: Wie oft passt welches Wort?",
+    "stufe": {
+      "3": "sehr oft",
+      "2": "manchmal",
+      "1": "fast nie"
+    },
+    "schrittHilfeWahl": {
+      "beispiel": "Schau zu, wie Kiwi ein Wort wählt. Drück auf «Antwort prüfen».",
+      "luecke": "Überleg zuerst selbst. Die Hilfe ist da, wenn du sie brauchst.",
+      "frei": "Jetzt ohne Hilfe. Lies genau.",
+      "wiederholung": "Eine Frage zu früher. Du hast einen Versuch."
+    }
   },
   "kapitel": {
     "1": {
       "name": "Die Garage",
-      "thema": "Mit KI sprechen"
+      "thema": "Mit KI sprechen",
+      "ort": "Die Garage"
     },
     "2": {
       "name": "Wie die KI tickt",
-      "thema": "Grundlagen"
+      "thema": "Grundlagen",
+      "ort": "Die Garage mit Labor"
     },
     "3": {
       "name": "Kiwi bekommt Hände",
@@ -175,11 +195,23 @@
     },
     "wahrscheinlichkeit": {
       "name": "Wahrscheinlichkeit statt Wissen",
-      "analogie": "Die Wortvorschläge der Handy-Tastatur, nur viel stärker."
+      "analogie": "Die Wortvorschläge der Handy-Tastatur, nur viel stärker.",
+      "aha": [
+        "Kiwi schlägt nichts nach. Kiwi schreibt Wort für Wort und wählt, was wahrscheinlich als Nächstes kommt.",
+        "Was in vielen Texten steht, trifft Kiwi meist gut. Was selten oder privat ist, muss Kiwi raten.",
+        "Dabei klingt Geratenes genauso sicher wie Gewusstes."
+      ],
+      "tipp": "Steht das in sehr vielen Texten? Dann trifft Kiwi es wohl. Sonst rät Kiwi. Nachschlagen kann es nie."
     },
     "halluzination": {
       "name": "Halluzination und Prüfen",
-      "analogie": "Ein Schüler, der lieber etwas erfindet, als ein Feld leer zu lassen."
+      "analogie": "Ein Schüler, der lieber etwas erfindet, als ein Feld leer zu lassen.",
+      "aha": [
+        "Kiwi erfindet lieber etwas, als nichts zu sagen. Das nennt man Halluzination.",
+        "Dagegen hilft: die Fakten mitgeben und «Das weiss ich nicht» erlauben.",
+        "Verlange Belege. Dann siehst du, was stimmt und was dazugedichtet ist."
+      ],
+      "tipp": "Hat Kiwi die Fakten? Darf Kiwi sagen, dass es etwas nicht weiss? Zwing Kiwi nie zum Raten."
     },
     "token": {
       "name": "Token",
