@@ -118,7 +118,8 @@ test('In der Mischrunde bleibt eine Aufgabe, bis sie gelöst ist', () => {
 });
 
 const turnverein = await lies('de/auftraege/turnverein.json');
-const alle = [auftrag, turnverein];
+const dorfmuseum = await lies('de/auftraege/dorfmuseum.json');
+const alle = [auftrag, turnverein, dorfmuseum];
 
 function spieleDurch(start, aktueller) {
   let stand = starteAuftrag(start, aktueller, regeln, alle);
@@ -157,4 +158,14 @@ test('Zwei Aufträge hintereinander: Gelerntes aus dem ersten kommt im zweiten w
 test('Ein erledigter Auftrag lässt sich nicht nochmals starten', () => {
   const { stand } = spieleDurch(neuerStand(), auftrag);
   assert.equal(starteAuftrag(stand, auftrag, regeln, alle), stand);
+});
+
+test('Drei Aufträge: Kapitel 2 baut auf Kapitel 1 auf und wiederholt es', () => {
+  const erster = spieleDurch(neuerStand(), auftrag);
+  const zweiter = spieleDurch(erster.stand, turnverein);
+  const dritter = spieleDurch(zweiter.stand, dorfmuseum);
+  assert.equal(dritter.wiederholungen.length, 3, 'vor jeder der drei Runden eine Wiederholung');
+  assert.ok(dritter.wiederholungen.every((w) => !w.includes('dorfmuseum vor Runde 1')));
+  assert.deepEqual(dritter.stand.erledigt, ['baeckerei', 'turnverein', 'dorfmuseum']);
+  assert.ok(dritter.stand.lexikon.includes('halluzination') && dritter.stand.lexikon.includes('training'));
 });

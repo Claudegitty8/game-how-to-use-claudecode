@@ -2,6 +2,7 @@
 // Mischrunde oder Wiederholung. Die Regeln dazu stehen in logik/ablauf.js.
 import { el, fuelle, knopf, kiwiFigur, punkte, leiste } from './bausteine.js';
 import { baueWerkbank } from './werkbank.js';
+import { baueWahl } from './wahl.js';
 import { ansicht, weiter, verbucheFrei, verbucheWiederholungsErgebnis, SCHRITTE } from '../logik/ablauf.js';
 import { hilfeTeil } from '../logik/bewertung.js';
 import { erfolge, neuerFortschritt } from '../logik/meisterschaft.js';
@@ -63,7 +64,8 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   let fehlschlaege = 0;
   let hilfeStufe = 0;
 
-  const werkbank = baueWerkbank({
+  const istWahl = aufgabe.typ === 'wahl';
+  const werkbank = (istWahl ? baueWahl : baueWerkbank)({
     aufgabe,
     t,
     sichtbar: a.nurTeile ?? null,
@@ -88,7 +90,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   } else {
     kopf.push(schrittReihe(t, art));
   }
-  kopf.push(el('p', { klasse: 'klein', text: t.schrittHilfe[art] }));
+  kopf.push(el('p', { klasse: 'klein', text: (istWahl && t.schrittHilfeWahl[art]) || t.schrittHilfe[art] }));
 
   // --- Ergebnis ---
   const kiwi = kiwiFigur(t.kiwiName);
@@ -119,13 +121,18 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
     aktionen.replaceChildren(...knoepfe);
   }
 
-  const los = knopf(t.los, async () => {
+  const los = knopf(istWahl ? t.antworten : t.los, async () => {
+    if (istWahl && werkbank.auswahl().length === 0) {
+      status.textContent = t.waehleZuerst;
+      return;
+    }
     los.disabled = true;
     const antwort = await app.ki.antworte({ aufgabe, auswahl: werkbank.auswahl(), versuch: versuche });
     versuche += 1;
     if (!antwort.ok) fehlschlaege += 1;
     sprechblase.textContent = antwort.text;
-    hinweis.textContent = antwort.ok ? t.gelungen : antwort.hinweis;
+    hinweis.textContent = antwort.ok ? antwort.hinweis ?? t.gelungen : antwort.hinweis;
+    werkbank.nachTest?.();
     hinweis.className = antwort.ok ? 'hinweis gut' : 'hinweis';
     kiwi.classList.toggle('froh', antwort.ok);
     status.textContent = '';
@@ -144,7 +151,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
         status.textContent = zaehlt ? t.gezaehlt : t.nichtGezaehlt;
         fertig(knopf(t.naechste, () => schliesseAb({ ok: true, zaehlt }), 'los'));
       } else {
-        status.textContent = t.nochmal;
+        status.textContent = istWahl ? t.nochmalWahl : t.nochmal;
         aktionen.replaceChildren(knopf(t.andere, () => schliesseAb({ ok: false, zaehlt: false }), 'knopf-zweit'));
       }
     } else if (art === 'misch') {
@@ -173,7 +180,8 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
     } else if (hilfeStufe === 2) {
       const teil = hilfeTeil(aufgabe, werkbank.auswahl());
       hilfeText.textContent = '';
-      if (teil) werkbank.markiere(teil.id, teil.grund === 'zuviel' ? t.hilfeZuviel : t.hilfeFehlt);
+      const text = { zuviel: t.hilfeZuviel, fehlt: t.hilfeFehlt, falsch: t.hilfeFalscheWahl };
+      if (teil) werkbank.markiere(teil.id, text[teil.grund]);
     } else {
       werkbank.setze(aufgabe.loesung);
       hilfeText.textContent = t.hilfeLoesung;

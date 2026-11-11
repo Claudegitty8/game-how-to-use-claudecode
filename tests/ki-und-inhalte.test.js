@@ -9,7 +9,8 @@ import { pruefeInhalte, pruefeAufgabe } from '../werkzeuge/pruefe-inhalte.mjs';
 const auftrag = JSON.parse(await readFile(new URL('../spiel/inhalte/de/auftraege/baeckerei.json', import.meta.url), 'utf8'));
 const { aufgaben } = auftrag;
 const turnverein = JSON.parse(await readFile(new URL('../spiel/inhalte/de/auftraege/turnverein.json', import.meta.url), 'utf8'));
-const alleAufgaben = { ...aufgaben, ...turnverein.aufgaben };
+const dorfmuseum = JSON.parse(await readFile(new URL('../spiel/inhalte/de/auftraege/dorfmuseum.json', import.meta.url), 'utf8'));
+const alleAufgaben = { ...aufgaben, ...turnverein.aufgaben, ...dorfmuseum.aufgaben };
 
 test('Simulierte KI macht Quatsch passend zur Lücke und erklärt ihn', async () => {
   const ki = erstelleKi('simuliert');
@@ -42,7 +43,9 @@ test('Jede Aufgabe liefert mit ihrer Lösung ein gutes Ergebnis', async () => {
   for (const [id, aufgabe] of Object.entries(alleAufgaben)) {
     const antwort = await ki.antworte({ aufgabe, auswahl: aufgabe.loesung });
     assert.equal(antwort.ok, true, `Aufgabe ${id}`);
-    assert.equal(antwort.hinweis, null);
+    // Bau-Aufgaben haben bei Erfolg keinen Hinweis. Wahl-Aufgaben erklären immer, warum.
+    if (aufgabe.typ === 'wahl') assert.ok(antwort.hinweis);
+    else assert.equal(antwort.hinweis, null);
     assert.ok(antwort.tokens.eingabe > 0 && antwort.tokens.ausgabe > 0);
   }
 });
@@ -82,4 +85,17 @@ test('Die Inhaltsprüfung findet typische Fehler in einer Aufgabe', () => {
   }, 'probe', fehler);
   // Zu wenige Varianten, kein Hinweis, Lösung besteht nicht.
   assert.equal(fehler.length, 3);
+});
+
+test('Vorhersagen: Kiwi tut immer dasselbe, der Hinweis erklärt die gewählte Antwort', async () => {
+  const ki = erstelleKi('simuliert');
+  const aufgabe = dorfmuseum.aufgaben['w-e'];
+  const richtig = await ki.antworte({ aufgabe, auswahl: ['raet'] });
+  const falsch = await ki.antworte({ aufgabe, auswahl: ['nachschlagen'] });
+  const leer = await ki.antworte({ aufgabe, auswahl: [] });
+  assert.equal(richtig.ok, true);
+  assert.equal(falsch.ok, false);
+  assert.equal(leer.ok, false);
+  assert.equal(richtig.text, falsch.text);
+  assert.notEqual(richtig.hinweis, falsch.hinweis);
 });

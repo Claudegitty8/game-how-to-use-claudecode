@@ -20,5 +20,5 @@ export function bauePrompt(aufgabe, auswahl = [], beispielVorsatz = '') {
 }
 
 export function hatSystemPrompt(aufgabe) {
-  return aufgabe.teile.some((teil) => teil.art === 'rolle');
+  return (aufgabe.teile ?? []).some((teil) => teil.art === 'rolle');
 }

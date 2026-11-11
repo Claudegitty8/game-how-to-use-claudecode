@@ -16,7 +16,14 @@ function trifftZu(wenn, gewaehlt) {
   return false;
 }
 
+// Übungsform «Vorhersagen»: genau eine Antwort ist richtig.
+function bewerteWahl(aufgabe, auswahl) {
+  const option = aufgabe.optionen.find((o) => o.id === auswahl[0]) ?? null;
+  return { ok: Boolean(option?.richtig), fehlbild: option?.richtig ? null : option?.id ?? 'leer', pruefung: null, option };
+}
+
 export function bewerte(aufgabe, auswahl = []) {
+  if (aufgabe.typ === 'wahl') return bewerteWahl(aufgabe, auswahl);
   const gewaehlt = new Set(auswahl);
   const treffer = aufgabe.pruefungen.find((pruefung) => trifftZu(pruefung.wenn, gewaehlt)) ?? null;
   return { ok: !treffer, fehlbild: treffer?.fehlbild ?? null, pruefung: treffer };
@@ -25,6 +32,12 @@ export function bewerte(aufgabe, auswahl = []) {
 // Für Hilfestufe 2: auf welches Teil soll der Spieler schauen?
 // Zuerst ein angestecktes Teil, das schadet. Sonst ein Teil der Lösung, das fehlt.
 export function hilfeTeil(aufgabe, auswahl = []) {
+  if (aufgabe.typ === 'wahl') {
+    // Bei einer Wahl: eine falsche Antwort ausschliessen, am liebsten die gerade gewählte.
+    const falsche = aufgabe.optionen.filter((o) => !o.richtig);
+    const ziel = falsche.find((o) => o.id === auswahl[0]) ?? falsche[0];
+    return ziel ? { id: ziel.id, grund: 'falsch' } : null;
+  }
   const gewaehlt = new Set(auswahl);
   const schaedlich = new Set(aufgabe.pruefungen.flatMap((pruefung) => pruefung.wenn.gewaehlt ?? []));
   const zuviel = auswahl.find((id) => schaedlich.has(id));

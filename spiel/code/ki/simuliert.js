@@ -23,6 +23,17 @@ export function erstelleSimulierteKi() {
     modus: 'simuliert',
     async antworte({ aufgabe, auswahl = [], versuch = 0 }) {
       const urteil = bewerte(aufgabe, auswahl);
+      if (aufgabe.typ === 'wahl') {
+        // Kiwi tut immer dasselbe. Der Hinweis erklärt, warum die gewählte Antwort stimmt oder nicht.
+        return {
+          text: aufgabe.kiwi,
+          ok: urteil.ok,
+          fehlbild: urteil.fehlbild,
+          hinweis: urteil.option?.hinweis ?? null,
+          tokens: { eingabe: schaetzeSpielTokens(aufgabe.frage), ausgabe: schaetzeSpielTokens(aufgabe.kiwi) },
+          modus: 'simuliert',
+        };
+      }
       const fehlbild = urteil.ok ? null : aufgabe.fehlbilder[urteil.fehlbild];
       const varianten = urteil.ok ? aufgabe.erfolg : fehlbild.texte;
       const text = setzeTeilEin(varianten[versuch % varianten.length], aufgabe, auswahl, urteil.pruefung);

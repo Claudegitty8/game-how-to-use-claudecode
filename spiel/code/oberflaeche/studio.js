@@ -66,7 +66,7 @@ export function zeigeStudio(wurzel, app, nav) {
   wurzel.append(
     el('header', { klasse: 'kopf' },
       el('h1', { text: t.titel }),
-      el('p', { text: t.studioName })),
+      el('p', { text: texte.kapitel[(auftrag ?? auftraege.at(-1)).kapitel ?? 1].ort ?? t.studioName })),
     el('div', { klasse: 'kiwi-zeile' }, kiwiFigur(t.kiwiName, !auftrag), el('p', { klasse: 'sprechblase', text: gruss })),
     auftragKarte,
     meisterschaft,

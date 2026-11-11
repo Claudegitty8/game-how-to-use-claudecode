@@ -3,7 +3,7 @@
 import { el } from './bausteine.js';
 import { bauePrompt, baueSystemPrompt, hatSystemPrompt } from '../logik/prompt.js';
 
-const ARTEN = ['rolle', 'prompt', 'kontext', 'beispiel'];
+const ARTEN = ['rolle', 'prompt', 'kontext', 'absicherung', 'beispiel'];
 
 export function baueWerkbank({ aufgabe, t, sichtbar = null, vorgabe = [], auswahl = [], gesperrt = false }) {
   const gewaehlt = new Set([...vorgabe, ...auswahl]);

@@ -101,3 +101,11 @@ test('Rolle und Dauerregeln stehen im System-Prompt, nicht im Prompt', () => {
   assert.equal(bauePrompt(mitRolle, ['regel', 'rolle', 'wer']), 'Wann ist Training? Es fragt ein Kind.');
   assert.equal(baueSystemPrompt(mitRolle, []), '');
 });
+
+test('Vorhersagen: Hilfe schliesst eine falsche Antwort aus, am liebsten die gewählte', () => {
+  const wahl = { typ: 'wahl', optionen: [{ id: 'a', richtig: true }, { id: 'b' }, { id: 'c' }], loesung: ['a'] };
+  assert.equal(bewerte(wahl, ['a']).ok, true);
+  assert.equal(bewerte(wahl, ['c']).fehlbild, 'c');
+  assert.deepEqual(hilfeTeil(wahl, ['c']), { id: 'c', grund: 'falsch' });
+  assert.deepEqual(hilfeTeil(wahl, []), { id: 'b', grund: 'falsch' });
+});

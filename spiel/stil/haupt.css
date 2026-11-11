@@ -274,3 +274,16 @@ main:focus { outline: none; }
 .eintrag { display: block; }
 .eintrag > p { margin-top: 0.5rem; }
 .prompt.system { border-style: solid; border-color: var(--kiwi); }
+
+/* ---------- Ab Version 0.4: Vorhersagen ---------- */
+.frage { font-size: 1.05rem; }
+.baustein.wahl .baustein-zeichen { transform: none; }
+.baustein.wahl[aria-pressed="true"] .baustein-zeichen { background: var(--kiwi-dunkel); border-color: var(--kiwi-dunkel); box-shadow: inset 0 0 0 4px var(--gut-flaeche); }
+.sichtfenster { display: grid; gap: 0.4rem; border-top: 1px solid var(--linie); padding-top: 0.6rem; }
+.anteil { display: grid; grid-template-columns: 7.5rem 1fr 4.5rem; gap: 0.5rem; align-items: center; font-size: 0.9rem; }
+.anteil-bahn { background: var(--grund); border-radius: 6px; height: 0.9rem; overflow: hidden; }
+.anteil-balken { display: block; height: 100%; background: var(--kiwi); border-radius: 6px; }
+.anteil-stufe { color: var(--leise); }
+.stufe-3 { width: 90%; }
+.stufe-2 { width: 40%; }
+.stufe-1 { width: 8%; }
