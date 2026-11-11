@@ -116,3 +116,45 @@ test('In der Mischrunde bleibt eine Aufgabe, bis sie gelöst ist', () => {
   ({ stand, ereignis } = verbucheFrei(stand, auftrag, regeln, { ok: true, zaehlt: true }));
   assert.equal(ereignis, 'auftragFertig');
 });
+
+const turnverein = await lies('de/auftraege/turnverein.json');
+const alle = [auftrag, turnverein];
+
+function spieleDurch(start, aktueller) {
+  let stand = starteAuftrag(start, aktueller, regeln, alle);
+  const wiederholungen = [];
+  let ereignis = 'weiter';
+  let schritte = 0;
+  while (ereignis !== 'auftragFertig') {
+    schritte += 1;
+    assert.ok(schritte < 200, 'Der Ablauf darf nicht hängen bleiben');
+    const a = ansicht(stand, aktueller);
+    if (a.art === 'wiederholung') {
+      const quelle = alle.find((x) => x.id === a.aufgabeVon);
+      assert.ok(quelle.aufgaben[a.aufgabeId], 'Wiederholung nennt eine echte Aufgabe');
+      wiederholungen.push(`${a.konzept} aus ${a.aufgabeVon} vor Runde ${a.rundenNr}`);
+      stand = verbucheWiederholungsErgebnis(stand, regeln, true);
+    } else if (a.art === 'frei' || a.art === 'misch') {
+      ({ stand, ereignis } = verbucheFrei(stand, aktueller, regeln, { ok: true, zaehlt: true }, alle));
+    } else {
+      stand = weiter(stand, aktueller);
+    }
+  }
+  return { stand, wiederholungen };
+}
+
+test('Zwei Aufträge hintereinander: Gelerntes aus dem ersten kommt im zweiten wieder', () => {
+  const erster = spieleDurch(neuerStand(), auftrag);
+  assert.deepEqual(erster.wiederholungen, ['prompt aus baeckerei vor Runde 3', 'kontext aus baeckerei vor Runde 4']);
+
+  const zweiter = spieleDurch(erster.stand, turnverein);
+  assert.deepEqual(zweiter.wiederholungen, ['beispiele aus baeckerei vor Runde 1', 'prompt aus baeckerei vor Runde 2']);
+  assert.deepEqual(zweiter.stand.erledigt, ['baeckerei', 'turnverein']);
+  assert.deepEqual(zweiter.stand.lexikon, ['ki', 'prompt', 'kontext', 'beispiele', 'chatbot', 'rolle']);
+  assert.equal(zweiter.stand.rundenZaehler, 6);
+});
+
+test('Ein erledigter Auftrag lässt sich nicht nochmals starten', () => {
+  const { stand } = spieleDurch(neuerStand(), auftrag);
+  assert.equal(starteAuftrag(stand, auftrag, regeln, alle), stand);
+});

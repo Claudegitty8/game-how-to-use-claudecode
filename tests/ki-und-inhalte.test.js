@@ -8,6 +8,8 @@ import { pruefeInhalte, pruefeAufgabe } from '../werkzeuge/pruefe-inhalte.mjs';
 
 const auftrag = JSON.parse(await readFile(new URL('../spiel/inhalte/de/auftraege/baeckerei.json', import.meta.url), 'utf8'));
 const { aufgaben } = auftrag;
+const turnverein = JSON.parse(await readFile(new URL('../spiel/inhalte/de/auftraege/turnverein.json', import.meta.url), 'utf8'));
+const alleAufgaben = { ...aufgaben, ...turnverein.aufgaben };
 
 test('Simulierte KI macht Quatsch passend zur Lücke und erklärt ihn', async () => {
   const ki = erstelleKi('simuliert');
@@ -37,7 +39,7 @@ test('Mit nur einem Beispiel kopiert die simulierte KI genau dieses Beispiel', a
 
 test('Jede Aufgabe liefert mit ihrer Lösung ein gutes Ergebnis', async () => {
   const ki = erstelleKi('simuliert');
-  for (const [id, aufgabe] of Object.entries(aufgaben)) {
+  for (const [id, aufgabe] of Object.entries(alleAufgaben)) {
     const antwort = await ki.antworte({ aufgabe, auswahl: aufgabe.loesung });
     assert.equal(antwort.ok, true, `Aufgabe ${id}`);
     assert.equal(antwort.hinweis, null);

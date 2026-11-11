@@ -1,9 +1,9 @@
 // Die Werkbank: Hier steckt der Spieler seinen Prompt aus Textteilen zusammen.
 // Sie kennt keine Spielregeln. Sie zeigt nur an und meldet die Auswahl.
 import { el } from './bausteine.js';
-import { bauePrompt } from '../logik/prompt.js';
+import { bauePrompt, baueSystemPrompt, hatSystemPrompt } from '../logik/prompt.js';
 
-const ARTEN = ['prompt', 'kontext', 'beispiel'];
+const ARTEN = ['rolle', 'prompt', 'kontext', 'beispiel'];
 
 export function baueWerkbank({ aufgabe, t, sichtbar = null, vorgabe = [], auswahl = [], gesperrt = false }) {
   const gewaehlt = new Set([...vorgabe, ...auswahl]);
@@ -11,11 +11,14 @@ export function baueWerkbank({ aufgabe, t, sichtbar = null, vorgabe = [], auswah
   const knoepfe = new Map();
   let allesGesperrt = gesperrt;
 
+  const mitSystem = hatSystemPrompt(aufgabe);
+  const systemVorschau = el('p', { klasse: 'prompt system' });
   const vorschau = el('p', { klasse: 'prompt' });
   const hinweisZumTeil = el('p', { klasse: 'teil-hinweis', role: 'status' });
 
   function zeichne() {
     vorschau.textContent = bauePrompt(aufgabe, [...gewaehlt], t.beispielVorsatz);
+    systemVorschau.textContent = baueSystemPrompt(aufgabe, [...gewaehlt]) || t.systemLeer;
     for (const [id, knoten] of knoepfe) {
       knoten.setAttribute('aria-pressed', String(gewaehlt.has(id)));
       knoten.disabled = allesGesperrt || fest.has(id);
@@ -46,7 +49,9 @@ export function baueWerkbank({ aufgabe, t, sichtbar = null, vorgabe = [], auswah
   });
 
   const knoten = el('section', { klasse: 'karte werkbank' },
-    el('p', { klasse: 'etikett', text: t.promptEtikett }),
+    mitSystem ? el('p', { klasse: 'etikett', text: t.systemEtikett }) : null,
+    mitSystem ? systemVorschau : null,
+    el('p', { klasse: 'etikett', text: aufgabe.nachrichtVon ?? t.promptEtikett }),
     vorschau,
     teile.length > 0 && !gesperrt ? el('p', { klasse: 'klein', text: t.teileHilfe }) : null,
     gruppen,

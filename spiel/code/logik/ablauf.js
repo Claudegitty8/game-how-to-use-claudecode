@@ -19,20 +19,21 @@ export function neuerStand() {
   };
 }
 
-// Sucht ein gemeistertes Konzept, dessen Wiederholung fällig ist.
-function faelligeWiederholung(stand, auftrag, regeln) {
-  for (const runde of auftrag.runden) {
+// Sucht ein gemeistertes Konzept, dessen Wiederholung fällig ist. Gesucht wird in allen Aufträgen,
+// damit Gelerntes aus früheren Aufträgen wiederkommt.
+function faelligeWiederholung(stand, alle, regeln) {
+  for (const auftrag of alle) for (const runde of auftrag.runden) {
     const fortschritt = runde.konzept && stand.fortschritt[runde.konzept];
     if (!fortschritt || !istGemeistert(fortschritt, regeln)) continue;
     if (fortschritt.faelligBei == null || fortschritt.faelligBei > stand.rundenZaehler) continue;
     // Am liebsten eine Situation, die der Spieler noch nie gelöst hat.
     const aufgabe = runde.frei.find((id) => !fortschritt.geloesteSituationen.includes(id)) ?? runde.frei[0];
-    return { konzept: runde.konzept, aufgabe };
+    return { konzept: runde.konzept, aufgabe, auftrag: auftrag.id };
   }
   return null;
 }
 
-function betrittRunde(stand, auftrag, regeln, index) {
+function betrittRunde(stand, auftrag, regeln, index, alle) {
   const runde = auftrag.runden[index];
   return {
     ...stand,
@@ -41,14 +42,16 @@ function betrittRunde(stand, auftrag, regeln, index) {
       runde: index,
       schritt: runde.art === 'misch' ? 'frei' : 'probieren',
       reihe: [...runde.frei],
-      wiederholung: faelligeWiederholung(stand, auftrag, regeln),
+      wiederholung: faelligeWiederholung(stand, alle ?? [auftrag], regeln),
     },
   };
 }
 
-export function starteAuftrag(stand, auftrag, regeln) {
+export function starteAuftrag(stand, auftrag, regeln, alle) {
   if (stand.lauf || stand.erledigt.includes(auftrag.id)) return stand;
-  return betrittRunde(stand, auftrag, regeln, 0);
+  // Manche Aufträge bringen Lexikon-Begriffe mit, die nicht abgeprüft werden.
+  const neu = (auftrag.lexikon ?? []).filter((id) => !stand.lexikon.includes(id));
+  return betrittRunde({ ...stand, lexikon: [...stand.lexikon, ...neu] }, auftrag, regeln, 0, alle);
 }
 
 // Beschreibt, was die Oberfläche gerade zeigen soll.
@@ -56,9 +59,15 @@ export function ansicht(stand, auftrag) {
   const lauf = stand.lauf;
   if (!lauf) return { art: 'studio' };
   const runde = auftrag.runden[lauf.runde];
-  const basis = { runde, rundenNr: lauf.runde + 1, konzept: runde.konzept ?? null };
+  const basis = { runde, rundenNr: lauf.runde + 1, konzept: runde.konzept ?? null, aufgabeVon: auftrag.id };
   if (lauf.wiederholung) {
-    return { ...basis, art: 'wiederholung', konzept: lauf.wiederholung.konzept, aufgabeId: lauf.wiederholung.aufgabe };
+    return {
+      ...basis,
+      art: 'wiederholung',
+      konzept: lauf.wiederholung.konzept,
+      aufgabeId: lauf.wiederholung.aufgabe,
+      aufgabeVon: lauf.wiederholung.auftrag ?? auftrag.id,
+    };
   }
   if (lauf.schritt === 'aha') return { ...basis, art: 'aha' };
   if (lauf.schritt === 'frei') {
@@ -87,7 +96,7 @@ export function weiter(stand, auftrag) {
   return { ...stand, lexikon, lauf: { ...lauf, schritt: naechster } };
 }
 
-function beendeRunde(stand, auftrag, regeln) {
+function beendeRunde(stand, auftrag, regeln, alle) {
   const runde = auftrag.runden[stand.lauf.runde];
   const rundenZaehler = stand.rundenZaehler + 1;
   let fortschritt = stand.fortschritt;
@@ -106,13 +115,13 @@ function beendeRunde(stand, auftrag, regeln) {
       ereignis: 'auftragFertig',
     };
   }
-  return { stand: betrittRunde(basis, auftrag, regeln, naechste), ereignis: 'rundeFertig' };
+  return { stand: betrittRunde(basis, auftrag, regeln, naechste, alle), ereignis: 'rundeFertig' };
 }
 
 // Verbucht eine freie Situation.
 //   ok:     Die Lösung war am Ende richtig.
 //   zaehlt: Sie war beim ersten Versuch und ohne Hilfe richtig (nur das zählt für die Meisterschaft).
-export function verbucheFrei(stand, auftrag, regeln, { ok, zaehlt }) {
+export function verbucheFrei(stand, auftrag, regeln, { ok, zaehlt }, alle) {
   const lauf = stand.lauf;
   const runde = auftrag.runden[lauf.runde];
   const [aktuell, ...rest] = lauf.reihe;
@@ -121,7 +130,7 @@ export function verbucheFrei(stand, auftrag, regeln, { ok, zaehlt }) {
     // In der Mischrunde muss jede Aufgabe gelöst werden, beliebig viele Versuche.
     const reihe = ok ? rest : lauf.reihe;
     const neu = { ...stand, lauf: { ...lauf, reihe } };
-    return reihe.length === 0 ? beendeRunde(neu, auftrag, regeln) : { stand: neu, ereignis: 'weiter' };
+    return reihe.length === 0 ? beendeRunde(neu, auftrag, regeln, alle) : { stand: neu, ereignis: 'weiter' };
   }
 
   const vorher = stand.fortschritt[runde.konzept] ?? neuerFortschritt();
@@ -133,7 +142,7 @@ export function verbucheFrei(stand, auftrag, regeln, { ok, zaehlt }) {
     fortschritt: { ...stand.fortschritt, [runde.konzept]: nachher },
     lauf: { ...lauf, reihe },
   };
-  return istGemeistert(nachher, regeln) ? beendeRunde(neu, auftrag, regeln) : { stand: neu, ereignis: 'weiter' };
+  return istGemeistert(nachher, regeln) ? beendeRunde(neu, auftrag, regeln, alle) : { stand: neu, ereignis: 'weiter' };
 }
 
 // Verbucht die Wiederholung eines früheren Konzepts. Gelungen: Abstand wächst. Misslungen: kommt früher wieder.

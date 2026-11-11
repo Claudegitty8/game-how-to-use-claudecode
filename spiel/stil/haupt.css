@@ -273,3 +273,4 @@ main:focus { outline: none; }
 .rueckfrage { display: grid; gap: 0.6rem; background: var(--warn-flaeche); border-radius: 10px; padding: 0.8rem; }
 .eintrag { display: block; }
 .eintrag > p { margin-top: 0.5rem; }
+.prompt.system { border-style: solid; border-color: var(--kiwi); }

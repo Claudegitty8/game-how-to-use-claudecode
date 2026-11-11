@@ -11,38 +11,41 @@ export function zeigeStudio(wurzel, app, nav) {
   const { texte, regeln, auftraege } = app.inhalte;
   const t = texte.app;
   const { stand } = app;
-  const auftrag = app.auftrag();
-  const erledigt = stand.erledigt.includes(auftrag.id);
+  const auftrag = app.auftrag(); // laufender oder nächster Auftrag, null wenn alle erledigt sind
   const laeuft = Boolean(stand.lauf);
   const noetig = regeln.erfolgeFuerMeisterschaft;
 
-  const gruss = erledigt ? t.kiwiFertig : laeuft ? t.kiwiLaeuft : t.kiwiNeu;
+  let gruss = t.kiwiNeu;
+  if (!auftrag) gruss = t.kiwiFertig;
+  else if (laeuft) gruss = t.kiwiLaeuft;
+  else if (stand.erledigt.length > 0) gruss = t.kiwiNaechster;
 
   // --- Auftrag ---
   const auftragKarte = el('section', { klasse: 'karte auftrag' },
-    el('p', { klasse: 'etikett', text: t.auftragEtikett }),
-    el('h2', { text: auftrag.kunde }),
-    el('p', { klasse: 'wunsch', text: `«${auftrag.wunsch}»` }));
+    el('p', { klasse: 'etikett', text: t.auftragEtikett }));
 
-  if (erledigt) {
-    auftragKarte.append(el('p', { klasse: 'klein', text: t.mehrFolgt }));
+  if (!auftrag) {
+    auftragKarte.append(el('p', { text: t.mehrFolgt }));
   } else {
     const aktuelle = laeuft ? stand.lauf.runde : -1;
     auftragKarte.append(
+      el('h2', { text: auftrag.kunde }),
+      el('p', { klasse: 'wunsch', text: `«${auftrag.wunsch}»` }),
       el('ol', { klasse: 'runden' }, auftrag.runden.map((runde, index) => el('li', {
         klasse: index < aktuelle ? 'geschafft' : index === aktuelle ? 'aktuell' : null,
         'aria-current': index === aktuelle ? 'step' : null,
         text: rundenName(runde, texte),
       }))),
       knopf(laeuft ? t.weiterBauen : t.auftragAnnehmen, () => {
-        if (!laeuft) app.setze(starteAuftrag(app.stand, auftrag, regeln));
+        if (!laeuft) app.setze(starteAuftrag(app.stand, auftrag, regeln, auftraege));
         nav.zu('runde');
       }, 'los'),
     );
   }
 
-  // --- Meisterschaft ---
-  const konzepte = auftraege.flatMap((a) => a.runden).filter((runde) => runde.konzept);
+  // --- Meisterschaft: alle Konzepte, die schon vorgekommen sind oder gerade dran sind ---
+  const sichtbar = auftraege.filter((a) => stand.erledigt.includes(a.id) || a === auftrag);
+  const konzepte = sichtbar.flatMap((a) => a.runden).filter((runde) => runde.konzept);
   const meisterschaft = el('section', { klasse: 'karte' },
     el('p', { klasse: 'etikett', text: t.meisterschaftEtikett }),
     el('ul', { klasse: 'meister-liste' }, konzepte.map((runde) => {
@@ -64,7 +67,7 @@ export function zeigeStudio(wurzel, app, nav) {
     el('header', { klasse: 'kopf' },
       el('h1', { text: t.titel }),
       el('p', { text: t.studioName })),
-    el('div', { klasse: 'kiwi-zeile' }, kiwiFigur(t.kiwiName, erledigt), el('p', { klasse: 'sprechblase', text: gruss })),
+    el('div', { klasse: 'kiwi-zeile' }, kiwiFigur(t.kiwiName, !auftrag), el('p', { klasse: 'sprechblase', text: gruss })),
     auftragKarte,
     meisterschaft,
     wand,

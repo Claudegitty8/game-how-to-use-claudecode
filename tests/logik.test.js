@@ -5,7 +5,7 @@ import {
   darfStarten, naechsterAbstand, verbucheWiederholung,
 } from '../spiel/code/logik/meisterschaft.js';
 import { bewerte, hilfeTeil } from '../spiel/code/logik/bewertung.js';
-import { bauePrompt } from '../spiel/code/logik/prompt.js';
+import { bauePrompt, baueSystemPrompt } from '../spiel/code/logik/prompt.js';
 
 const regeln = { erfolgeFuerMeisterschaft: 3, wiederholungsAbstaende: [1, 3, 7] };
 
@@ -86,4 +86,18 @@ test('Hilfe zeigt zuerst auf ein schädliches Teil, sonst auf ein fehlendes', ()
 test('Der Prompt wird in fester Reihenfolge zusammengesetzt', () => {
   assert.equal(bauePrompt(aufgabe, ['b2', 'ziel', 'b1'], 'Beispiele:'), 'Erfinde Namen. Für ein Spiel. Beispiele: «Eins», «Zwei»');
   assert.equal(bauePrompt(aufgabe, []), 'Erfinde Namen.');
+});
+
+test('Rolle und Dauerregeln stehen im System-Prompt, nicht im Prompt', () => {
+  const mitRolle = {
+    grundprompt: 'Wann ist Training?',
+    teile: [
+      { id: 'rolle', art: 'rolle', text: 'Du bist Turni.' },
+      { id: 'regel', art: 'rolle', text: 'Antworte kurz.' },
+      { id: 'wer', art: 'kontext', text: 'Es fragt ein Kind.' },
+    ],
+  };
+  assert.equal(baueSystemPrompt(mitRolle, ['regel', 'rolle', 'wer']), 'Du bist Turni. Antworte kurz.');
+  assert.equal(bauePrompt(mitRolle, ['regel', 'rolle', 'wer']), 'Wann ist Training? Es fragt ein Kind.');
+  assert.equal(baueSystemPrompt(mitRolle, []), '');
 });

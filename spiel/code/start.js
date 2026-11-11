@@ -30,9 +30,11 @@ async function start() {
         this.stand = stand;
         speicher.speichern(stand);
       },
-      // Vorerst gibt es genau einen Auftrag.
+      // Der laufende Auftrag, sonst der nächste offene. Sind alle erledigt: null.
       auftrag() {
-        return inhalte.auftraege[0];
+        const { lauf, erledigt } = this.stand;
+        if (lauf) return inhalte.auftraege.find((a) => a.id === lauf.auftrag);
+        return inhalte.auftraege.find((a) => !erledigt.includes(a.id)) ?? null;
       },
     };
     const nav = {

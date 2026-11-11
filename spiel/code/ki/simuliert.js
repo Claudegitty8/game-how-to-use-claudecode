@@ -1,7 +1,7 @@
 // Simulierte KI «Kiwi»: antwortet nach festen Regeln aus den Lerninhalten.
 // Braucht kein Konto, kostet nichts und läuft ohne Internet.
 import { bewerte } from '../logik/bewertung.js';
-import { bauePrompt } from '../logik/prompt.js';
+import { bauePrompt, baueSystemPrompt } from '../logik/prompt.js';
 
 // Spielwert für das Token-Budget. Das ist keine echte Token-Zählung.
 export function schaetzeSpielTokens(text) {
@@ -32,7 +32,7 @@ export function erstelleSimulierteKi() {
         fehlbild: urteil.fehlbild,
         hinweis: fehlbild?.hinweis ?? null,
         tokens: {
-          eingabe: schaetzeSpielTokens(bauePrompt(aufgabe, auswahl)),
+          eingabe: schaetzeSpielTokens(`${baueSystemPrompt(aufgabe, auswahl)} ${bauePrompt(aufgabe, auswahl)}`),
           ausgabe: schaetzeSpielTokens(text),
         },
         modus: 'simuliert',

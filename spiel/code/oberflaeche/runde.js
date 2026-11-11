@@ -16,7 +16,7 @@ function schrittReihe(t, aktuell) {
 
 export function zeigeRunde(wurzel, app, nav) {
   const auftrag = app.auftrag();
-  const a = ansicht(app.stand, auftrag);
+  const a = auftrag ? ansicht(app.stand, auftrag) : { art: 'studio' };
   if (a.art === 'studio') {
     nav.zu('studio');
     return;
@@ -52,7 +52,9 @@ function zeigeAha(wurzel, app, nav, a, auftrag) {
 function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   const { texte, regeln } = app.inhalte;
   const t = texte.app;
-  const aufgabe = auftrag.aufgaben[a.aufgabeId];
+  // Eine Wiederholung kann aus einem früheren Auftrag stammen.
+  const quelle = app.inhalte.auftraege.find((x) => x.id === a.aufgabeVon) ?? auftrag;
+  const aufgabe = quelle.aufgaben[a.aufgabeId];
   const art = a.art;
   const mitHilfeKnopf = art === 'luecke' || art === 'frei' || art === 'misch';
   const noetig = regeln.erfolgeFuerMeisterschaft;
@@ -104,7 +106,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   }
 
   function schliesseAb(resultat) {
-    const { stand, ereignis } = verbucheFrei(app.stand, auftrag, regeln, resultat);
+    const { stand, ereignis } = verbucheFrei(app.stand, auftrag, regeln, resultat, app.inhalte.auftraege);
     app.setze(stand);
     if (ereignis === 'weiter') nav.zu('runde');
     else nav.zu('zwischen', { ereignis, konzept: a.konzept, auftrag });
@@ -184,7 +186,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   wurzel.append(
     ...kopf,
     el('section', { klasse: 'karte auftrag' },
-      el('p', { klasse: 'etikett', text: auftrag.kunde }),
+      el('p', { klasse: 'etikett', text: quelle.kunde }),
       el('p', { klasse: 'wunsch', text: `«${aufgabe.wunsch}»` })),
     werkbank.knoten,
     hilfeText,
