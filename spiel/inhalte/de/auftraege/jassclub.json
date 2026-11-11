@@ -1,0 +1,889 @@
+{
+  "id": "jassclub",
+  "kapitel": 3,
+  "tokenBudget": 6000,
+  "kunde": "Herr Zbinden, Jassclub Hinterwil",
+  "wunsch": "Wir zählen unsere Jass-Punkte noch auf Bierdeckeln. Baut uns einen Punktezähler, der wirklich funktioniert!",
+  "kundenstimme": "Der Zähler rechnet richtig, und gespeichert wird auch. Die Bierdeckel sind wieder nur für das Bier da.",
+  "ueberraschung": "Kiwi hat jetzt Hände. Aber darf es damit alles anfassen? Morgen kommt ein Schlüsselbund ins Büro. An jedem Werkzeug hängt bald eine Ampel.",
+  "lexikon": [
+    "harness",
+    "terminal"
+  ],
+  "runden": [
+    {
+      "id": "r1",
+      "art": "konzept",
+      "konzept": "tool",
+      "probieren": {
+        "aufgabe": "to-a",
+        "nurTeile": [
+          "fest"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "to-a"
+      },
+      "luecke": {
+        "aufgabe": "to-b"
+      },
+      "frei": [
+        "to-c",
+        "to-d",
+        "to-e",
+        "to-f"
+      ]
+    },
+    {
+      "id": "r2",
+      "art": "konzept",
+      "konzept": "agentenschleife",
+      "probieren": {
+        "aufgabe": "ag-a",
+        "nurTeile": [
+          "schnell"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "ag-a"
+      },
+      "luecke": {
+        "aufgabe": "ag-b"
+      },
+      "frei": [
+        "ag-c",
+        "ag-d",
+        "ag-e",
+        "ag-f"
+      ]
+    },
+    {
+      "id": "r3",
+      "art": "konzept",
+      "konzept": "pruefschleife",
+      "probieren": {
+        "aufgabe": "pr-a",
+        "nurTeile": [
+          "huebsch"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "pr-a"
+      },
+      "luecke": {
+        "aufgabe": "pr-b"
+      },
+      "frei": [
+        "pr-c",
+        "pr-d",
+        "pr-e",
+        "pr-f"
+      ]
+    },
+    {
+      "id": "r4",
+      "art": "misch",
+      "titel": "Alles zusammen",
+      "frei": [
+        "m5-a",
+        "m5-b"
+      ]
+    }
+  ],
+  "aufgaben": {
+    "to-a": {
+      "wunsch": "Kiwi soll die Punkte vom Jass-Abend in einer Datei speichern.",
+      "grundprompt": "Speichere den Punktestand von heute in der Datei punkte.txt.",
+      "teile": [
+        {
+          "id": "fest",
+          "art": "prompt",
+          "text": "Speichere es ganz sicher und für immer."
+        },
+        {
+          "id": "schreiben",
+          "art": "tool",
+          "text": "Datei schreiben"
+        },
+        {
+          "id": "rechner",
+          "art": "tool",
+          "text": "Taschenrechner"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "fehlt": [
+              "schreiben"
+            ]
+          },
+          "fehlbild": "nurGeredet"
+        }
+      ],
+      "fehlbilder": {
+        "nurGeredet": {
+          "texte": [
+            "«Ich habe es ganz fest gespeichert.» Herr Zbinden schaut in den Ordner. Dort liegt keine Datei.",
+            "«Erledigt, alles gespeichert!» Nur: Die Datei punkte.txt gibt es nirgends."
+          ],
+          "hinweis": "Ohne Werkzeug kann Kiwi nur Text schreiben. Es hat geschrieben, dass es speichert. Gespeichert hat es nichts."
+        }
+      },
+      "erfolg": [
+        "Kiwi benutzt das Werkzeug «Datei schreiben». Im Ordner liegt jetzt punkte.txt mit dem Stand von heute."
+      ],
+      "loesung": [
+        "schreiben"
+      ]
+    },
+    "to-b": {
+      "typ": "wahl",
+      "wunsch": "Am Freitag jassen wir draussen. Hält das Wetter?",
+      "frage": "Kiwi soll herausfinden, wie das Wetter am Freitag wird. Welches Werkzeug braucht es dafür?",
+      "kiwi": "Kiwi benutzt die Websuche und meldet: «Am Freitag regnet es. Nehmt lieber die Stube.»",
+      "optionen": [
+        {
+          "id": "datei",
+          "text": "Datei lesen",
+          "hinweis": "Im Ordner des Jassclubs steht kein Wetterbericht. Kiwi muss draussen nachschauen: im Internet."
+        },
+        {
+          "id": "web",
+          "text": "Websuche",
+          "hinweis": "Das Wetter von Freitag steht in keinem Trainingstext. Mit der Websuche kann Kiwi es nachschauen.",
+          "richtig": true
+        },
+        {
+          "id": "keins",
+          "text": "Keines. Kiwi weiss das",
+          "hinweis": "Kiwis Wissen endet an einem Stichtag. Das Wetter von Freitag kann es nur raten."
+        }
+      ],
+      "loesung": [
+        "web"
+      ]
+    },
+    "to-c": {
+      "typ": "wahl",
+      "wunsch": "Schreib doch dem Vorstand kurz eine Mail, Kiwi.",
+      "frage": "Kiwi hat kein einziges Werkzeug. Du schreibst: «Schick dem Vorstand eine E-Mail.» Was kann Kiwi tun?",
+      "kiwi": "«Hier ist ein Text für die Mail. Verschicken musst du sie selbst, dafür habe ich kein Werkzeug.»",
+      "optionen": [
+        {
+          "id": "text",
+          "text": "Den Mailtext schreiben. Verschickt wird nichts",
+          "hinweis": "Ohne Werkzeug kann Kiwi nur Text schreiben. Zum Verschicken bräuchte es ein Mail-Werkzeug.",
+          "richtig": true
+        },
+        {
+          "id": "senden",
+          "text": "Die Mail verschicken",
+          "hinweis": "Womit denn? Kiwi hat kein Mail-Werkzeug. Es kann nur Text schreiben."
+        },
+        {
+          "id": "anrufen",
+          "text": "Den Vorstand anrufen",
+          "hinweis": "Auch dafür bräuchte Kiwi ein Werkzeug. Ohne Werkzeuge bleibt nur Text."
+        }
+      ],
+      "loesung": [
+        "text"
+      ]
+    },
+    "to-d": {
+      "typ": "wahl",
+      "wunsch": "Was kann Kiwi eigentlich ganz ohne Werkzeug?",
+      "frage": "Welche dieser Aufgaben schafft Kiwi ohne ein einziges Werkzeug?",
+      "kiwi": "«Wie wäre es mit Stöck-Zähler? Oder Trumpf-Meister?» Dafür braucht Kiwi nur Wörter.",
+      "optionen": [
+        {
+          "id": "lesen",
+          "text": "Die Datei regeln.txt lesen",
+          "hinweis": "Um eine Datei zu öffnen, braucht Kiwi das Werkzeug «Datei lesen»."
+        },
+        {
+          "id": "test",
+          "text": "Die Tests der App laufen lassen",
+          "hinweis": "Etwas ausführen ist eine Handlung. Dafür braucht Kiwi ein Werkzeug."
+        },
+        {
+          "id": "name",
+          "text": "Einen Namen für die App erfinden",
+          "hinweis": "Einen Namen erfinden ist reiner Text. Das kann Kiwi ohne Werkzeug.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "name"
+      ]
+    },
+    "to-e": {
+      "wunsch": "Kiwi soll unsere Jass-Regeln aus regeln.txt lesen und eine Kurzfassung in kurz.txt ablegen.",
+      "grundprompt": "Lies regeln.txt und schreib eine Kurzfassung in die Datei kurz.txt.",
+      "teile": [
+        {
+          "id": "lesen",
+          "art": "tool",
+          "text": "Datei lesen"
+        },
+        {
+          "id": "schreiben",
+          "art": "tool",
+          "text": "Datei schreiben"
+        },
+        {
+          "id": "web",
+          "art": "tool",
+          "text": "Websuche"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "fehlt": [
+              "lesen"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "schreiben"
+            ]
+          },
+          "fehlbild": "nurGeredet"
+        }
+      ],
+      "fehlbilder": {
+        "erfunden": {
+          "texte": [
+            "Kiwi schreibt eine Kurzfassung. Darin steht: «Wer die Dame zieht, muss ein Lied singen.» Das steht in keiner Jass-Regel.",
+            "In kurz.txt stehen jetzt Regeln für Schach. Kiwi konnte regeln.txt gar nicht öffnen."
+          ],
+          "hinweis": "Ohne «Datei lesen» sieht Kiwi die Regeln nicht. Also hat es welche erfunden."
+        },
+        "nurGeredet": {
+          "texte": [
+            "Kiwi liest die Regeln und sagt: «Die Kurzfassung ist abgelegt.» Eine Datei kurz.txt gibt es nicht.",
+            "«Fertig gespeichert!» Im Ordner liegt nur regeln.txt. Sonst nichts."
+          ],
+          "hinweis": "Lesen konnte Kiwi. Zum Ablegen fehlte das Werkzeug «Datei schreiben»."
+        }
+      },
+      "erfolg": [
+        "Kiwi liest regeln.txt, kürzt auf zehn Zeilen und legt sie in kurz.txt ab. Beide Werkzeuge waren nötig."
+      ],
+      "loesung": [
+        "lesen",
+        "schreiben"
+      ]
+    },
+    "to-f": {
+      "typ": "wahl",
+      "wunsch": "Kiwi hat die Datei gelesen. Und dann?",
+      "frage": "Kiwi benutzt das Werkzeug «Datei lesen». Wohin kommt das Ergebnis?",
+      "kiwi": "Der Inhalt der Datei liegt jetzt auf Kiwis Tisch. Kiwi liest ihn und entscheidet, was es als Nächstes tut.",
+      "optionen": [
+        {
+          "id": "kunde",
+          "text": "Direkt zum Kunden. Kiwi sieht es nicht",
+          "hinweis": "Doch, Kiwi sieht es. Jedes Ergebnis eines Werkzeugs landet auf Kiwis Tisch."
+        },
+        {
+          "id": "tisch",
+          "text": "Auf Kiwis Tisch. Kiwi arbeitet damit weiter",
+          "hinweis": "Jedes Ergebnis landet im Kontextfenster. Darum füllen viele Werkzeug-Ergebnisse auch den Tisch.",
+          "richtig": true
+        },
+        {
+          "id": "weg",
+          "text": "Es ist sofort wieder weg",
+          "hinweis": "Nein. Das Ergebnis bleibt auf dem Tisch liegen und braucht dort Platz."
+        }
+      ],
+      "loesung": [
+        "tisch"
+      ]
+    },
+    "ag-a": {
+      "wunsch": "In der App werden die Punkte falsch zusammengezählt. Kiwi soll das flicken.",
+      "grundprompt": "Flick den Fehler beim Zusammenzählen der Punkte.",
+      "teile": [
+        {
+          "id": "schnell",
+          "art": "prompt",
+          "text": "Leg sofort los, ohne lange zu schauen."
+        },
+        {
+          "id": "schauen",
+          "art": "prompt",
+          "text": "Schau zuerst nach, in welcher Datei gerechnet wird."
+        },
+        {
+          "id": "pruefen",
+          "art": "prompt",
+          "text": "Prüf am Schluss, ob die Summe jetzt stimmt."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "schnell"
+            ]
+          },
+          "fehlbild": "falscheDatei"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "schauen"
+            ]
+          },
+          "fehlbild": "falscheDatei"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "pruefen"
+            ]
+          },
+          "fehlbild": "ungeprueft"
+        }
+      ],
+      "fehlbilder": {
+        "falscheDatei": {
+          "texte": [
+            "Kiwi flickt mit viel Eifer die Datei farben.css. Die Punkte stimmen immer noch nicht.",
+            "Kiwi schreibt hilfe.txt komplett neu. Sehr schön. Gerechnet wird leider woanders."
+          ],
+          "hinweis": "Kiwi hat nicht zuerst nachgeschaut. Ohne die Station «Kontext sammeln» arbeitet ein Agent am falschen Ort."
+        },
+        "ungeprueft": {
+          "texte": [
+            "«Fertig!» Kiwi hat eine Zeile geändert. Ob die Summe stimmt, hat niemand nachgeschaut. Sie stimmt nicht.",
+            "Kiwi ändert etwas und macht Feierabend. 20 plus 30 ergibt jetzt 2030."
+          ],
+          "hinweis": "Die dritte Station fehlt: das Ergebnis prüfen. Erst dann merkt Kiwi, ob es nochmals ran muss."
+        }
+      },
+      "erfolg": [
+        "Kiwi schaut nach, findet punkte.js, flickt die Rechnung und prüft: 20 plus 30 ergibt 50. Stimmt."
+      ],
+      "loesung": [
+        "schauen",
+        "pruefen"
+      ]
+    },
+    "ag-b": {
+      "typ": "wahl",
+      "wunsch": "Kiwi hat geflickt, aber die Summe ist immer noch falsch.",
+      "frage": "Kiwi prüft sein Ergebnis und sieht: Die Summe stimmt noch nicht. Was tut ein Agent jetzt?",
+      "kiwi": "Kiwi schaut nochmals in die Datei, findet eine zweite falsche Zeile, flickt sie und prüft erneut.",
+      "optionen": [
+        {
+          "id": "fertig",
+          "text": "Er meldet «Fertig»",
+          "hinweis": "Dann wäre das Prüfen umsonst gewesen. Ein Agent arbeitet weiter, bis das Ergebnis stimmt."
+        },
+        {
+          "id": "neu",
+          "text": "Er löscht das Projekt und fängt neu an",
+          "hinweis": "Viel zu grob. Ein Agent dreht einfach eine weitere Runde."
+        },
+        {
+          "id": "runde",
+          "text": "Er dreht noch eine Runde: nachschauen, ändern, wieder prüfen",
+          "hinweis": "Das ist die Agentenschleife. Sie wiederholt sich, bis das Ergebnis stimmt.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "runde"
+      ]
+    },
+    "ag-c": {
+      "typ": "wahl",
+      "wunsch": "Wie arbeitet so ein Agent eigentlich?",
+      "frage": "In welcher Reihenfolge arbeitet ein Agent?",
+      "kiwi": "Kiwi schaut nach, was da ist. Kiwi handelt. Kiwi prüft das Ergebnis. Und beginnt wieder von vorn.",
+      "optionen": [
+        {
+          "id": "kreis",
+          "text": "Nachschauen, handeln, prüfen. Und wieder von vorn",
+          "hinweis": "Genau: Kontext sammeln, handeln, Ergebnis prüfen. Das wiederholt sich, bis die Aufgabe erledigt ist.",
+          "richtig": true
+        },
+        {
+          "id": "handeln",
+          "text": "Handeln, handeln, handeln, am Schluss melden",
+          "hinweis": "Wer nie nachschaut und nie prüft, arbeitet blind."
+        },
+        {
+          "id": "einmal",
+          "text": "Alles in einem einzigen Schritt",
+          "hinweis": "Ein Agent erledigt grössere Aufgaben in vielen kleinen Schritten, nicht in einem."
+        }
+      ],
+      "loesung": [
+        "kreis"
+      ]
+    },
+    "ag-d": {
+      "typ": "wahl",
+      "wunsch": "In welcher Datei stehen eigentlich unsere Regeln?",
+      "frage": "Du fragst Kiwi nur: «In welcher Datei stehen die Jass-Regeln?» Was braucht es dafür?",
+      "kiwi": "Kiwi sucht im Ordner und antwortet: «In regeln.txt.» Mehr war nicht nötig.",
+      "optionen": [
+        {
+          "id": "alle",
+          "text": "Viele Runden mit Ändern und Prüfen",
+          "hinweis": "Hier gibt es nichts zu ändern. Die Schleife passt sich der Aufgabe an."
+        },
+        {
+          "id": "schauen",
+          "text": "Nur nachschauen. Zu ändern gibt es nichts",
+          "hinweis": "Für eine Frage genügt oft die erste Station: Kontext sammeln.",
+          "richtig": true
+        },
+        {
+          "id": "nichts",
+          "text": "Nichts. Kiwi weiss das auswendig",
+          "hinweis": "Dein Ordner stand in keinem Trainingstext. Kiwi muss nachschauen."
+        }
+      ],
+      "loesung": [
+        "schauen"
+      ]
+    },
+    "ag-e": {
+      "typ": "wahl",
+      "wunsch": "Hilfe, Kiwi baut gerade einen Poker-Zähler statt eines Jass-Zählers!",
+      "frage": "Kiwi arbeitet und läuft sichtbar in die falsche Richtung. Was kannst du tun?",
+      "kiwi": "Du unterbrichst: «Stopp, Jass, nicht Poker!» Kiwi korrigiert den Kurs und arbeitet weiter.",
+      "optionen": [
+        {
+          "id": "warten",
+          "text": "Warten, bis es fertig ist, und alles neu bestellen",
+          "hinweis": "Das kostet Zeit und Tokens. Du darfst jederzeit eingreifen."
+        },
+        {
+          "id": "nichts",
+          "text": "Nichts. Ein Agent lässt sich nicht stoppen",
+          "hinweis": "Doch. Du bist Teil der Schleife und kannst jederzeit unterbrechen."
+        },
+        {
+          "id": "stopp",
+          "text": "Unterbrechen und die Richtung korrigieren",
+          "hinweis": "Du gehörst zur Schleife. Du kannst jederzeit unterbrechen und Kiwi neu ausrichten.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "stopp"
+      ]
+    },
+    "ag-f": {
+      "wunsch": "Der Titel der App soll grün werden, in unserer Clubfarbe.",
+      "grundprompt": "Mach den Titel der App grün.",
+      "teile": [
+        {
+          "id": "raten",
+          "art": "prompt",
+          "text": "Die Datei heisst sicher farbe.txt. Schau nicht nach."
+        },
+        {
+          "id": "schauen",
+          "art": "prompt",
+          "text": "Such zuerst die Datei, in der die Farben stehen."
+        },
+        {
+          "id": "pruefen",
+          "art": "prompt",
+          "text": "Schau am Schluss nach, ob der Titel wirklich grün ist."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "raten"
+            ]
+          },
+          "fehlbild": "gibtsNicht"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "schauen"
+            ]
+          },
+          "fehlbild": "falscheDatei"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "pruefen"
+            ]
+          },
+          "fehlbild": "ungeprueft"
+        }
+      ],
+      "fehlbilder": {
+        "gibtsNicht": {
+          "texte": [
+            "Kiwi legt brav eine neue Datei farbe.txt an und schreibt «grün» hinein. Der Titel bleibt grau.",
+            "Eine Datei farbe.txt gab es nie. Jetzt gibt es eine. Sie bewirkt nichts."
+          ],
+          "hinweis": "Du hast Kiwi das Nachschauen verboten. Ein Agent muss zuerst sehen, was wirklich da ist."
+        },
+        "falscheDatei": {
+          "texte": [
+            "Kiwi macht den Hintergrund der Hilfe-Seite grün. Der Titel bleibt grau.",
+            "Grün ist jetzt der Knopf «Abbrechen». Der Titel nicht."
+          ],
+          "hinweis": "Ohne Nachschauen hat Kiwi am falschen Ort geändert."
+        },
+        "ungeprueft": {
+          "texte": [
+            "«Fertig!» Kiwi hat «grun» ohne Pünktchen geschrieben. Der Titel ist jetzt schwarz.",
+            "Kiwi ändert die Farbe und schaut nicht hin. Der Titel leuchtet in Rosa."
+          ],
+          "hinweis": "Kiwi hat nicht geprüft, was herauskam. Die dritte Station fehlte."
+        }
+      },
+      "erfolg": [
+        "Kiwi findet stil.css, ändert die Farbe und schaut nach: Der Titel ist grün."
+      ],
+      "loesung": [
+        "schauen",
+        "pruefen"
+      ]
+    },
+    "pr-a": {
+      "wunsch": "Jetzt der Punktezähler selbst. Und diesmal soll er wirklich funktionieren.",
+      "grundprompt": "Bau einen Punktezähler für zwei Jass-Teams.",
+      "teile": [
+        {
+          "id": "huebsch",
+          "art": "prompt",
+          "text": "Es soll fertig aussehen."
+        },
+        {
+          "id": "test",
+          "art": "absicherung",
+          "text": "Prüfung: Team A bekommt 50 und dann 30 Punkte. Die Anzeige muss 80 zeigen. Arbeite, bis das klappt."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "fehlt": [
+              "test"
+            ]
+          },
+          "fehlbild": "nurHallo"
+        }
+      ],
+      "fehlbilder": {
+        "nurHallo": {
+          "texte": [
+            "Kiwi meldet stolz «Fertig!». Die App startet. Auf dem Bildschirm steht nur «Hallo».",
+            "«Fertig!» Der Zähler sieht prächtig aus. Beim Drücken auf «Plus» passiert nichts."
+          ],
+          "hinweis": "Kiwi hatte keine Prüfung. Also hörte es auf, als es sich fertig anfühlte."
+        }
+      },
+      "erfolg": [
+        "Kiwi baut, prüft, findet einen Fehler, flickt ihn und prüft nochmals: 50 und 30 ergibt 80. Erst jetzt meldet es «Fertig»."
+      ],
+      "loesung": [
+        "test"
+      ]
+    },
+    "pr-b": {
+      "typ": "wahl",
+      "wunsch": "Die App soll am Schluss anzeigen, wer gewonnen hat.",
+      "frage": "Kiwi baut die Sieger-Anzeige. Welche Prüfung hilft Kiwi am meisten?",
+      "kiwi": "Kiwi baut, lässt die Prüfung laufen und sieht sofort: «Team A gewinnt» erscheint. Passt.",
+      "optionen": [
+        {
+          "id": "gut",
+          "text": "«Schau, dass es gut wird.»",
+          "hinweis": "Was heisst «gut»? Daran kann Kiwi nicht ablesen, ob es fertig ist."
+        },
+        {
+          "id": "fall",
+          "text": "«Team A hat 1000 Punkte, Team B 800. Es muss stehen: Team A gewinnt.»",
+          "hinweis": "Eine gute Prüfung nennt einen klaren Fall und das erwartete Ergebnis. Sie sagt Ja oder Nein.",
+          "richtig": true
+        },
+        {
+          "id": "gefuehl",
+          "text": "«Hör auf, wenn du zufrieden bist.»",
+          "hinweis": "Kiwi ist schnell zufrieden. Ein Gefühl ist keine Prüfung."
+        }
+      ],
+      "loesung": [
+        "fall"
+      ]
+    },
+    "pr-c": {
+      "typ": "wahl",
+      "wunsch": "Kiwi sagt, der Zähler sei fertig. Dann ist ja gut, oder?",
+      "frage": "Kiwi meldet: «Fertig, alles funktioniert.» Eine Prüfung ist nie gelaufen. Was weisst du jetzt?",
+      "kiwi": "Du probierst es aus: Der Knopf «Minus» zählt nach oben. «Fertig» war es also nicht.",
+      "optionen": [
+        {
+          "id": "offen",
+          "text": "Noch nichts. «Sieht fertig aus» heisst nicht «ist fertig»",
+          "hinweis": "Ohne Prüfung ist «Fertig» nur eine Behauptung. Lass prüfen oder prüf selbst.",
+          "richtig": true
+        },
+        {
+          "id": "ok",
+          "text": "Es funktioniert. Kiwi sagt es ja",
+          "hinweis": "Kiwi klingt immer sicher. Ob es stimmt, zeigt erst eine Prüfung."
+        },
+        {
+          "id": "kaputt",
+          "text": "Es ist sicher kaputt",
+          "hinweis": "Auch das weisst du nicht. Du weisst es erst nach einer Prüfung."
+        }
+      ],
+      "loesung": [
+        "offen"
+      ]
+    },
+    "pr-d": {
+      "typ": "wahl",
+      "wunsch": "Der Test zeigt Rot. Und jetzt?",
+      "frage": "Kiwi kann die Prüfung selbst laufen lassen. Sie zeigt Rot. Was soll Kiwi tun?",
+      "kiwi": "Kiwi liest die Fehlermeldung, flickt die Rechnung und lässt den Test nochmals laufen. Grün.",
+      "optionen": [
+        {
+          "id": "loeschen",
+          "text": "Den Test löschen. Dann ist nichts mehr rot",
+          "hinweis": "Das wäre geschummelt. Der Fehler bleibt, man sieht ihn nur nicht mehr."
+        },
+        {
+          "id": "melden",
+          "text": "«Fertig» melden",
+          "hinweis": "Rot heisst: nicht fertig. Die Prüfung ist dazu da, dass Kiwi weiterarbeitet."
+        },
+        {
+          "id": "flicken",
+          "text": "Fehlermeldung lesen, flicken, nochmals prüfen",
+          "hinweis": "So schliesst sich die Schleife: Die Prüfung zeigt Kiwi, was noch nicht stimmt.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "flicken"
+      ]
+    },
+    "pr-e": {
+      "wunsch": "Der Zähler soll auch auf dem Handy gut aussehen. Kiwi soll das selbst merken.",
+      "grundprompt": "Mach den Punktezähler passend für schmale Handy-Bildschirme.",
+      "teile": [
+        {
+          "id": "gefuehl",
+          "art": "prompt",
+          "text": "Du spürst schon, wann es passt."
+        },
+        {
+          "id": "bild",
+          "art": "absicherung",
+          "text": "Mach danach ein Bildschirmfoto in Handybreite und schau nach: Ragt etwas über den Rand?"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "gefuehl"
+            ]
+          },
+          "fehlbild": "ragtRaus"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "bild"
+            ]
+          },
+          "fehlbild": "ragtRaus"
+        }
+      ],
+      "fehlbilder": {
+        "ragtRaus": {
+          "texte": [
+            "«Passt perfekt!» Auf dem Handy ragt der Knopf «Stich» halb aus dem Bild.",
+            "«Sieht super aus!» Kiwi hat es nie angeschaut. Die Punktzahl ist auf dem Handy abgeschnitten."
+          ],
+          "hinweis": "Kiwi konnte sein Ergebnis nicht sehen. Gib ihm eine Prüfung mit: hier ein Bildschirmfoto."
+        }
+      },
+      "erfolg": [
+        "Kiwi macht ein Bildschirmfoto, sieht den abgeschnittenen Knopf, flickt ihn und schaut nochmals nach. Jetzt passt alles."
+      ],
+      "loesung": [
+        "bild"
+      ]
+    },
+    "pr-f": {
+      "typ": "wahl",
+      "wunsch": "Was taugt denn überhaupt als Prüfung?",
+      "frage": "Welche Prüfung kann Kiwi wirklich brauchen?",
+      "kiwi": "Kiwi bekommt einen Test mit erwartetem Ergebnis. Der zeigt Grün oder Rot. Daran kann es sich halten.",
+      "optionen": [
+        {
+          "id": "lob",
+          "text": "Ein Lob im Voraus: «Du schaffst das!»",
+          "hinweis": "Nett, aber Kiwi kann daran nichts ablesen."
+        },
+        {
+          "id": "janein",
+          "text": "Etwas mit klarem Ja oder Nein: ein Test oder ein erwartetes Ergebnis",
+          "hinweis": "Eine Prüfung muss eindeutig sein. Dann merkt Kiwi selbst, ob es fertig ist.",
+          "richtig": true
+        },
+        {
+          "id": "muehe",
+          "text": "Die Bitte: «Gib dir Mühe»",
+          "hinweis": "Mühe sieht man dem Ergebnis nicht an. Kiwi braucht etwas zum Nachmessen."
+        }
+      ],
+      "loesung": [
+        "janein"
+      ]
+    },
+    "m5-a": {
+      "wunsch": "Zum Schluss die Rangliste: Kiwi soll sie aus rangliste.txt holen, richtig sortieren und wieder ablegen. Und es soll stimmen!",
+      "grundprompt": "Sortiere die Rangliste des Jassclubs nach Punkten.",
+      "teile": [
+        {
+          "id": "cool",
+          "art": "prompt",
+          "text": "Mach es irgendwie cool."
+        },
+        {
+          "id": "lesen",
+          "art": "tool",
+          "text": "Datei lesen"
+        },
+        {
+          "id": "schreiben",
+          "art": "tool",
+          "text": "Datei schreiben"
+        },
+        {
+          "id": "test",
+          "art": "absicherung",
+          "text": "Prüfung: Wer am meisten Punkte hat, muss zuoberst stehen. Arbeite, bis das klappt."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "cool"
+            ]
+          },
+          "fehlbild": "vage"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "lesen"
+            ]
+          },
+          "fehlbild": "erfunden"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "schreiben"
+            ]
+          },
+          "fehlbild": "nurGeredet"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "test"
+            ]
+          },
+          "fehlbild": "ungeprueft"
+        }
+      ],
+      "fehlbilder": {
+        "vage": {
+          "texte": [
+            "Kiwi findet «cool»: Die Rangliste ist jetzt nach Schuhgrösse sortiert und blinkt.",
+            "Die Rangliste dreht sich jetzt im Kreis. Sehr cool. Lesen kann sie niemand."
+          ],
+          "hinweis": "«Cool» ist ungefähr. Kiwi musste raten, was du meinst."
+        },
+        "erfunden": {
+          "texte": [
+            "Kiwi liefert eine Rangliste mit Herrn Müller, Frau Meier und Herrn Muster. Im Club heisst niemand so.",
+            "Die Rangliste ist tadellos sortiert. Nur sind alle Namen und Punkte ausgedacht."
+          ],
+          "hinweis": "Ohne «Datei lesen» kennt Kiwi die Rangliste nicht und erfindet eine."
+        },
+        "nurGeredet": {
+          "texte": [
+            "Kiwi sortiert im Kopf und sagt: «Ist abgelegt.» Die Datei ist unverändert.",
+            "«Gespeichert!» In rangliste.txt steht noch die alte Reihenfolge."
+          ],
+          "hinweis": "Zum Ablegen fehlte das Werkzeug «Datei schreiben»."
+        },
+        "ungeprueft": {
+          "texte": [
+            "«Fertig!» Zuoberst steht Herr Zbinden mit 12 Punkten. Die Siegerin mit 4000 steht ganz unten.",
+            "Kiwi hat sortiert: nach Alphabet. Geprüft hat es nichts."
+          ],
+          "hinweis": "Ohne Prüfung meldet Kiwi «Fertig», sobald es fertig aussieht."
+        }
+      },
+      "erfolg": [
+        "Kiwi liest die Rangliste, sortiert, prüft: Frau Hug steht mit 4000 Punkten zuoberst. Dann legt es die Datei ab."
+      ],
+      "loesung": [
+        "lesen",
+        "schreiben",
+        "test"
+      ]
+    },
+    "m5-b": {
+      "typ": "wahl",
+      "wunsch": "Der Zähler läuft. Was habe ich jetzt eigentlich bestellt: einen Chatbot oder einen Agenten?",
+      "frage": "Was unterscheidet einen Agenten von einem reinen Chatbot?",
+      "kiwi": "Kiwi hat für den Jassclub Dateien gelesen, geändert und geprüft. Das ist mehr als reden.",
+      "optionen": [
+        {
+          "id": "schlau",
+          "text": "Ein Agent weiss mehr",
+          "hinweis": "Das Wissen ist dasselbe. Der Unterschied liegt im Handeln."
+        },
+        {
+          "id": "handelt",
+          "text": "Ein Agent hat Werkzeuge und arbeitet in einer Schleife, bis die Aufgabe erledigt ist",
+          "hinweis": "Werkzeuge zum Handeln und eine Schleife aus Nachschauen, Handeln und Prüfen: Das macht einen Agenten aus.",
+          "richtig": true
+        },
+        {
+          "id": "schnell",
+          "text": "Ein Agent antwortet schneller",
+          "hinweis": "Eher im Gegenteil: Ein Agent macht viele Schritte und braucht dafür Zeit und Tokens."
+        }
+      ],
+      "loesung": [
+        "handelt"
+      ]
+    }
+  }
+}

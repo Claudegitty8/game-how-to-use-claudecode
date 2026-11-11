@@ -1,0 +1,908 @@
+{
+  "id": "schuelerband",
+  "kapitel": 3,
+  "tokenBudget": 6000,
+  "kunde": "Mia, Schülerband «Die Lauten Socken»",
+  "wunsch": "Unsere Band braucht eine Webseite: Konzerte, Fotos, Kontakt. Aber wehe, jemand löscht unsere Songtexte!",
+  "kundenstimme": "Die Webseite rockt, und kein einziger Songtext ist verschwunden. Ihr kommt alle auf die Gästeliste!",
+  "ueberraschung": "Kapitel 3 ist geschafft! Im Büro wird gebohrt: Das Studio bekommt einen Serverraum. Von dort führen bald Leitungen nach draussen, zu anderen Programmen.",
+  "lexikon": [
+    "planmodus",
+    "hook"
+  ],
+  "runden": [
+    {
+      "id": "r1",
+      "art": "konzept",
+      "konzept": "berechtigungen",
+      "probieren": {
+        "aufgabe": "be-a",
+        "nurTeile": [
+          "alles"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "be-a"
+      },
+      "luecke": {
+        "aufgabe": "be-b"
+      },
+      "frei": [
+        "be-c",
+        "be-d",
+        "be-e",
+        "be-f"
+      ]
+    },
+    {
+      "id": "r2",
+      "art": "konzept",
+      "konzept": "planen",
+      "probieren": {
+        "aufgabe": "pl-a",
+        "nurTeile": [
+          "sofort"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "pl-a"
+      },
+      "luecke": {
+        "aufgabe": "pl-b"
+      },
+      "frei": [
+        "pl-c",
+        "pl-d",
+        "pl-e",
+        "pl-f"
+      ]
+    },
+    {
+      "id": "r3",
+      "art": "konzept",
+      "konzept": "subagent",
+      "probieren": {
+        "aufgabe": "su-a",
+        "nurTeile": [
+          "kurz"
+        ]
+      },
+      "beispiel": {
+        "aufgabe": "su-a"
+      },
+      "luecke": {
+        "aufgabe": "su-b"
+      },
+      "frei": [
+        "su-c",
+        "su-d",
+        "su-e",
+        "su-f"
+      ]
+    },
+    {
+      "id": "r4",
+      "art": "misch",
+      "titel": "Alles zusammen",
+      "frei": [
+        "m6-a",
+        "m6-b"
+      ]
+    }
+  ],
+  "aufgaben": {
+    "be-a": {
+      "wunsch": "Kiwi soll in unserem Band-Ordner aufräumen. Aber unsere Songtexte sind heilig!",
+      "grundprompt": "Räum den Ordner der Band auf.",
+      "teile": [
+        {
+          "id": "alles",
+          "art": "recht",
+          "text": "Kiwi darf alles, ohne zu fragen."
+        },
+        {
+          "id": "lesen",
+          "art": "recht",
+          "text": "Dateien lesen und sortieren: frei"
+        },
+        {
+          "id": "fragen",
+          "art": "recht",
+          "text": "Löschen: nur nach Rückfrage"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "alles"
+            ]
+          },
+          "fehlbild": "geloescht"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "fragen"
+            ]
+          },
+          "fehlbild": "geloescht"
+        }
+      ],
+      "fehlbilder": {
+        "geloescht": {
+          "texte": [
+            "Kiwi räumt «gründlich» auf. Der Ordner ist jetzt herrlich leer. Auch die Songtexte sind weg.",
+            "«Aufgeräumt!» Kiwi hat alles gelöscht, was alt aussah. Darunter die Liste aller Fans."
+          ],
+          "hinweis": "Kiwi durfte löschen, ohne zu fragen. Was sich nicht rückgängig machen lässt, braucht eine Rückfrage."
+        }
+      },
+      "erfolg": [
+        "Kiwi sortiert die Dateien und fragt: «Darf ich entwurf_alt.txt löschen?» Die Songtexte bleiben, wo sie sind."
+      ],
+      "loesung": [
+        "lesen",
+        "fragen"
+      ]
+    },
+    "be-b": {
+      "typ": "wahl",
+      "wunsch": "Wo soll Kiwi denn fragen müssen?",
+      "frage": "Welche dieser Aktionen braucht am ehesten eine Rückfrage?",
+      "kiwi": "Kiwi fragt: «Soll ich die Nachricht wirklich an alle 200 Fans schicken?» Mia liest sie zuerst durch.",
+      "optionen": [
+        {
+          "id": "lesen",
+          "text": "Eine Datei lesen",
+          "hinweis": "Beim Lesen geht nichts kaputt. Das darf Kiwi meist frei."
+        },
+        {
+          "id": "suchen",
+          "text": "Im Ordner nach einem Wort suchen",
+          "hinweis": "Suchen verändert nichts. Dafür braucht es keine Rückfrage."
+        },
+        {
+          "id": "senden",
+          "text": "Eine Nachricht an alle Fans verschicken",
+          "hinweis": "Was verschickt ist, lässt sich nicht zurückholen. Hier lohnt sich eine Rückfrage.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "senden"
+      ]
+    },
+    "be-c": {
+      "typ": "wahl",
+      "wunsch": "Diese ewigen Rückfragen! Ich klicke einfach immer auf Ja.",
+      "frage": "Mia bestätigt jede Rückfrage sofort, ohne sie zu lesen. Was ist das Problem?",
+      "kiwi": "Kiwi fragt: «Darf ich den Ordner songtexte löschen?» Mia klickt Ja. Wie immer.",
+      "optionen": [
+        {
+          "id": "blind",
+          "text": "Die Rückfrage schützt nicht mehr",
+          "hinweis": "Wer blind bestätigt, sagt irgendwann auch zu etwas Schlimmem Ja. Besser: Harmloses freigeben, Heikles wirklich lesen.",
+          "richtig": true
+        },
+        {
+          "id": "keins",
+          "text": "Keines. Ja ist immer richtig",
+          "hinweis": "Dann könnte man die Rückfragen gleich abschaffen. Sie nützen nur, wenn man sie liest."
+        },
+        {
+          "id": "langsam",
+          "text": "Kiwi wird davon müde",
+          "hinweis": "Kiwi wird nicht müde. Müde wird der Mensch, und genau das ist die Gefahr."
+        }
+      ],
+      "loesung": [
+        "blind"
+      ]
+    },
+    "be-d": {
+      "typ": "wahl",
+      "wunsch": "Kiwi soll nur unsere 40 Songtexte lesen und sagen, welche Themen vorkommen.",
+      "frage": "Kiwi soll 40 Dateien lesen und zusammenfassen. Welche Einstellung ist sinnvoll?",
+      "kiwi": "Kiwi liest alle 40 Texte ohne eine einzige Rückfrage: «Eure Themen: Socken, Schule, Sommer.»",
+      "optionen": [
+        {
+          "id": "einzeln",
+          "text": "Jede Datei einzeln bestätigen",
+          "hinweis": "40 Rückfragen für etwas Harmloses: Danach liest niemand mehr, was er bestätigt."
+        },
+        {
+          "id": "lesen",
+          "text": "Lesen freigeben",
+          "hinweis": "Beim Lesen kann nichts kaputtgehen. Gib frei, was harmlos ist.",
+          "richtig": true
+        },
+        {
+          "id": "alles",
+          "text": "Alles freigeben, auch Löschen",
+          "hinweis": "Zum Lesen braucht Kiwi kein Löschrecht. Gib nur, was die Aufgabe braucht."
+        }
+      ],
+      "loesung": [
+        "lesen"
+      ]
+    },
+    "be-e": {
+      "wunsch": "Kiwi soll die Konzertdaten auf unserer Webseite eintragen und die Seite danach veröffentlichen.",
+      "grundprompt": "Trag die Konzertdaten ein und veröffentliche die Seite.",
+      "teile": [
+        {
+          "id": "alles",
+          "art": "recht",
+          "text": "Alles frei, auch ausserhalb des Band-Ordners"
+        },
+        {
+          "id": "edit",
+          "art": "recht",
+          "text": "Dateien im Band-Ordner ändern: frei"
+        },
+        {
+          "id": "pub",
+          "art": "recht",
+          "text": "Veröffentlichen: nur nach Rückfrage"
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "alles"
+            ]
+          },
+          "fehlbild": "zuweit"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "edit"
+            ]
+          },
+          "fehlbild": "stau"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "pub"
+            ]
+          },
+          "fehlbild": "zufrueh"
+        }
+      ],
+      "fehlbilder": {
+        "zuweit": {
+          "texte": [
+            "Kiwi trägt die Daten ein. Und sortiert nebenbei Mias Ferienfotos nach Farbe um.",
+            "Die Konzerte stehen drin. Dafür heisst der Ordner «Hausaufgaben» jetzt «Diverses»."
+          ],
+          "hinweis": "Kiwi durfte überall hin. Begrenze die Rechte auf das, was die Aufgabe braucht."
+        },
+        "stau": {
+          "texte": [
+            "Kiwi fragt bei jedem Komma: «Darf ich?» Nach der 30. Rückfrage klickt Mia nur noch blind auf Ja.",
+            "«Darf ich das Datum eintragen? Und den Ort? Und den Punkt?» Mia gibt auf."
+          ],
+          "hinweis": "Harmlose Änderungen im eigenen Ordner darfst du freigeben. Sonst liest bald niemand mehr die Rückfragen."
+        },
+        "zufrueh": {
+          "texte": [
+            "Die Seite ist online. Mit dem Tippfehler «Konzret» in der grössten Überschrift.",
+            "Kiwi veröffentlicht sofort. Als Ort steht noch «Platzhalter» da. 200 Fans haben es gesehen."
+          ],
+          "hinweis": "Veröffentlichen lässt sich schwer zurücknehmen. Dafür lohnt sich eine Rückfrage."
+        }
+      },
+      "erfolg": [
+        "Kiwi trägt die Daten zügig ein und fragt dann: «Soll ich veröffentlichen?» Mia schaut drüber und sagt Ja."
+      ],
+      "loesung": [
+        "edit",
+        "pub"
+      ]
+    },
+    "be-f": {
+      "typ": "wahl",
+      "wunsch": "Was kann man eigentlich nicht mehr rückgängig machen?",
+      "frage": "Welche dieser Aktionen lässt sich NICHT einfach rückgängig machen?",
+      "kiwi": "Kiwi hat die Mail verschickt. Zurückholen kann sie niemand mehr.",
+      "optionen": [
+        {
+          "id": "datei",
+          "text": "Eine Datei ändern, von der es einen Speicherpunkt gibt",
+          "hinweis": "Mit einem Speicherpunkt kommst du zurück zum alten Stand."
+        },
+        {
+          "id": "mail",
+          "text": "Eine E-Mail verschicken",
+          "hinweis": "Was das Haus verlassen hat, ist weg. Solche Aktionen brauchen deine Kontrolle.",
+          "richtig": true
+        },
+        {
+          "id": "lesen",
+          "text": "Eine Datei lesen",
+          "hinweis": "Lesen verändert nichts. Da gibt es nichts rückgängig zu machen."
+        }
+      ],
+      "loesung": [
+        "mail"
+      ]
+    },
+    "pl-a": {
+      "wunsch": "Wir brauchen eine Webseite für die Band: Konzerte, Fotos, Kontakt.",
+      "grundprompt": "Bau eine Webseite für die Band «Die Lauten Socken».",
+      "teile": [
+        {
+          "id": "sofort",
+          "art": "prompt",
+          "text": "Leg sofort los."
+        },
+        {
+          "id": "plan",
+          "art": "prompt",
+          "text": "Mach zuerst einen Plan und zeig ihn mir. Bau erst, wenn ich Ja sage."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "sofort"
+            ]
+          },
+          "fehlbild": "falschGebaut"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "plan"
+            ]
+          },
+          "fehlbild": "falschGebaut"
+        }
+      ],
+      "fehlbilder": {
+        "falschGebaut": {
+          "texte": [
+            "Kiwi baut zügig einen tadellosen Online-Shop für Socken. Bestellt war eine Band-Webseite.",
+            "Nach einer Stunde steht eine prächtige Seite. Ohne Konzerte, dafür mit einem Socken-Lexikon."
+          ],
+          "hinweis": "Ohne Plan merkst du ein Missverständnis erst, wenn alles gebaut ist. Einen Plan zu korrigieren kostet fast nichts."
+        }
+      },
+      "erfolg": [
+        "Kiwi zeigt den Plan: «Startseite, Konzerte, Fotos, Kontakt.» Mia sagt Ja. Dann baut Kiwi genau das."
+      ],
+      "loesung": [
+        "plan"
+      ]
+    },
+    "pl-b": {
+      "typ": "wahl",
+      "wunsch": "Kiwi hat einen Plan gemacht. Schau mal drüber.",
+      "frage": "Kiwis Plan: «1. Startseite, 2. Fotos, 3. Online-Shop für Socken.» Bestellt waren Konzerte, Fotos und Kontakt. Was tust du?",
+      "kiwi": "Du schreibst: «Kein Shop. Dafür Konzerte und Kontakt.» Kiwi passt den Plan an und baut erst dann.",
+      "optionen": [
+        {
+          "id": "bauen",
+          "text": "Bauen lassen und danach schauen",
+          "hinweis": "Dann baut Kiwi einen Shop, den niemand will. Jetzt korrigieren ist viel billiger."
+        },
+        {
+          "id": "plan",
+          "text": "Den Plan korrigieren, bevor Kiwi baut",
+          "hinweis": "Dafür ist der Plan da: Fehler finden, solange sie noch nichts kosten.",
+          "richtig": true
+        },
+        {
+          "id": "selbst",
+          "text": "Kiwi wegschicken und alles selbst bauen",
+          "hinweis": "Nicht nötig. Der Plan war fast richtig. Korrigier ihn einfach."
+        }
+      ],
+      "loesung": [
+        "plan"
+      ]
+    },
+    "pl-c": {
+      "typ": "wahl",
+      "wunsch": "Im Bandnamen steht «Die Lauten Sokcen». Kannst du das schnell flicken?",
+      "frage": "Braucht diese Aufgabe zuerst einen Plan? «Korrigiere den Tippfehler im Bandnamen.»",
+      "kiwi": "Kiwi korrigiert das Wort direkt. Fertig in einem Schritt.",
+      "optionen": [
+        {
+          "id": "nein",
+          "text": "Nein. Das ist ein kleiner, klarer Schritt",
+          "hinweis": "Für Kleinigkeiten lohnt sich kein Plan. Planen kostet Zeit und Tokens.",
+          "richtig": true
+        },
+        {
+          "id": "ja",
+          "text": "Ja. Man soll immer zuerst planen",
+          "hinweis": "Nicht immer. Ein Plan lohnt sich bei grossen oder unklaren Aufgaben."
+        },
+        {
+          "id": "lang",
+          "text": "Ja, und zwar einen mehrseitigen",
+          "hinweis": "Ein mehrseitiger Plan für ein einziges Wort? Das wäre verschwendet."
+        }
+      ],
+      "loesung": [
+        "nein"
+      ]
+    },
+    "pl-d": {
+      "typ": "wahl",
+      "wunsch": "Könnten wir auf der Webseite auch Tickets verkaufen? Mit Sitzplan?",
+      "frage": "Braucht diese Aufgabe zuerst einen Plan? «Bau einen Ticket-Verkauf mit Sitzplan in die Webseite ein.»",
+      "kiwi": "Kiwi zeigt zuerst einen Plan. Mia merkt: Bezahlen per Karte wollten sie gar nicht. Gut, dass noch nichts gebaut ist.",
+      "optionen": [
+        {
+          "id": "nein",
+          "text": "Nein. Einfach loslegen",
+          "hinweis": "Die Aufgabe ist gross und lässt sich auf viele Arten verstehen. Genau dafür ist ein Plan da."
+        },
+        {
+          "id": "egal",
+          "text": "Das ist egal",
+          "hinweis": "Bei grossen Aufgaben macht der Plan den Unterschied zwischen «passt» und «nochmals von vorn»."
+        },
+        {
+          "id": "ja",
+          "text": "Ja. Das ist gross und betrifft viele Dateien",
+          "hinweis": "Je grösser und unklarer die Aufgabe, desto mehr lohnt sich ein Plan.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "ja"
+      ]
+    },
+    "pl-e": {
+      "typ": "wahl",
+      "wunsch": "Was macht Kiwi eigentlich, während es plant?",
+      "frage": "Du lässt Kiwi zuerst nur planen. Was tut es in dieser Zeit?",
+      "kiwi": "Kiwi schaut sich die Dateien an und schlägt einen Plan vor. Geändert ist noch nichts.",
+      "optionen": [
+        {
+          "id": "bauen",
+          "text": "Es baut schon mal heimlich alles",
+          "hinweis": "Nein. Beim Planen ändert Kiwi nichts. Es schaut nur und schlägt vor."
+        },
+        {
+          "id": "schauen",
+          "text": "Es schaut nach und schlägt einen Plan vor. Ändern tut es nichts",
+          "hinweis": "Planen heisst: erkunden und vorschlagen. Gebaut wird erst nach deinem Ja.",
+          "richtig": true
+        },
+        {
+          "id": "raten",
+          "text": "Es rät, ohne in die Dateien zu schauen",
+          "hinweis": "Ein guter Plan beruht auf Nachschauen, nicht auf Raten."
+        }
+      ],
+      "loesung": [
+        "schauen"
+      ]
+    },
+    "pl-f": {
+      "wunsch": "Nur schnell: Bei «Kontakt» steht «Samstg» statt «Samstag».",
+      "grundprompt": "Bei «Kontakt» steht «Samstg». Bring das in Ordnung.",
+      "teile": [
+        {
+          "id": "gross",
+          "art": "prompt",
+          "text": "Mach zuerst einen ausführlichen Plan für die ganze Webseite."
+        },
+        {
+          "id": "direkt",
+          "art": "prompt",
+          "text": "Korrigiere nur dieses eine Wort."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "gross"
+            ]
+          },
+          "fehlbild": "ueberplant"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "direkt"
+            ]
+          },
+          "fehlbild": "zuviel"
+        }
+      ],
+      "fehlbilder": {
+        "ueberplant": {
+          "texte": [
+            "Kiwi liefert einen Plan in zwölf Kapiteln, mit Zeitachse und Risiko-Tabelle. Der Tippfehler steht immer noch da.",
+            "«Phase 1: Analyse aller Wochentage.» Drei Seiten später ist «Samstg» noch immer falsch."
+          ],
+          "hinweis": "Für eine Kleinigkeit braucht es keinen Plan. Planen kostet Zeit und Tokens."
+        },
+        "zuviel": {
+          "texte": [
+            "Kiwi korrigiert «Samstg». Und stellt nebenbei das ganze Menü um, weil es «auch nicht in Ordnung» war.",
+            "Der Tippfehler ist weg. Die Kontakt-Seite ist jetzt allerdings lila."
+          ],
+          "hinweis": "«In Ordnung bringen» ist dehnbar. Sag Kiwi genau, wie weit es gehen soll."
+        }
+      },
+      "erfolg": [
+        "Kiwi ändert «Samstg» in «Samstag». Sonst nichts. Fertig."
+      ],
+      "loesung": [
+        "direkt"
+      ]
+    },
+    "su-a": {
+      "wunsch": "Welche unserer 30 alten Songtexte handeln von Socken? Kiwis Tisch ist aber schon ziemlich voll.",
+      "nachrichtVon": "Auftrag an den Helfer",
+      "grundprompt": "Lies die 30 Songtexte im Ordner songs.",
+      "teile": [
+        {
+          "id": "kurz",
+          "art": "prompt",
+          "text": "Du weisst ja, worum es geht."
+        },
+        {
+          "id": "ziel",
+          "art": "kontext",
+          "text": "Finde alle Songs, in denen Socken vorkommen."
+        },
+        {
+          "id": "zurueck",
+          "art": "prompt",
+          "text": "Melde mir nur die Titel zurück, nicht die ganzen Texte."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "fehlt": [
+              "ziel"
+            ]
+          },
+          "fehlbild": "brot"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "zurueck"
+            ]
+          },
+          "fehlbild": "allesZurueck"
+        }
+      ],
+      "fehlbilder": {
+        "brot": {
+          "texte": [
+            "Der Helfer kommt stolz zurück: mit einer perfekten Recherche über Brotsorten.",
+            "Der Helfer liefert alle Reimwörter auf «-ung». Schön. Gefragt war etwas anderes."
+          ],
+          "hinweis": "Der Helfer beginnt an einem leeren Tisch. Er weiss nur, was in deinem Auftrag steht."
+        },
+        "allesZurueck": {
+          "texte": [
+            "Der Helfer bringt alle 30 Songtexte in voller Länge zurück. Kiwis Tisch quillt über.",
+            "Der Helfer liest jede Zeile jedes Songs vor. Danach weiss Kiwi nicht mehr, worum es ging."
+          ],
+          "hinweis": "Ein Helfer soll nur das Ergebnis zurückmelden. Sonst wird Kiwis Tisch trotzdem voll."
+        }
+      },
+      "erfolg": [
+        "Der Helfer liest alle Texte an seinem eigenen Tisch und meldet: «Vier Songs: Sockenblues, Linke Socke, Waschtag, Loch im Zeh.»"
+      ],
+      "loesung": [
+        "ziel",
+        "zurueck"
+      ]
+    },
+    "su-b": {
+      "typ": "wahl",
+      "wunsch": "Der Helfer hat doch zugehört, als wir alles besprochen haben?",
+      "frage": "Kiwi startet einen neuen Helfer. Was weiss dieser Helfer?",
+      "kiwi": "Der Helfer setzt sich an einen leeren Tisch. Darauf liegt nur ein Zettel: Kiwis Auftrag.",
+      "optionen": [
+        {
+          "id": "alles",
+          "text": "Alles, was Kiwi weiss",
+          "hinweis": "Nein. Der Helfer hat einen eigenen, leeren Tisch. Kiwis Gespräch liegt nicht darauf."
+        },
+        {
+          "id": "gespraech",
+          "text": "Alles, was du je mit Kiwi besprochen hast",
+          "hinweis": "Davon sieht der Helfer nichts. Er kennt nur seinen Auftrag."
+        },
+        {
+          "id": "auftrag",
+          "text": "Nur das, was in seinem Auftrag steht",
+          "hinweis": "Darum muss der Auftrag alles enthalten: Ziel, nötiges Wissen und was zurückkommen soll.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "auftrag"
+      ]
+    },
+    "su-c": {
+      "typ": "wahl",
+      "wunsch": "Im Songtitel steht «Sockenbleus». Soll das ein Helfer flicken?",
+      "frage": "Kiwi soll in einer Datei ein einziges Wort ersetzen. Abgeben oder selbst machen?",
+      "kiwi": "Kiwi ersetzt das Wort selbst. Das dauert einen Augenblick.",
+      "optionen": [
+        {
+          "id": "selbst",
+          "text": "Selbst machen",
+          "hinweis": "Für einen kleinen Handgriff lohnt sich kein Helfer. Der Auftrag wäre länger als die Arbeit.",
+          "richtig": true
+        },
+        {
+          "id": "helfer",
+          "text": "An einen Helfer abgeben",
+          "hinweis": "Bis der Helfer erklärt ist, hat Kiwi das Wort längst selbst ersetzt."
+        },
+        {
+          "id": "drei",
+          "text": "An drei Helfer gleichzeitig abgeben",
+          "hinweis": "Drei Helfer für ein Wort: Das kostet nur Tokens."
+        }
+      ],
+      "loesung": [
+        "selbst"
+      ]
+    },
+    "su-d": {
+      "typ": "wahl",
+      "wunsch": "Kiwi soll in 50 alten Proben-Protokollen nachschauen, wann wir «Waschtag» zum ersten Mal gespielt haben.",
+      "frage": "Kiwi muss 50 lange Dateien durchsuchen, braucht aber nur eine kurze Antwort. Was ist klug?",
+      "kiwi": "Der Helfer liest alle 50 Protokolle und meldet nur: «Am 3. März.» Kiwis Tisch bleibt frei.",
+      "optionen": [
+        {
+          "id": "selbst",
+          "text": "Kiwi liest alle 50 Dateien selbst",
+          "hinweis": "Dann liegen 50 Dateien auf Kiwis Tisch. Er wird voll, und Kiwi wird ungenauer."
+        },
+        {
+          "id": "helfer",
+          "text": "An einen Helfer abgeben",
+          "hinweis": "Die 50 Dateien füllen den Tisch des Helfers. Bei Kiwi landet nur die kurze Antwort.",
+          "richtig": true
+        },
+        {
+          "id": "raten",
+          "text": "Kiwi rät das Datum",
+          "hinweis": "Raten klingt sicher und ist oft falsch. Nachschauen ist hier Pflicht."
+        }
+      ],
+      "loesung": [
+        "helfer"
+      ]
+    },
+    "su-e": {
+      "typ": "wahl",
+      "wunsch": "Und was bringt der Helfer zurück?",
+      "frage": "Ein Helfer hat seine Arbeit erledigt. Was landet danach auf Kiwis Tisch?",
+      "kiwi": "Der Helfer legt einen kleinen Zettel auf Kiwis Tisch: seine Zusammenfassung.",
+      "optionen": [
+        {
+          "id": "alles",
+          "text": "Alles, was der Helfer gelesen hat",
+          "hinweis": "Zum Glück nicht. Sonst wäre Kiwis Tisch sofort voll."
+        },
+        {
+          "id": "nichts",
+          "text": "Gar nichts",
+          "hinweis": "Dann wäre die Arbeit umsonst. Der Helfer meldet sein Ergebnis zurück."
+        },
+        {
+          "id": "kurz",
+          "text": "Eine kurze Zusammenfassung",
+          "hinweis": "Die ganze Arbeit bleibt am Tisch des Helfers. Zurück kommt nur das Ergebnis.",
+          "richtig": true
+        }
+      ],
+      "loesung": [
+        "kurz"
+      ]
+    },
+    "su-f": {
+      "wunsch": "Ein Helfer soll prüfen, ob auf unserer Webseite alle Konzertdaten stimmen.",
+      "nachrichtVon": "Auftrag an den Helfer",
+      "grundprompt": "Prüf die Konzertdaten.",
+      "teile": [
+        {
+          "id": "was",
+          "art": "kontext",
+          "text": "Vergleiche die Daten in konzerte.html mit der Liste in termine.txt."
+        },
+        {
+          "id": "form",
+          "art": "prompt",
+          "text": "Melde nur die Abweichungen, je in einem Satz."
+        },
+        {
+          "id": "alles",
+          "art": "prompt",
+          "text": "Bring mir zur Sicherheit auch die ganze Webseite als Text mit."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "alles"
+            ]
+          },
+          "fehlbild": "allesZurueck"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "was"
+            ]
+          },
+          "fehlbild": "brot"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "form"
+            ]
+          },
+          "fehlbild": "allesZurueck"
+        }
+      ],
+      "fehlbilder": {
+        "brot": {
+          "texte": [
+            "Der Helfer prüft gründlich: die Konzertdaten von Bands aus Hamburg. Um eure ging es ihm nicht.",
+            "Der Helfer meldet: «Alle Daten sind Zahlen. Geprüft!» Womit er verglichen hat, weiss niemand."
+          ],
+          "hinweis": "Der Helfer wusste nicht, was er womit vergleichen soll. In seinem Auftrag stand es nicht."
+        },
+        "allesZurueck": {
+          "texte": [
+            "Der Helfer kippt die ganze Webseite auf Kiwis Tisch. Die eine Abweichung geht darin unter.",
+            "Der Helfer meldet 40 Seiten zurück. Irgendwo darin steht, dass ein Datum falsch ist."
+          ],
+          "hinweis": "Lass den Helfer nur das Ergebnis zurückmelden. Dafür ist sein eigener Tisch da."
+        }
+      },
+      "erfolg": [
+        "Der Helfer vergleicht und meldet: «Eine Abweichung: Das Konzert in Oberwil ist am 14., nicht am 15.»"
+      ],
+      "loesung": [
+        "was",
+        "form"
+      ]
+    },
+    "m6-a": {
+      "wunsch": "Kiwi soll unsere Fan-Seite umbauen: neues Gästebuch rein, alte Einträge behalten.",
+      "grundprompt": "Bau ein neues Gästebuch in die Fan-Seite ein.",
+      "teile": [
+        {
+          "id": "plan",
+          "art": "prompt",
+          "text": "Zeig mir zuerst deinen Plan."
+        },
+        {
+          "id": "alles",
+          "art": "recht",
+          "text": "Kiwi darf alles, ohne zu fragen."
+        },
+        {
+          "id": "frag",
+          "art": "recht",
+          "text": "Löschen: nur nach Rückfrage"
+        },
+        {
+          "id": "test",
+          "art": "absicherung",
+          "text": "Prüfung: Ein Test-Eintrag muss danach im Gästebuch erscheinen. Arbeite, bis das klappt."
+        }
+      ],
+      "pruefungen": [
+        {
+          "wenn": {
+            "gewaehlt": [
+              "alles"
+            ]
+          },
+          "fehlbild": "geloescht"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "plan"
+            ]
+          },
+          "fehlbild": "falschGebaut"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "frag"
+            ]
+          },
+          "fehlbild": "geloescht"
+        },
+        {
+          "wenn": {
+            "fehlt": [
+              "test"
+            ]
+          },
+          "fehlbild": "ungeprueft"
+        }
+      ],
+      "fehlbilder": {
+        "geloescht": {
+          "texte": [
+            "Das neue Gästebuch steht. Die 300 alten Einträge hat Kiwi «zum Aufräumen» gelöscht.",
+            "Kiwi macht Platz für das Neue: Alles Alte ist weg. Auch der Eintrag von Mias Oma."
+          ],
+          "hinweis": "Löschen ohne Rückfrage: Das lässt sich nicht zurückholen."
+        },
+        "falschGebaut": {
+          "texte": [
+            "Kiwi baut ein Gästebuch mit Videochat und Punktesystem. Bestellt war ein einfaches Textfeld.",
+            "Das Gästebuch ist fertig. Leider auf der Startseite statt auf der Fan-Seite."
+          ],
+          "hinweis": "Ohne Plan siehst du erst am Schluss, was Kiwi verstanden hat."
+        },
+        "ungeprueft": {
+          "texte": [
+            "«Fertig!» Das Gästebuch sieht gut aus. Neue Einträge verschwinden aber im Nichts.",
+            "Kiwi meldet Erfolg. Der Knopf «Eintragen» hat keine Funktion."
+          ],
+          "hinweis": "Ohne Prüfung weiss auch Kiwi nicht, ob es wirklich funktioniert."
+        }
+      },
+      "erfolg": [
+        "Kiwi zeigt den Plan, baut, fragt vor dem Löschen einer alten Datei und prüft: Der Test-Eintrag erscheint."
+      ],
+      "loesung": [
+        "plan",
+        "frag",
+        "test"
+      ]
+    },
+    "m6-b": {
+      "typ": "wahl",
+      "wunsch": "Morgen soll Kiwi alle 80 Fotos der Band beschriften. Wie gehen wir das an?",
+      "frage": "Kiwi soll 80 Fotos ansehen und jedes kurz beschriften. Sein Tisch ist schon halb voll. Was ist der beste Weg?",
+      "kiwi": "Helfer beschriften die Fotos an ihren eigenen Tischen. Kiwi bekommt nur die fertige Liste und fragt vor dem Veröffentlichen nach.",
+      "optionen": [
+        {
+          "id": "helfer",
+          "text": "Helfer mit klarem Auftrag losschicken und nur die Liste zurückholen",
+          "hinweis": "So bleibt Kiwis Tisch frei. Wichtig: Der Auftrag muss sagen, was genau zurückkommen soll.",
+          "richtig": true
+        },
+        {
+          "id": "selbst",
+          "text": "Kiwi schaut alle 80 Fotos selbst an",
+          "hinweis": "Dann quillt Kiwis Tisch über, und die Beschriftungen werden ungenauer."
+        },
+        {
+          "id": "frei",
+          "text": "Kiwi alles erlauben, damit es schneller geht",
+          "hinweis": "Mehr Rechte machen den Tisch nicht grösser. Und sie erhöhen das Risiko."
+        }
+      ],
+      "loesung": [
+        "helfer"
+      ]
+    }
+  }
+}
