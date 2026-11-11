@@ -5,7 +5,7 @@
     "kiwiName": "Kiwi, die KI im Studio",
     "kiwiNeu": "Hallo! Ich bin Kiwi, die KI in deinem Studio. Ich mache genau, was du sagst. Wirklich ganz genau.",
     "kiwiLaeuft": "Unser Auftrag wartet. Bauen wir weiter?",
-    "kiwiFertig": "Auftrag erledigt! Die Garage ist bereit für mehr.",
+    "kiwiFertig": "Alle Aufträge erledigt! Die Garage ist bereit für mehr.",
     "auftragEtikett": "Auftrag",
     "auftragAnnehmen": "Auftrag annehmen",
     "weiterBauen": "Weiter bauen",
@@ -40,7 +40,8 @@
     "art": {
       "prompt": "Was und wie",
       "kontext": "Hintergrund",
-      "beispiel": "Beispiele"
+      "beispiel": "Beispiele",
+      "rolle": "Rolle und Dauerregeln"
     },
     "beispielVorsatz": "Beispiele:",
     "los": "Kiwi, los!",
@@ -65,7 +66,7 @@
     "hilfeZuviel": "Brauchst du diesen Teil wirklich?",
     "hilfeFehlt": "Schau dir diesen Teil an.",
     "hilfeLoesung": "Das ist eine mögliche Lösung. Sie zählt nicht für die Meisterschaft.",
-    "tippMisch": "Geh die drei Gruppen einzeln durch: Was und wie, Hintergrund, Beispiele.",
+    "tippMisch": "Geh die Gruppen einzeln durch. Was braucht Kiwi aus jeder Gruppe, und was schadet?",
     "ahaAnalogie": "Merkbild",
     "ahaLexikon": "Neu im Lexikon: {begriff}",
     "wiederholungGut": "Du hast es noch drauf!",
@@ -75,7 +76,7 @@
     "pause": "Gute Stelle für eine Pause. Dein Stand ist gespeichert.",
     "zumStudio": "Zurück ins Studio",
     "auftragFertigTitel": "Auftrag erledigt!",
-    "kundenstimmeEtikett": "Das sagt die Kundin",
+    "kundenstimmeEtikett": "Das sagt die Kundschaft",
     "ueberraschungEtikett": "Überraschung",
     "situationZaehler": "Aufgabe {nr} von {anzahl}",
     "lexikonTitel": "Lexikon",
@@ -100,7 +101,10 @@
     "loeschenNein": "Abbrechen",
     "kiEtikett": "KI im Spiel",
     "kiInfo": "Kiwi ist eine simulierte KI. Sie braucht kein Konto, kostet nichts und antwortet nach festen Regeln.",
-    "fuss": "KI-Studio, Version 0.2"
+    "fuss": "KI-Studio, Version 0.3",
+    "kiwiNaechster": "Es klopft an der Garage. Ein neuer Kunde!",
+    "systemEtikett": "System-Prompt (gilt für jede Nachricht)",
+    "systemLeer": "(noch leer)"
   },
   "kapitel": {
     "1": {
@@ -161,7 +165,13 @@
     },
     "rolle": {
       "name": "Rolle und System-Prompt",
-      "analogie": "Stellenbeschreibung und Hausordnung."
+      "analogie": "Stellenbeschreibung und Hausordnung.",
+      "aha": [
+        "Kiwi spielt jede Rolle, die du vorgibst. Ohne Rolle klingt Kiwi wie ein Lexikon.",
+        "Rolle und Dauerregeln stehen im System-Prompt. Er gilt für jede Nachricht.",
+        "Einmaliges gehört nicht in den System-Prompt. Sonst wiederholt Kiwi es für immer."
+      ],
+      "tipp": "Wer soll Kiwi sein? Welche Regel gilt immer? Nur das gehört in den System-Prompt."
     },
     "wahrscheinlichkeit": {
       "name": "Wahrscheinlichkeit statt Wissen",

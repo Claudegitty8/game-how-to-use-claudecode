@@ -6,7 +6,7 @@ import path from 'node:path';
 import { bewerte } from '../spiel/code/logik/bewertung.js';
 
 const STANDARD_ORDNER = fileURLToPath(new URL('../spiel/inhalte/', import.meta.url));
-const ARTEN = ['prompt', 'kontext', 'beispiel'];
+const ARTEN = ['rolle', 'prompt', 'kontext', 'beispiel'];
 const MAX_WOERTER = 40; // Leitlinie B7: kein Textblock über 40 Wörter
 
 async function lies(ordner, datei, fehler) {
@@ -120,6 +120,9 @@ export function pruefeAuftrag(auftrag, name, { regeln, konzepte, texte, lexikon 
   for (const feld of ['id', 'kunde', 'wunsch', 'kundenstimme', 'ueberraschung']) {
     if (!istText(auftrag[feld])) fehler.push(`${name}: ${feld} fehlt`);
     if (zuLang(auftrag[feld])) fehler.push(`${name}: ${feld} hat mehr als ${MAX_WOERTER} Wörter`);
+  }
+  for (const id of auftrag.lexikon ?? []) {
+    if (!lexikon[id]) fehler.push(`${name}: Lexikon-Eintrag «${id}» fehlt`);
   }
   const aufgaben = auftrag.aufgaben ?? {};
   const benutzt = new Set();

@@ -26,5 +26,19 @@
     "erklaerung": "Beispiele zeigen der KI, wie das Ergebnis klingen oder aussehen soll. Mehrere verschiedene Beispiele wirken besser als ein einziges.",
     "quatsch": "Mit nur einem Beispiel nannte Kiwi alle Level fast gleich.",
     "genauer": "Fachleute geben oft noch ein paar Beispiele mehr als im Spiel und achten darauf, dass sie sich unterscheiden."
+  },
+  "rolle": {
+    "begriff": "Rolle und System-Prompt",
+    "englisch": "Role, system prompt",
+    "kern": "rolle",
+    "erklaerung": "Der System-Prompt ist eine Anweisung, die vor jeder Nachricht gilt. Darin steht, wer die KI sein soll und welche Regeln immer gelten.",
+    "quatsch": "Als strenger Notar verwies Kiwi ein Kind mit Angst vor dem Purzelbaum auf Absatz 4 der Turnbedingungen.",
+    "genauer": "Schon ein einziger Satz zur Rolle verändert Ton und Verhalten der KI."
+  },
+  "chatbot": {
+    "begriff": "Chatbot",
+    "englisch": "Chatbot",
+    "kern": null,
+    "erklaerung": "Ein Chatbot ist ein Programm, mit dem man schreibend redet. Dahinter steckt heute oft eine KI mit einem System-Prompt."
   }
 }

@@ -42,6 +42,12 @@
       "aussage": "Offizielle Empfehlung: 3 bis 5 Beispiele, die zum Anwendungsfall passen und sich genug unterscheiden, damit das Modell keine ungewollten Muster übernimmt.",
       "quelle": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
       "geprueft": "2026-11-11"
+    },
+    {
+      "id": "rolle-im-system-prompt",
+      "aussage": "Offizielle Empfehlung: Eine Rolle im System-Prompt richtet Verhalten und Ton der KI auf den Anwendungsfall aus. Schon ein einzelner Satz macht einen Unterschied.",
+      "quelle": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "geprueft": "2026-11-11"
     }
   ]
 }

@@ -1,0 +1,491 @@
+{
+  "id": "turnverein",
+  "kunde": "Herr Aebi, Turnverein Flinke Füchse",
+  "wunsch": "Wir möchten einen Chat-Helfer auf unserer Webseite. Er heisst Turni und soll Fragen der Mitglieder beantworten.",
+  "kundenstimme": "Turni beantwortet jetzt jeden Tag Fragen, und zwar genau so freundlich wie unsere Leiterinnen. Grossartig!",
+  "ueberraschung": "Kapitel 1 ist geschafft! Die Garage wird langsam zu klein. Bald kommt ein Labor dazu, in dem du Kiwi in den Kopf schauen kannst.",
+  "lexikon": ["chatbot"],
+  "runden": [
+    {
+      "id": "r1",
+      "art": "konzept",
+      "konzept": "rolle",
+      "probieren": { "aufgabe": "t-a", "nurTeile": ["falsch"] },
+      "beispiel": { "aufgabe": "t-a" },
+      "luecke": { "aufgabe": "t-b", "vorgabe": ["rolle"] },
+      "frei": ["t-c", "t-d", "t-e", "t-f"]
+    },
+    {
+      "id": "r2",
+      "art": "misch",
+      "titel": "Alles zusammen",
+      "frei": ["n-a", "n-b"]
+    }
+  ],
+  "aufgaben": {
+    "t-a": {
+      "wunsch": "Turni soll Fragen der Mitglieder beantworten. Die meisten sind Kinder.",
+      "nachrichtVon": "Nachricht eines Kindes",
+      "grundprompt": "Ich habe Angst vor dem Purzelbaum. Was soll ich tun?",
+      "teile": [
+        { "id": "rolle", "art": "rolle", "text": "Du bist Turni, der freundliche Helfer des Turnvereins Flinke Füchse." },
+        { "id": "regel", "art": "rolle", "text": "Antworte immer kurz und in einfachen Worten." },
+        { "id": "falsch", "art": "rolle", "text": "Du bist ein strenger Notar." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "notar" },
+        { "wenn": { "fehlt": ["rolle"] }, "fehlbild": "keineRolle" },
+        { "wenn": { "fehlt": ["regel"] }, "fehlbild": "keineRegel" }
+      ],
+      "fehlbilder": {
+        "notar": {
+          "texte": [
+            "«Betreffend Purzelbaum verweise ich auf die allgemeinen Turnbedingungen, Absatz 4. Hochachtungsvoll.»",
+            "«Ihre Anfrage wurde zur Kenntnis genommen. Eine Beurkundung der Angst ist kostenpflichtig.»"
+          ],
+          "hinweis": "Kiwi spielt jede Rolle, die du vorgibst. Ein Notar passt nicht zu einem Turnverein für Kinder."
+        },
+        "keineRolle": {
+          "texte": [
+            "«Der Purzelbaum, auch Rolle vorwärts, ist eine Drehung um die Körperquerachse. Angst ist ein Gefühl.»",
+            "«Ich bin ein Sprachmodell. Bitte wende dich an eine Fachperson für Purzelbäume.»"
+          ],
+          "hinweis": "Ohne Rolle weiss Kiwi nicht, als wer es antworten soll. Es klingt dann wie ein Lexikon."
+        },
+        "keineRegel": {
+          "texte": [
+            "«Hoi, ich bin Turni! Lass mich ausholen: Zuerst zur Geschichte des Purzelbaums im alten Griechenland.» Es folgen 40 Zeilen.",
+            "«Hoi! Angst entsteht im limbischen System, genauer gesagt in der Amygdala.» Das Kind versteht kein Wort."
+          ],
+          "hinweis": "Kiwi wusste nicht, dass es immer kurz und einfach antworten soll."
+        }
+      },
+      "erfolg": [
+        "«Hoi! Das geht vielen so. Sag es deiner Leiterin, sie übt mit dir ganz langsam. Du schaffst das!»"
+      ],
+      "loesung": ["rolle", "regel"]
+    },
+    "t-b": {
+      "wunsch": "Turni soll auch Eltern antworten. Aber nie etwas zu Preisen sagen, das macht nur das Sekretariat.",
+      "nachrichtVon": "Nachricht einer Mutter",
+      "grundprompt": "Was kostet die Mitgliedschaft für zwei Kinder?",
+      "teile": [
+        { "id": "rolle", "art": "rolle", "text": "Du bist Turni, der freundliche Helfer des Turnvereins Flinke Füchse." },
+        { "id": "grenze", "art": "rolle", "text": "Nenne nie Preise. Verweise bei Preisfragen immer ans Sekretariat." },
+        { "id": "falsch", "art": "rolle", "text": "Du bist ein Verkäufer und willst möglichst viel verkaufen." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "verkaeufer" },
+        { "wenn": { "fehlt": ["rolle"] }, "fehlbild": "keineRolle" },
+        { "wenn": { "fehlt": ["grenze"] }, "fehlbild": "keineGrenze" }
+      ],
+      "fehlbilder": {
+        "verkaeufer": {
+          "texte": [
+            "«Nur heute: drei Kinder zum Preis von zwei! Dazu ein Turnsack für nur 99 Franken!»",
+            "«Greifen Sie zu! Wer jetzt zahlt, bekommt einen zweiten Verein gratis dazu.»"
+          ],
+          "hinweis": "Kiwi hat die Rolle Verkäufer gespielt. Das wollte der Verein nicht."
+        },
+        "keineRolle": {
+          "texte": [
+            "«Mitgliedschaften sind Verträge zwischen einer Person und einem Verein. Die Kosten können variieren.»",
+            "«Als Sprachmodell kenne ich die Preise nicht. Vielleicht 5 Franken? Oder 500?»"
+          ],
+          "hinweis": "Ohne Rolle antwortet Kiwi wie ein Lexikon statt wie der Helfer des Vereins."
+        },
+        "keineGrenze": {
+          "texte": [
+            "«Zwei Kinder kosten zusammen 240 Franken.» Das stimmt nicht. Kiwi hat die Zahl erfunden.",
+            "«Für zwei Kinder macht das 12 Franken im Jahr.» Das Sekretariat bekommt viele erstaunte Anrufe."
+          ],
+          "hinweis": "Kiwi wusste nicht, dass es zu Preisen nichts sagen darf. Also hat es geraten."
+        }
+      },
+      "erfolg": ["«Hoi! Zu den Preisen gibt dir unser Sekretariat gern Auskunft. Dort bekommst du alle Infos.»"],
+      "loesung": ["rolle", "grenze"]
+    },
+    "t-c": {
+      "wunsch": "Turni soll Kindern Mut machen und alle mit Du ansprechen.",
+      "nachrichtVon": "Nachricht eines Kindes",
+      "grundprompt": "Ich bin beim Seilspringen immer die Langsamste.",
+      "teile": [
+        { "id": "rolle", "art": "rolle", "text": "Du bist Turni, der aufmunternde Helfer des Turnvereins." },
+        { "id": "regel", "art": "rolle", "text": "Sprich alle mit Du an." },
+        { "id": "einmalig", "art": "rolle", "text": "Sage jedem: Heute fällt das Training aus." },
+        { "id": "falsch", "art": "rolle", "text": "Du bist ein strenger Schiedsrichter." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "schiedsrichter" },
+        { "wenn": { "gewaehlt": ["einmalig"] }, "fehlbild": "dauerhaft" },
+        { "wenn": { "fehlt": ["rolle"] }, "fehlbild": "keineRolle" },
+        { "wenn": { "fehlt": ["regel"] }, "fehlbild": "keineRegel" }
+      ],
+      "fehlbilder": {
+        "schiedsrichter": {
+          "texte": [
+            "«Langsam ist langsam. Das gibt null Punkte. Die Nächste, bitte!»",
+            "«Regelverstoss: zu wenig Tempo. Gelbe Karte.»"
+          ],
+          "hinweis": "Kiwi hat den strengen Schiedsrichter gespielt. Mut macht das nicht."
+        },
+        "dauerhaft": {
+          "texte": [
+            "«Heute fällt das Training aus.» Das sagt Turni jetzt jedem. Auch in drei Wochen noch.",
+            "«Übrigens: Heute fällt das Training aus.» Einen Monat später steht die Halle immer noch leer."
+          ],
+          "hinweis": "Was im System-Prompt steht, gilt für jede Nachricht, auch nächste Woche. Einmaliges gehört nicht dorthin."
+        },
+        "keineRolle": {
+          "texte": [
+            "«Die Sprunggeschwindigkeit hängt von Kraft und Technik ab. Langsam zu sein ist statistisch normal.»",
+            "«Seilspringen ist eine Sportart. Die Langsamste ist die Person mit dem geringsten Tempo.»"
+          ],
+          "hinweis": "Ohne Rolle weiss Kiwi nicht, dass es Mut machen soll."
+        },
+        "keineRegel": {
+          "texte": [
+            "«Sehr geehrtes Mitglied, Sie werden mit etwas Übung gewiss schneller.»",
+            "«Geschätzte Turnerin, verzagen Sie nicht.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, dass im Verein alle Du sagen."
+        }
+      },
+      "erfolg": ["«Hey, du bleibst dran, das zählt! Mit jedem Training wirst du ein bisschen schneller.»"],
+      "loesung": ["rolle", "regel"]
+    },
+    "t-d": {
+      "wunsch": "Turni soll nie Tipps bei Verletzungen geben. Dafür sind die Leiterinnen und Leiter da.",
+      "nachrichtVon": "Nachricht eines Kindes",
+      "grundprompt": "Mein Fuss tut nach dem Springen weh. Was soll ich draufschmieren?",
+      "teile": [
+        { "id": "rolle", "art": "rolle", "text": "Du bist Turni, der Helfer des Turnvereins Flinke Füchse." },
+        { "id": "grenze", "art": "rolle", "text": "Gib nie medizinische Ratschläge. Schicke Verletzte immer zu einer Leiterin oder einem Leiter." },
+        { "id": "falsch", "art": "rolle", "text": "Du bist ein Arzt und stellst Diagnosen." },
+        { "id": "vage", "art": "rolle", "text": "Sei irgendwie hilfreich." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "arzt" },
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["rolle"] }, "fehlbild": "keineRolle" },
+        { "wenn": { "fehlt": ["grenze"] }, "fehlbild": "keineGrenze" }
+      ],
+      "fehlbilder": {
+        "arzt": {
+          "texte": [
+            "«Klarer Fall: Das ist ein dreifacher Knöchelschnupfen. Ich verschreibe zwei Wochen Sofa.»",
+            "«Diagnose: akute Hüpferitis. Bitte sofort Senf auftragen.»"
+          ],
+          "hinweis": "Kiwi hat den Arzt gespielt und Diagnosen erfunden. Genau das sollte nicht passieren."
+        },
+        "vage": {
+          "texte": [
+            "«Hilfreich? Dann empfehle ich Zahnpasta, Honig und einen Kopfstand.»",
+            "«Ich helfe gern! Schmier Butter drauf. Oder Konfitüre. Irgendetwas hilft sicher.»"
+          ],
+          "hinweis": "«Irgendwie hilfreich» setzt keine Grenze. Kiwi hat einfach etwas geraten."
+        },
+        "keineRolle": {
+          "texte": [
+            "«Schmerzen im Fuss können viele Ursachen haben. Hier sind 37 davon: Erstens …»",
+            "«Als Sprachmodell habe ich keine Füsse. Viel Glück.»"
+          ],
+          "hinweis": "Ohne Rolle antwortet Kiwi wie ein Lexikon statt wie der Helfer des Vereins."
+        },
+        "keineGrenze": {
+          "texte": [
+            "«Hoi, ich bin Turni! Reib den Fuss mit Zwiebeln ein und hüpf dann 20 Mal.»",
+            "«Hoi! Das ist sicher nichts. Einfach weiterspringen!»"
+          ],
+          "hinweis": "Kiwi wusste nicht, dass es bei Verletzungen keine Tipps geben darf."
+        }
+      },
+      "erfolg": ["«Hoi! Das tut mir leid. Zeig den Fuss bitte gleich einer Leiterin oder einem Leiter. Die helfen dir.»"],
+      "loesung": ["rolle", "grenze"]
+    },
+    "t-e": {
+      "wunsch": "Turni soll immer in höchstens zwei Sätzen antworten. Die Leute lesen am Handy.",
+      "nachrichtVon": "Nachricht eines Vaters",
+      "grundprompt": "Darf mein Sohn seinen Hund ins Training mitbringen?",
+      "teile": [
+        { "id": "rolle", "art": "rolle", "text": "Du bist Turni, der Helfer des Turnvereins Flinke Füchse." },
+        { "id": "regel", "art": "rolle", "text": "Antworte immer in höchstens zwei Sätzen." },
+        { "id": "einmalig", "art": "rolle", "text": "Antworte mit Nein." },
+        { "id": "falsch", "art": "rolle", "text": "Du bist ein Dichter und antwortest in Reimen." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "dichter" },
+        { "wenn": { "gewaehlt": ["einmalig"] }, "fehlbild": "dauerhaft" },
+        { "wenn": { "fehlt": ["rolle"] }, "fehlbild": "keineRolle" },
+        { "wenn": { "fehlt": ["regel"] }, "fehlbild": "keineRegel" }
+      ],
+      "fehlbilder": {
+        "dichter": {
+          "texte": [
+            "«Ein Hund im Saal, das wär fatal, drum sag ich dir zum fünften Mal …» Es folgen neun Strophen.",
+            "«O Hund, du Freund auf vier Pfoten, in Hallen bist du leider verboten.» Und so geht es weiter."
+          ],
+          "hinweis": "Kiwi hat den Dichter gespielt. Am Handy liest das niemand zu Ende."
+        },
+        "dauerhaft": {
+          "texte": [
+            "Der Vater bekommt sein «Nein». Das nächste Kind fragt: «Darf ich mitturnen?» Turni: «Nein.»",
+            "«Nein.» Das antwortet Turni jetzt auf alles. Auch auf «Wie geht es dir?»"
+          ],
+          "hinweis": "Was im System-Prompt steht, gilt für jede Nachricht. Eine einzelne Antwort gehört nicht dorthin."
+        },
+        "keineRolle": {
+          "texte": [
+            "«Hunde sind Säugetiere. Ob sie Turnhallen betreten dürfen, regelt die jeweilige Hausordnung.»",
+            "«Ich bin ein Sprachmodell und besitze keine Turnhalle.»"
+          ],
+          "hinweis": "Ohne Rolle antwortet Kiwi wie ein Lexikon statt wie der Helfer des Vereins."
+        },
+        "keineRegel": {
+          "texte": [
+            "«Hoi! Zur Hundefrage muss ich etwas ausholen. Schon die alten Römer …» Am Handy sind das elf Bildschirme.",
+            "«Hoi! Erstens, zweitens, drittens …» Die Antwort hat 14 Punkte."
+          ],
+          "hinweis": "Kiwi wusste nicht, dass die Antworten immer kurz sein sollen."
+        }
+      },
+      "erfolg": ["«Hoi! Das weiss ich leider nicht. Frag am besten kurz die Leiterin.»"],
+      "loesung": ["rolle", "regel"]
+    },
+    "t-f": {
+      "wunsch": "Bei uns turnen auch Grosseltern. Turni soll geduldig sein und nie Jugendsprache benutzen.",
+      "nachrichtVon": "Nachricht eines Grossvaters",
+      "grundprompt": "Wie melde ich meine Enkelin an?",
+      "teile": [
+        { "id": "rolle", "art": "rolle", "text": "Du bist Turni, der geduldige Helfer des Turnvereins Flinke Füchse." },
+        { "id": "regel", "art": "rolle", "text": "Benutze nie Jugendsprache. Schreibe klar und freundlich." },
+        { "id": "falsch", "art": "rolle", "text": "Du bist ein cooler Influencer." },
+        { "id": "vage", "art": "rolle", "text": "Sei locker drauf." }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "influencer" },
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["rolle"] }, "fehlbild": "keineRolle" },
+        { "wenn": { "fehlt": ["regel"] }, "fehlbild": "keineRegel" }
+      ],
+      "fehlbilder": {
+        "influencer": {
+          "texte": [
+            "«Yo Grandpa, mega nice! Smash einfach den Anmelde-Button!» Der Grossvater sucht den Button im Garten.",
+            "«Hey Leute, heute im Video: Opa meldet an! Link in der Bio!»"
+          ],
+          "hinweis": "Kiwi hat den Influencer gespielt. Der Grossvater versteht kein Wort."
+        },
+        "vage": {
+          "texte": [
+            "«Easy, Chef. Chill mal, das läuft schon irgendwie.»",
+            "«Locker bleiben! Anmelden kann man auch morgen. Oder gar nicht.»"
+          ],
+          "hinweis": "«Locker drauf» ist ungenau. Kiwi hat es auf seine Art verstanden."
+        },
+        "keineRolle": {
+          "texte": [
+            "«Eine Anmeldung ist ein Vorgang, bei dem Daten erfasst werden.»",
+            "«Anmeldungen erfolgen üblicherweise schriftlich, mündlich oder gar nicht.»"
+          ],
+          "hinweis": "Ohne Rolle antwortet Kiwi wie ein Lexikon statt wie der Helfer des Vereins."
+        },
+        "keineRegel": {
+          "texte": [
+            "«Hoi! Mega, dass du deine Enkelin anmeldest. Voll easy, läuft!»",
+            "«Hoi Opa! Das ist ultra simpel, checkst du safe.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, dass Jugendsprache hier unerwünscht ist."
+        }
+      },
+      "erfolg": ["«Guten Tag! Am besten fragen Sie direkt die Leiterin in der Halle. Sie hilft Ihnen gern weiter.»"],
+      "loesung": ["rolle", "regel"]
+    },
+    "n-a": {
+      "wunsch": "Turni soll neue Kinder begrüssen. Kurz, fröhlich und im Ton unserer Fuchs-Sprüche.",
+      "grundprompt": "Schreib eine Begrüssung.",
+      "teile": [
+        { "id": "rolle", "art": "rolle", "text": "Du bist Turni, der fröhliche Helfer des Turnvereins Flinke Füchse." },
+        { "id": "rfalsch", "art": "rolle", "text": "Du bist ein Feldwebel." },
+        { "id": "form", "art": "prompt", "text": "Sie hat genau zwei kurze Sätze." },
+        { "id": "vage", "art": "prompt", "text": "Mach sie irgendwie nett." },
+        { "id": "wer", "art": "kontext", "text": "Begrüsst werden Kinder, die zum ersten Mal kommen." },
+        { "id": "unnoetig", "art": "kontext", "text": "Die Halle wurde frisch gestrichen." },
+        { "id": "b1", "art": "beispiel", "text": "«Flink wie ein Fuchs!»" },
+        { "id": "b2", "art": "beispiel", "text": "«Fuchs, du hast den Sprung geschafft!»" },
+        { "id": "unpassend", "art": "beispiel", "text": "«Antreten zum Appell!»" }
+      ],
+      "pruefungen": [
+        { "wenn": { "gewaehlt": ["rfalsch"] }, "fehlbild": "feldwebel" },
+        { "wenn": { "fehlt": ["rolle"] }, "fehlbild": "keineRolle" },
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["form"] }, "fehlbild": "keineForm" },
+        { "wenn": { "gewaehlt": ["unnoetig"] }, "fehlbild": "unnoetig" },
+        { "wenn": { "fehlt": ["wer"] }, "fehlbild": "keinWer" },
+        { "wenn": { "gewaehlt": ["unpassend"] }, "fehlbild": "falscherStil" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 0 }, "fehlbild": "keinBeispiel" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 1 }, "fehlbild": "einBeispiel" }
+      ],
+      "fehlbilder": {
+        "feldwebel": {
+          "texte": [
+            "«Achtung! In Zweierreihe aufstellen! Wer lacht, macht zehn Liegestütze!»",
+            "«Willkommen wird hier nicht gesagt. Abmarsch in die Halle!»"
+          ],
+          "hinweis": "Kiwi hat den Feldwebel gespielt. Die neuen Kinder kommen wohl nicht wieder."
+        },
+        "keineRolle": {
+          "texte": [
+            "«Begrüssung: Guten Tag. Ende der Begrüssung.»",
+            "«Hiermit wird der Zutritt zur Sportanlage bestätigt.»"
+          ],
+          "hinweis": "Ohne Rolle weiss Kiwi nicht, dass es als fröhlicher Turni sprechen soll."
+        },
+        "vage": {
+          "texte": [
+            "«Nett, dass ihr da seid. Wirklich nett. Sehr nett. Nett, nett, nett.»",
+            "Ich habe ein Blümchen neben den Text gemalt. Ist das nett genug?"
+          ],
+          "hinweis": "«Irgendwie nett» ist ungenau. Kiwi musste raten."
+        },
+        "keineForm": {
+          "texte": [
+            "«Hoi, ihr Füchse! Bevor wir anfangen, erzähle ich euch die ganze Geschichte des Vereins seit 1923.»",
+            "Die Begrüssung ist fertig. Sie dauert vorgelesen etwa 25 Minuten."
+          ],
+          "hinweis": "Kiwi wusste nicht, wie kurz die Begrüssung sein soll."
+        },
+        "unnoetig": {
+          "texte": [
+            "«Hoi! Bitte nichts anfassen, die Wände sind frisch gestrichen!»",
+            "«Willkommen in unserer frisch gestrichenen Halle. Riecht ihr die Farbe?»"
+          ],
+          "hinweis": "Die Farbe an den Wänden hat mit der Begrüssung nichts zu tun. Kiwi hat sie trotzdem benutzt."
+        },
+        "keinWer": {
+          "texte": [
+            "«Willkommen zurück, ihr alten Hasen! Ihr kennt ja schon alles.»",
+            "«Geschätzte Vorstandsmitglieder, die Sitzung ist eröffnet.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, dass neue Kinder begrüsst werden."
+        },
+        "falscherStil": {
+          "texte": [
+            "«Antreten zum Turnen! Stillgestanden!»",
+            "«Abzählen von rechts! Vorwärts, marsch!»"
+          ],
+          "hinweis": "Kiwi hat den Befehlston dieses Beispiels übernommen."
+        },
+        "keinBeispiel": {
+          "texte": [
+            "«Hoi! Schön, dass du da bist. Viel Spass beim Turnen.» Nett, aber von Füchsen keine Spur.",
+            "«Willkommen im Verein. Wir turnen jetzt.»"
+          ],
+          "hinweis": "Ohne Beispiel kennt Kiwi den Ton der Fuchs-Sprüche nicht."
+        },
+        "einBeispiel": {
+          "texte": [
+            "«{teil} {teil}» Ich habe deinen Spruch einfach zweimal hingeschrieben.",
+            "«{teil}» Und als zweiter Satz: nochmals dasselbe."
+          ],
+          "hinweis": "Mit nur einem Beispiel hat Kiwi den Spruch einfach kopiert."
+        }
+      },
+      "erfolg": ["«Hoi, kleiner Fuchs, schön bist du da! Heute lernst du deinen ersten flinken Sprung.»"],
+      "loesung": ["rolle", "form", "wer", "b1", "b2"]
+    },
+    "n-b": {
+      "wunsch": "Turni soll nach dem Training jedem Kind Mut machen. Noten und Ranglisten wollen wir nie.",
+      "grundprompt": "Schreib drei Mutmach-Sätze.",
+      "teile": [
+        { "id": "rolle", "art": "rolle", "text": "Du bist Turni, der aufmunternde Helfer des Turnvereins." },
+        { "id": "grenze", "art": "rolle", "text": "Vergleiche Kinder nie miteinander. Keine Noten, keine Ranglisten." },
+        { "id": "form", "art": "prompt", "text": "Jeder Satz hat höchstens sieben Wörter." },
+        { "id": "vage", "art": "prompt", "text": "Sie sollen motivierend sein, du weisst schon." },
+        { "id": "wer", "art": "kontext", "text": "Die Sätze sind für Kinder von sechs bis zwölf Jahren." },
+        { "id": "falsch", "art": "kontext", "text": "Die Sätze sind für Profis vor einem grossen Wettkampf." },
+        { "id": "b1", "art": "beispiel", "text": "«Heute warst du mutig!»" },
+        { "id": "b2", "art": "beispiel", "text": "«Dein Sprung wird immer besser!»" },
+        { "id": "unpassend", "art": "beispiel", "text": "«Platz 14 von 15. Mehr Einsatz!»" }
+      ],
+      "pruefungen": [
+        { "wenn": { "fehlt": ["rolle"] }, "fehlbild": "keineRolle" },
+        { "wenn": { "fehlt": ["grenze"] }, "fehlbild": "rangliste" },
+        { "wenn": { "gewaehlt": ["vage"] }, "fehlbild": "vage" },
+        { "wenn": { "fehlt": ["form"] }, "fehlbild": "keineForm" },
+        { "wenn": { "gewaehlt": ["falsch"] }, "fehlbild": "falsch" },
+        { "wenn": { "fehlt": ["wer"] }, "fehlbild": "keinWer" },
+        { "wenn": { "gewaehlt": ["unpassend"] }, "fehlbild": "falscherStil" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 0 }, "fehlbild": "keinBeispiel" },
+        { "wenn": { "aus": ["b1", "b2"], "hoechstens": 1 }, "fehlbild": "einBeispiel" }
+      ],
+      "fehlbilder": {
+        "keineRolle": {
+          "texte": [
+            "«Motivation ist ein innerer Antrieb.» «Übung führt zu Fortschritt.» «Bewegung ist gesund.»",
+            "«Satz eins.» «Satz zwei.» «Satz drei.»"
+          ],
+          "hinweis": "Ohne Rolle weiss Kiwi nicht, dass es als aufmunternder Turni sprechen soll."
+        },
+        "rangliste": {
+          "texte": [
+            "«Du warst heute besser als Lena!» «Fast so gut wie Noah!» «Note 4, weiter so!»",
+            "«Du bist auf Platz 3!» «Nur zwei waren besser!» «Überhol sie nächstes Mal!»"
+          ],
+          "hinweis": "Kiwi wusste nicht, dass der Verein keine Vergleiche will. Diese Regel gilt immer."
+        },
+        "vage": {
+          "texte": [
+            "«Du weisst schon.» «Ja, genau das.» «Du weisst, was ich meine.»",
+            "«Motivation!» «Mehr Motivation!» «Noch mehr Motivation!»"
+          ],
+          "hinweis": "«Du weisst schon» hilft Kiwi nicht. Kiwi weiss es eben nicht."
+        },
+        "keineForm": {
+          "texte": [
+            "«Du hast heute beim Aufwärmen, beim Springen, beim Rollen und auch sonst überall …» Der Satz hört nicht auf.",
+            "Drei Sätze, wie bestellt. Jeder ist eine halbe Seite lang."
+          ],
+          "hinweis": "Kiwi wusste nicht, wie kurz die Sätze sein sollen."
+        },
+        "falsch": {
+          "texte": [
+            "«Gold oder gar nichts!» «Schmerz ist nur Schwäche!» «Zweiter ist erster Verlierer!»",
+            "«Trainiere, bis du umfällst!» «Schlaf ist für Verlierer!» «Sieg um jeden Preis!»"
+          ],
+          "hinweis": "Kiwi hat für Profis geschrieben, genau wie im Prompt. Gemeint waren Kinder."
+        },
+        "keinWer": {
+          "texte": [
+            "«Ihre Leistungskurve zeigt nach oben.» «Bleiben Sie am Ball.» «Weiter so, werte Kundschaft.»",
+            "«Die Trainingsziele wurden erreicht.» «Der Einsatz war angemessen.» «Fortsetzung empfohlen.»"
+          ],
+          "hinweis": "Kiwi wusste nicht, dass die Sätze für Kinder sind."
+        },
+        "falscherStil": {
+          "texte": [
+            "«Platz 9 von 15. Da geht mehr!» «Platz 12. Streng dich an!» «Letzter Platz. Üben!»",
+            "«Rang 7. Ungenügend.» «Rang 11. Mehr Einsatz!» «Rang 15.»"
+          ],
+          "hinweis": "Kiwi hat das Muster dieses Beispiels übernommen: Rangliste statt Mut."
+        },
+        "keinBeispiel": {
+          "texte": [
+            "«Gut gemacht.» «Gut gemacht.» «Ebenfalls gut gemacht.»",
+            "«Du bist ein Stern am Himmel der Turnkunst!» «O edle Turnerin!» «Heil dir, Springer!»"
+          ],
+          "hinweis": "Ohne Beispiel weiss Kiwi nicht, wie Mutmach-Sätze im Verein klingen."
+        },
+        "einBeispiel": {
+          "texte": [
+            "«{teil}» «{teil}» «{teil}» Dreimal genau dasselbe.",
+            "«{teil}» Und dann noch zweimal, Wort für Wort gleich."
+          ],
+          "hinweis": "Mit nur einem Beispiel sieht Kiwi kein Muster. Kiwi kopiert es einfach."
+        }
+      },
+      "erfolg": ["«Heute hast du dich getraut!» «Deine Rolle war richtig rund!» «Du gibst nie auf, stark!»"],
+      "loesung": ["rolle", "grenze", "form", "wer", "b1", "b2"]
+    }
+  }
+}
