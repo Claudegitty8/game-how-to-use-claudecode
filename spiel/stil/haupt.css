@@ -340,3 +340,12 @@ summary:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid
 
 /* Das Studio als kleines Bild: Einrichtung des Kapitels und gekaufte Zierde auf einem Boden */
 .studio-bild { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.5rem; padding: 0.4rem 0.8rem 0.2rem; border-bottom: 4px solid var(--linie); font-size: 1.8rem; line-height: 1.2; }
+
+/* Springen (E-043): Liste der Aufträge in den Einstellungen */
+.sprung-liste { list-style: none; padding: 0; margin: 0.6rem 0 0; display: grid; gap: 0.4rem; }
+.sprung-knopf { width: 100%; text-align: left; }
+.sprung-fertig { display: block; padding: 0.5rem 0.2rem; color: var(--leise, inherit); }
+.sprung-auf > summary::after { content: '▸'; font-size: 1.2em; }
+.sprung-auf[open] > summary::after { content: '▾'; }
+.sprung-liste .rueckfrage, .sprung-zurueck .rueckfrage { margin-top: 0.4rem; }
+.sprung-zurueck { display: grid; gap: 0.4rem; margin-top: 0.6rem; }

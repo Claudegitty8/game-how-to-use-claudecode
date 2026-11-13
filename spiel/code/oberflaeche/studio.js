@@ -9,7 +9,7 @@ function rundenName(runde, texte) {
   return runde.konzept ? texte.konzepte[runde.konzept].name : runde.titel;
 }
 
-export function zeigeStudio(wurzel, app, nav) {
+export function zeigeStudio(wurzel, app, nav, daten) {
   const { texte, regeln, auftraege } = app.inhalte;
   const t = texte.app;
   const { stand } = app;
@@ -21,6 +21,8 @@ export function zeigeStudio(wurzel, app, nav) {
   if (!auftrag) gruss = t.kiwiFertig;
   else if (laeuft) gruss = t.kiwiLaeuft;
   else if (stand.erledigt.length > 0) gruss = t.kiwiNaechster;
+  // Eine Ansicht kann Kiwi etwas mitgeben, zum Beispiel nach einem Sprung.
+  if (daten?.gruss) gruss = daten.gruss;
 
   // --- Auftrag ---
   const auftragKarte = el('section', { klasse: 'karte auftrag' },

@@ -2,6 +2,14 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.13.0, 13. November 2026: Springen und sichere Spielstände
+
+**Neu**
+- **Springen:** In den Einstellungen unter «Springen» einen späteren Auftrag wählen. Alles davor gilt als erledigt und gelernt und kommt später als Wiederholung. Mit Rückfrage, und der letzte Sprung lässt sich rückgängig machen (E-043).
+- **Kein Fortschritt geht bei Updates verloren:** Alte Spielstände und Dateien werden umgewandelt statt verworfen. Passt ein angefangener Auftrag nach einem Update nicht mehr, beginnt er neu, statt das Spiel zu stören (E-044).
+- **Hinweis für iPhone und iPad:** Das Spiel auf den Home-Bildschirm legen, sonst löscht Safari den Stand nach etwa einer Woche ohne Besuch.
+- Insgesamt 63 Tests.
+
 ## 13. November 2026: Das Spiel ist online
 
 - Version 0.12 ist öffentlich spielbar: https://claudegitty8.github.io/game-how-to-use-claudecode/

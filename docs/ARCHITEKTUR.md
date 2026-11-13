@@ -70,7 +70,7 @@ docs/                     Dokumente
 |---|---|---|
 | `logik/` | nichts ausser eigenen Dateien | Oberfläche, Browser, Texte |
 | `ki/` | `logik/` | Oberfläche |
-| `speicher/`, `inhalte/` | Browser, `logik/ablauf.js` für den leeren Stand | Spielregeln |
+| `speicher/`, `inhalte/` | Browser, `logik/ablauf.js` für den leeren Stand, `logik/extras.js` zum Umwandeln alter Stände | Spielregeln |
 | `oberflaeche/` | ruft `logik/` auf, bekommt Inhalte übergeben | Spielregeln oder feste Texte enthalten |
 | `start.js` | alles | – |
 
@@ -136,13 +136,19 @@ Bewertet wird immer in `logik/bewertung.js`, nie von der echten KI. So bleibt de
 
 ## 6. Spielstand
 
-Der Spielstand liegt im Speicher des Browsers auf dem Gerät (`localStorage`). Es gibt kein Konto und keine Übertragung. Erlaubt ein Gerät kein Speichern, läuft das Spiel mit einem Stand im Arbeitsspeicher weiter. Der Stand trägt eine Versionsnummer (aktuell 2). Stände älterer Versionen werden vorerst verworfen. Vor der Veröffentlichung braucht es eine Umwandlung, damit niemand Fortschritt verliert. In den Einstellungen lässt sich der Stand löschen.
+Der Spielstand liegt im Speicher des Browsers auf dem Gerät (`localStorage`). Es gibt kein Konto und keine Übertragung. Erlaubt ein Gerät kein Speichern, läuft das Spiel mit einem Stand im Arbeitsspeicher weiter. Der Stand trägt eine Versionsnummer (aktuell 2). Seit Version 0.13 gilt (E-044):
+
+- **Umwandeln statt verwerfen:** `wandleUm` in `logik/extras.js` macht aus jedem gespeicherten oder geladenen Wert einen gültigen Stand der aktuellen Version. Brauchbare Felder bleiben, fehlende werden aufgefüllt. Stammt der Stand aus einer anderen Version, legt der Speicher vorher eine unveränderte Kopie unter `ki-studio-stand-alt` ab.
+- **Laufenden Auftrag prüfen:** `pruefeLauf` prüft beim Start und beim Laden einer Datei, ob der angefangene Auftrag noch zu den Inhalten passt. Wenn nicht, beginnt er neu. Gemeisterte Konzepte werden dabei übersprungen.
+- **Springen:** `sprungStatus` und `springeZuAuftrag` (E-043). Der Stand vor dem letzten Sprung liegt unter `ki-studio-stand-vor-sprung`, damit sich der Sprung rückgängig machen lässt.
+
+Wer ein neues Feld zum Spielstand hinzufügt, ergänzt es in `neuerStand` und in `wandleUm`. Erst bei einem Umbau, der alte Felder anders deutet, wird `STAND_VERSION` erhöht. In den Einstellungen lässt sich der Stand löschen, als Datei sichern und wieder laden.
 
 ## 7. Automatische Prüfungen
 
 | Prüfung | Befehl | Was sie sichert |
 |---|---|---|
-| Tests | `npm test` | Meisterschaftsregel, Wiederholung, Bewertung, Spielablauf, simulierte KI, Speicher. `tests/ganzes-spiel.test.js` spielt alle Aufträge von Anfang bis Ende durch und prüft, dass am Schluss alle 24 Konzepte gemeistert sind. |
+| Tests | `npm test` | Meisterschaftsregel, Wiederholung, Bewertung, Spielablauf, simulierte KI, Speicher, Springen und Umwandeln alter Stände (`tests/springen.test.js`). `tests/ganzes-spiel.test.js` spielt alle Aufträge von Anfang bis Ende durch und prüft, dass am Schluss alle 24 Konzepte gemeistert sind. |
 | Inhaltsprüfung | `npm run inhalte` | Jede Runde hat alle fünf Schritte. Probieren ergibt immer Quatsch. Jede Lösung besteht, ein leerer Prompt nie. Jedes Fehlbild hat zwei Varianten und einen Hinweis. Kein Text über 40 Wörter. Jeder Fakt hat Quelle und Datum. |
 | Beides | `npm run pruefen` | vor jedem Commit |
 

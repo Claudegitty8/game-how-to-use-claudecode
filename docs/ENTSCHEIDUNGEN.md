@@ -181,8 +181,17 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** Am 13. November 2026 hat der Besitzer entschieden, vorerst nicht zu zählen, wie viele Leute spielen, wie lange und wie weit. Leitlinie C4 (kein Tracking) bleibt unverändert.
 **Grund:** Jeder automatische Zähler braucht entweder ein Konto bei einem Anbieter oder einen fremden Gratisdienst mit unklarem Datenschutz. Geprüft wurden: Abacus (ohne Konto, aber ohne Datenschutzerklärung und ohne Zusage zur Verfügbarkeit), Umami und GoatCounter (mit Konto), ein eigener Mini-Server bei Cloudflare (mit Konto), ein Server zu Hause (Sicherheitsrisiko) und Speicher über GitHub oder Claude (Schlüssel wäre öffentlich bzw. nur für angemeldete Claude-Nutzer). Falls das Thema wiederkommt: Die Empfehlung war ein Knopf «Fortschritt teilen» ohne Server. Für automatische Zahlen wäre ein eigener Mini-Server mit Ja-Frage im Spiel der sauberste Weg.
 
+### E-043: Springen zu einem späteren Auftrag
+**Entscheid:** In den Einstellungen gibt es für alle Spieler «Springen». Man wählt einen späteren Auftrag. Alle Aufträge davor gelten dann als erledigt, ihre Konzepte als gemeistert und im Lexikon freigeschaltet. Wie beim Schnelltest kommen die übersprungenen Konzepte später als Wiederholung. Gesprungen wird nur vorwärts. Vor dem Sprung kommt eine Rückfrage, und der letzte Sprung lässt sich rückgängig machen.
+**Grund:** Wunsch des Besitzers am 13. November 2026: Fortschritt kann verloren gehen (neues Gerät, neue Adresse, Safari auf dem iPhone), und zum Testen späterer Aufträge soll man nicht alles nachspielen müssen. Bewusste Ausnahme von Leitlinie A1. Für alle sichtbar statt über eine geheime Adresse, weil keine Funktion versteckt sein soll.
+
+### E-044: Alte Spielstände umwandeln statt verwerfen
+**Entscheid:** Spielstände aus anderen Versionen und aus Dateien werden umgewandelt (`wandleUm`). Ein angefangener Auftrag, der nach einem Update nicht mehr zu den Inhalten passt, beginnt neu (`pruefeLauf`). Auf iPhone und iPad steht beim Spielstand ein Hinweis, das Spiel auf den Home-Bildschirm zu legen.
+**Grund:** Bis Version 0.12 wurden Stände mit anderer Versionsnummer verworfen. Seit das Spiel öffentlich ist, darf ein Update keinen Fortschritt löschen. Safari löscht gespeicherte Daten einer Website nach sieben Tagen Safari-Nutzung ohne Besuch. Web-Apps auf dem Home-Bildschirm zählen ihre Tage selbst. Quelle: WebKit-Blog «Full Third-Party Cookie Blocking and More», https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/, geprüft am 13. November 2026.
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
+- Wird das Spiel ohne Internet in einer älteren Fassung geöffnet, nachdem eine neuere gespeichert hat, wandelt die ältere den Stand um. Neue Felder, die sie nicht kennt, gehen dabei verloren. Das gilt als selten und wird hingenommen.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.
 - Für den API-Schlüssel im Echt-Modus gilt vorläufig der Vorschlag «Weg A» aus `ARCHITEKTUR.md`, Abschnitt 8. Entscheid in Phase 6.
 - Die Hüllen für Desktop und iOS sind noch nicht geprüft.

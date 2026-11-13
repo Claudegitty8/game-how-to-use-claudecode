@@ -2,7 +2,7 @@
 import { el, fuelle, knopf, punkte, leiste } from './bausteine.js';
 import { erfolge, neuerFortschritt } from '../logik/meisterschaft.js';
 import { wendeSchriftAn } from './schrift.js';
-import { istSpielstand } from '../logik/extras.js';
+import { wandleUm, pruefeLauf, sprungStatus, springeZuAuftrag } from '../logik/extras.js';
 
 export function zeigeLexikon(wurzel, app, nav) {
   const { texte, lexikon, lehrplan, regeln } = app.inhalte;
@@ -74,8 +74,10 @@ export function zeigeEinstellungen(wurzel, app, nav) {
     hidden: true,
     onchange: async () => {
       try {
-        const stand = JSON.parse(await dateiWahl.files[0].text());
-        if (!istSpielstand(stand)) throw new Error('kein Spielstand');
+        // Auch Dateien aus älteren Versionen werden angenommen und umgewandelt.
+        const gelesen = wandleUm(JSON.parse(await dateiWahl.files[0].text()));
+        if (!gelesen) throw new Error('kein Spielstand');
+        const stand = pruefeLauf(gelesen, app.inhalte.auftraege);
         app.setze(stand);
         wendeSchriftAn(stand.einstellungen.schrift ?? 'normal');
         dateiStatus.textContent = t.standGeladen;
@@ -86,6 +88,12 @@ export function zeigeEinstellungen(wurzel, app, nav) {
   });
   const laden = knopf(t.standLaden, () => dateiWahl.click(), 'knopf-zweit');
 
+  // Auf iPhone und iPad löscht Safari den Stand nach einer Weile ohne Besuch. Als App auf dem Home-Bildschirm nicht.
+  const apfelGeraet = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const alsApp = navigator.standalone === true || globalThis.matchMedia?.('(display-mode: standalone)').matches;
+  const iphoneHinweis = apfelGeraet && !alsApp ? el('p', { klasse: 'klein', text: t.iphoneInfo }) : null;
+
   wurzel.append(
     leiste(t, nav, t.einstellungenTitel),
     el('section', { klasse: 'karte' },
@@ -95,13 +103,81 @@ export function zeigeEinstellungen(wurzel, app, nav) {
       el('p', { klasse: 'etikett', text: t.standEtikett }),
       el('p', { text: app.speicher.dauerhaft ? t.standInfo : t.standInfoAus }),
       el('p', { klasse: 'klein', text: t.offlineInfo }),
+      iphoneHinweis,
       el('div', { klasse: 'knopf-reihe' }, sichern, laden),
       dateiWahl,
       dateiStatus,
       knopf(t.loeschen, () => { rueckfrage.hidden = false; }, 'knopf-zweit'),
       rueckfrage),
+    springen(app, nav, t),
     el('section', { klasse: 'karte' },
       el('p', { klasse: 'etikett', text: t.kiEtikett }),
       el('p', { text: t.kiInfo })),
   );
+}
+
+// Zu einem späteren Auftrag springen, zum Beispiel nach einem Gerätewechsel (E-043).
+// Vor jedem Sprung kommt eine Rückfrage. Der letzte Sprung lässt sich rückgängig machen.
+function springen(app, nav, t) {
+  const { auftraege, regeln } = app.inhalte;
+  const status = sprungStatus(app.stand, auftraege);
+  const hatZiele = status.some((s) => s.status === 'ziel');
+  const vorher = app.speicher.vorSprung();
+  const zusatz = { erledigt: t.sprungErledigt, dran: t.sprungDran, offen: t.sprungOffen };
+
+  // Eine einzige Rückfrage, deren Inhalt je nach Knopf wechselt.
+  const frage = el('p', {});
+  const ja = knopf(t.sprungJa, null, 'knopf-warn');
+  let aktion = null;
+  ja.addEventListener('click', () => aktion?.());
+  const rueckfrage = el('div', { klasse: 'rueckfrage', hidden: true, 'aria-live': 'polite' },
+    frage,
+    el('div', { klasse: 'knopf-reihe' }, ja,
+      knopf(t.sprungNein, () => { rueckfrage.hidden = true; }, 'knopf-zweit')));
+
+  // Die Rückfrage erscheint direkt beim Knopf, der sie ausgelöst hat. So sieht man sie auch am Handy.
+  function frageNach(ort, text, jaText, wennJa) {
+    ort.append(rueckfrage);
+    frage.textContent = text;
+    ja.textContent = jaText;
+    aktion = wennJa;
+    rueckfrage.hidden = false;
+    ja.focus();
+  }
+
+  const liste = el('ol', { klasse: 'sprung-liste' }, status.map(({ id, status: art }, stelle) => {
+    const auftrag = auftraege[stelle];
+    const name = fuelle(t.sprungZiel, { nr: stelle + 1, kunde: auftrag.kunde });
+    if (art !== 'ziel') {
+      return el('li', {}, el('span', { klasse: 'sprung-fertig', text: `${name} (${zusatz[art]})` }));
+    }
+    const eintrag = el('li', {});
+    eintrag.append(knopf(name, () => frageNach(
+      eintrag,
+      fuelle(t.sprungFrage, { kunde: auftrag.kunde }),
+      t.sprungJa,
+      () => {
+        app.speicher.merkeVorSprung(app.stand);
+        app.setze(springeZuAuftrag(app.stand, id, auftraege, regeln));
+        nav.zu('studio', { gruss: fuelle(t.sprungGemacht, { kunde: auftrag.kunde }) });
+      },
+    ), 'knopf-zweit sprung-knopf'));
+    return eintrag;
+  }));
+
+  const zurueckOrt = el('div', { klasse: 'sprung-zurueck' });
+  const zurueck = vorher ? knopf(t.sprungZurueck, () => frageNach(zurueckOrt, t.sprungZurueckFrage, t.sprungZurueckJa, () => {
+    app.speicher.vergissVorSprung();
+    app.setze(pruefeLauf(vorher, auftraege));
+    nav.zu('studio', { gruss: t.sprungZurueckGemacht });
+  }), 'knopf-zweit') : null;
+  if (zurueck) zurueckOrt.append(zurueck);
+
+  return el('section', { klasse: 'karte' },
+    el('p', { klasse: 'etikett', text: t.sprungEtikett }),
+    el('p', { text: t.sprungInfo }),
+    hatZiele
+      ? el('details', { klasse: 'eintrag sprung-auf' }, el('summary', { text: t.sprungWaehlen }), liste)
+      : el('p', { klasse: 'klein', text: t.sprungNichts }),
+    zurueck ? zurueckOrt : null);
 }

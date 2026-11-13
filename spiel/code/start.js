@@ -7,6 +7,7 @@ import { zeigeRunde, zeigeZwischen } from './oberflaeche/runde.js';
 import { zeigeLexikon, zeigeEinstellungen } from './oberflaeche/lexikon.js';
 import { zeigeSchnelltest, zeigeUmfrage } from './oberflaeche/extras.js';
 import { wendeSchriftAn } from './oberflaeche/schrift.js';
+import { pruefeLauf } from './logik/extras.js';
 
 const ANSICHTEN = {
   studio: zeigeStudio,
@@ -44,7 +45,8 @@ async function start() {
       inhalte,
       speicher,
       ki: erstelleKi('simuliert'),
-      stand: speicher.laden(),
+      // Passt ein angefangener Auftrag nach einem Update nicht mehr zu den Inhalten, beginnt er neu.
+      stand: pruefeLauf(speicher.laden(), inhalte.auftraege),
       // Jede Änderung am Spielstand wird sofort gespeichert.
       setze(stand) {
         this.stand = stand;

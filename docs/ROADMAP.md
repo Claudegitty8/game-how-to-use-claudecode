@@ -16,7 +16,7 @@ Stand: 13. November 2026. Die Reihenfolge ist verbindlich, Termine gibt es bewus
 
 ## Stand
 
-Version 0.12: Das Spiel ist vollständig gebaut (12 Aufträge, 24 Kernkonzepte, Abschlussauftrag, Schnelltest, Studio-Einrichtung, freiwillige Fragen, Offline-Betrieb). Seit 13. November 2026 ist das Spiel öffentlich spielbar: https://claudegitty8.github.io/game-how-to-use-claudecode/. **Alles Weitere braucht den Besitzer:** Testrunde (6.1), Echt-Modus und Rechtliches.
+Version 0.12: Das Spiel ist vollständig gebaut (12 Aufträge, 24 Kernkonzepte, Abschlussauftrag, Schnelltest, Studio-Einrichtung, freiwillige Fragen, Offline-Betrieb). Version 0.13 bringt das Springen zu einem Auftrag und sichert Spielstände bei Updates. Seit 13. November 2026 ist das Spiel öffentlich spielbar: https://claudegitty8.github.io/game-how-to-use-claudecode/. **Alles Weitere braucht den Besitzer:** Testrunde (6.1), Echt-Modus und Rechtliches.
 
 ## Offen und jederzeit nachholbar: Testrunde (Schritt 6.1)
 
