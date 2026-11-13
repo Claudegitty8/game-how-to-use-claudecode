@@ -173,6 +173,10 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** Die Studio-Ansicht besteht aus einer Reihe von Bildzeichen (Emojis) auf einem Boden. Welche Zeichen zu einem Kapitel gehören, steht in `de/texte.json`.
 **Grund:** Braucht keine Bilddateien und keinen Zeichner, wächst sichtbar mit dem Kapitel und zeigt die gekaufte Zierde. Eine gezeichnete Fassung bleibt möglich.
 
+### E-041: Spiel ist öffentlich
+**Entscheid:** Am 13. November 2026 hat der Besitzer das Repository öffentlich gemacht, GitHub Pages eingeschaltet und die erste Veröffentlichung von Hand gestartet. Adresse: https://claudegitty8.github.io/game-how-to-use-claudecode/
+**Grund:** Der Besitzer will das Spiel mit Freunden teilen, die kein Claude-Konto haben. Die Testrunde (6.1) und das Rechtliche (6.10) sind noch offen. Darum wird der Link vorerst nur im Freundeskreis geteilt.
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.

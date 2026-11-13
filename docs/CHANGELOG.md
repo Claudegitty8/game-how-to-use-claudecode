@@ -2,6 +2,11 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 13. November 2026: Das Spiel ist online
+
+- Version 0.12 ist öffentlich spielbar: https://claudegitty8.github.io/game-how-to-use-claudecode/
+- Das Repository ist öffentlich, GitHub Pages ist eingeschaltet (E-041). Am Spiel selbst hat sich nichts geändert.
+
 ## 0.12.0, 11. November 2026: Studio-Bild und Vorbereitung fürs Hosting
 
 **Neu**

@@ -1,6 +1,10 @@
 # Veröffentlichen auf GitHub Pages
 
-Stand: 11. November 2026. Entscheid E-038. Diese Anleitung ist für den Besitzer. Claude veröffentlicht nichts ohne ausdrückliches Ja.
+Stand: 13. November 2026. Entscheide E-038 und E-041.
+
+**Das Spiel ist online:** https://claudegitty8.github.io/game-how-to-use-claudecode/
+
+Das Einrichten ist erledigt. Für jede neue Fassung reicht der Abschnitt «Veröffentlichen». Diese Anleitung ist für den Besitzer. Claude veröffentlicht nichts ohne ausdrückliches Ja.
 
 ## Bevor du veröffentlichst
 

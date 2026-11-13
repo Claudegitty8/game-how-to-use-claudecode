@@ -161,6 +161,6 @@ Der Echt-Modus ist ein freiwilliger Zusatz für Erwachsene und wird erst in Phas
 
 ## 9. Entwicklung und Vorschau
 
-- **Code:** privates GitHub-Repository, Commits direkt auf `main`.
+- **Code:** öffentliches GitHub-Repository (seit 13. November 2026), Commits direkt auf `main`.
 - **Vorschau während der Entwicklung:** private Vorschau-Seite, die Claude aus dem Ordner `spiel/` veröffentlicht. Dort funktioniert kein Service Worker, das Offline-Verhalten wird deshalb später separat getestet.
-- **Endgültiges Hosting:** noch offen, Entscheid vor der Veröffentlichung.
+- **Hosting:** GitHub Pages unter https://claudegitty8.github.io/game-how-to-use-claudecode/ (E-038, E-041). Dort funktionieren Service Worker und Offline-Betrieb.
