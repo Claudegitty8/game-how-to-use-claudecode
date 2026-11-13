@@ -177,6 +177,10 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 **Entscheid:** Am 13. November 2026 hat der Besitzer das Repository öffentlich gemacht, GitHub Pages eingeschaltet und die erste Veröffentlichung von Hand gestartet. Adresse: https://claudegitty8.github.io/game-how-to-use-claudecode/
 **Grund:** Der Besitzer will das Spiel mit Freunden teilen, die kein Claude-Konto haben. Die Testrunde (6.1) und das Rechtliche (6.10) sind noch offen. Darum wird der Link vorerst nur im Freundeskreis geteilt.
 
+### E-042: Vorerst kein Zähler
+**Entscheid:** Am 13. November 2026 hat der Besitzer entschieden, vorerst nicht zu zählen, wie viele Leute spielen, wie lange und wie weit. Leitlinie C4 (kein Tracking) bleibt unverändert.
+**Grund:** Jeder automatische Zähler braucht entweder ein Konto bei einem Anbieter oder einen fremden Gratisdienst mit unklarem Datenschutz. Geprüft wurden: Abacus (ohne Konto, aber ohne Datenschutzerklärung und ohne Zusage zur Verfügbarkeit), Umami und GoatCounter (mit Konto), ein eigener Mini-Server bei Cloudflare (mit Konto), ein Server zu Hause (Sicherheitsrisiko) und Speicher über GitHub oder Claude (Schlüssel wäre öffentlich bzw. nur für angemeldete Claude-Nutzer). Falls das Thema wiederkommt: Die Empfehlung war ein Knopf «Fortschritt teilen» ohne Server. Für automatische Zahlen wäre ein eigener Mini-Server mit Ja-Frage im Spiel der sauberste Weg.
+
 ## Annahmen (noch nicht bestätigt)
 - Der Spielstand wird nur auf dem Gerät gespeichert, ohne Konto.
 - Die Zahl «dreimal richtig» und der Wiederholungsplan (1, 3, 7 Runden) sind Startwerte und werden im Test überprüft.
