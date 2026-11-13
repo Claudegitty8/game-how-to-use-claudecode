@@ -48,6 +48,10 @@ export function zeigeStudio(wurzel, app, nav, daten) {
       !laeuft && auftrag.runden.some((runde) => runde.konzept)
         ? knopf(t.schnelltestKnopf, () => nav.zu('schnelltest'), 'knopf-zweit')
         : null,
+      // Ganz am Anfang: Wer schon weiter war (anderes Gerät, Stand verloren), findet hier das Springen (E-043).
+      !laeuft && stand.erledigt.length === 0
+        ? knopf(t.sprungHinweis, () => nav.zu('einstellungen', { springen: true }), 'knopf-leise')
+        : null,
     );
   }
 

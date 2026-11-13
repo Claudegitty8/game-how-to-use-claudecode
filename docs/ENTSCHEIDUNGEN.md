@@ -183,7 +183,7 @@ Jede wichtige Entscheidung mit Datum und Begründung. Neue Einträge unten anfü
 
 ### E-043: Springen zu einem späteren Auftrag
 **Entscheid:** In den Einstellungen gibt es für alle Spieler «Springen». Man wählt einen späteren Auftrag. Alle Aufträge davor gelten dann als erledigt, ihre Konzepte als gemeistert und im Lexikon freigeschaltet. Wie beim Schnelltest kommen die übersprungenen Konzepte später als Wiederholung. Gesprungen wird nur vorwärts. Vor dem Sprung kommt eine Rückfrage, und der letzte Sprung lässt sich rückgängig machen.
-**Grund:** Wunsch des Besitzers am 13. November 2026: Fortschritt kann verloren gehen (neues Gerät, neue Adresse, Safari auf dem iPhone), und zum Testen späterer Aufträge soll man nicht alles nachspielen müssen. Bewusste Ausnahme von Leitlinie A1. Für alle sichtbar statt über eine geheime Adresse, weil keine Funktion versteckt sein soll.
+**Grund:** Wunsch des Besitzers am 13. November 2026: Fortschritt kann verloren gehen (neues Gerät, neue Adresse, Safari auf dem iPhone), und zum Testen späterer Aufträge soll man nicht alles nachspielen müssen. Bewusste Ausnahme von Leitlinie A1. Für alle sichtbar statt über eine geheime Adresse, weil keine Funktion versteckt sein soll. Seit Version 0.14 führt zusätzlich ein Link im Studio dorthin, solange noch nichts erledigt oder angefangen ist. Wer Fortschritt verloren hat, landet genau dort.
 
 ### E-044: Alte Spielstände umwandeln statt verwerfen
 **Entscheid:** Spielstände aus anderen Versionen und aus Dateien werden umgewandelt (`wandleUm`). Ein angefangener Auftrag, der nach einem Update nicht mehr zu den Inhalten passt, beginnt neu (`pruefeLauf`). Auf iPhone und iPad steht beim Spielstand ein Hinweis, das Spiel auf den Home-Bildschirm zu legen.

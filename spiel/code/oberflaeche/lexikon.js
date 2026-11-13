@@ -34,7 +34,7 @@ export function zeigeLexikon(wurzel, app, nav) {
   );
 }
 
-export function zeigeEinstellungen(wurzel, app, nav) {
+export function zeigeEinstellungen(wurzel, app, nav, daten) {
   const t = app.inhalte.texte.app;
 
   const schriftKnoepfe = Object.entries(t.schrift).map(([wert, name]) => el('button', {
@@ -109,7 +109,7 @@ export function zeigeEinstellungen(wurzel, app, nav) {
       dateiStatus,
       knopf(t.loeschen, () => { rueckfrage.hidden = false; }, 'knopf-zweit'),
       rueckfrage),
-    springen(app, nav, t),
+    springen(app, nav, t, daten?.springen),
     el('section', { klasse: 'karte' },
       el('p', { klasse: 'etikett', text: t.kiEtikett }),
       el('p', { text: t.kiInfo })),
@@ -118,7 +118,8 @@ export function zeigeEinstellungen(wurzel, app, nav) {
 
 // Zu einem späteren Auftrag springen, zum Beispiel nach einem Gerätewechsel (E-043).
 // Vor jedem Sprung kommt eine Rückfrage. Der letzte Sprung lässt sich rückgängig machen.
-function springen(app, nav, t) {
+// offen: Die Auftragsliste ist gleich aufgeklappt und im Blick (kommt vom Hinweis im Studio).
+function springen(app, nav, t, offen = false) {
   const { auftraege, regeln } = app.inhalte;
   const status = sprungStatus(app.stand, auftraege);
   const hatZiele = status.some((s) => s.status === 'ziel');
@@ -173,11 +174,20 @@ function springen(app, nav, t) {
   }), 'knopf-zweit') : null;
   if (zurueck) zurueckOrt.append(zurueck);
 
-  return el('section', { klasse: 'karte' },
+  const auswahl = hatZiele
+    ? el('details', { klasse: 'eintrag sprung-auf', open: offen }, el('summary', { text: t.sprungWaehlen }), liste)
+    : el('p', { klasse: 'klein', text: t.sprungNichts });
+  const karte = el('section', { klasse: 'karte', id: 'springen' },
     el('p', { klasse: 'etikett', text: t.sprungEtikett }),
     el('p', { text: t.sprungInfo }),
-    hatZiele
-      ? el('details', { klasse: 'eintrag sprung-auf' }, el('summary', { text: t.sprungWaehlen }), liste)
-      : el('p', { klasse: 'klein', text: t.sprungNichts }),
+    auswahl,
     zurueck ? zurueckOrt : null);
+  if (offen) {
+    // Erst nach dem Einfügen in die Seite lässt sich dorthin scrollen.
+    requestAnimationFrame(() => {
+      karte.scrollIntoView({ block: 'start' });
+      (auswahl.querySelector('summary') ?? auswahl).focus?.({ preventScroll: true });
+    });
+  }
+  return karte;
 }

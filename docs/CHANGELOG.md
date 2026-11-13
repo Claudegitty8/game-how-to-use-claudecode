@@ -2,6 +2,11 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.14.0, 13. November 2026: Springen leichter finden
+
+**Neu**
+- Solange noch kein Auftrag erledigt oder angefangen ist, steht im Studio unter dem ersten Auftrag der Link «Schon weiter gewesen? Zu deinem Auftrag springen». Er öffnet die Einstellungen direkt bei der aufgeklappten Auftragsliste (E-043).
+
 ## 0.13.0, 13. November 2026: Springen und sichere Spielstände
 
 **Neu**
