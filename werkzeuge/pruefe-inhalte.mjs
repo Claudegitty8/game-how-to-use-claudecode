@@ -97,6 +97,8 @@ export async function pruefeInhalte(ordner = STANDARD_ORDNER, sprachen = ['de'])
         if (!(Number.isInteger(ding.preis) && ding.preis > 0)) fehler.push(`einrichtung.json: «${ding.id}» braucht einen Preis`);
         if (!istText(texte.app?.einrichtung?.[ding.id])) fehler.push(`${sprache}/texte.json: Name für «${ding.id}» fehlt`);
       }
+      // «Über dieses Spiel»: Texte vorhanden, kurz, Adressen gültig (E-045).
+      pruefeUeber(texte.app ?? {}, `${sprache}/texte.json`, fehler);
       // Freiwillige Fragen: genau eine richtige Antwort pro Frage.
       const umfrage = await lies(ordner, `${sprache}/umfrage.json`, fehler);
       for (const frage of umfrage?.fragen ?? []) {
@@ -129,6 +131,21 @@ export async function pruefeInhalte(ordner = STANDARD_ORDNER, sprachen = ['de'])
   }
 
   return fehler;
+}
+
+// Teil «Über dieses Spiel» in den Einstellungen. Die Kontakt-Adresse darf leer sein, dann fehlt der Kontakt im Spiel.
+export function pruefeUeber(app, name, fehler) {
+  const pflicht = ['ueberEtikett', 'ueberDatenEtikett', 'ueberDaten', 'ueberGithubLink',
+    'ueberInoffiziellEtikett', 'ueberInoffiziell', 'ueberKontaktEtikett', 'ueberKontakt'];
+  for (const feld of pflicht) {
+    if (!istText(app[feld])) fehler.push(`${name}: ${feld} fehlt`);
+    else if (zuLang(app[feld])) fehler.push(`${name}: ${feld} hat mehr als ${MAX_WOERTER} Wörter`);
+  }
+  if (!/^https:\/\/\S+$/.test(app.ueberGithubAdresse ?? '')) fehler.push(`${name}: ueberGithubAdresse braucht eine https-Adresse`);
+  const adresse = app.ueberKontaktAdresse ?? '';
+  if (typeof adresse !== 'string' || (adresse.trim() !== '' && !/^[^\s@<>"]+@[^\s@<>"]+\.[A-Za-z]{2,}$/.test(adresse.trim()))) {
+    fehler.push(`${name}: ueberKontaktAdresse ist keine gültige E-Mail-Adresse (oder leer lassen)`);
+  }
 }
 
 export function pruefeAuftrag(auftrag, name, { regeln, konzepte, texte, lexikon }, fehler) {

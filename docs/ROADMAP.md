@@ -16,7 +16,7 @@ Stand: 13. November 2026. Die Reihenfolge ist verbindlich, Termine gibt es bewus
 
 ## Stand
 
-Version 0.12: Das Spiel ist vollständig gebaut (12 Aufträge, 24 Kernkonzepte, Abschlussauftrag, Schnelltest, Studio-Einrichtung, freiwillige Fragen, Offline-Betrieb). Seit Version 0.13 kann man zu einem Auftrag springen, und Spielstände bleiben bei Updates erhalten. Version 0.14 macht das Springen vom Studio aus auffindbar. Seit 13. November 2026 ist das Spiel öffentlich spielbar: https://claudegitty8.github.io/game-how-to-use-claudecode/. **Alles Weitere braucht den Besitzer:** Testrunde (6.1), Echt-Modus und Rechtliches.
+Version 0.12: Das Spiel ist vollständig gebaut (12 Aufträge, 24 Kernkonzepte, Abschlussauftrag, Schnelltest, Studio-Einrichtung, freiwillige Fragen, Offline-Betrieb). Seit Version 0.13 kann man zu einem Auftrag springen, und Spielstände bleiben bei Updates erhalten. Version 0.14 macht das Springen vom Studio aus auffindbar. Version 0.15 bringt «Über dieses Spiel» mit Datenschutz, Hinweis «inoffiziell» und Platz für eine Kontakt-Adresse. Seit 13. November 2026 ist das Spiel öffentlich spielbar: https://claudegitty8.github.io/game-how-to-use-claudecode/. **Alles Weitere braucht den Besitzer:** Kontakt-Adresse (6.10), Testrunde (6.1), Echt-Modus und Spenden (6.12).
 
 ## Offen und jederzeit nachholbar: Testrunde (Schritt 6.1)
 
@@ -35,11 +35,12 @@ Jetzt, wo das ganze Spiel steht, spielen mindestens zwei Jugendliche (12 bis 14)
 | 6.7 | **Erledigt:** installierbare Web-App, die ohne Internet läuft. Seit 13. November 2026 öffentlich auf GitHub Pages: https://claudegitty8.github.io/game-how-to-use-claudecode/ (E-041). Neue Fassungen stellt der Besitzer von Hand online, Anleitung in `VEROEFFENTLICHEN.md`. |
 | 6.8 | Zugänglichkeit prüfen (Schriftgrössen, Kontraste, Bedienung mit Hilfstechnik). **Teilweise erledigt:** Kontraste gerechnet, Fokus und Beschriftungen geprüft. Noch offen: Prüfung mit Vorlesehilfe an echten Geräten. |
 | 6.9 | Echt-Modus für Erwachsene. Entscheid zum API-Schlüssel. |
-| 6.10 | Rechtliches: Name «Claude», Datenschutz, Impressum. Das Spiel ist schon im Freundeskreis online. Vor breiterem Teilen klären. |
+| 6.10 | Rechtliches: Name «Claude», Datenschutz, Impressum. **Teilweise erledigt (Version 0.15, E-045):** «Über dieses Spiel» mit Datenschutz und Hinweis «inoffiziell». Noch offen: Der Besitzer legt eine eigene E-Mail-Adresse fürs Spiel an. Sie kommt in `de/texte.json` unter `ueberKontaktAdresse`, danach neu veröffentlichen. |
 | 6.11 | Später: Desktop-Programm, danach iOS. |
+| 6.12 | Spenden (E-046). Vorher: vollständiges Impressum mit Name, Postadresse und E-Mail; prüfen, ob GitHub Pages Spenden-Links erlaubt; Hinweis ohne Druck (Leitlinie C3). |
 
 ## Offene Entscheide
 
 - API-Schlüssel: Weg A oder B (vor 6.9, Vorschlag in `ARCHITEKTUR.md`).
-- Verwendung des Namens «Claude» (vor breiterem Teilen).
+- Name «Claude»: Vorerst Hinweis «inoffiziell» (E-045). Ob die Adresse mit «claudecode» bleibt oder Anthropic gefragt wird, ist offen.
 - Ob 24 Kernkonzepte zu viel sind (nach 6.1).

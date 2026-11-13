@@ -264,6 +264,12 @@
       "aussage": "Trotz Training und Schutzmassnahmen ist das Risiko von Prompt Injection nicht null.",
       "quelle": "https://support.claude.com/en/articles/12902428-use-claude-in-chrome-safely",
       "geprueft": "2026-11-11"
+    },
+    {
+      "id": "marken-anthropic",
+      "aussage": "Anthropic zählt seine Namen und alles, womit es seine Produkte kennzeichnet, zu seinen Marken. Die Nutzung darf keine Partnerschaft oder Unterstützung durch Anthropic andeuten.",
+      "quelle": "https://www.anthropic.com/legal/trademark-guidelines",
+      "geprueft": "2026-11-13"
     }
   ]
 }

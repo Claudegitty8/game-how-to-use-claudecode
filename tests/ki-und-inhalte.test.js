@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { erstelleKi } from '../spiel/code/ki/schnittstelle.js';
 import { erstelleSpeicher } from '../spiel/code/speicher/speicher.js';
 import { neuerStand } from '../spiel/code/logik/ablauf.js';
-import { pruefeInhalte, pruefeAufgabe } from '../werkzeuge/pruefe-inhalte.mjs';
+import { pruefeInhalte, pruefeAufgabe, pruefeUeber } from '../werkzeuge/pruefe-inhalte.mjs';
 
 const auftrag = JSON.parse(await readFile(new URL('../spiel/inhalte/de/auftraege/baeckerei.json', import.meta.url), 'utf8'));
 const { aufgaben } = auftrag;
@@ -86,6 +86,22 @@ test('Die Inhaltsprüfung findet typische Fehler in einer Aufgabe', () => {
   }, 'probe', fehler);
   // Zu wenige Varianten, kein Hinweis, Lösung besteht nicht.
   assert.equal(fehler.length, 3);
+});
+
+test('«Über dieses Spiel»: Kontakt darf leer sein, eine falsche E-Mail-Adresse fällt auf', async () => {
+  const texte = JSON.parse(await readFile(new URL('../spiel/inhalte/de/texte.json', import.meta.url), 'utf8'));
+  const pruefe = (aenderung) => {
+    const fehler = [];
+    pruefeUeber({ ...texte.app, ...aenderung }, 'probe', fehler);
+    return fehler;
+  };
+  assert.deepEqual(pruefe({ ueberKontaktAdresse: '' }), []);
+  assert.deepEqual(pruefe({ ueberKontaktAdresse: 'spiel@beispiel.ch' }), []);
+  assert.equal(pruefe({ ueberKontaktAdresse: 'keine adresse' }).length, 1);
+  assert.equal(pruefe({ ueberKontaktAdresse: '<b>@x.ch' }).length, 1);
+  assert.equal(pruefe({ ueberGithubAdresse: 'http://unsicher.example' }).length, 1);
+  assert.equal(pruefe({ ueberInoffiziell: '' }).length, 1);
+  assert.equal(pruefe({ ueberDaten: 'Wort '.repeat(41) }).length, 1);
 });
 
 test('Vorhersagen: Kiwi tut immer dasselbe, der Hinweis erklärt die gewählte Antwort', async () => {

@@ -205,6 +205,11 @@ main:focus { outline: none; }
 .knopf-warn { border-color: var(--warn); color: var(--warn); }
 
 .knopf-reihe { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+/* Links (z. B. in «Über dieses Spiel»): gut lesbar, unterstrichen, nicht nur über Farbe erkennbar. */
+a { color: var(--akzent); overflow-wrap: anywhere; }
+/* Eigene Zeile mit genug Höhe für den Daumen (mindestens 44 Pixel). */
+.link-zeile { display: inline-flex; align-items: center; min-height: 44px; justify-self: start; }
 .knopf-reihe > * { flex: 1 1 9rem; }
 .aktionen { display: grid; gap: 0.6rem; }
 .aktionen:empty { display: none; }

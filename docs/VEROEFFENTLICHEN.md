@@ -9,7 +9,7 @@ Das Einrichten ist erledigt. Für jede neue Fassung reicht der Abschnitt «Verö
 ## Bevor du veröffentlichst
 
 1. **Testrunde** mit echten Spielern machen (`TESTBOGEN.md`).
-2. **Rechtliches** klären: Darf der Name «Claude» im Spiel vorkommen? Braucht es Impressum und Datenschutzhinweis? (Roadmap 6.10)
+2. **Rechtliches:** Datenschutz und Hinweis «inoffiziell» stehen seit Version 0.15 im Spiel (E-045). Die Kontakt-Adresse fehlt noch (Roadmap 6.10). Vor Spenden braucht es ein vollständiges Impressum (E-046).
 3. Wissen, was öffentlich wird: Mit einem Gratis-Konto muss das **ganze Repository öffentlich** sein, also auch alle Dokumente und der Verlauf. Geheimnisse sind keine darin. Wer das nicht will, braucht ein bezahltes GitHub-Abo. Dann bleibt das Repository privat und nur das Spiel ist öffentlich.
 
 ## Einrichten (einmalig, etwa fünf Minuten)

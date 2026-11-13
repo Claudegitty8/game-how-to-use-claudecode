@@ -2,6 +2,19 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.15.0, 13. November 2026: Über dieses Spiel
+
+**Neu**
+- In den Einstellungen steht ganz unten «Über dieses Spiel» (E-045):
+  - **Deine Daten:** Der Spielstand bleibt auf dem Gerät, das Spiel schickt nichts weg, keine Cookies. GitHub speichert zur Sicherheit die IP-Adresse. Mit Link zur Datenschutzerklärung von GitHub.
+  - **Inoffiziell:** kein Angebot von Anthropic, nicht mit Anthropic verbunden, die Namen Claude und Claude Code gehören Anthropic.
+  - **Kontakt:** erscheint, sobald in `de/texte.json` eine E-Mail-Adresse eingetragen ist.
+- Links im Spiel sind unterstrichen, gut lesbar und hoch genug für den Daumen.
+- Die Inhaltsprüfung kontrolliert die neuen Texte und die E-Mail-Adresse. Insgesamt 64 Tests.
+
+**Entschieden**
+- Spenden sind geplant. Vorher kommt ein vollständiges Impressum (E-046, Roadmap 6.12).
+
 ## 0.14.0, 13. November 2026: Springen leichter finden
 
 **Neu**

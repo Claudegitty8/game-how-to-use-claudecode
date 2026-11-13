@@ -113,7 +113,30 @@ export function zeigeEinstellungen(wurzel, app, nav, daten) {
     el('section', { klasse: 'karte' },
       el('p', { klasse: 'etikett', text: t.kiEtikett }),
       el('p', { text: t.kiInfo })),
+    ueberDasSpiel(t),
   );
+}
+
+// Datenschutz, Hinweis «inoffiziell» und Kontakt (E-045).
+// Der Kontakt erscheint erst, wenn in texte.json eine E-Mail-Adresse eingetragen ist.
+function ueberDasSpiel(t) {
+  const absatz = (etikett, ...inhalt) => el('p', {}, el('strong', { text: `${etikett}: ` }), ...inhalt);
+  const adresse = t.ueberKontaktAdresse?.trim();
+  return el('section', { klasse: 'karte' },
+    el('p', { klasse: 'etikett', text: t.ueberEtikett }),
+    absatz(t.ueberDatenEtikett, el('span', { text: t.ueberDaten })),
+    el('a', {
+      klasse: 'link-zeile',
+      href: t.ueberGithubAdresse,
+      target: '_blank',
+      rel: 'noopener noreferrer',
+      text: t.ueberGithubLink,
+    }),
+    absatz(t.ueberInoffiziellEtikett, el('span', { text: t.ueberInoffiziell })),
+    adresse
+      ? absatz(t.ueberKontaktEtikett, el('span', { text: `${t.ueberKontakt} ` }),
+        el('a', { href: `mailto:${adresse}`, text: adresse }))
+      : null);
 }
 
 // Zu einem späteren Auftrag springen, zum Beispiel nach einem Gerätewechsel (E-043).

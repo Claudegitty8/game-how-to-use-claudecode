@@ -125,7 +125,7 @@ Nach der Selbstbestimmungstheorie machen Spiele dann Freude, wenn sie drei Bedü
 | 9 | **Abgrenzung zu while True: learn()** fehlte. | Leitlinie B1: Mechanik bildet das echte Verhalten ab. |
 | 10 | **Erfolgsmessung fehlte.** | Vorher-Nachher-Fragen und Testrunden (`GAME_DESIGN.md`, Abschnitt 14). |
 | 11 | **Barrierefreiheit** war nicht erwähnt. | Leitlinie C6. |
-| 12 | **Name «Claude» im Spiel:** Darf ein fremdes Spiel den Markennamen verwenden? | Nicht recherchiert. Vor einer Veröffentlichung klären. Für den Eigengebrauch unkritisch. |
+| 12 | **Name «Claude» im Spiel:** Darf ein fremdes Spiel den Markennamen verwenden? | Am 13. November 2026 nachgeschlagen: Anthropics Markenregeln erlauben die Marken nur wie ausdrücklich erlaubt und verbieten den Eindruck einer Partnerschaft. Zu rein beschreibendem Nennen sagen sie nichts. Umgesetzt mit Hinweis «inoffiziell» (E-045). Rechtlich nicht abschliessend geprüft. |
 
 Bestätigt wurde der Verzicht auf manipulative Mechaniken: Eine Studie fand in vier von fünf Apps für kleine Kinder manipulative Gestaltung, darunter künstlichen Zeitdruck und Lockmittel für längeres Spielen. [49]
 
