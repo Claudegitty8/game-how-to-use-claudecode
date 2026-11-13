@@ -2,6 +2,18 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.16.0, 13. November 2026: Niemand bleibt mehr hängen
+
+**Behoben**
+- Wer im Schritt «Frei» die Lösung zeigen liess oder zuerst danebenlag, bekam dieselben Situationen ohne Ende. Das betraf alle 24 Lektionen (E-047).
+
+**Neu**
+- Oben im Schritt «Frei»: «Jetzt allein. 3 Situationen beim ersten Versuch richtig, dann geht es weiter.»
+- Bei den Hilfe-Knöpfen steht, dass «Zeig mir, wo» und «Lösung zeigen» nicht zählen. Der Tipp ist erlaubt.
+- Kommt eine Situation wieder: «Die kennst du schon. Löse sie jetzt allein, dann zählt sie.»
+- Nach zwei Durchgängen ohne Fortschritt: Knopf «Weitergehen und später üben». Die Lektion kommt danach als Wiederholung, bis sie sitzt.
+- Insgesamt 75 Tests, darunter einer, der jedes Spiel mit einem Spieler durchspielt, der nie ohne Hilfe löst.
+
 ## 0.15.0, 13. November 2026: Über dieses Spiel
 
 **Neu**

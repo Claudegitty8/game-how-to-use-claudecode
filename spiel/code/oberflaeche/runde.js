@@ -2,7 +2,9 @@
 // Mischrunde oder Wiederholung. Die Regeln dazu stehen in logik/ablauf.js.
 import { el, fuelle, knopf, kiwiFigur, punkte, leiste } from './bausteine.js';
 import { baueUebung, istFrage } from './werkbank.js';
-import { ansicht, weiter, verbucheFrei, verbucheWiederholungsErgebnis, verbraucheTokens, SCHRITTE } from '../logik/ablauf.js';
+import {
+  ansicht, weiter, verbucheFrei, verbucheWiederholungsErgebnis, verbraucheTokens, SCHRITTE, auswegOffen, ueberspringeRunde,
+} from '../logik/ablauf.js';
 import { hilfeTeil } from '../logik/bewertung.js';
 import { erfolge, neuerFortschritt } from '../logik/meisterschaft.js';
 import { daumenKarte } from './extras.js';
@@ -96,7 +98,19 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   } else {
     kopf.push(schrittReihe(t, art));
   }
-  kopf.push(el('p', { klasse: 'klein', text: (istWahl && t.schrittHilfeWahl[art]) || t.schrittHilfe[art] }));
+  kopf.push(el('p', { klasse: 'klein', text: fuelle((istWahl && t.schrittHilfeWahl[art]) || t.schrittHilfe[art], { anzahl: noetig }) }));
+
+  // Hinweis und Ausweg, wenn freie Situationen immer wieder nicht zählen (E-047).
+  if (art === 'frei' && a.schonGesehen) kopf.push(el('p', { klasse: 'hinweis schon-gesehen', text: t.schonGesehen }));
+  if (art === 'frei' && auswegOffen(app.stand, auftrag, regeln)) {
+    kopf.push(el('section', { klasse: 'karte ausweg' },
+      el('p', { text: fuelle(t.auswegText, { konzept: texte.konzepte[a.konzept].name }) }),
+      knopf(t.auswegKnopf, () => {
+        const { stand, ereignis } = ueberspringeRunde(app.stand, auftrag, regeln, app.inhalte.auftraege);
+        app.setze(stand);
+        nav.zu('zwischen', { ereignis, konzept: a.konzept, titel: a.runde?.titel, auftrag });
+      }, 'knopf-zweit')));
+  }
 
   // --- Ergebnis ---
   const kiwi = kiwiFigur(t.kiwiName);
@@ -220,6 +234,8 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
     werkbank.knoten,
     hilfeText,
     el('div', { klasse: 'knopf-reihe' }, los, hilfeKnopf),
+    // Was bei den Hilfen zählt, steht direkt bei den Knöpfen (E-047).
+    art === 'frei' ? el('p', { klasse: 'klein', text: fuelle(t.hilfeRegel, { zeig: t.hilfe[1], loesung: t.hilfe[2] }) }) : null,
     ergebnis,
     aktionen,
   );
@@ -247,6 +263,19 @@ export function zeigeZwischen(wurzel, app, nav, { ereignis, konzept, titel, auft
         el('p', { klasse: 'etikett', text: t.ueberraschungEtikett }),
         el('p', { text: auftrag.ueberraschung })),
       daumenKarte(app, auftrag),
+      zumStudio,
+    );
+    return;
+  }
+
+  // Über den Ausweg weitergegangen: Das Konzept kommt später als Wiederholung (E-047).
+  if (ereignis === 'rundeVerschoben') {
+    wurzel.append(
+      el('section', { klasse: 'karte feier' },
+        kiwiFigur(t.kiwiName, true),
+        el('h2', { text: t.verschobenTitel }),
+        el('p', { text: fuelle(t.verschobenText, { konzept: texte.konzepte[konzept].name }) }),
+        el('p', { klasse: 'klein', text: t.pause })),
       zumStudio,
     );
     return;

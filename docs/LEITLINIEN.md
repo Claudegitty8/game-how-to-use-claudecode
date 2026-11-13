@@ -4,7 +4,7 @@ Stand: 11. November 2026 (Phase 2). Diese Grundprinzipien gelten für jede Entsc
 
 ## A. Lernen
 
-**A1. Meisterschaft vor Fortschritt.** Ein Kernkonzept gilt erst als gelernt, wenn es dreimal in unterschiedlichen Situationen ohne Hilfe richtig angewendet wurde. Erst dann kommt das nächste. Die Zahl 3 ist ein Datenwert und wird im Test überprüft. Ausnahme: Wer bewusst zu einem späteren Auftrag springt, überspringt das Üben davor. Die übersprungenen Konzepte kommen als Wiederholung wieder (E-043).
+**A1. Meisterschaft vor Fortschritt.** Ein Kernkonzept gilt erst als gelernt, wenn es dreimal in unterschiedlichen Situationen ohne Hilfe richtig angewendet wurde. Erst dann kommt das nächste. Die Zahl 3 ist ein Datenwert und wird im Test überprüft. Ausnahme: Wer bewusst zu einem späteren Auftrag springt, überspringt das Üben davor. Die übersprungenen Konzepte kommen als Wiederholung wieder (E-043). Zweite Ausnahme: Wer nach zwei Durchgängen einer Runde immer noch nichts ohne Hilfe geschafft hat, darf weitergehen. Das Konzept kommt dann als Wiederholung, bis es dreimal sitzt (E-047).
 
 **A2. Ein neues Konzept pro Runde.** Nie zwei neue Dinge gleichzeitig.
 

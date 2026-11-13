@@ -75,7 +75,7 @@ Kiwis Verhalten im simulierten Modus folgt festen Regeln, die als Daten abgelegt
 
 - **Sofort:** Nach jedem Test erscheint das Ergebnis und ein Satz «Das ist passiert, weil …».
 - **Drei Hilfestufen auf Wunsch:** allgemeiner Tipp, Hinweis auf ein bestimmtes Teil, Lösung zeigen. Der Tipp ist frei. Ab der zweiten Stufe zählt die Situation nicht für die Meisterschaft und kommt später nochmals (E-017).
-- **Erster Versuch zählt:** Für die Meisterschaft zählt eine freie Situation nur, wenn sie beim ersten Test richtig ist. Wer danebenliegt, darf weiterprobieren und den Quatsch geniessen, die Situation kommt später nochmals (E-017).
+- **Erster Versuch zählt:** Für die Meisterschaft zählt eine freie Situation nur, wenn sie beim ersten Test richtig ist. Wer danebenliegt, darf weiterprobieren und den Quatsch geniessen, die Situation kommt später nochmals (E-017). Kommt sie wieder, sagt das Spiel «Die kennst du schon». Nach zwei Durchgängen ohne Fortschritt darf man weitergehen, das Konzept kommt dann als Wiederholung, bis es sitzt (E-047).
 - **Anpassung:** Wer zweimal hintereinander scheitert, bekommt automatisch die erste Hilfestufe angeboten. Wer alles auf Anhieb löst, bekommt in der Lücken-Stufe weniger Vorgaben.
 - **Schnelltest:** Zu Beginn jedes Kapitels kann man «Das kann ich schon» wählen. Wer drei freie Aufgaben pro Konzept besteht, überspringt die Einführung. Das Lexikon wird trotzdem gefüllt.
 

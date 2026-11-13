@@ -25,10 +25,11 @@ export function neuerStand() {
 
 // Sucht ein gemeistertes Konzept, dessen Wiederholung fällig ist. Gesucht wird in allen Aufträgen,
 // damit Gelerntes aus früheren Aufträgen wiederkommt.
+// Auch Konzepte, deren Runde über den Ausweg verlassen wurde (nachholen), kommen so wieder (E-047).
 function faelligeWiederholung(stand, alle, regeln) {
   for (const auftrag of alle) for (const runde of auftrag.runden) {
     const fortschritt = runde.konzept && stand.fortschritt[runde.konzept];
-    if (!fortschritt || !istGemeistert(fortschritt, regeln)) continue;
+    if (!fortschritt || (!istGemeistert(fortschritt, regeln) && !fortschritt.nachholen)) continue;
     if (fortschritt.faelligBei == null || fortschritt.faelligBei > stand.rundenZaehler) continue;
     // Am liebsten eine Situation, die der Spieler noch nie gelöst hat.
     const aufgabe = runde.frei.find((id) => !fortschritt.geloesteSituationen.includes(id)) ?? runde.frei[0];
@@ -84,7 +85,14 @@ export function ansicht(stand, auftrag) {
   }
   if (lauf.schritt === 'aha') return { ...basis, art: 'aha' };
   if (lauf.schritt === 'frei') {
-    return { ...basis, art: runde.art === 'misch' ? 'misch' : 'frei', aufgabeId: lauf.reihe[0] };
+    const nochmal = Array.isArray(lauf.nochmal) ? lauf.nochmal : [];
+    return {
+      ...basis,
+      art: runde.art === 'misch' ? 'misch' : 'frei',
+      aufgabeId: lauf.reihe[0],
+      // Diese Situation kam schon einmal und hat nicht gezählt.
+      schonGesehen: runde.art !== 'misch' && nochmal.includes(lauf.reihe[0]),
+    };
   }
   const schritt = runde[lauf.schritt];
   return {
@@ -156,20 +164,63 @@ export function verbucheFrei(stand, auftrag, regeln, { ok, zaehlt }, alle) {
 
   const vorher = stand.fortschritt[runde.konzept] ?? neuerFortschritt();
   const nachher = verbucheVersuch(vorher, { situation: aktuell, richtig: ok && zaehlt });
+  const gezaehlt = nachher !== vorher;
   // Nicht gezählte Situationen wandern ans Ende der Reihe und kommen später nochmals.
-  const reihe = nachher === vorher ? [...rest, aktuell] : rest;
+  const reihe = gezaehlt ? rest : [...rest, aktuell];
+  // Für Hinweis und Ausweg (E-047): welche Situationen schon einmal nicht gezählt haben,
+  // und wie viele Situationen seit dem letzten Erfolg nicht gezählt haben.
+  const nochmalVorher = Array.isArray(lauf.nochmal) ? lauf.nochmal : [];
+  const nochmal = gezaehlt
+    ? nochmalVorher.filter((id) => id !== aktuell)
+    : [...new Set([...nochmalVorher, aktuell])];
+  const ohneFortschritt = gezaehlt ? 0 : (Number.isInteger(lauf.ohneFortschritt) ? lauf.ohneFortschritt : 0) + 1;
   const neu = {
     ...stand,
     fortschritt: { ...stand.fortschritt, [runde.konzept]: nachher },
-    lauf: { ...lauf, reihe },
+    lauf: { ...lauf, reihe, nochmal, ohneFortschritt },
   };
   return istGemeistert(nachher, regeln) ? beendeRunde(neu, auftrag, regeln, alle) : { stand: neu, ereignis: 'weiter' };
 }
 
+// Ausweg (E-047): Wer in einer Konzept-Runde so viele Situationen nacheinander nicht zählen konnte,
+// wie die Runde mal «durchgaengeBisAusweg» hat, darf weitergehen. Fehlt der Wert, gibt es keinen Ausweg.
+export function auswegOffen(stand, auftrag, regeln) {
+  const lauf = stand.lauf;
+  if (!lauf || lauf.wiederholung || lauf.schritt !== 'frei') return false;
+  const runde = auftrag.runden[lauf.runde];
+  if (!runde?.konzept || !Number.isInteger(regeln.durchgaengeBisAusweg)) return false;
+  const ohneFortschritt = Number.isInteger(lauf.ohneFortschritt) ? lauf.ohneFortschritt : 0;
+  return ohneFortschritt >= regeln.durchgaengeBisAusweg * runde.frei.length;
+}
+
+// Verlässt die Runde über den Ausweg. Das Konzept ist nicht gemeistert, sondern wird nachgeholt:
+// Es kommt als Wiederholung wieder, und jede richtige Wiederholung zählt für die Meisterschaft.
+export function ueberspringeRunde(stand, auftrag, regeln, alle) {
+  if (!auswegOffen(stand, auftrag, regeln)) return { stand, ereignis: 'weiter' };
+  const { konzept } = auftrag.runden[stand.lauf.runde];
+  const eintrag = { ...(stand.fortschritt[konzept] ?? neuerFortschritt()), nachholen: true, wiederholungsStufe: 0 };
+  const ergebnis = beendeRunde({ ...stand, fortschritt: { ...stand.fortschritt, [konzept]: eintrag } }, auftrag, regeln, alle);
+  return { ...ergebnis, ereignis: ergebnis.ereignis === 'rundeFertig' ? 'rundeVerschoben' : ergebnis.ereignis };
+}
+
 // Verbucht die Wiederholung eines früheren Konzepts. Gelungen: Abstand wächst. Misslungen: kommt früher wieder.
+// Ein Konzept, das nachgeholt wird (E-047): Jede richtige Wiederholung zählt als gelöste Situation.
+// Ist es damit gemeistert, gilt ab dann der normale Wiederholungsplan. Sonst kommt es nach der nächsten Runde wieder.
 export function verbucheWiederholungsErgebnis(stand, regeln, richtig) {
-  const { konzept } = stand.lauf.wiederholung;
-  const eintrag = verbucheWiederholung(stand.fortschritt[konzept], richtig);
+  const { konzept, aufgabe } = stand.lauf.wiederholung;
+  const alt = stand.fortschritt[konzept] ?? neuerFortschritt();
+  if (alt.nachholen) {
+    const gezaehlt = verbucheVersuch(alt, { situation: aufgabe, richtig });
+    const { nachholen, ...ohne } = gezaehlt;
+    const eintrag = istGemeistert(gezaehlt, regeln) ? { ...ohne, wiederholungsStufe: 0 } : gezaehlt;
+    const abstand = eintrag.nachholen ? regeln.wiederholungsAbstaende[0] : naechsterAbstand(eintrag, regeln);
+    return {
+      ...stand,
+      fortschritt: { ...stand.fortschritt, [konzept]: { ...eintrag, faelligBei: stand.rundenZaehler + (abstand ?? 1) } },
+      lauf: { ...stand.lauf, wiederholung: null },
+    };
+  }
+  const eintrag = verbucheWiederholung(alt, richtig);
   const abstand = naechsterAbstand(eintrag, regeln);
   return {
     ...stand,

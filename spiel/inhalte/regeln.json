@@ -1,5 +1,6 @@
 {
   "erfolgeFuerMeisterschaft": 3,
   "wiederholungsAbstaende": [1, 3, 7],
-  "hilfestufen": 3
+  "hilfestufen": 3,
+  "durchgaengeBisAusweg": 2
 }

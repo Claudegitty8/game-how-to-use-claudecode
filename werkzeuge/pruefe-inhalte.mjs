@@ -45,6 +45,10 @@ export async function pruefeInhalte(ordner = STANDARD_ORDNER, sprachen = ['de'])
     if (abstaende.length === 0 || abstaende.some((a, i) => i > 0 && a <= abstaende[i - 1])) {
       fehler.push('regeln.json: wiederholungsAbstaende müssen wachsen');
     }
+    // Ausweg nach so vielen Durchgängen ohne Fortschritt (E-047).
+    if (!Number.isInteger(regeln.durchgaengeBisAusweg) || regeln.durchgaengeBisAusweg < 1) {
+      fehler.push('regeln.json: durchgaengeBisAusweg muss eine ganze Zahl ab 1 sein');
+    }
   }
 
   if (lehrplan) {
@@ -99,6 +103,12 @@ export async function pruefeInhalte(ordner = STANDARD_ORDNER, sprachen = ['de'])
       }
       // «Über dieses Spiel»: Texte vorhanden, kurz, Adressen gültig (E-045).
       pruefeUeber(texte.app ?? {}, `${sprache}/texte.json`, fehler);
+      // Hinweise und Ausweg bei freien Situationen (E-047).
+      for (const feld of ['hilfeRegel', 'schonGesehen', 'auswegText', 'auswegKnopf', 'verschobenTitel', 'verschobenText']) {
+        const text = texte.app?.[feld];
+        if (!istText(text)) fehler.push(`${sprache}/texte.json: ${feld} fehlt`);
+        else if (zuLang(text)) fehler.push(`${sprache}/texte.json: ${feld} hat mehr als ${MAX_WOERTER} Wörter`);
+      }
       // Freiwillige Fragen: genau eine richtige Antwort pro Frage.
       const umfrage = await lies(ordner, `${sprache}/umfrage.json`, fehler);
       for (const frage of umfrage?.fragen ?? []) {

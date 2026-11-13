@@ -93,7 +93,13 @@ function pruefeFortschritt(wert) {
     if (!geloest) continue;
     const stufe = Number.isInteger(eintrag.wiederholungsStufe) && eintrag.wiederholungsStufe >= 0 ? eintrag.wiederholungsStufe : 0;
     const faellig = Number.isFinite(eintrag.faelligBei) ? eintrag.faelligBei : null;
-    sauber[konzept] = { geloesteSituationen: geloest, wiederholungsStufe: stufe, ...(faellig == null ? {} : { faelligBei: faellig }) };
+    sauber[konzept] = {
+      geloesteSituationen: geloest,
+      wiederholungsStufe: stufe,
+      ...(faellig == null ? {} : { faelligBei: faellig }),
+      // Über den Ausweg verlassen, wird als Wiederholung nachgeholt (E-047).
+      ...(eintrag.nachholen === true ? { nachholen: true } : {}),
+    };
   }
   return sauber;
 }
@@ -169,7 +175,9 @@ export function springeZuAuftrag(stand, zielId, auftraege, regeln) {
           if (istGemeistert(eintrag, regeln)) break;
           eintrag = verbucheVersuch(eintrag, { situation, richtig: true });
         }
-        eintrag = { ...eintrag, faelligBei: stand.rundenZaehler + naechsterAbstand(eintrag, regeln) };
+        // Wer springt, holt nichts mehr nach: Das Konzept gilt als gemeistert (E-043, E-047).
+        const { nachholen, ...ohne } = eintrag;
+        eintrag = { ...ohne, faelligBei: stand.rundenZaehler + naechsterAbstand(ohne, regeln) };
       }
       fortschritt = { ...fortschritt, [runde.konzept]: eintrag };
       if (!lexikon.includes(runde.konzept)) lexikon = [...lexikon, runde.konzept];
