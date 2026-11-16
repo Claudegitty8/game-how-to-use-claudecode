@@ -19,8 +19,40 @@ export function neuerStand() {
     einrichtung: [],       // gekaufte Zierde fürs Studio
     umfrage: {},           // freiwillige Fragen: vorher und nachher, je Anzahl richtige
     daumen: {},            // pro Auftrag: hoch oder runter
+    schnelltest: {},       // pro Auftrag: wie oft gestartet und welche Aufgaben zuletzt (E-048)
     einstellungen: { schrift: 'normal' },
   };
+}
+
+// Wählt die Aufgabe für eine Wiederholung (E-048), damit nicht immer dieselbe kommt:
+// - nie dieselbe wie beim letzten Mal, wenn es eine andere gibt,
+// - am liebsten eine, die noch nie als Wiederholung kam, und darunter eine noch nie gelöste,
+// - sonst die, die am längsten nicht mehr kam.
+// Zur Auswahl stehen die freien Situationen und die Aufgabe aus dem Schritt «Lücke».
+// Wer ein Konzept nachholt (E-047), bekommt nur freie Situationen, die noch nicht gezählt haben.
+export function waehleWiederholung(runde, fortschritt) {
+  const geloest = Array.isArray(fortschritt?.geloesteSituationen) ? fortschritt.geloesteSituationen : [];
+  const bisher = Array.isArray(fortschritt?.wiederholt) ? fortschritt.wiederholt : [];
+  const luecke = runde.luecke?.aufgabe;
+  let auswahl = fortschritt?.nachholen
+    ? runde.frei.filter((id) => !geloest.includes(id))
+    : [...runde.frei, ...(luecke && !runde.frei.includes(luecke) ? [luecke] : [])];
+  if (auswahl.length === 0) auswahl = [...runde.frei];
+  if (auswahl.length > 1) auswahl = auswahl.filter((id) => id !== bisher.at(-1));
+  // Noch nie gezeigt: zuerst, und darunter die noch nie gelösten. Schon gezeigt: die älteste zuerst.
+  const rang = (id) => {
+    const zuletzt = bisher.lastIndexOf(id);
+    return zuletzt < 0 ? [0, geloest.includes(id) ? 1 : 0] : [1, zuletzt];
+  };
+  return auswahl
+    .map((id, stelle) => ({ id, rang: [...rang(id), stelle] }))
+    .sort((a, b) => a.rang.reduce((unterschied, wert, i) => unterschied || wert - b.rang[i], 0))[0].id;
+}
+
+// Merkt sich, welche Aufgabe als Wiederholung kam. Die zuletzt gezeigte steht am Ende.
+function merkeWiederholung(eintrag, aufgabe) {
+  const bisher = Array.isArray(eintrag.wiederholt) ? eintrag.wiederholt : [];
+  return { ...eintrag, wiederholt: [...bisher.filter((id) => id !== aufgabe), aufgabe] };
 }
 
 // Sucht ein gemeistertes Konzept, dessen Wiederholung fällig ist. Gesucht wird in allen Aufträgen,
@@ -31,11 +63,18 @@ function faelligeWiederholung(stand, alle, regeln) {
     const fortschritt = runde.konzept && stand.fortschritt[runde.konzept];
     if (!fortschritt || (!istGemeistert(fortschritt, regeln) && !fortschritt.nachholen)) continue;
     if (fortschritt.faelligBei == null || fortschritt.faelligBei > stand.rundenZaehler) continue;
-    // Am liebsten eine Situation, die der Spieler noch nie gelöst hat.
-    const aufgabe = runde.frei.find((id) => !fortschritt.geloesteSituationen.includes(id)) ?? runde.frei[0];
-    return { konzept: runde.konzept, aufgabe, auftrag: auftrag.id };
+    return { konzept: runde.konzept, aufgabe: waehleWiederholung(runde, fortschritt), auftrag: auftrag.id };
   }
   return null;
+}
+
+// Situationen aus dem letzten Schnelltest dieses Auftrags kommen ans Ende der Reihe (E-048).
+// So beginnt die Runde mit einer Situation, die der Spieler noch nicht gesehen hat.
+function reiheFuer(stand, auftrag, runde) {
+  if (runde.art === 'misch') return [...runde.frei];
+  const ausTest = stand.schnelltest?.[auftrag.id]?.aufgaben;
+  const gesehen = Array.isArray(ausTest) ? ausTest.map((eintrag) => eintrag?.aufgabe) : [];
+  return [...runde.frei.filter((id) => !gesehen.includes(id)), ...runde.frei.filter((id) => gesehen.includes(id))];
 }
 
 function betrittRunde(stand, auftrag, regeln, start, alle) {
@@ -55,7 +94,7 @@ function betrittRunde(stand, auftrag, regeln, start, alle) {
       auftrag: auftrag.id,
       runde: index,
       schritt: runde.art === 'misch' ? 'frei' : 'probieren',
-      reihe: [...runde.frei],
+      reihe: reiheFuer(stand, auftrag, runde),
       wiederholung: faelligeWiederholung(stand, alle ?? [auftrag], regeln),
     },
   };
@@ -208,7 +247,8 @@ export function ueberspringeRunde(stand, auftrag, regeln, alle) {
 // Ist es damit gemeistert, gilt ab dann der normale Wiederholungsplan. Sonst kommt es nach der nächsten Runde wieder.
 export function verbucheWiederholungsErgebnis(stand, regeln, richtig) {
   const { konzept, aufgabe } = stand.lauf.wiederholung;
-  const alt = stand.fortschritt[konzept] ?? neuerFortschritt();
+  // Die gezeigte Aufgabe wird gemerkt, damit die nächste Wiederholung eine andere bringt (E-048).
+  const alt = merkeWiederholung(stand.fortschritt[konzept] ?? neuerFortschritt(), aufgabe);
   if (alt.nachholen) {
     const gezaehlt = verbucheVersuch(alt, { situation: aufgabe, richtig });
     const { nachholen, ...ohne } = gezaehlt;

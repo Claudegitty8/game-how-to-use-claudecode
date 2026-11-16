@@ -2,6 +2,19 @@
 
 Alle spürbaren Änderungen, neueste zuerst.
 
+## 0.17.0, 16. November 2026: Mehr Abwechslung
+
+**Behoben**
+- Wiederholungen brachten pro Lektion immer dieselbe Aufgabe. Jetzt kommt jedes Mal eine andere: zuerst eine neue, dann reihum, nie zweimal dieselbe hintereinander (E-048).
+- Der Schnelltest «Das kann ich schon» zeigte bei jedem Start dieselben Aufgaben. Jetzt beginnt jeder Start an einer anderen Stelle. Die Runde danach beginnt mit einer Situation, die nicht im Test war.
+- Im Studio stand nach dem ersten Auftrag das Wort «null» unter «Das kann ich schon» (seit 0.14).
+- In allen Schritten ausser «Frei» stand unter «Kiwi, los!» das Wort «null» (seit 0.16).
+- Wer eine Lektion nachholt, hört bei einer richtigen Wiederholung jetzt «Das zählt für die Meisterschaft!» statt «Du hast es noch drauf!».
+
+**Geprüft**
+- Das ganze Spiel automatisch im Browser durchgespielt, einmal richtig und einmal immer mit «Lösung zeigen»: 727 und 1147 Ansichten ohne Anzeigefehler, alle 12 Aufträge fertig.
+- Insgesamt 87 Tests.
+
 ## 0.16.0, 13. November 2026: Niemand bleibt mehr hängen
 
 **Behoben**

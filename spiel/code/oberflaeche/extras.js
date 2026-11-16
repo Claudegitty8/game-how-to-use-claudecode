@@ -3,7 +3,7 @@
 import { el, fuelle, knopf, kiwiFigur, leiste } from './bausteine.js';
 import { baueUebung, istFrage } from './werkbank.js';
 import {
-  schnelltestAufgaben, verbucheSchnelltest, guthaben, kaufe, verbucheUmfrage, verbucheDaumen,
+  starteSchnelltest, laufenderSchnelltest, verbucheSchnelltest, guthaben, kaufe, verbucheUmfrage, verbucheDaumen,
 } from '../logik/extras.js';
 
 // --- Schnelltest: «Das kann ich schon» ---
@@ -16,7 +16,6 @@ export function zeigeSchnelltest(wurzel, app, nav, daten = {}) {
     nav.zu('studio');
     return;
   }
-  const reihe = schnelltestAufgaben(auftrag, regeln);
   const ergebnisse = daten.ergebnisse ?? [];
   wurzel.append(leiste(t, nav, t.schnelltestTitel));
 
@@ -26,9 +25,14 @@ export function zeigeSchnelltest(wurzel, app, nav, daten = {}) {
       el('section', { klasse: 'karte' },
         el('h2', { text: t.schnelltestKnopf }),
         el('p', { text: t.schnelltestInfo })),
-      knopf(t.schnelltestStart, () => nav.zu('schnelltest', { laeuft: true, ergebnisse: [] }), 'los'));
+      knopf(t.schnelltestStart, () => {
+        // Jeder Start bringt andere Aufgaben als der letzte (E-048).
+        app.setze(starteSchnelltest(app.stand, auftrag, regeln));
+        nav.zu('schnelltest', { laeuft: true, ergebnisse: [] });
+      }, 'los'));
     return;
   }
+  const reihe = laufenderSchnelltest(app.stand, auftrag, regeln);
 
   // Schluss: gutschreiben und zeigen, was übersprungen wird.
   if (ergebnisse.length >= reihe.length) {

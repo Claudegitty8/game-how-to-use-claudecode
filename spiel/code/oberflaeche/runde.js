@@ -193,7 +193,9 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
       if (antwort.ok) fertig(knopf(t.weiter, () => schliesseAb({ ok: true, zaehlt: true }), 'los'));
       else status.textContent = t.nochmalMisch;
     } else if (art === 'wiederholung') {
-      status.textContent = antwort.ok ? t.wiederholungGut : t.wiederholungSchlecht;
+      // Wer ein Konzept nachholt (E-047), hatte es noch nie «drauf»: Dann zählt die Antwort für die Meisterschaft.
+      const nachholen = Boolean(app.stand.fortschritt[a.konzept]?.nachholen);
+      status.textContent = antwort.ok ? (nachholen ? t.gezaehlt : t.wiederholungGut) : t.wiederholungSchlecht;
       fertig(knopf(t.weiter, () => {
         app.setze(verbucheWiederholungsErgebnis(app.stand, regeln, antwort.ok));
         nav.zu('runde');
@@ -226,7 +228,8 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   }, 'knopf-zweit');
   hilfeKnopf.hidden = !mitHilfeKnopf;
 
-  wurzel.append(
+  // Teile, die es gerade nicht gibt (null), werden ausgelassen. Sonst stünde «null» auf der Seite.
+  wurzel.append(...[
     ...kopf,
     el('section', { klasse: 'karte auftrag' },
       el('p', { klasse: 'etikett', text: quelle.kunde }),
@@ -238,7 +241,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
     art === 'frei' ? el('p', { klasse: 'klein', text: fuelle(t.hilfeRegel, { zeig: t.hilfe[1], loesung: t.hilfe[2] }) }) : null,
     ergebnis,
     aktionen,
-  );
+  ].filter(Boolean));
 }
 
 export function gespartText(t, anzahl) {

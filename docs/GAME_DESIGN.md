@@ -77,12 +77,12 @@ Kiwis Verhalten im simulierten Modus folgt festen Regeln, die als Daten abgelegt
 - **Drei Hilfestufen auf Wunsch:** allgemeiner Tipp, Hinweis auf ein bestimmtes Teil, Lösung zeigen. Der Tipp ist frei. Ab der zweiten Stufe zählt die Situation nicht für die Meisterschaft und kommt später nochmals (E-017).
 - **Erster Versuch zählt:** Für die Meisterschaft zählt eine freie Situation nur, wenn sie beim ersten Test richtig ist. Wer danebenliegt, darf weiterprobieren und den Quatsch geniessen, die Situation kommt später nochmals (E-017). Kommt sie wieder, sagt das Spiel «Die kennst du schon». Nach zwei Durchgängen ohne Fortschritt darf man weitergehen, das Konzept kommt dann als Wiederholung, bis es sitzt (E-047).
 - **Anpassung:** Wer zweimal hintereinander scheitert, bekommt automatisch die erste Hilfestufe angeboten. Wer alles auf Anhieb löst, bekommt in der Lücken-Stufe weniger Vorgaben.
-- **Schnelltest:** Zu Beginn jedes Kapitels kann man «Das kann ich schon» wählen. Wer drei freie Aufgaben pro Konzept besteht, überspringt die Einführung. Das Lexikon wird trotzdem gefüllt.
+- **Schnelltest:** Zu Beginn jedes Kapitels kann man «Das kann ich schon» wählen. Wer drei freie Aufgaben pro Konzept besteht, überspringt die Einführung. Das Lexikon wird trotzdem gefüllt. Jeder neue Start bringt andere Aufgaben, und die Runde danach beginnt mit einer Situation, die nicht im Test war (E-048).
 
 ## 7. Meisterschaft und Wiederholung
 
 - Jedes Kernkonzept hat eine **Meisterschaftsanzeige** mit drei Punkten.
-- Nach der Meisterschaft kehrt das Konzept nach 1, 3 und 7 Runden als kleine Nebenaufgabe zurück («Übrigens, Frau Brunner hat noch eine Frage»).
+- Nach der Meisterschaft kehrt das Konzept nach 1, 3 und 7 Runden als kleine Nebenaufgabe zurück («Übrigens, Frau Brunner hat noch eine Frage»). Jede Wiederholung bringt eine andere Aufgabe: zuerst eine neue, dann reihum, nie zweimal dieselbe hintereinander (E-048).
 - Gelingt die Wiederholung, wächst der Abstand. Misslingt sie, kommt sie früher wieder, ohne Punktabzug und ohne Vorwurf.
 - **Mischrunde** am Ende jedes Auftrags: eine grössere Aufgabe, die mehrere Konzepte auf einmal braucht.
 

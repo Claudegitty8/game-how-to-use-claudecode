@@ -7,10 +7,45 @@ import { STAND_VERSION, SCHRITTE, neuerStand } from './ablauf.js';
 // --- Schnelltest: «Das kann ich schon» ---
 
 // Pro Konzept des Auftrags so viele freie Situationen, wie es für die Meisterschaft braucht.
-export function schnelltestAufgaben(auftrag, regeln) {
+// Jeder neue Schnelltest beginnt an einer anderen Stelle, damit nicht immer dieselben Aufgaben kommen (E-048).
+// Der erste nimmt die hinteren Situationen. So beginnt die Runde danach mit einer, die neu ist.
+export function schnelltestAufgaben(auftrag, regeln, versuch = 0) {
+  const noetig = regeln.erfolgeFuerMeisterschaft;
   return auftrag.runden
     .filter((runde) => runde.konzept)
-    .flatMap((runde) => runde.frei.slice(0, regeln.erfolgeFuerMeisterschaft).map((aufgabe) => ({ konzept: runde.konzept, aufgabe })));
+    .flatMap((runde) => {
+      const anzahl = runde.frei.length;
+      const start = (((anzahl - noetig + versuch) % anzahl) + anzahl) % anzahl;
+      return Array.from({ length: Math.min(noetig, anzahl) }, (_, i) => ({
+        konzept: runde.konzept,
+        aufgabe: runde.frei[(start + i) % anzahl],
+      }));
+    });
+}
+
+// Startet einen Schnelltest: zählt den Versuch und legt die Aufgaben fest.
+// Sie stehen im Spielstand, damit sie während des Tests gleich bleiben, auch nach einem Neuladen.
+export function starteSchnelltest(stand, auftrag, regeln) {
+  const bisher = stand.schnelltest?.[auftrag.id];
+  const versuch = Number.isInteger(bisher?.versuche) && bisher.versuche >= 0 ? bisher.versuche : 0;
+  return {
+    ...stand,
+    schnelltest: {
+      ...(stand.schnelltest ?? {}),
+      [auftrag.id]: { versuche: versuch + 1, aufgaben: schnelltestAufgaben(auftrag, regeln, versuch) },
+    },
+  };
+}
+
+// Die Aufgaben des laufenden Schnelltests. Passen die gespeicherten nicht mehr zum Auftrag
+// (zum Beispiel nach einem Update), gelten die vom ersten Versuch.
+export function laufenderSchnelltest(stand, auftrag, regeln) {
+  const gespeichert = stand.schnelltest?.[auftrag.id]?.aufgaben;
+  const konzepte = auftrag.runden.filter((runde) => runde.konzept).map((runde) => runde.konzept);
+  const passt = Array.isArray(gespeichert) && gespeichert.length > 0
+    && gespeichert.every((eintrag) => konzepte.includes(eintrag?.konzept)
+      && auftrag.runden.find((runde) => runde.konzept === eintrag.konzept).frei.includes(eintrag.aufgabe));
+  return passt ? gespeichert : schnelltestAufgaben(auftrag, regeln);
 }
 
 // ergebnisse: Liste aus { konzept, aufgabe, richtig }. Nur wer bei einem Konzept alles richtig hat,
@@ -99,7 +134,24 @@ function pruefeFortschritt(wert) {
       ...(faellig == null ? {} : { faelligBei: faellig }),
       // Über den Ausweg verlassen, wird als Wiederholung nachgeholt (E-047).
       ...(eintrag.nachholen === true ? { nachholen: true } : {}),
+      // Welche Aufgaben schon als Wiederholung kamen, die letzte zuhinterst (E-048).
+      ...(nurTexte(eintrag.wiederholt)?.length ? { wiederholt: [...new Set(nurTexte(eintrag.wiederholt))] } : {}),
     };
+  }
+  return sauber;
+}
+
+// Behält nur Schnelltest-Einträge, die wie einer aussehen (E-048).
+function pruefeSchnelltest(wert) {
+  if (!istObjekt(wert)) return {};
+  const sauber = {};
+  for (const [auftrag, eintrag] of Object.entries(wert)) {
+    if (!istObjekt(eintrag) || !Number.isInteger(eintrag.versuche) || eintrag.versuche < 0) continue;
+    const aufgaben = Array.isArray(eintrag.aufgaben)
+      ? eintrag.aufgaben.filter((a) => istObjekt(a) && typeof a.konzept === 'string' && typeof a.aufgabe === 'string')
+        .map((a) => ({ konzept: a.konzept, aufgabe: a.aufgabe }))
+      : [];
+    sauber[auftrag] = { versuche: eintrag.versuche, aufgaben };
   }
   return sauber;
 }
@@ -119,6 +171,7 @@ export function wandleUm(wert) {
     einrichtung: [...new Set(nurTexte(wert.einrichtung) ?? [])],
     umfrage: istObjekt(wert.umfrage) ? wert.umfrage : {},
     daumen: istObjekt(wert.daumen) ? wert.daumen : {},
+    schnelltest: pruefeSchnelltest(wert.schnelltest),
     einstellungen: { ...leer.einstellungen, ...(istObjekt(wert.einstellungen) ? wert.einstellungen : {}) },
     // Ein laufender Auftrag aus einer anderen Version passt vielleicht nicht mehr. Dann beginnt er neu.
     lauf: wert.version === STAND_VERSION && istObjekt(wert.lauf) ? wert.lauf : null,

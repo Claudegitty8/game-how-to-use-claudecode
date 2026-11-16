@@ -32,7 +32,8 @@ export function zeigeStudio(wurzel, app, nav, daten) {
     auftragKarte.append(el('p', { text: t.mehrFolgt }));
   } else {
     const aktuelle = laeuft ? stand.lauf.runde : -1;
-    auftragKarte.append(
+    // Knöpfe, die es gerade nicht gibt (null), werden ausgelassen. Sonst stünde «null» auf der Seite.
+    auftragKarte.append(...[
       el('h2', { text: auftrag.kunde }),
       el('p', { klasse: 'wunsch', text: `«${auftrag.wunsch}»` }),
       el('ol', { klasse: 'runden' }, auftrag.runden.map((runde, index) => el('li', {
@@ -52,7 +53,7 @@ export function zeigeStudio(wurzel, app, nav, daten) {
       !laeuft && stand.erledigt.length === 0
         ? knopf(t.sprungHinweis, () => nav.zu('einstellungen', { springen: true }), 'knopf-leise')
         : null,
-    );
+    ].filter(Boolean));
   }
 
   // --- Meisterschaft: alle Konzepte, die schon vorgekommen sind oder gerade dran sind ---

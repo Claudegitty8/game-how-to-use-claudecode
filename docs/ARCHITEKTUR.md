@@ -143,13 +143,15 @@ Der Spielstand liegt im Speicher des Browsers auf dem Gerät (`localStorage`). E
 - **Springen:** `sprungStatus` und `springeZuAuftrag` (E-043). Der Stand vor dem letzten Sprung liegt unter `ki-studio-stand-vor-sprung`, damit sich der Sprung rückgängig machen lässt.
 - **Ausweg (E-047):** Im laufenden Auftrag zählt `lauf.ohneFortschritt`, wie viele freie Situationen seit dem letzten gezählten Erfolg nicht gezählt haben, und `lauf.nochmal` merkt sich, welche schon einmal nicht gezählt haben. `auswegOffen` und `ueberspringeRunde` in `logik/ablauf.js` öffnen und nehmen den Ausweg. Ein so verlassenes Konzept trägt im Fortschritt `nachholen: true`, kommt als Wiederholung, und jede richtige Wiederholung zählt als gelöste Situation.
 
+- **Abwechslung (E-048):** `waehleWiederholung` in `logik/ablauf.js` wählt die Aufgabe einer Wiederholung aus den freien Situationen und der Aufgabe aus dem Schritt «Lücke»: nie dieselbe wie zuletzt, zuerst noch nie gezeigte (darunter noch nie gelöste), sonst die älteste. Gemerkt wird das im Fortschritt eines Konzepts unter `wiederholt` (zuletzt gezeigte zuhinterst). Der Schnelltest steht im Stand unter `schnelltest.<auftrag>` mit `versuche` und den `aufgaben` des laufenden Tests (`starteSchnelltest`, `laufenderSchnelltest` in `logik/extras.js`). Jeder Start beginnt an einer anderen Stelle der freien Situationen. Situationen aus dem letzten Test kommen in der Runde ans Ende der Reihe.
+
 Wer ein neues Feld zum Spielstand hinzufügt, ergänzt es in `neuerStand` und in `wandleUm`. Erst bei einem Umbau, der alte Felder anders deutet, wird `STAND_VERSION` erhöht. In den Einstellungen lässt sich der Stand löschen, als Datei sichern und wieder laden.
 
 ## 7. Automatische Prüfungen
 
 | Prüfung | Befehl | Was sie sichert |
 |---|---|---|
-| Tests | `npm test` | Meisterschaftsregel, Wiederholung, Bewertung, Spielablauf, simulierte KI, Speicher, Springen und Umwandeln alter Stände (`tests/springen.test.js`), Hinweise und Ausweg (`tests/ausweg.test.js`, prüft auch, dass niemand in einer Runde hängen bleibt). `tests/ganzes-spiel.test.js` spielt alle Aufträge von Anfang bis Ende durch und prüft, dass am Schluss alle 24 Konzepte gemeistert sind. |
+| Tests | `npm test` | Meisterschaftsregel, Wiederholung, Bewertung, Spielablauf, simulierte KI, Speicher, Springen und Umwandeln alter Stände (`tests/springen.test.js`), Hinweise und Ausweg (`tests/ausweg.test.js`, prüft auch, dass niemand in einer Runde hängen bleibt), Abwechslung bei Wiederholung und Schnelltest (`tests/abwechslung.test.js`). `tests/ganzes-spiel.test.js` spielt alle Aufträge von Anfang bis Ende durch und prüft, dass am Schluss alle 24 Konzepte gemeistert sind. |
 | Inhaltsprüfung | `npm run inhalte` | Jede Runde hat alle fünf Schritte. Probieren ergibt immer Quatsch. Jede Lösung besteht, ein leerer Prompt nie. Jedes Fehlbild hat zwei Varianten und einen Hinweis. Kein Text über 40 Wörter. Jeder Fakt hat Quelle und Datum. |
 | Beides | `npm run pruefen` | vor jedem Commit |
 
