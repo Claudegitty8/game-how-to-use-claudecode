@@ -10,7 +10,7 @@ Alle spürbaren Änderungen, neueste zuerst.
 - **Übungsform «Verbinden»:** Apps antippen und an das richtige Ziel stecken (nur lesen, nur Entwürfe, nicht anstecken). Mit der Maus geht auch Ziehen. Die Folge hängt davon ab, wo ein Teil steckt. Muster im Blumenladen (Connector).
 - **Übungsform «Schleife steuern»:** An drei Stationen (Nachschauen, Handeln, Prüfen) wählen, was Kiwi tut. Kiwi läuft danach sichtbar los und stolpert an der ersten falschen Wahl. Muster im Jassclub (Agentenschleife).
 - **Abkürzungen** (E-049): Jede Abkürzung ist antippbar und zeigt unten eine Erklärung mit Langform und Original. Beim ersten Auftreten steht die Langform dahinter, zum Beispiel «KI (künstliche Intelligenz)». Die Inhaltsprüfung meldet jede Abkürzung ohne Eintrag in `de/abkuerzungen.json`.
-- Insgesamt 186 Aufgaben, 95 Tests.
+- Insgesamt 185 Aufgaben, 95 Tests.
 
 **Bekannte Grenzen**
 - Die neuen Übungsformen gibt es erst je einmal als Muster.
