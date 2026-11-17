@@ -1,0 +1,58 @@
+{
+  "hinweis": "Jede Abkürzung, die im Spiel vorkommt, steht hier mit Langform. Die Inhaltsprüfung meldet Abkürzungen ohne Eintrag. «betonung» sind Wörter in Grossbuchstaben, die nur hervorheben.",
+  "betonung": [
+    "WAS",
+    "FORM",
+    "TUN",
+    "UND",
+    "WIE",
+    "NICHT"
+  ],
+  "eintraege": {
+    "KI": {
+      "lang": "künstliche Intelligenz",
+      "original": "englisch Artificial Intelligence, kurz AI",
+      "erklaerung": "Programme, die Aufgaben lösen, für die man sonst Menschen braucht, zum Beispiel Texte schreiben."
+    },
+    "AI": {
+      "lang": "Artificial Intelligence",
+      "original": "englisch, auf Deutsch künstliche Intelligenz (KI)",
+      "erklaerung": "Die englische Abkürzung für KI."
+    },
+    "API": {
+      "lang": "Programmierschnittstelle",
+      "original": "englisch Application Programming Interface",
+      "erklaerung": "Ein Schalter, über den Programme miteinander reden: Anfrage rein, Antwort raus."
+    },
+    "MCP": {
+      "lang": "Modell-Kontext-Protokoll",
+      "original": "englisch Model Context Protocol",
+      "erklaerung": "Ein gemeinsamer Standard, über den eine KI an Apps angeschlossen wird. Wie ein Stecker, der an viele Geräte passt."
+    },
+    "JSON": {
+      "lang": "JavaScript-Objekt-Schreibweise",
+      "original": "englisch JavaScript Object Notation",
+      "erklaerung": "Eine einfache, feste Schreibweise für Daten, die Programme gut lesen können."
+    },
+    "LLM": {
+      "lang": "grosses Sprachmodell",
+      "original": "englisch Large Language Model",
+      "erklaerung": "Ein Programm, das aus sehr vielen Texten gelernt hat, welches Wort wahrscheinlich als Nächstes kommt."
+    },
+    "USB": {
+      "lang": "universeller Anschluss",
+      "original": "englisch Universal Serial Bus",
+      "erklaerung": "Ein Anschluss für viele Geräte. USB-C ist eine Steckerform, die an sehr viele Geräte passt."
+    },
+    "PS": {
+      "lang": "Nachschrift",
+      "original": "lateinisch post scriptum, «nach dem Geschriebenen»",
+      "erklaerung": "Ein Nachsatz am Ende einer Nachricht."
+    },
+    "CLAUDE.md": {
+      "lang": "Datei mit Dauerregeln für Claude Code",
+      "original": ".md steht für Markdown, ein einfaches Textformat",
+      "erklaerung": "Claude Code liest diese Datei zu Beginn jeder Sitzung."
+    }
+  }
+}

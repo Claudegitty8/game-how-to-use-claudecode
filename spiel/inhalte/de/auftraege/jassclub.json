@@ -52,6 +52,7 @@
       },
       "frei": [
         "ag-c",
+        "ag-s",
         "ag-g",
         "ag-d",
         "ag-e",
@@ -917,6 +918,97 @@
         ],
         "hinweis": "Erst nachschauen, dann handeln, dann prüfen. In dieser Reihenfolge läuft die Schleife."
       }
+    },
+    "ag-s": {
+      "typ": "schleife",
+      "wunsch": "Die App zählt beim «Stöck» falsch. Lenk Kiwi durch die Arbeit, Station für Station.",
+      "frage": "Kiwi soll den Fehler beim Zählen flicken. Was tut Kiwi an jeder Station?",
+      "kiwi": "Kiwi schaut in punkte.js, flickt die Zeile für den «Stöck» und rechnet nach: 20 Punkte. Stimmt.",
+      "stationen": [
+        {
+          "id": "schauen",
+          "name": "Nachschauen",
+          "frage": "Was schaut Kiwi zuerst an?",
+          "leer": "Kiwi weiss nicht, wo anfangen, und bleibt stehen.",
+          "hinweis": "Wähl an jeder Station, was Kiwi tut.",
+          "optionen": [
+            {
+              "id": "farben",
+              "text": "Die Farben der App",
+              "folge": "Kiwi studiert eine Stunde lang Grüntöne. Der Fehler beim Zählen bleibt.",
+              "hinweis": "Nachschauen heisst: dort schauen, wo der Fehler sein kann."
+            },
+            {
+              "id": "datei",
+              "text": "Die Datei, in der die Punkte gerechnet werden",
+              "richtig": true
+            },
+            {
+              "id": "nichts",
+              "text": "Nichts. Kiwi legt sofort los",
+              "folge": "Kiwi ändert irgendeine Datei. Jetzt zählt der «Weis» doppelt, der «Stöck» immer noch falsch.",
+              "hinweis": "Ohne Nachschauen arbeitet Kiwi am falschen Ort."
+            }
+          ]
+        },
+        {
+          "id": "handeln",
+          "name": "Handeln",
+          "frage": "Was ändert Kiwi?",
+          "leer": "Kiwi hat nachgeschaut, weiss aber nicht, was es tun soll.",
+          "hinweis": "Wähl an jeder Station, was Kiwi tut.",
+          "optionen": [
+            {
+              "id": "melden",
+              "text": "Nichts. Kiwi meldet einfach «Erledigt»",
+              "folge": "«Erledigt!», schreibt Kiwi an Herrn Zbinden. Geändert hat Kiwi nichts.",
+              "hinweis": "Handeln heisst: wirklich etwas ändern, nicht nur darüber reden."
+            },
+            {
+              "id": "alles",
+              "text": "Kiwi schreibt gleich die ganze App neu",
+              "folge": "Die App sieht jetzt ganz anders aus. Und sie hat drei neue Fehler.",
+              "hinweis": "Ein kleiner, gezielter Schritt ist sicherer als alles auf einmal."
+            },
+            {
+              "id": "zeile",
+              "text": "Die eine Zeile, die den «Stöck» falsch rechnet",
+              "richtig": true
+            }
+          ]
+        },
+        {
+          "id": "pruefen",
+          "name": "Prüfen",
+          "frage": "Woran merkt Kiwi, ob es stimmt?",
+          "leer": "Kiwi hat etwas geändert, prüft aber nicht und bleibt stehen.",
+          "hinweis": "Wähl an jeder Station, was Kiwi tut.",
+          "optionen": [
+            {
+              "id": "test",
+              "text": "Einen «Stöck» eintragen und nachrechnen: 20 Punkte?",
+              "richtig": true
+            },
+            {
+              "id": "gefuehl",
+              "text": "Es fühlt sich fertig an",
+              "folge": "Kiwi meldet «Fertig!». Herr Zbinden trägt einen «Stöck» ein: 2000 Punkte.",
+              "hinweis": "Ein Gefühl ist keine Prüfung. Kiwi braucht etwas zum Nachrechnen."
+            },
+            {
+              "id": "fragen",
+              "text": "Herrn Zbinden fragen, ob es gut aussieht",
+              "folge": "Herr Zbinden sagt: «Sieht gut aus.» Am Jassabend zählt die App trotzdem falsch.",
+              "hinweis": "Aussehen ist keine Prüfung. Kiwi braucht ein Ergebnis, das man nachrechnen kann."
+            }
+          ]
+        }
+      ],
+      "loesung": [
+        "schauen=datei",
+        "handeln=zeile",
+        "pruefen=test"
+      ]
     }
   }
 }

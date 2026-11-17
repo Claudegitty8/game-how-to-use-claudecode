@@ -15,14 +15,15 @@ async function ladeJson(pfad) {
 }
 
 export async function ladeInhalte(sprache = 'de') {
-  const [regeln, lehrplan, einrichtung, texte, lexikon, umfrage, ...auftraege] = await Promise.all([
+  const [regeln, lehrplan, einrichtung, texte, lexikon, umfrage, abkuerzungen, ...auftraege] = await Promise.all([
     ladeJson('regeln.json'),
     ladeJson('lehrplan.json'),
     ladeJson('einrichtung.json'),
     ladeJson(`${sprache}/texte.json`),
     ladeJson(`${sprache}/lexikon.json`),
     ladeJson(`${sprache}/umfrage.json`),
+    ladeJson(`${sprache}/abkuerzungen.json`),
     ...AUFTRAEGE.map((id) => ladeJson(`${sprache}/auftraege/${id}.json`)),
   ]);
-  return { regeln, lehrplan, texte, lexikon, auftraege, einrichtung: einrichtung.dinge, umfrage: umfrage.fragen };
+  return { regeln, lehrplan, texte, lexikon, auftraege, einrichtung: einrichtung.dinge, umfrage: umfrage.fragen, abkuerzungen };
 }

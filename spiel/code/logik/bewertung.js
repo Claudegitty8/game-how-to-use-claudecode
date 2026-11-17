@@ -33,9 +33,33 @@ function bewerteReihe(aufgabe, auswahl) {
   return { ok, fehlbild: ok ? null : 'daneben', pruefung: null };
 }
 
+// Auswahl bei «Verbinden» und «Schleife»: Paare in der Form «teil=ziel» bzw. «station=antwort».
+export function paare(auswahl = []) {
+  return new Map(auswahl.map((eintrag) => eintrag.split('=')).filter((paar) => paar.length === 2));
+}
+
+// Übungsform «Verbinden»: Jedes Teil muss beim richtigen Ziel stecken. Das erste falsche bestimmt die Folge.
+function bewerteZuordnen(aufgabe, auswahl) {
+  const gesteckt = paare(auswahl);
+  const falsch = aufgabe.teile.find((teil) => gesteckt.get(teil.id) !== teil.ziel) ?? null;
+  return { ok: !falsch, fehlbild: falsch?.id ?? null, pruefung: null, teil: falsch, ziel: falsch ? gesteckt.get(falsch.id) ?? null : null };
+}
+
+// Übungsform «Schleife steuern»: Kiwi läuft die Stationen der Reihe nach ab und stolpert an der ersten falschen Wahl.
+function bewerteSchleife(aufgabe, auswahl) {
+  const gewaehlt = paare(auswahl);
+  for (const station of aufgabe.stationen) {
+    const option = station.optionen.find((o) => o.id === gewaehlt.get(station.id)) ?? null;
+    if (!option?.richtig) return { ok: false, fehlbild: station.id, pruefung: null, station, option };
+  }
+  return { ok: true, fehlbild: null, pruefung: null };
+}
+
 export function bewerte(aufgabe, auswahl = []) {
   if (aufgabe.typ === 'wahl') return bewerteWahl(aufgabe, auswahl);
   if (aufgabe.typ === 'reihe') return bewerteReihe(aufgabe, auswahl);
+  if (aufgabe.typ === 'zuordnen') return bewerteZuordnen(aufgabe, auswahl);
+  if (aufgabe.typ === 'schleife') return bewerteSchleife(aufgabe, auswahl);
   const gewaehlt = new Set(auswahl);
   const treffer = aufgabe.pruefungen.find((pruefung) => trifftZu(pruefung.wenn, gewaehlt, aufgabe)) ?? null;
   return { ok: !treffer, fehlbild: treffer?.fehlbild ?? null, pruefung: treffer };
@@ -49,6 +73,16 @@ export function hilfeTeil(aufgabe, auswahl = []) {
     const falsche = aufgabe.optionen.filter((o) => !o.richtig);
     const ziel = falsche.find((o) => o.id === auswahl[0]) ?? falsche[0];
     return ziel ? { id: ziel.id, grund: 'falsch' } : null;
+  }
+  if (aufgabe.typ === 'zuordnen') {
+    // Beim Verbinden: das erste Teil, das nicht am richtigen Ort steckt.
+    const urteil = bewerteZuordnen(aufgabe, auswahl);
+    return urteil.ok ? null : { id: urteil.teil.id, grund: 'zuordnung' };
+  }
+  if (aufgabe.typ === 'schleife') {
+    // Bei der Schleife: die erste Station mit einer falschen oder fehlenden Wahl.
+    const urteil = bewerteSchleife(aufgabe, auswahl);
+    return urteil.ok ? null : { id: urteil.station.id, grund: 'station' };
   }
   if (aufgabe.typ === 'reihe') {
     // Beim Sortieren: der erste Platz, der nicht stimmt. Der richtige Schritt dafür steht noch zu weit hinten.

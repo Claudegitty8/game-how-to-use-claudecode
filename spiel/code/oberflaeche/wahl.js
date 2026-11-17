@@ -1,6 +1,7 @@
 // Die Übungsform «Vorhersagen»: Der Spieler wählt eine von mehreren Antworten.
 // Bietet dieselben Funktionen wie die Werkbank, damit der Rundenablauf beide gleich behandelt.
 import { el } from './bausteine.js';
+import { zeichneBild } from './bild.js';
 
 // Mischt die Antworten, damit die richtige nicht immer am selben Platz steht.
 // Die Reihenfolge hängt nur vom Text ab: Dieselbe Frage sieht jedes Mal gleich aus.
@@ -22,10 +23,12 @@ export function baueWahl({ aufgabe, t, auswahl = [], gesperrt = false }) {
     }
   }
 
-  const optionen = gemischt(aufgabe.optionen, aufgabe.frage).map((option) => {
+  // Mit Bild («Stelle antippen») bleiben die Bereiche an ihrem Platz im Bild. Sonst werden die Antworten gemischt.
+  const reihenfolge = aufgabe.bild ? aufgabe.optionen : gemischt(aufgabe.optionen, aufgabe.frage);
+  const optionen = reihenfolge.map((option) => {
     const knoten = el('button', {
       type: 'button',
-      klasse: 'baustein wahl',
+      klasse: aufgabe.bild ? `baustein wahl bild-bereich ${option.art ? `bild-${option.art}` : ''}`.trim() : 'baustein wahl',
       onclick: () => {
         gewaehlt = option.id;
         knoten.classList.remove('markiert');
@@ -49,10 +52,19 @@ export function baueWahl({ aufgabe, t, auswahl = [], gesperrt = false }) {
   const steine = el('div', { klasse: 'steine', hidden: true, role: 'img', 'aria-label': (aufgabe.steine ?? []).join('|') },
     (aufgabe.steine ?? []).map((stueck, index) => el('span', { klasse: `stein farbe-${index % 4}`, text: stueck.trim() })));
 
+  // Das Bild mit den antippbaren Bereichen. Bereiche ohne festen Platz kommen ans Ende.
+  function bildMitBereichen() {
+    const platziert = new Set((aufgabe.bild.zeilen ?? []).map((zeile) => zeile.option).filter(Boolean));
+    const index = new Map(reihenfolge.map((option, stelle) => [option.id, optionen[stelle]]));
+    const bild = { ...aufgabe.bild, zeilen: [...aufgabe.bild.zeilen ?? [], ...reihenfolge.filter((o) => !platziert.has(o.id)).map((o) => ({ option: o.id }))] };
+    return zeichneBild(bild, { bereich: (id) => index.get(id) });
+  }
+
   const knoten = el('section', { klasse: 'karte werkbank' },
     el('p', { klasse: 'etikett', text: t.frageEtikett }),
     el('p', { klasse: 'frage', text: aufgabe.frage }),
-    el('div', { klasse: 'bausteine' }, optionen),
+    aufgabe.bild ? el('p', { klasse: 'klein', text: t.bildHilfe }) : null,
+    aufgabe.bild ? bildMitBereichen() : el('div', { klasse: 'bausteine' }, optionen),
     hinweisZumTeil,
     steine,
     sichtfenster);

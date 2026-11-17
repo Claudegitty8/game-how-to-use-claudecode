@@ -154,21 +154,143 @@
             "Fertig! «Cool» fand ich schwierig. Darum spielt das Spiel jetzt am Nordpol, und alle Figuren frieren.",
             "Erledigt! Ich wusste nicht genau, was du meinst. Ich habe einfach überall Sonnenbrillen draufgemalt."
           ],
-          "hinweis": "Ungefähre Wörter sagen Kiwi nichts Genaues. Kiwi muss raten, was du meinst."
+          "hinweis": "Ungefähre Wörter sagen Kiwi nichts Genaues. Kiwi muss raten, was du meinst.",
+          "bilder": [
+            {
+              "art": "handy",
+              "titel": "Cooles Spiel",
+              "zeilen": [
+                {
+                  "symbol": "🧊",
+                  "text": "Level 1: Nordpol"
+                },
+                {
+                  "symbol": "🥶",
+                  "text": "Alle Figuren frieren"
+                },
+                {
+                  "symbol": "▶️",
+                  "text": "Start",
+                  "art": "knopf"
+                }
+              ]
+            },
+            {
+              "art": "handy",
+              "titel": "Cooles Spiel",
+              "zeilen": [
+                {
+                  "symbol": "😎",
+                  "text": "Gipfeli mit Sonnenbrille"
+                },
+                {
+                  "symbol": "😎",
+                  "text": "Korb mit Sonnenbrille"
+                },
+                {
+                  "symbol": "▶️",
+                  "text": "Start",
+                  "art": "knopf"
+                }
+              ]
+            }
+          ]
         },
         "keinZiel": {
           "texte": [
             "Fertig! In meinem Spiel sortiert eine Kartoffel Steuerformulare. Level 1 heisst «Formular A». Viel Spass!",
             "Erledigt! Es ist Schach mit 400 Figuren. Die Regeln habe ich selbst erfunden."
           ],
-          "hinweis": "Kiwi wusste nicht, was für ein Spiel du willst. Also hat Kiwi geraten."
+          "hinweis": "Kiwi wusste nicht, was für ein Spiel du willst. Also hat Kiwi geraten.",
+          "bilder": [
+            {
+              "art": "handy",
+              "titel": "Formular-Kartoffel",
+              "zeilen": [
+                {
+                  "symbol": "🥔",
+                  "text": "Die Kartoffel sortiert Steuerformulare"
+                },
+                {
+                  "symbol": "📄",
+                  "text": "Level 1: Formular A"
+                },
+                {
+                  "symbol": "▶️",
+                  "text": "Start",
+                  "art": "knopf"
+                }
+              ]
+            },
+            {
+              "art": "handy",
+              "titel": "Schach 400",
+              "zeilen": [
+                {
+                  "symbol": "♟️",
+                  "text": "400 Figuren auf dem Brett"
+                },
+                {
+                  "symbol": "📜",
+                  "text": "Regeln: von Kiwi erfunden"
+                },
+                {
+                  "symbol": "▶️",
+                  "text": "Start",
+                  "art": "knopf"
+                }
+              ]
+            }
+          ]
         },
         "keineForm": {
           "texte": [
             "Fertig! Gipfeli fangen, wie gewünscht. Eine Runde dauert vier Stunden. Ist das recht?",
             "Erledigt! Man fängt Gipfeli. Das Spiel hört nie auf. Wirklich nie."
           ],
-          "hinweis": "Kiwi wusste nicht, wie lang eine Runde sein soll. Also hat Kiwi geraten."
+          "hinweis": "Kiwi wusste nicht, wie lang eine Runde sein soll. Also hat Kiwi geraten.",
+          "bilder": [
+            {
+              "art": "handy",
+              "titel": "Gipfeli fangen",
+              "zeilen": [
+                {
+                  "symbol": "🥐",
+                  "text": "Gipfeli fallen vom Himmel"
+                },
+                {
+                  "symbol": "⏳",
+                  "text": "Noch 3 Stunden 59 Minuten",
+                  "art": "fehler"
+                },
+                {
+                  "symbol": "▶️",
+                  "text": "Start",
+                  "art": "knopf"
+                }
+              ]
+            },
+            {
+              "art": "handy",
+              "titel": "Gipfeli fangen",
+              "zeilen": [
+                {
+                  "symbol": "🥐",
+                  "text": "Gipfeli fallen vom Himmel"
+                },
+                {
+                  "symbol": "♾️",
+                  "text": "Ende: nie",
+                  "art": "fehler"
+                },
+                {
+                  "symbol": "▶️",
+                  "text": "Start",
+                  "art": "knopf"
+                }
+              ]
+            }
+          ]
         }
       },
       "erfolg": [
@@ -178,7 +300,30 @@
       "loesung": [
         "ziel",
         "form"
-      ]
+      ],
+      "erfolgBild": {
+        "art": "handy",
+        "titel": "Gipfeli fangen",
+        "zeilen": [
+          {
+            "symbol": "🥐",
+            "text": "Gipfeli fallen vom Himmel"
+          },
+          {
+            "symbol": "🧺",
+            "text": "Fang sie mit dem Korb"
+          },
+          {
+            "symbol": "⏱️",
+            "text": "Eine Runde: 30 Sekunden"
+          },
+          {
+            "symbol": "▶️",
+            "text": "Spielen",
+            "art": "knopf"
+          }
+        ]
+      }
     },
     "p-b": {
       "wunsch": "Das Spiel braucht noch einen Titel. Kurz muss er sein.",

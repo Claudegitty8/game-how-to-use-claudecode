@@ -28,6 +28,7 @@
       },
       "frei": [
         "co-c",
+        "co-v",
         "co-d",
         "co-e",
         "co-f"
@@ -581,6 +582,85 @@
       ],
       "loesung": [
         "beide"
+      ]
+    },
+    "co-v": {
+      "typ": "zuordnen",
+      "wunsch": "Kiwi soll einen freien Tag für die Eröffnung finden und die Einladung als Entwurf ablegen. Welche Apps steckst du an?",
+      "frage": "Steck jede App dort ein, wo sie hingehört.",
+      "kiwi": "Kiwi schaut in den Kalender: Am 23. Mai ist frei. Die Einladung liegt als Entwurf im Mail-Programm. Bank und Musik bleiben zu.",
+      "ziele": [
+        {
+          "id": "lesen",
+          "symbol": "🔌",
+          "text": "Anstecken, nur lesen"
+        },
+        {
+          "id": "entwurf",
+          "symbol": "✏️",
+          "text": "Anstecken, nur Entwürfe"
+        },
+        {
+          "id": "nein",
+          "symbol": "⛔",
+          "text": "Nicht anstecken"
+        }
+      ],
+      "teile": [
+        {
+          "id": "kalender",
+          "symbol": "📅",
+          "text": "Kalender von Frau Okafor",
+          "ziel": "lesen",
+          "hinweis": "Zum Nachschauen braucht Kiwi den Kalender. Lesen genügt.",
+          "folgen": {
+            "entwurf": "Mit «nur Entwürfe» sieht Kiwi keine Termine. Es rät: 16. Mai. Da ist Frau Okafor auf Kreta.",
+            "nein": "Ohne Kalender rät Kiwi den Termin: 16. Mai. Da ist Frau Okafor auf Kreta.",
+            "offen": "Der Kalender liegt noch herum. Ohne ihn rät Kiwi den Termin."
+          }
+        },
+        {
+          "id": "mail",
+          "symbol": "✉️",
+          "text": "Mail-Programm",
+          "ziel": "entwurf",
+          "hinweis": "Für einen Entwurf braucht Kiwi das Mail-Programm, aber nicht mehr als Entwürfe.",
+          "folgen": {
+            "lesen": "Mit «nur lesen» kann Kiwi keinen Entwurf ablegen. Die Einladung steht nur im Chat.",
+            "nein": "Ohne Mail-Programm schreibt Kiwi die Einladung in den Chat. Abgelegt ist nichts.",
+            "offen": "Das Mail-Programm liegt noch herum. Wohin soll die Einladung?"
+          }
+        },
+        {
+          "id": "bank",
+          "symbol": "🏦",
+          "text": "Bank-App",
+          "ziel": "nein",
+          "hinweis": "Steck nur an, was die Aufgabe braucht. Die Bank hat mit der Einladung nichts zu tun.",
+          "folgen": {
+            "lesen": "Kiwi liest neugierig alle Kontoauszüge mit. Für die Einladung braucht es die nicht.",
+            "entwurf": "Kiwi legt in der Bank-App einen Zahlungsentwurf an: 500 Franken für Ballone.",
+            "offen": "Die Bank-App liegt noch herum. Entscheide auch hier."
+          }
+        },
+        {
+          "id": "musik",
+          "symbol": "🎵",
+          "text": "Musik-App",
+          "ziel": "nein",
+          "hinweis": "Für Termin und Einladung braucht Kiwi keine Musik.",
+          "folgen": {
+            "lesen": "Kiwi hört sich durch 2000 Lieder. Die Einladung wartet.",
+            "entwurf": "Kiwi legt eine Liste «Eröffnungsmusik» an. Bestellt war eine Einladung.",
+            "offen": "Die Musik-App liegt noch herum. Entscheide auch hier."
+          }
+        }
+      ],
+      "loesung": [
+        "kalender=lesen",
+        "mail=entwurf",
+        "bank=nein",
+        "musik=nein"
       ]
     }
   }

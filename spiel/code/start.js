@@ -7,6 +7,7 @@ import { zeigeRunde, zeigeZwischen } from './oberflaeche/runde.js';
 import { zeigeLexikon, zeigeEinstellungen } from './oberflaeche/lexikon.js';
 import { zeigeSchnelltest, zeigeUmfrage } from './oberflaeche/extras.js';
 import { wendeSchriftAn } from './oberflaeche/schrift.js';
+import { richteAbkuerzungenEin } from './oberflaeche/abkuerzungen.js';
 import { pruefeLauf } from './logik/extras.js';
 
 const ANSICHTEN = {
@@ -59,8 +60,11 @@ async function start() {
         return inhalte.auftraege.find((a) => !erledigt.includes(a.id)) ?? null;
       },
     };
+    // Abkürzungen werden überall antippbar und beim ersten Mal ausgeschrieben.
+    const abkuerzungen = richteAbkuerzungenEin(wurzel, app);
     const nav = {
       zu(name, daten) {
+        abkuerzungen.neuGezeichnet();
         wurzel.replaceChildren();
         ANSICHTEN[name](wurzel, app, nav, daten);
         window.scrollTo(0, 0);

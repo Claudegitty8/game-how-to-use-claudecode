@@ -18,7 +18,8 @@ export function neuerStand() {
     gespart: {},           // pro erledigtem Auftrag: gesparte Spiel-Tokens
     einrichtung: [],       // gekaufte Zierde fürs Studio
     umfrage: {},           // freiwillige Fragen: vorher und nachher, je Anzahl richtige
-    daumen: {},            // pro Auftrag: hoch oder runter
+    daumen: {},
+    abkuerzungen: [],      // Abkürzungen, deren Langform der Spieler schon gesehen hat            // pro Auftrag: hoch oder runter
     schnelltest: {},       // pro Auftrag: wie oft gestartet und welche Aufgaben zuletzt (E-048)
     einstellungen: { schrift: 'normal' },
   };

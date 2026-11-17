@@ -354,3 +354,70 @@ summary:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid
 .sprung-auf[open] > summary::after { content: '▾'; }
 .sprung-liste .rueckfrage, .sprung-zurueck .rueckfrage { margin-top: 0.4rem; }
 .sprung-zurueck { display: grid; gap: 0.4rem; margin-top: 0.6rem; }
+
+/* ---------- Version 0.18: Bilder, Verbinden, Schleife, Abkürzungen ---------- */
+
+/* Selbst gezeichnete Bilder: Handy, Webseite, Code, Mail */
+.bild { margin: 0; border: 2px solid var(--linie); border-radius: var(--radius); background: var(--grund); overflow: hidden; }
+.bild-art-handy { max-width: 17rem; margin-inline: auto; border-width: 6px; border-radius: 26px; border-color: var(--text); }
+.bild-kopf { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.7rem; background: var(--flaeche); border-bottom: 1px solid var(--linie); font-size: 0.85rem; }
+.bild-punkte { width: 2.2rem; height: 0.6rem; border-radius: 1rem; background: repeating-linear-gradient(90deg, var(--linie) 0 0.6rem, transparent 0.6rem 0.8rem); flex: none; }
+.bild-art-handy .bild-punkte { width: 3rem; background: var(--text); border-radius: 1rem; height: 0.35rem; }
+.bild-titel { color: var(--leise); overflow-wrap: anywhere; }
+.bild-art-webseite .bild-titel::before { content: '🔒 '; }
+.bild-inhalt { display: grid; gap: 0.4rem; padding: 0.7rem; }
+.bild-zeile { display: flex; align-items: center; gap: 0.5rem; }
+.bild-symbol { font-size: 1.4rem; flex: none; }
+.bild-knopf { justify-content: center; padding: 0.45rem; border-radius: 999px; background: var(--kiwi-dunkel); color: var(--flaeche); font-weight: 700; }
+.bild-fehler { color: var(--warn); font-weight: 700; }
+.bild-gross { font-size: 1.15rem; font-weight: 700; }
+.bild-klein { font-size: 0.72rem; color: var(--leise); }
+.bild-art-code .bild-inhalt { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.85rem; }
+.bild-ort:empty { display: none; }
+.bild-ort { margin-top: 0.4rem; }
+
+/* «Stelle antippen»: Bereiche im Bild sind Knöpfe, sehen aber wie Teile der Seite aus */
+.bild-bereich { border-style: dashed; background: var(--flaeche); min-height: 2.75rem; }
+.bild-bereich.bild-klein { font-size: 0.75rem; }
+.bild-bereich.bild-gross { font-size: 1.1rem; font-weight: 700; }
+
+/* «Verbinden» */
+.zuordnen { display: grid; gap: 0.8rem; }
+.zuordnen-ablage { display: flex; flex-wrap: wrap; gap: 0.5rem; min-height: 2.75rem; padding: 0.5rem; border: 2px dashed var(--linie); border-radius: var(--radius); }
+.zuordnen-ziele { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); }
+.zuordnen-ziel { display: grid; gap: 0.4rem; align-content: start; padding: 0.5rem; border: 2px solid var(--linie); border-radius: var(--radius); background: var(--grund); }
+.zuordnen-ziel.bereit { border-color: var(--akzent); }
+.zuordnen-ziel-knopf { display: flex; align-items: center; gap: 0.4rem; min-height: 2.75rem; padding: 0.4rem 0.6rem; background: var(--flaeche); border: 2px solid var(--linie); border-radius: 10px; font-weight: 600; text-align: left; }
+.zuordnen-ziel-knopf:not(:disabled) { border-color: var(--akzent); color: var(--akzent); cursor: pointer; }
+.zuordnen-ziel-symbol { font-size: 1.3rem; }
+.zuordnen-drin { display: flex; flex-wrap: wrap; gap: 0.4rem; min-height: 0.5rem; }
+.zuordnen-teil { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 2.75rem; padding: 0.35rem 0.7rem; border: 2px solid var(--linie); border-radius: 999px; background: var(--flaeche); color: var(--text); cursor: grab; }
+.zuordnen-teil.aktiv { border-color: var(--akzent); outline: 3px solid var(--akzent); outline-offset: 2px; }
+.zuordnen-teil.markiert { border-color: var(--warn); background: var(--warn-flaeche); }
+
+/* «Schleife steuern» */
+.schleife-bahn { position: relative; padding-top: 3.2rem; }
+.schleife-stationen { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+.schleife-station { display: grid; justify-items: center; gap: 0.2rem; padding: 0.5rem 0.2rem; text-align: center; border: 2px solid var(--linie); border-radius: var(--radius); font-size: 0.9rem; }
+.schleife-station.gut { border-color: var(--kiwi-dunkel); background: var(--gut-flaeche); }
+.schleife-station.stolpert { border-color: var(--warn); background: var(--warn-flaeche); }
+.schleife-station.stolpert::after { content: '⚠'; }
+.schleife-nr { font-weight: 700; color: var(--leise); }
+.schleife-zurueck { text-align: center; margin-top: 0.3rem; }
+.schleife-laeufer { position: absolute; top: 0; left: 0; width: calc(100% / 3); display: flex; justify-content: center; transition: transform 0.4s ease; }
+.schleife-laeufer .kiwi { width: 2.6rem; height: 2.6rem; }
+.schleife-laeufer.bei-1 { transform: translateX(100%); }
+.schleife-laeufer.bei-2 { transform: translateX(200%); }
+.schleife-fragen { display: grid; gap: 0.8rem; }
+.schleife-frage { border: 2px solid var(--linie); border-radius: var(--radius); padding: 0.6rem; margin: 0; display: grid; gap: 0.5rem; }
+.schleife-frage legend { font-weight: 600; padding: 0 0.3rem; }
+.schleife-frage.markiert { border-color: var(--warn); background: var(--warn-flaeche); }
+
+/* Abkürzungen: antippbares Wort und Erklärung unten */
+.abk { display: inline; padding: 0; margin: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline dashed; text-underline-offset: 0.2em; cursor: help; min-height: 0; }
+.abk-lang { color: var(--leise); }
+.abk-erklaerung { position: fixed; left: 0.6rem; right: 0.6rem; bottom: 0.6rem; z-index: 20; max-width: 34rem; margin: 0 auto; display: grid; gap: 0.5rem; padding: 0.8rem 1rem; background: var(--flaeche); border: 2px solid var(--akzent); border-radius: var(--radius); box-shadow: 0 6px 24px rgb(0 0 0 / 0.25); }
+
+@media (prefers-reduced-motion: reduce) {
+  .schleife-laeufer { transition: none; }
+}

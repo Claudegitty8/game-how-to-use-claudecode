@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { bewerte } from '../spiel/code/logik/bewertung.js';
 import { ARTEN } from '../spiel/code/logik/prompt.js';
+import { findeAbkuerzungen } from '../spiel/code/logik/abkuerzungen.js';
 
 const STANDARD_ORDNER = fileURLToPath(new URL('../spiel/inhalte/', import.meta.url));
 const MAX_WOERTER = 40; // Leitlinie B7: kein Textblock über 40 Wörter
@@ -118,6 +119,27 @@ export async function pruefeInhalte(ordner = STANDARD_ORDNER, sprachen = ['de'])
         if ((frage.optionen ?? []).some((o) => !istText(o.text))) fehler.push(`${name}: Antwort ohne text`);
       }
 
+      // Abkürzungen: Jede Abkürzung in den Texten braucht einen Eintrag mit Langform und Erklärung.
+      const abk = await lies(ordner, `${sprache}/abkuerzungen.json`, fehler);
+      for (const [kurz, eintrag] of Object.entries(abk?.eintraege ?? {})) {
+        for (const feld of ['lang', 'original', 'erklaerung']) {
+          if (!istText(eintrag[feld])) fehler.push(`${sprache}/abkuerzungen.json «${kurz}»: ${feld} fehlt`);
+        }
+        if (zuLang(eintrag.erklaerung)) fehler.push(`${sprache}/abkuerzungen.json «${kurz}»: erklaerung hat mehr als ${MAX_WOERTER} Wörter`);
+      }
+      const alleTexte = (wert) => (typeof wert === 'string' ? [wert] : Object.values(wert ?? {}).flatMap(alleTexte));
+      let abkDateien = [];
+      try {
+        abkDateien = (await readdir(path.join(ordner, sprache, 'auftraege'))).filter((d) => d.endsWith('.json')).map((d) => `${sprache}/auftraege/${d}`);
+      } catch {
+        // Fehlt der Ordner, meldet das die Prüfung weiter unten.
+      }
+      for (const datei of [`${sprache}/texte.json`, `${sprache}/lexikon.json`, `${sprache}/umfrage.json`, ...abkDateien]) {
+        const inhalt = await lies(ordner, datei, fehler);
+        const fehlend = new Set(alleTexte(inhalt).flatMap((text) => findeAbkuerzungen(text, abk ?? {})).filter((fund) => !fund.schluessel).map((fund) => fund.wort));
+        for (const wort of fehlend) fehler.push(`${datei}: Abkürzung «${wort}» fehlt in ${sprache}/abkuerzungen.json`);
+      }
+
       let dateien = [];
       try {
         dateien = (await readdir(path.join(ordner, sprache, 'auftraege'))).filter((d) => d.endsWith('.json'));
@@ -225,6 +247,26 @@ export function pruefeAufgabe(aufgabe, name, fehler) {
     pruefeReihe(aufgabe, name, fehler);
     return;
   }
+  if (aufgabe.typ === 'zuordnen') {
+    pruefeZuordnen(aufgabe, name, fehler);
+    return;
+  }
+  if (aufgabe.typ === 'schleife') {
+    pruefeSchleife(aufgabe, name, fehler);
+    return;
+  }
+  if (aufgabe.typ) {
+    fehler.push(`${name}: unbekannte Übungsform «${aufgabe.typ}»`);
+    return;
+  }
+  // Ergebnis als Bild: pro Variante eines Fehlbilds genau ein Bild, dazu wahlweise ein Bild für den Erfolg.
+  for (const [id, fehlbild] of Object.entries(aufgabe.fehlbilder ?? {})) {
+    if ('bilder' in fehlbild) {
+      if (fehlbild.bilder.length !== (fehlbild.texte ?? []).length) fehler.push(`${name}: Fehlbild «${id}» braucht ein Bild pro Variante`);
+      fehlbild.bilder.forEach((bild) => pruefeBild(bild, `${name} Fehlbild ${id}`, fehler));
+    }
+  }
+  if (aufgabe.erfolgBild) pruefeBild(aufgabe.erfolgBild, `${name} Erfolgsbild`, fehler);
   if (!istText(aufgabe.wunsch)) fehler.push(`${name}: wunsch fehlt`);
   if (!istText(aufgabe.grundprompt)) fehler.push(`${name}: grundprompt fehlt`);
   if (!Array.isArray(aufgabe.erfolg) || aufgabe.erfolg.length < 1) fehler.push(`${name}: mindestens ein Erfolgstext nötig`);
@@ -303,8 +345,73 @@ function pruefeReihe(aufgabe, name, fehler) {
   if (texte.some(zuLang)) fehler.push(`${name}: Ein Text hat mehr als ${MAX_WOERTER} Wörter`);
 }
 
+// Ein selbst gezeichnetes Bild: bekannte Art, ein Titel, Zeilen mit Text oder mit Platz für einen Bereich.
+const BILD_ARTEN = ['handy', 'webseite', 'code', 'mail'];
+function pruefeBild(bild, name, fehler, optionen = null) {
+  if (!BILD_ARTEN.includes(bild?.art)) fehler.push(`${name}: Bild braucht eine Art (${BILD_ARTEN.join(', ')})`);
+  if (!istText(bild?.titel)) fehler.push(`${name}: Bild braucht einen titel`);
+  for (const zeile of bild?.zeilen ?? []) {
+    if (zeile.option) {
+      if (!optionen?.has(zeile.option)) fehler.push(`${name}: Bild nennt unbekannten Bereich «${zeile.option}»`);
+    } else if (!istText(zeile.text)) fehler.push(`${name}: Bildzeile ohne text`);
+  }
+}
+
+// Übungsform «Verbinden»: jedes Teil hat ein Ziel, und für jedes falsche Ziel und für «noch nirgends» eine Folge.
+function pruefeZuordnen(aufgabe, name, fehler) {
+  for (const feld of ['wunsch', 'frage', 'kiwi']) {
+    if (!istText(aufgabe[feld])) fehler.push(`${name}: ${feld} fehlt`);
+  }
+  const ziele = new Set((aufgabe.ziele ?? []).map((ziel) => ziel.id));
+  if (ziele.size < 2) fehler.push(`${name}: mindestens zwei Ziele nötig`);
+  const teile = aufgabe.teile ?? [];
+  if (teile.length < 2) fehler.push(`${name}: mindestens zwei Teile nötig`);
+  const texte = [aufgabe.wunsch, aufgabe.frage, aufgabe.kiwi, ...(aufgabe.ziele ?? []).map((ziel) => ziel.text)];
+  for (const teil of teile) {
+    if (!ziele.has(teil.ziel)) fehler.push(`${name}: Teil «${teil.id}» hat ein unbekanntes Ziel`);
+    if (!istText(teil.text) || !istText(teil.hinweis)) fehler.push(`${name}: Teil «${teil.id}» braucht text und hinweis`);
+    for (const falsch of [...ziele].filter((ziel) => ziel !== teil.ziel).concat('offen')) {
+      if (!istText(teil.folgen?.[falsch])) fehler.push(`${name}: Teil «${teil.id}» braucht eine Folge für «${falsch}»`);
+    }
+    texte.push(teil.text, teil.hinweis, ...Object.values(teil.folgen ?? {}));
+  }
+  const loesung = teile.map((teil) => `${teil.id}=${teil.ziel}`);
+  if ([...(aufgabe.loesung ?? [])].sort().join() !== [...loesung].sort().join()) fehler.push(`${name}: loesung muss jedes Teil mit seinem Ziel nennen`);
+  if (!bewerte(aufgabe, aufgabe.loesung ?? []).ok) fehler.push(`${name}: Die Lösung besteht nicht`);
+  if (bewerte(aufgabe, []).ok) fehler.push(`${name}: Ohne Stecken gilt es als richtig`);
+  if (texte.some(zuLang)) fehler.push(`${name}: Ein Text hat mehr als ${MAX_WOERTER} Wörter`);
+}
+
+// Übungsform «Schleife steuern»: mindestens zwei Stationen, je genau eine richtige Wahl, jede falsche mit Folge und Hinweis.
+function pruefeSchleife(aufgabe, name, fehler) {
+  for (const feld of ['wunsch', 'frage', 'kiwi']) {
+    if (!istText(aufgabe[feld])) fehler.push(`${name}: ${feld} fehlt`);
+  }
+  const stationen = aufgabe.stationen ?? [];
+  if (stationen.length < 2) fehler.push(`${name}: mindestens zwei Stationen nötig`);
+  const texte = [aufgabe.wunsch, aufgabe.frage, aufgabe.kiwi];
+  for (const station of stationen) {
+    for (const feld of ['name', 'frage', 'leer', 'hinweis']) {
+      if (!istText(station[feld])) fehler.push(`${name}: Station «${station.id}» braucht ${feld}`);
+    }
+    const optionen = station.optionen ?? [];
+    if (optionen.filter((option) => option.richtig).length !== 1) fehler.push(`${name}: Station «${station.id}» braucht genau eine richtige Wahl`);
+    if (optionen[0]?.richtig && stationen.every((s) => s.optionen?.[0]?.richtig)) fehler.push(`${name}: Die richtige Wahl steht überall zuoberst`);
+    for (const option of optionen) {
+      if (!istText(option.text)) fehler.push(`${name}: Wahl «${option.id}» braucht einen text`);
+      if (!option.richtig && (!istText(option.folge) || !istText(option.hinweis))) fehler.push(`${name}: Wahl «${option.id}» braucht folge und hinweis`);
+      texte.push(option.text, option.folge, option.hinweis);
+    }
+    texte.push(station.name, station.frage, station.leer, station.hinweis);
+  }
+  if (!bewerte(aufgabe, aufgabe.loesung ?? []).ok) fehler.push(`${name}: Die Lösung besteht nicht`);
+  if (bewerte(aufgabe, []).ok) fehler.push(`${name}: Ohne Wahl gilt es als richtig`);
+  if (texte.some(zuLang)) fehler.push(`${name}: Ein Text hat mehr als ${MAX_WOERTER} Wörter`);
+}
+
 // Übungsform «Vorhersagen»: genau eine richtige Antwort, jede Antwort mit Erklärung.
 function pruefeWahl(aufgabe, name, fehler) {
+  if (aufgabe.bild) pruefeBild(aufgabe.bild, name, fehler, new Set((aufgabe.optionen ?? []).map((option) => option.id)));
   for (const feld of ['wunsch', 'frage', 'kiwi']) {
     if (!istText(aufgabe[feld])) fehler.push(`${name}: ${feld} fehlt`);
   }

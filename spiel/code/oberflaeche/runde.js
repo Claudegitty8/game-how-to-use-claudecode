@@ -8,6 +8,7 @@ import {
 import { hilfeTeil } from '../logik/bewertung.js';
 import { erfolge, neuerFortschritt } from '../logik/meisterschaft.js';
 import { daumenKarte } from './extras.js';
+import { zeichneBild } from './bild.js';
 
 function schrittReihe(t, aktuell) {
   return el('ol', { klasse: 'schritte' }, SCHRITTE.map((schritt) => el('li', {
@@ -115,6 +116,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   // --- Ergebnis ---
   const kiwi = kiwiFigur(t.kiwiName);
   const sprechblase = el('p', { klasse: 'sprechblase', text: t.kiwiBereit });
+  const bildOrt = el('div', { klasse: 'bild-ort' });
   const hinweis = el('p', { klasse: 'hinweis' });
   const status = el('p', { klasse: 'status' });
   const hilfeText = el('p', { klasse: 'hilfe-text' });
@@ -122,7 +124,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
   const budgetHinweis = el('p', { klasse: 'hinweis budget-hinweis' });
   const aktionen = el('div', { klasse: 'aktionen' });
   const ergebnis = el('section', { klasse: 'karte ergebnis', role: 'status' },
-    el('div', { klasse: 'kiwi-zeile' }, kiwi, sprechblase), hinweis, status, kosten, budgetHinweis);
+    el('div', { klasse: 'kiwi-zeile' }, kiwi, sprechblase), bildOrt, hinweis, status, kosten, budgetHinweis);
 
   function weiterSchritt() {
     app.setze(weiter(app.stand, auftrag));
@@ -154,7 +156,9 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
     if (!antwort.ok) fehlschlaege += 1;
     sprechblase.textContent = antwort.text;
     hinweis.textContent = antwort.ok ? antwort.hinweis ?? t.gelungen : antwort.hinweis;
-    werkbank.nachTest?.();
+    werkbank.nachTest?.(antwort);
+    // Ergebnis als Bild: Was Kiwi gebaut hat, gezeichnet.
+    bildOrt.replaceChildren(antwort.bild ? zeichneBild(antwort.bild, { beschreibung: fuelle(t.bildBeschreibung, { titel: antwort.bild.titel ?? '' }) }) : '');
     hinweis.className = antwort.ok ? 'hinweis gut' : 'hinweis';
     kiwi.classList.toggle('froh', antwort.ok);
     status.textContent = '';
@@ -186,7 +190,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
         status.textContent = zaehlt ? t.gezaehlt : t.nichtGezaehlt;
         fertig(knopf(t.naechste, () => schliesseAb({ ok: true, zaehlt }), 'los'));
       } else {
-        status.textContent = aufgabe.typ === 'reihe' ? t.nochmalReihe : istWahl ? t.nochmalWahl : t.nochmal;
+        status.textContent = aufgabe.typ === 'reihe' ? t.nochmalReihe : aufgabe.typ === 'zuordnen' || aufgabe.typ === 'schleife' ? t.nochmalAnders : istWahl ? t.nochmalWahl : t.nochmal;
         aktionen.replaceChildren(knopf(t.andere, () => schliesseAb({ ok: false, zaehlt: false }), 'knopf-zweit'));
       }
     } else if (art === 'misch') {
@@ -217,7 +221,7 @@ function zeigeAufgabe(wurzel, app, nav, a, auftrag) {
     } else if (hilfeStufe === 2) {
       const teil = hilfeTeil(aufgabe, werkbank.auswahl());
       hilfeText.textContent = '';
-      const text = { zuviel: t.hilfeZuviel, fehlt: t.hilfeFehlt, falsch: t.hilfeFalscheWahl, platz: t.hilfePlatz };
+      const text = { zuviel: t.hilfeZuviel, fehlt: t.hilfeFehlt, falsch: t.hilfeFalscheWahl, platz: t.hilfePlatz, zuordnung: t.hilfeZuordnung, station: t.hilfeStation };
       if (teil) werkbank.markiere(teil.id, text[teil.grund]);
     } else {
       werkbank.setze(aufgabe.loesung);

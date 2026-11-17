@@ -171,6 +171,7 @@ export function wandleUm(wert) {
     einrichtung: [...new Set(nurTexte(wert.einrichtung) ?? [])],
     umfrage: istObjekt(wert.umfrage) ? wert.umfrage : {},
     daumen: istObjekt(wert.daumen) ? wert.daumen : {},
+    abkuerzungen: [...new Set(nurTexte(wert.abkuerzungen) ?? [])],
     schnelltest: pruefeSchnelltest(wert.schnelltest),
     einstellungen: { ...leer.einstellungen, ...(istObjekt(wert.einstellungen) ? wert.einstellungen : {}) },
     // Ein laufender Auftrag aus einer anderen Version passt vielleicht nicht mehr. Dann beginnt er neu.

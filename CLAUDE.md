@@ -25,7 +25,7 @@ Es gibt keine installierten Pakete und keinen Build-Schritt. Füge keine Abhäng
 ## Feste Regeln
 
 1. **Drei Schichten, strikt getrennt.** `spiel/code/logik/` kennt keine Oberfläche. `spiel/code/oberflaeche/` enthält keine Spielregeln und keine festen Texte. Lerninhalte liegen als JSON in `spiel/inhalte/`.
-2. **Alle sichtbaren Texte stehen in `spiel/inhalte/<sprache>/`.** Nie im Code.
+2. **Alle sichtbaren Texte stehen in `spiel/inhalte/<sprache>/`.** Nie im Code. Jede Abkürzung braucht einen Eintrag in `de/abkuerzungen.json` (E-049).
 3. **Die Mechanik ist das Konzept.** Jeder KI-Quatsch entspricht einem echten KI-Verhalten.
 4. **Fakten über KI und Claude nur mit offizieller Quelle und Prüfdatum.** Zahlen und Namen stehen in `spiel/inhalte/fakten.json`, nicht in Spieltexten.
 5. **Zwölfjährigen-Test für jeden Text:** Du-Form, kurze Sätze, kein Textblock über 40 Wörter.
